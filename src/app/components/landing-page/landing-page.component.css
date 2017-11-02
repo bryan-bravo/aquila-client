@@ -1,0 +1,38 @@
+:host {
+    width: 100vw;
+    height: 100%;
+}
+
+#imageContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#logo {
+    height: 30vh;
+}
+
+#contentContainer {
+    position: relative;
+    background-color: gold;
+    width: 100vw;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.informationContainer {
+    display: block;
+    width: 25%;
+    height: auto;
+    background-color: white;
+    border: solid 5px #d9d9db;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.informationPhoto {
+    width: 100%;
+}

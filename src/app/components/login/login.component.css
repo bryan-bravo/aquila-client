@@ -1,0 +1,34 @@
+:host {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    /* maybe */
+    /* background: gold;
+    background: -moz-linear-gradient(bottom, gold 0%, white 50%);
+    background: -webkit-linear-gradient(bottom, gold 0%, white 50%);
+    background: linear-gradient(to top, gold 0%, white 50%); */
+}
+
+img {
+    width: 30vh;
+}
+
+#login {
+    width: 40vh;
+    height: 40vh;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.ui-float-label,
+input {
+    width: 100% !important;
+}

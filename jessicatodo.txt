@@ -1,0 +1,9 @@
+-update node
+-update npm
+the second answer is the easiest
+https://stackoverflow.com/questions/18412129/how-do-i-update-node-js-and-npm-on-windows
+click the download hyperlink
+
+-install recent angular 
+-install newer angular cli
+-clone the project and run npm install to install node modules
