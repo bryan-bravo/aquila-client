@@ -1,15 +1,15 @@
 :host {
     width: 100%;
     height: 100%;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    /* maybe */
-    /* background: gold;
-    background: -moz-linear-gradient(bottom, gold 0%, white 50%);
-    background: -webkit-linear-gradient(bottom, gold 0%, white 50%);
-    background: linear-gradient(to top, gold 0%, white 50%); */
 }
 
 img {

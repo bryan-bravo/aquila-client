@@ -1,0 +1,13 @@
+<div class='container'>
+    <p-menubar [model]='items'>
+        <button pButton class='ui-button-warning' type='button' label='New Proposal'></button>
+    </p-menubar>
+</div>
+<div class='container'>
+    <p-dataList [value]="projects">
+        <p-header>My Projects</p-header>
+        <ng-template let-project pTemplate="item">
+
+        </ng-template>
+    </p-dataList>
+</div>

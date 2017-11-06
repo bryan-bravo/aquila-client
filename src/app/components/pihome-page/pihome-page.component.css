@@ -1,0 +1,13 @@
+.container {
+    width: 80vw;
+    margin: 2vh 10vw;
+}
+
+p-menubar,
+p-dataList {
+    width: 100%;
+}
+
+button {
+    display: inline;
+}
