@@ -7,7 +7,11 @@
     <p-dataList [value]="projects">
         <p-header>My Projects</p-header>
         <ng-template let-project pTemplate="item">
-
+            <div class='projectRow'>
+                <p class='projectdescription'><a href=''>{{project.name}}</a></p>
+                <p class='projectdescription'> {{project.date}} </p>
+                <p class='projectdescription'> {{project.status}} </p>
+            </div>
         </ng-template>
     </p-dataList>
 </div>

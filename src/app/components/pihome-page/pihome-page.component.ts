@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem,Header} from 'primeng/primeng';
-import {ProjectInfo} from './ProjectInfo';
+import {ProjectInfo} from '../../models/ProjectInfo';
+import {User} from '../../models/User';
+
 @Component({
   selector: 'app-pihome-page',
   templateUrl: './pihome-page.component.html',
   styleUrls: ['./pihome-page.component.css']
 })
 export class PiHomePageComponent implements OnInit {
+  user:User;
   name:string;
   items: MenuItem[];
   projects: ProjectInfo[];
@@ -14,6 +17,7 @@ export class PiHomePageComponent implements OnInit {
 
   ngOnInit() {
     this.populateMenuBar();
+    this.populateProjects();
   }
   populateMenuBar(){
     this.name ='Bryan';
@@ -24,10 +28,32 @@ export class PiHomePageComponent implements OnInit {
       {
         label: 'Settings',
         icon: 'fa-gear',
-        items: []
+        //edit user settings,
+        items: [
+          {
+            label:'Edit Information',
+            command:this.editInformationClicked
+          }
+        ]
       }
     ];
   }
+  populateProjects(){
+    this.projects =[];    
+    let dummyProject = {
+      'name':'Beds In The Library',
+      'date':'Jan 18, 2013 - current',
+      'status':'PreAward',
+      'id':3242342
+    };
+    this.projects.push(dummyProject);
+    this.projects.push(dummyProject);
+    
+  }
+  editInformationClicked(){
+//username,firstname, lastname, contact email, phone number, 
+//have these fields bind to the component, call a service, response perhaps change the user in sessionScope
+}
 
 }
  

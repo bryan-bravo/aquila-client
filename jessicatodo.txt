@@ -1,9 +1,14 @@
 -update node
 -update npm
 the second answer is the easiest
-https://stackoverflow.com/questions/18412129/how-do-i-update-node-js-and-npm-on-windows
 click the download hyperlink
-
--install recent angular 
+https://stackoverflow.com/questions/18412129/how-do-i-update-node-js-and-npm-on-windows
 -install newer angular cli
+npm install -g @angular/cli@latest
 -clone the project and run npm install to install node modules
+https://github.com/bryan-bravo/aquila-client
+- read this
+here is the link to login:https://login.mimas.calstatela.edu/login?qurl=http%3a%2f%2fproquest.safaribooksonline.com%2f%3fuicode%3dcalstate
+search for this:Angular UI Development with PrimeNG 
+Make sure you have a good understanding of the core concepts, the book is digestable imo
+my version of node: 8.1.4, npm:5.0.3, angular cli:1.4.7

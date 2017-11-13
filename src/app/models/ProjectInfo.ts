@@ -1,4 +1,4 @@
-export class ProjectInfo {
+export interface ProjectInfo {
     name:String;
     date:String;
     status:String;
