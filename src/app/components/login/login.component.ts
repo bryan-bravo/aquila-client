@@ -11,7 +11,9 @@ export class LoginComponent implements OnInit {
   constructor(private authenticationService:AuthenticationService) { }
 
   ngOnInit() {
-
+    this.authenticationService.testConnectionWithServer().subscribe(response=>{
+      console.log(response);
+    });
   }
   submit(){
     //make sure both of the forms are filled in

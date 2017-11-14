@@ -1,0 +1,64 @@
+export interface IntakeForm {
+    id:String;
+    //A
+    principalInvestigator:String;
+    department:String;
+    college:String;
+    projectTitle:String;
+    proposedFundingAmount:String;
+    startDate:Date;
+    endDate:Date;
+    //B
+    personnel:any[];//personnel object
+    //C
+    anticipateStipend:Boolean;
+    stipends:String;
+    facultyStudentResearchCreativeActivities:Boolean;
+    studentsInResearch:Boolean;
+    noOfUndergradStudents:Number;
+    noOfGradStudents:Number
+    laboratoryAssitance:Boolean;
+    dataCollection:Boolean;
+    reportWriting:Boolean;
+    literatureReview:Boolean;
+    codingOrDataEntry:Boolean;
+    presentation:Boolean;
+    archivalResearch:Boolean;
+    dataAnalysis:Boolean;
+    otherActivities:Boolean;
+    otherActivitiesList:String[];
+    //D
+    subGrantsOrSubContracts:any[];//subgrantsubcontract
+    //E
+    projectLocations:any[];//projectLocation
+    //F
+    additionalInvolvedParties:any[];//additionalparty
+    //G
+    agencyCostRatePercentage;
+    agencyCostSharing:Boolean;
+    piCostSharing:Boolean;
+    computersRequested:Number;
+    requestedEquipment:any;//map<string,double>
+    //H
+    spaces:any[];//space
+    //I
+    hazardousSubstances:any[];//<String,String>
+    //J
+    humanSubject:Boolean;
+    vertebrateAnimals:Boolean;
+    questionareField:String;
+    categoryTitle:String;
+    //K
+    assistanceWithProposalDevelopment:Boolean;
+    technicalAssistance:Boolean;
+    letterOfSupportPresident:Boolean;
+    letterOfSupportProvost:Boolean;
+    letterOfSupportAssocVPOfResearch:Boolean;
+    duplicationfFinalDocumentPackage:Boolean;
+    noOfCopies:Number;
+    //L
+    summary:String;
+
+
+    
+} 

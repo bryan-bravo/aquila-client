@@ -2,6 +2,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+
 //ngPrime 
 import {ButtonModule} from 'primeng/primeng';
 import {InputTextModule} from 'primeng/primeng';
@@ -37,6 +39,7 @@ const AppRoutes: Routes =[
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     RouterModule.forRoot(AppRoutes),
     ButtonModule,
     InputTextModule,

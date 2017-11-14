@@ -75,5 +75,4 @@ export interface ApprovalForm {
     purposeOfProject:String;
     cfdaNumber:Number;
     //
-    proposalForm:any;//??
 }
