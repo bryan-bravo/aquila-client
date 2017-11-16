@@ -12,6 +12,8 @@ import {DataListModule} from 'primeng/primeng';
 import {Header} from 'primeng/primeng';
 import {MessagesModule} from 'primeng/primeng';
 import {MessageModule} from 'primeng/primeng';
+import {InputSwitchModule} from 'primeng/primeng';
+
 //generated components
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -19,13 +21,16 @@ import {RouterModule,Routes} from '@angular/router';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { PiHomePageComponent } from './components/pihome-page/pihome-page.component';
 import { LoginComponent } from './components/login/login.component';
- 
+import { NewProposalComponent } from './components/new-proposal/new-proposal.component';
+
 //services
 import{AuthenticationService} from './services/authentication.service';
 const AppRoutes: Routes =[
     {path:'', component:LandingPageComponent},  
     {path:'login', component:LoginComponent},  
     {path:'home', component:PiHomePageComponent},//will have can activate thing   
+    {path:'newproposal', component:NewProposalComponent},//will have can activate thing   
+    
 ];
 @NgModule({
   declarations: [
@@ -34,6 +39,7 @@ const AppRoutes: Routes =[
     LandingPageComponent,
     LoginComponent,
     PiHomePageComponent,
+    NewProposalComponent,
     
   ],
   imports: [
@@ -46,7 +52,8 @@ const AppRoutes: Routes =[
     MenubarModule,
     DataListModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    InputSwitchModule
   
     
   ],
