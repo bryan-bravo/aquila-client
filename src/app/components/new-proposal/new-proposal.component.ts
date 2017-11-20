@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import{IntakeForm} from '../../models/PreAward/IntakeForm';
-import{BudgetFile} from '../../models/PreAward/BudgetFile';
 
 @Component({
   selector: 'app-new-proposal',
@@ -8,11 +6,9 @@ import{BudgetFile} from '../../models/PreAward/BudgetFile';
   styleUrls: ['./new-proposal.component.css']
 })
 export class NewProposalComponent implements OnInit {
-  intakeForm:IntakeForm;
-  budgetFile:BudgetFile;
+  //name of project, user, date created
   constructor() {
-    this.intakeForm = new IntakeForm();
-    this.budgetFile = new BudgetFile();
+
    }
 
   ngOnInit() {

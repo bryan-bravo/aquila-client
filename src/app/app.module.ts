@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //ngPrime 
 import {ButtonModule} from 'primeng/primeng';
 import {InputTextModule} from 'primeng/primeng';
@@ -13,6 +13,7 @@ import {Header} from 'primeng/primeng';
 import {MessagesModule} from 'primeng/primeng';
 import {MessageModule} from 'primeng/primeng';
 import {InputSwitchModule} from 'primeng/primeng';
+import {OverlayPanelModule} from 'primeng/primeng';
 
 //generated components
 import { AppComponent } from './app.component';
@@ -47,13 +48,15 @@ const AppRoutes: Routes =[
     FormsModule,
     HttpModule,
     RouterModule.forRoot(AppRoutes),
+    BrowserAnimationsModule,
     ButtonModule,
     InputTextModule,
     MenubarModule,
     DataListModule,
     MessagesModule,
     MessageModule,
-    InputSwitchModule
+    InputSwitchModule,
+    OverlayPanelModule
   
     
   ],

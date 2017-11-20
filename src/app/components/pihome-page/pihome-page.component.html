@@ -1,8 +1,18 @@
 <div class='container'>
     <p-menubar [model]='items'>
-        <button pButton class='ui-button-warning' type='button' label='New Proposal'></button>
+        <button pButton class='ui-button-warning' type='button' label='New Proposal' (click)="op.show($event)"></button>
     </p-menubar>
 </div>
+<p-overlayPanel #op>
+    <form (ngSubmit)='newProposalNameSubmitted()'>
+        <span class="ui-float-label">
+        <input id="nop" type="text" size="30" pInputText name="newProposalName" [(ngModel)]='newProposalName' /> 
+        <label for="nop">Name of Project</label>        
+        </span>
+        <button pButton class='ui-button-success' type='submit' label='Submit' (click)="op.hide($event)"></button>
+    </form>
+</p-overlayPanel>
+
 <div class='container'>
     <p-dataList [value]="projects">
         <p-header>My Projects</p-header>
