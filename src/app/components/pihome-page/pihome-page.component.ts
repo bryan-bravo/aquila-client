@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {  Router }   from '@angular/router';
 import {MenuItem,Header} from 'primeng/primeng';
 import {ProjectInfo} from '../../models/ProjectInfo';
 import {User} from '../../models/User';
@@ -16,7 +17,7 @@ export class PiHomePageComponent implements OnInit {
   newProposalName:string;
   items: MenuItem[];
   projects: ProjectInfo[];
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
     this.populateMenuBar();
@@ -64,7 +65,8 @@ newProposalNameSubmitted(){
   // if created proposal is succesful
   // reroute to edit proposal that with proposal id as param
   // in edit proposal call a get with proposal id
-
+  let idFromResponse='qwerty';
+  this.router.navigate(['editproposal/'+idFromResponse]);
 }
 
 }

@@ -1,4 +1,4 @@
-export interface ApprovalForm {
+export class ApprovalForm {
     //1-4
     id:String;
     projectTitle:String;

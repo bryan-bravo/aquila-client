@@ -1,0 +1,12 @@
+<!-- this side task bar will contain all functions to edit, the models themselves will be delegated to inner components -->
+<div id='formSelect'>
+    <div class='form' *ngFor='let form of formsStatus'>
+        <a [routerLink]='[form.name]'>{{form.name}}</a>
+    </div>
+    <button pButton label='Save'></button>
+    <button pButton label='Submit'></button>
+
+</div>
+<div>
+    <router-outlet></router-outlet>
+</div>

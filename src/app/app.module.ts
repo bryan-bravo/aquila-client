@@ -22,7 +22,8 @@ import {RouterModule,Routes} from '@angular/router';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { PiHomePageComponent } from './components/pihome-page/pihome-page.component';
 import { LoginComponent } from './components/login/login.component';
-import { NewProposalComponent } from './components/new-proposal/new-proposal.component';
+import { EditProposalComponent } from './components/edit-proposal/edit-proposal.component';
+import { IntakeComponent } from './components/formcomponents/intake/intake.component';
 
 //services
 import{AuthenticationService} from './services/authentication.service';
@@ -30,8 +31,12 @@ const AppRoutes: Routes =[
     {path:'', component:LandingPageComponent},  
     {path:'login', component:LoginComponent},  
     {path:'home', component:PiHomePageComponent},//will have can activate thing   
-    {path:'newproposal', component:NewProposalComponent},//will have can activate thing   
-    
+    {path:'editproposal/:id',component:EditProposalComponent,
+      children:[
+        {path:'Intake', component:IntakeComponent},  
+        
+      ]
+    }
 ];
 @NgModule({
   declarations: [
@@ -40,7 +45,8 @@ const AppRoutes: Routes =[
     LandingPageComponent,
     LoginComponent,
     PiHomePageComponent,
-    NewProposalComponent,
+    EditProposalComponent,
+    IntakeComponent,
     
   ],
   imports: [
