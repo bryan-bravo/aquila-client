@@ -5,15 +5,19 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //ngPrime 
-import {ButtonModule} from 'primeng/primeng';
+import {ButtonModule, PaginatorModule} from 'primeng/primeng';
 import {InputTextModule} from 'primeng/primeng';
-import {MenubarModule,MenuItem} from 'primeng/primeng';
+import {StepsModule,MenubarModule,MenuItem} from 'primeng/primeng';
 import {DataListModule} from 'primeng/primeng';
 import {Header} from 'primeng/primeng';
 import {MessagesModule} from 'primeng/primeng';
 import {MessageModule} from 'primeng/primeng';
 import {InputSwitchModule} from 'primeng/primeng';
 import {OverlayPanelModule} from 'primeng/primeng';
+import {ProgressBarModule} from 'primeng/primeng';
+import {TriStateCheckboxModule} from 'primeng/primeng';
+import {CalendarModule} from 'primeng/primeng';
+import {DataTableModule,SharedModule} from 'primeng/primeng';
 
 //generated components
 import { AppComponent } from './app.component';
@@ -62,9 +66,13 @@ const AppRoutes: Routes =[
     MessagesModule,
     MessageModule,
     InputSwitchModule,
-    OverlayPanelModule
-  
-    
+    OverlayPanelModule,
+    ProgressBarModule,
+    PaginatorModule,
+    StepsModule,
+    TriStateCheckboxModule,
+    CalendarModule,
+    DataTableModule
   ],
   providers: [AuthenticationService],   
   bootstrap: [AppComponent]

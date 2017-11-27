@@ -1,3 +1,149 @@
-<p>
-  intake works!
-</p>
+<h3>Intake Form</h3>
+<!-- <p-steps [model]="items"></p-steps> -->
+
+<div id='container' class="">
+    <label for='pi'>Principal Investigator</label>
+    <input id='pi' type="text" pInputText>
+    <label for='pt'>Project Title</label>
+    <input id='pt' type="text" pInputText>
+    <label for='pfa'> Proposed Funding Amount</label>
+    <input id='pfa' type="text" pInputText>
+    <label for='sd'> Start Date</label>
+    <p-calendar id='sd'></p-calendar>
+    <label for='ed'> End Date</label>
+    <p-calendar id='ed'></p-calendar>
+    <!-- personnel object -->
+    <div id='personnel'>
+        <label>Personnel</label>
+        <p-dataTable [value]="intakeForm?.personnel">
+            <p-column field="name" header="Name"></p-column>
+            <p-column field="employer" header="Employer"></p-column>
+            <p-column field="positionTitleOnGrant" header="Position Title On Grant"></p-column>
+            <p-column field="units" header="Units"></p-column>
+        </p-dataTable>
+        <!-- delete a personnel -->
+        <!-- add a personnel -->
+    </div>
+    <label for='as'>Anticipate Stipend</label>
+    <p-triStateCheckbox id='as'></p-triStateCheckbox>
+    <label for='stipends'>Stipends</label>
+    <input id='stipends' type="text" pInputText>
+    <label for='fsrca'>Faculty Student Research Creative Activities</label>
+    <p-triStateCheckbox id='fsrca'></p-triStateCheckbox>
+    <label for='sir'>Students In Research</label>
+    <p-triStateCheckbox id='sir'></p-triStateCheckbox>
+    <label for='nous'> Number Of Undergrad Students</label>
+    <input id='nous' type="text" pInputText>
+    <label for='nogs'> Number Of Grad Students</label>
+    <input id='nogs' type="text" pInputText>
+    <label for='la'>Laboratory Assistance</label>
+    <p-triStateCheckbox id='la'></p-triStateCheckbox>
+    <label for='dc'>Data Collection</label>
+    <p-triStateCheckbox id='dc'></p-triStateCheckbox>
+    <label for='rw'>Report Writing</label>
+    <p-triStateCheckbox id='rw'></p-triStateCheckbox>
+    <label for='lr'>Literature Review</label>
+    <p-triStateCheckbox id='lr'></p-triStateCheckbox>
+    <label for='coda'>Coding Or Data Entry</label>
+    <p-triStateCheckbox id='coda'></p-triStateCheckbox>
+    <label for='p'>Presentation</label>
+    <p-triStateCheckbox id='p'></p-triStateCheckbox>
+    <label for='ar'>Archival Research</label>
+    <p-triStateCheckbox id='ar'></p-triStateCheckbox>
+    <label for='da'>Data Analysis</label>
+    <p-triStateCheckbox id='da'></p-triStateCheckbox>
+    <label for='oa'>Other Activities</label>
+    <p-triStateCheckbox id='oa'></p-triStateCheckbox>
+    <!-- otherActivitiesList:String[]; -->
+    <div id='otherActvities'>
+    </div>
+    <!-- subGrantsOrSubContracts:SubgrantSubProject[];//subgrantsubcontract -->
+    <div>
+        <label>SubGrants Or SubContracts</label>
+        <p-dataTable [value]="intakeForm?.subGrantsOrSubContracts">
+            <p-column field="institutionName" header="Institution Name"></p-column>
+            <p-column field="proposedFundingAmount" header="Proposed Funding Amount"></p-column>
+            <p-column field="contactPerson" header="Contact Person"></p-column>
+            <p-column field="contactInfo" header="Contact Info"></p-column>
+        </p-dataTable>
+    </div>
+    <!-- projectLocations:ProjectLocation[];//projectLocation -->
+    <div>
+        <label>Project Locations</label>
+        <p-dataTable [value]="intakeForm?.projectLocations">
+            <p-column field="siteName" header="Site Name"></p-column>
+            <p-column field="siteAddress" header="Site Address"></p-column>
+            <p-column field="projectedPercentOfTimeAtState" header="Projected Percent Of Time At State"></p-column>
+            <p-column field="onCampusSpaceOrOnCampusRentalNeeded" header="On Campus Space Or On Campus Rental Needed"></p-column>
+        </p-dataTable>
+    </div>
+    <!-- additionalInvolvedParties:AdditionalParty[];//additionalparty -->
+    <div>
+        <label>Additional Parties</label>
+        <p-dataTable [value]="intakeForm?.additionalInvolvedParties">
+            <p-column field="partyName" header="Party Name"></p-column>
+            <p-column field="supervisor" header="Supervisor"></p-column>
+            <p-column field="explanationOfInvolvement" header="Explanation Of Involvement"></p-column>
+        </p-dataTable>
+    </div>
+    <label for='acrp'> Agency Cost Rate Percentage</label>
+    <input id='acrp' type="text" pInputText>
+    <label for='acs'>Agency Cost Sharing</label>
+    <p-triStateCheckbox id='acs'></p-triStateCheckbox>
+    <label for='pcs'>PI Cost Sharing</label>
+    <p-triStateCheckbox id='pcs'></p-triStateCheckbox>
+    <label for='cr'> Computers Requested</label>
+    <input id='cr' type="text" pInputText>
+    <!-- requestedEquipment:any;//map<string,double> -->
+    <div>
+        <label> Equipment to Be Requested</label>
+        <p-dataTable [value]="intakeForm?.requestedEquipment">
+            <p-column field="name" header="Name"></p-column>
+            <p-column field="approximateCost" header="Approximate Cost"></p-column>
+        </p-dataTable>
+    </div>
+    <!-- spaces:any[];//space -->
+    <div>
+        <label>Spaces</label>
+        <p-dataTable [value]="intakeForm?.spaces">
+            <p-column field="item" header="Party Name"></p-column>
+            <p-column field="newSpace" header="New Space"></p-column>
+            <p-column field="sourceOfFunds" header="Source Of Funds"></p-column>
+        </p-dataTable>
+    </div>
+    <!-- hazardousSubstances:any[];//<String,String> -->
+    <div>
+        <label>HAZARDOUS SUBSTANCES</label>
+        <p-dataTable [value]="intakeForm?.hazardousSubstances">
+            <p-column field="agent" header="Name Of Agent"></p-column>
+            <p-column field="type" header="Type(biohazard,radiation, recombinant DNA..)"></p-column>
+        </p-dataTable>
+    </div>
+    <p-triStateCheckbox id='hs'></p-triStateCheckbox>
+    <label for='va'>Vertebrate Animals</label>
+    <p-triStateCheckbox id='va'></p-triStateCheckbox>
+    <label for='qf'> Questionare Field</label>
+    <input id='qf' type="text" pInputText>
+    <label for='ct'> Category Title</label>
+    <input id='ct' type="text" pInputText>
+    <label for='awpd'>Assistance With Proposal Development</label>
+    <p-triStateCheckbox id='awpd'></p-triStateCheckbox>
+    <label for='ta'>Technical Assistance</label>
+    <p-triStateCheckbox id='ta'></p-triStateCheckbox>
+    <label for='losp'>Letter Of Support President</label>
+    <p-triStateCheckbox id='losp'></p-triStateCheckbox>
+    <label for='lospr'>Letter Of Support Provost</label>
+    <p-triStateCheckbox id='lospr'></p-triStateCheckbox>
+    <label for='pcs'>PI Cost Sharing</label>
+    <p-triStateCheckbox id='pcs'></p-triStateCheckbox>
+    <label for='losavpor'>Letter Of Support Associate VP Of Research</label>
+    <p-triStateCheckbox id='losavpor'></p-triStateCheckbox>
+    <label for='dofdp'>Duplication Of Final Document Package</label>
+    <p-triStateCheckbox id='dofdp'></p-triStateCheckbox>
+    <label for='noc'> Number Of Copies</label>
+    <input id='noc' type="text" pInputText>
+    <label for='s'> Summary</label>
+    <input id='s' type="text" pInputText>
+</div>
+
+<p-paginator></p-paginator>

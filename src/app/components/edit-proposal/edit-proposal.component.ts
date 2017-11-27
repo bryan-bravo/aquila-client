@@ -22,7 +22,7 @@ export class EditProposalComponent implements OnInit {
     this.getParams();
     this.fillMockData();
   }
-  getParams(){
+  getParams(){                                            
     this.router.params.subscribe(params => {
        this.proposalId=params['id'];
     });	
@@ -31,6 +31,5 @@ export class EditProposalComponent implements OnInit {
     this.formsStatus=MockData.formsStatus;
   }
 }
-//get the proposal object from the server
-// have a nested router?
+
    
