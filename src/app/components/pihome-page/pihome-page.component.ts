@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  Router }   from '@angular/router';
+import {PreawardService} from '../../services/preaward.service';
 import {MenuItem,Header} from 'primeng/primeng';
 import {ProjectInfo} from '../../models/ProjectInfo';
 import {User} from '../../models/User';
@@ -17,7 +18,7 @@ export class PiHomePageComponent implements OnInit {
   newProposalName:string;
   items: MenuItem[];
   projects: ProjectInfo[];
-  constructor(private router:Router) { }
+  constructor(private router:Router,private preAwardService:PreawardService) { }
 
   ngOnInit() {
     this.populateMenuBar();
@@ -51,22 +52,19 @@ export class PiHomePageComponent implements OnInit {
       'id':3242342
     };
     this.projects.push(dummyProject);
-    this.projects.push(dummyProject);
     
   }
   editInformationClicked(){
-//username,firstname, lastname, contact email, phone number, 
+//username,firstname, lastname, ctact email, phone number, 
 //have these fields bind to the component, call a service, response perhaps change the user in sessionScope
 }
-newProposalNameSubmitted(){
-  // console.log(this.newProposalName)
-  //can making a loading component true
-  // can now invoke service
-  // if created proposal is succesful
-  // reroute to edit proposal that with proposal id as param
-  // in edit proposal call a get with proposal id
-  let idFromResponse='qwerty';
-  this.router.navigate(['editproposal/'+idFromResponse]);
+newProposalNameSubmitted(){ 
+  
+  let idFromResponse ='qwerty';
+  this.preAwardService.newProposal(this.newProposalName).subscribe(proposal=>{
+    this.router.navigate(['editproposal/'+proposal.id]);
+  });
+
 }
 
 }

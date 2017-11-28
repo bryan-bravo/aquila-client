@@ -33,6 +33,8 @@ import { TimelineComponent } from './components/formcomponents/timeline/timeline
 
 //services
 import{AuthenticationService} from './services/authentication.service';
+import{PreawardService} from './services/preaward.service';
+
 const AppRoutes: Routes =[
     {path:'', component:LandingPageComponent},  
     {path:'login', component:LoginComponent},  
@@ -80,7 +82,7 @@ const AppRoutes: Routes =[
     CalendarModule,
     DataTableModule
   ],
-  providers: [AuthenticationService],   
+  providers: [AuthenticationService, PreawardService],   
   bootstrap: [AppComponent]
 })
 export class AppModule { }
