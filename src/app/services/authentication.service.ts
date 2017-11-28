@@ -7,14 +7,9 @@ import 'rxjs/add/operator/map';
 export class AuthenticationService {
 users:User[];
 isDev:Boolean;
-prepEndpoint(ep){
-  if(!this.isDev)
-    return ep;
-   else 
-    return 'http://localhost:8080/'+ep;
-}   
+
 constructor(private http:Http) {
-    this.isDev=true;
+    this.isDev=false;
     this.users=[
     {
       'id':0,
@@ -59,9 +54,7 @@ constructor(private http:Http) {
 
   }
   testConnectionWithServer(){
-    let ep = this.prepEndpoint('api/users');
-    console.log(ep)
-    return this.http.get(ep).map(response=>{ return response.json()});  
+    return this.http.get('api/users').map(response=>{ return response.json()});  
   }
 
 }

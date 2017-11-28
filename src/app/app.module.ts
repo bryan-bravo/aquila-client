@@ -28,6 +28,8 @@ import { PiHomePageComponent } from './components/pihome-page/pihome-page.compon
 import { LoginComponent } from './components/login/login.component';
 import { EditProposalComponent } from './components/edit-proposal/edit-proposal.component';
 import { IntakeComponent } from './components/formcomponents/intake/intake.component';
+import { BudgetComponent } from './components/formcomponents/budget/budget.component';
+import { TimelineComponent } from './components/formcomponents/timeline/timeline.component';
 
 //services
 import{AuthenticationService} from './services/authentication.service';
@@ -38,6 +40,8 @@ const AppRoutes: Routes =[
     {path:'editproposal/:id',component:EditProposalComponent,
       children:[
         {path:'Intake', component:IntakeComponent},  
+        {path:'Budget', component:BudgetComponent},
+        {path:'Timeline', component:TimelineComponent},  
         
       ]
     }
@@ -51,6 +55,8 @@ const AppRoutes: Routes =[
     PiHomePageComponent,
     EditProposalComponent,
     IntakeComponent,
+    BudgetComponent,
+    TimelineComponent,
     
   ],
   imports: [
