@@ -12,6 +12,7 @@ import {DataListModule} from 'primeng/primeng';
 import {Header} from 'primeng/primeng';
 import {MessagesModule} from 'primeng/primeng';
 import {MessageModule} from 'primeng/primeng';
+import {MessageService} from 'primeng/components/common/messageservice';
 import {InputSwitchModule} from 'primeng/primeng';
 import {OverlayPanelModule} from 'primeng/primeng';
 import {ProgressBarModule} from 'primeng/primeng';
@@ -82,7 +83,7 @@ const AppRoutes: Routes =[
     CalendarModule,
     DataTableModule
   ],
-  providers: [AuthenticationService, PreawardService],   
+  providers: [AuthenticationService, PreawardService,MessageService],   
   bootstrap: [AppComponent]
 })
 export class AppModule { }
