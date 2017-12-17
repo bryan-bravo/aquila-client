@@ -1,12 +1,80 @@
 <!-- this side task bar will contain all functions to edit, the models themselves will be delegated to inner components -->
-<div id='formSelect'>
-    <div class='form' *ngFor='let form of formsStatus'>
-        <a [routerLink]='[form.name]'>{{form.name}}</a>
+<!--  -->
+<div *ngIf='menuState' id='menu-state'>
+    <div id='dashboard'>
+        <p>{{proposalName}}</p>
+        <label>Status</label>
+        <button>Submit</button>
+        <label> Help</label>
     </div>
-    <button pButton label='Save'></button>
-    <button pButton label='Submit'></button>
+    <div class='required-forms' id='intake'>
+        <p class='title'>Intake Form </p>
+        <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
+        </div>
+        <a [routerLink]='["Intake"]'>Intake</a>
 
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
+        <label class='required-indicator required-form'>Required</label>
+
+    </div>
+    <div class='required-forms' id='budget'>
+        <p class='title'>Budget Form</p>
+        <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
+        <label class='required-indicator required-form'>Required</label>
+
+    </div>
+    <div class='required-forms' id='timeline'>
+        <p class='title'>Timeline</p>
+        <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
+
+    </div>
+    <div class='required-forms' id='approval'>
+        <p class='title'>Approval Form</p>
+        <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
+
+        <label class='required-indicator required-form'>Required</label>
+
+    </div>
+    <div id='optional-forms-container'>
+        <div>
+            <p class='title'>Equipment</p>
+            <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti </p>
+            <label class='optional-indicator optional-form'>Optional</label>
+        </div>
+        <div>
+            <p class='title'>Conflict Of Interest</p>
+            <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti </p>
+            <label class='optional-indicator optional-form'>Optional</label>
+        </div>
+        <div>
+            <p class='title'>Conflict Of Interest</p>
+            <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti </p>
+            <label class='optional-indicator optional-form'>Optional</label>
+
+        </div>
+        <div>
+            <p class='title'>Conflict Of Interest</p>
+            <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti </p>
+            <label class='optional-indicator optional-form'>Optional</label>
+
+        </div>
+
+    </div>
 </div>
-<div id='routerContainer'>
+<label id='menu-return' class='optional-indicator' (click)='changeState()'>Menu</label>
+
+<div *ngIf='routerState' id='router-container'>
     <router-outlet></router-outlet>
 </div>

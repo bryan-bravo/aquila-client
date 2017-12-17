@@ -1,19 +1,41 @@
-.container {
-    width: 80vw;
-    margin: 2vh 10vw;
-}
-
-p-menubar,
-p-dataList {
+:host {
+    display: block;
+    height: 100%;
     width: 100%;
 }
 
-button {
-    display: inline;
+#left {
+    height: 100%;
+    width: 20%;
+    float: left;
+    background-color: rgb(221, 220, 215);
 }
 
-.projectRow {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+#container {
+    height: 10%;
+    width: 80%;
+    margin-left: 20%;
+    padding-top: 5vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 10%;
 }
+
+#info,
+#pre-award,
+#post-award,
+#settings {
+    height: 100%;
+    padding: 1em;
+    position: relative;
+    background-color: rgb(255, 218, 34);
+    font-size: 20px;
+}
+
+#info {}
+
+#pre-award {}
+
+#post-award {}
+
+#settings {}

@@ -1,14 +1,25 @@
 :host {
-    display: block;
     width: 100%;
     height: 100%;
+    display: block;
 }
 
-#container {
+#container {}
+
+#general-info,
+.rsca-actvities,
+#budget,
+#other {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+}
+
+.title {
+    background-color: #fff3b5;
+    border: 2px solid #ffd400;
+    width: 100%;
 }
 
 h3 {

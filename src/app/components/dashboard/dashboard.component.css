@@ -4,7 +4,7 @@
     align-items: center;
     width: 100vw;
     height: 5vh;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.842);
     color: white;
     font-size: 18px;
 }

@@ -8,19 +8,26 @@ import {MenuItem} from 'primeng/primeng';
   styleUrls: ['./intake.component.css']
 })
 export class IntakeComponent implements OnInit {
-  intakeForm:IntakeForm;
-  items: MenuItem[];
-  
+  intakeForm:IntakeForm;  
+  index:number;
   constructor() { }
 
   ngOnInit() {
-this.populateMenuItems();
+  this.index=0;
   }
-populateMenuItems(){
-  this.items = [
-    {label: 'Step 1'},
-    {label: 'Step 2'},
-    {label: 'Step 3'}
-];
+  setProgressBar(percentage){
+    let formattedWidth = percentage+'%';
+    return{
+      'height':'10px',
+      'width':formattedWidth,
+      'background-color':'rgb(46, 236, 29)'
+    };   
+  }
+  changeIndex(direction){    
+    if(direction=='left')
+    this.index=this.index-1;
+    if(direction=='right')
+    this.index=this.index+1;
+  }
 }
-}
+ 

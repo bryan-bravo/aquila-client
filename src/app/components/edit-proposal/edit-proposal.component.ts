@@ -9,26 +9,36 @@ import {MockData} from './mock-data';
 })
 export class EditProposalComponent implements OnInit {
   proposalId:string;//current proposal request being modified
-  formsStatus:any[];//shows the state of each form 
-  modifiedForms:string[];//shows all the forms that were modified
-  progress:number;//for the task bar
   proposal:Proposal;
-  selectedForm:string;
+  menuState:boolean;//determines if menu or form field is shown
+  routerState:boolean;
   constructor(private router:ActivatedRoute) { }
 
 
   ngOnInit() {
-    this.selectedForm='';
     this.getParams();
-    this.fillMockData();
+    this.menuState=false;
+    this.routerState=true;
   }
   getParams(){                                            
     this.router.params.subscribe(params => {
        this.proposalId=params['id'];
     });	
     }
-  fillMockData(){
-    this.formsStatus=MockData.formsStatus;
+  setProgressBar(percentage){
+    let formattedWidth = percentage+'%';
+    return{
+      'height':'2px;',
+      'width':formattedWidth,
+      'background-color':'rgb(46, 236, 29)'
+    };   
+  }
+  setLabel(){
+
+  }
+  changeState(){
+    this.menuState=!this.menuState;
+    this.routerState=!this.routerState;
   }
 }
 

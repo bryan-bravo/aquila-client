@@ -1,27 +1,16 @@
-<div class='container'>
-    <p-menubar [model]='items'>
-        <button pButton class='ui-button-warning' type='button' label='New Proposal' (click)="op.show($event)"></button>
-    </p-menubar>
-</div>
-<p-overlayPanel #op>
-    <form (ngSubmit)='newProposalNameSubmitted()'>
-        <span class="ui-float-label">
-        <input id="nop" type="text" size="30" pInputText name="newProposalName" [(ngModel)]='newProposalName' /> 
-        <label for="nop">Name of Project</label>        
-        </span>
-        <button pButton class='ui-button-success' type='submit' label='Submit' (click)="op.hide($event)"></button>
-    </form>
-</p-overlayPanel>
+<div id='left'></div>
+<div id='container'>
+    <!-- <div id='info'>
+        <p>Welcome, {{name}}</p>
+    </div> -->
+    <div id='pre-award'>
+        <p>Pre Award</p>
+    </div>
+    <div id='post-award'>
+        <p>Post Award</p>
+    </div>
 
-<div class='container'>
-    <p-dataList [value]="projects">
-        <p-header>My Projects</p-header>
-        <ng-template let-project pTemplate="item">
-            <div class='projectRow'>
-                <p class='projectdescription'><a href=''>{{project.name}}</a></p>
-                <p class='projectdescription'> {{project.date}} </p>
-                <p class='projectdescription'> {{project.status}} </p>
-            </div>
-        </ng-template>
-    </p-dataList>
+    <div id='settings'>
+        <p>Settings</p>
+    </div>
 </div>
