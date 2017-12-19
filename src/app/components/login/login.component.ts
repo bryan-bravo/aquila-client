@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   password:string;
   passwordFlag:boolean;
   failedLoginFlag:boolean;
-
+  signInSAML:boolean;//if true sign in with saml, if not sign in with username
   constructor(
     private authenticationService:AuthenticationService,	
     private router:Router
@@ -24,9 +24,8 @@ export class LoginComponent implements OnInit {
     this.usernameFlag=false;
     this.passwordFlag=false;
     this.failedLoginFlag=false;
+    this.signInSAML=true;
   }
-  // wrong credentials
-  // empty input
 
   //when login form is submitted
   submit(){    

@@ -1,0 +1,16 @@
+<div id='dash-bar'>
+    <label>{{userName}}'s Proposal's</label>
+    <button>New Proposal</button>
+</div>
+<div id='proposals'>
+    <div class='dash-bar-header title'>
+        <p>Name</p>
+        <p>Date</p>
+        <p>Status</p>
+    </div>
+    <div *ngFor='let proposal of condensedProposals' class='proposal'>
+        <a>proposal.name</a>
+        <p>proposal.date</p>
+        <label>proposal.status</label>
+    </div>
+</div>

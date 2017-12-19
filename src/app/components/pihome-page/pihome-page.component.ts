@@ -15,5 +15,8 @@ export class PiHomePageComponent implements OnInit {
   ngOnInit() {
     this.name='Bryan';
   }
+  navigate(location){
+    this.router.navigate([location]);
+  }
 }
  

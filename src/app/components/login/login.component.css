@@ -9,9 +9,9 @@
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
-    background-image: url('../../../assets/images/eaglestatue2.jpg');
+    background-image: url('../../../assets/images/eaglestatue1.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -22,15 +22,16 @@ img {
 }
 
 #login {
-    width: 30vh;
-    height: 40vh;
-    transform: translate(30%, 50%);
+    width: auto;
+    height: auto;
+    min-height: 60%;
+    transform: translateX(20%);
     box-shadow: 0 0 7px #FFFFFF;
     background-color: white;
     border-radius: 2%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 10px;
 }
@@ -42,5 +43,10 @@ input {
 
 .required-warning {
     color: rgb(216, 41, 41);
+    margin-top: 0;
     align-self: flex-start;
+}
+
+p {
+    margin: 0;
 }

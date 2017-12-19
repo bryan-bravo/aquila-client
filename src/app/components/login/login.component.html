@@ -2,9 +2,16 @@
     <!-- <img id='logo' src='../../../assets/images/logo.jpg' /> -->
     <form id='login' (ngSubmit)="submit()">
         <img id='logo' src='../../../assets/images/logo.jpg' />
+        <p>Sign in with</p>
+        <div>
+            <label class='optional-indicator'>Cal State LA email</label>|
+            <label class='optional-indicator'>Aquila username</label>
+
+        </div>
         <span class="ui-float-label">
         <input id="username" type="text" size="30" pInputText [(ngModel)]="username" name="username" /> 
-        <label for="username">Username</label>        
+        <label *ngIf='signInSAML' for="username">Cal State LA email</label>    
+        <label *ngIf='!signInSAML' for="username">Username</label>        
         </span>
         <p *ngIf=usernameFlag class='required-warning'>*required</p>
         <span class="ui-float-label">
@@ -12,9 +19,8 @@
         <label for="password">Password</label>        
         </span>
         <p *ngIf=passwordFlag class='required-warning'>*required</p>
-        <div *ngIf=failedLoginFlag>
-            <p-message *ngIf=true severity="error" text="Username or password is incorrect."></p-message>
-        </div>
-        <input pButton type="submit" label="Sign In" />
+        <label *ngIf=failedLoginFlag class='required-indicator'>
+            Username or password is incorrect.        </label>
+        <input pButton type="submit" value="Sign In" />
     </form>
 </div>

@@ -19,7 +19,9 @@
 
 #dashboard {
     grid-area: 1/1/2/4;
+    padding-bottom: 4px;
     border-bottom: 1px solid black;
+    /* display:flex */
 }
 
 #dashboard>p {
@@ -74,13 +76,6 @@
     position: relative;
     transform: translate(1px, 1px);
     cursor: pointer;
-}
-
-.title {
-    margin: 0;
-    padding: 2px;
-    background-color: rgb(255, 243, 182);
-    color: rgb(36, 36, 36);
 }
 
 .progress-bar {

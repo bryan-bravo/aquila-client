@@ -1,0 +1,28 @@
+:host {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+#dash-bar,
+#proposals {
+    width: 80%;
+    border: 1px solid red;
+    margin: 1% 9.9%;
+}
+
+.dash-bar-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.dash-bar-header>div {
+    border: 1px solid yellow;
+}
+
+.proposal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

@@ -71,7 +71,9 @@
             <p-triStateCheckbox id='oa'></p-triStateCheckbox>
             <!-- otherActivitiesList:String[]; -->
         </div>
-        <img src='../../../assets/images/right-arrow.png' class='right-arrow' (click)='changeIndex("right")'>
+        <div class='nav-arrow-bar title'>
+            <img src='../../../assets/images/right-arrow.png' class='right-arrow' (click)='changeIndex("right")'>
+        </div>
     </div>
     <!-- second page -->
     <div *ngIf='index==1' id='participation'>
@@ -96,7 +98,7 @@
             <p-column field="supervisor" header="Supervisor"></p-column>
             <p-column field="explanationOfInvolvement" header="Explanation Of Involvement"></p-column>
         </p-dataTable>
-        <div class='nav-arrow-bar'>
+        <div class='nav-arrow-bar title'>
             <img src='../../../assets/images/left-arrow.png' class='left-arrow' (click)='changeIndex("left")'>
             <img src='../../../assets/images/right-arrow.png' class='right-arrow' (click)='changeIndex("right")'>
         </div>
@@ -132,7 +134,7 @@
             <p-column field="agent" header="Name Of Agent"></p-column>
             <p-column field="type" header="Type(biohazard, radiation, recombinant DNA..)"></p-column>
         </p-dataTable>
-        <div class='nav-arrow-bar'>
+        <div class='nav-arrow-bar title'>
             <img src='../../../assets/images/left-arrow.png' class='left-arrow' (click)='changeIndex("left")'>
             <img src='../../../assets/images/right-arrow.png' class='right-arrow' (click)='changeIndex("right")'>
         </div>
@@ -169,7 +171,7 @@
         <input id='noc' type="text" pInputText>
         <p class='title'>PROJECT SUMMARY Please provide a brief project summary, scope of work, or abstract, of your proposal</p>
         <input id='s' type="text" pInputText>
-        <div class='nav-arrow-bar'>
+        <div class='nav-arrow-bar title'>
             <img src='../../../assets/images/left-arrow.png' class='left-arrow' (click)='changeIndex("left")'>
         </div>
     </div>

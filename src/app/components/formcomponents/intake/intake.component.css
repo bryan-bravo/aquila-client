@@ -17,12 +17,19 @@
 }
 
 .title {
+    width: 100%;
     background-color: #fff3b5;
     border: 2px solid #ffd400;
-    width: 100%;
 }
 
 h3 {
     margin-top: 0;
     padding-top: 10px;
+}
+
+.nav-arrow-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }

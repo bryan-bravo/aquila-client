@@ -31,6 +31,7 @@ import { EditProposalComponent } from './components/edit-proposal/edit-proposal.
 import { IntakeComponent } from './components/formcomponents/intake/intake.component';
 import { BudgetComponent } from './components/formcomponents/budget/budget.component';
 import { TimelineComponent } from './components/formcomponents/timeline/timeline.component';
+import { PiPreAwardComponent } from './components/pi-pre-award/pi-pre-award.component';
 
 //services
 import{AuthenticationService} from './services/authentication.service';
@@ -40,12 +41,12 @@ const AppRoutes: Routes =[
     {path:'', component:LandingPageComponent},  
     {path:'login', component:LoginComponent},  
     {path:'home', component:PiHomePageComponent},//will have can activate thing   
+   {path:'pipreaward', component:PiPreAwardComponent} ,
     {path:'editproposal/:id',component:EditProposalComponent,
       children:[
         {path:'Intake', component:IntakeComponent},  
         {path:'Budget', component:BudgetComponent},
         {path:'Timeline', component:TimelineComponent},  
-        
       ]
     }
 ];
@@ -60,6 +61,7 @@ const AppRoutes: Routes =[
     IntakeComponent,
     BudgetComponent,
     TimelineComponent,
+    PiPreAwardComponent,
     
   ],
   imports: [
