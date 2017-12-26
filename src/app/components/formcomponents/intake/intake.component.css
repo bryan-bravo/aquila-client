@@ -9,7 +9,8 @@
 #general-info,
 .rsca-actvities,
 #budget,
-#other {
+#other,
+#anticipate-stipend-true {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

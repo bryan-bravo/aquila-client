@@ -40,40 +40,42 @@
         <label for='as'>Do you anticipate any participation stipends as part of your proposal?</label>
         <p-triStateCheckbox id='as' [(ngModel)]='intakeForm._anticipateStipend'></p-triStateCheckbox>
         <!-- if stipend is true -->
-        <label for='stipends'>Please identify the type of Stipend:Study Participant, Student Tuition, Travel.. etc, and provide your Participation Stipend eligibility criteria and selection process below.</label>
-        <input id='stipends' type="text" [(ngModel)]='intakeForm._stipends' pInputText>
-        <label for='fsrca'>Faculty Student Research/Creative Activities</label>
-        <p-triStateCheckbox id='fsrca' [(ngModel)]='intakeForm._facultyStudentResearchCreativeActivities'></p-triStateCheckbox>
-        <label for='fsrca'>Will this project actively involve students in Research</label>
-        <p-triStateCheckbox id='fsrca' [(ngModel)]='intakeForm._studentsInResearch'></p-triStateCheckbox>
-        <!-- if rsca is true -->
-        <div class='rsca-actvities'>
-            <p>Please answer the following</p>
-            <label for='nous'> Number Of Undergrad Students</label>
-            <input id='nous' type="text" [(ngModel)]='intakeForm._noOfUnderGradStudents' pInputText>
-            <label for='nogs'> Number Of Grad Students</label>
-            <input id='nogs' type="text" [(ngModel)]='intakeForm._noOfGradStudents' pInputText>
-            <p>What type of RSCA activities will be incorporated? (Check all that apply)</p>
-            <label for='la'>Laboratory Assistance</label>
-            <p-triStateCheckbox id='la' [(ngModel)]='intakeForm._vlaboratoryAssistance'></p-triStateCheckbox>
-            <label for='dc'>Data Collection</label>
-            <p-triStateCheckbox id='dc' [(ngModel)]='intakeForm._dataCollection'></p-triStateCheckbox>
-            <label for='rw'>Report Writing</label>
-            <p-triStateCheckbox id='rw' [(ngModel)]='intakeForm._reportWriting'></p-triStateCheckbox>
-            <label for='lr'>Literature Review</label>
-            <p-triStateCheckbox id='lr' [(ngModel)]='intakeForm._literatureReview'></p-triStateCheckbox>
-            <label for='coda'>Coding Or Data Entry</label>
-            <p-triStateCheckbox id='coda' [(ngModel)]='intakeForm._codingOrDataEntry'></p-triStateCheckbox>
-            <label for='p'>Presentation</label>
-            <p-triStateCheckbox id='p' [(ngModel)]='intakeForm._presentation'></p-triStateCheckbox>
-            <label for='ar'>Archival Research</label>
-            <p-triStateCheckbox id='ar' [(ngModel)]='intakeForm._archivalResearch'></p-triStateCheckbox>
-            <label for='da'>Data Analysis</label>
-            <p-triStateCheckbox id='da' [(ngModel)]='intakeForm._dataAnalysis'></p-triStateCheckbox>
-            <label for='oa'>Other Activities</label>
-            <p-triStateCheckbox id='oa' [(ngModel)]='intakeForm._otherActvities'></p-triStateCheckbox>
-            <!-- otherActivitiesList:String[]; -->
-        </div>
+        <div id='anticipate-stipend-true' *ngIf='intakeForm._anticipateStipend'>
+            <label for='stipends'>Please identify the type of Stipend:Study Participant, Student Tuition, Travel.. etc, and provide your Participation Stipend eligibility criteria and selection process below.</label>
+            <input id='stipends' type="text" [(ngModel)]='intakeForm._stipends' pInputText>
+            <label for='fsrca'>Faculty Student Research/Creative Activities</label>
+            <p-triStateCheckbox id='fsrca' [(ngModel)]='intakeForm._facultyStudentResearchCreativeActivities'></p-triStateCheckbox>
+            <label for='fsrca'>Will this project actively involve students in Research</label>
+            <p-triStateCheckbox id='fsrca' [(ngModel)]='intakeForm._studentsInResearch'></p-triStateCheckbox>
+            <!-- if rsca is true -->
+            <div class='rsca-actvities' *ngIf='intakeForm._studentsInResearch'>
+                <p>Please answer the following</p>
+                <label for='nous'> Number Of Undergrad Students</label>
+                <input id='nous' type="text" [(ngModel)]='intakeForm._noOfUnderGradStudents' pInputText>
+                <label for='nogs'> Number Of Grad Students</label>
+                <input id='nogs' type="text" [(ngModel)]='intakeForm._noOfGradStudents' pInputText>
+                <p>What type of RSCA activities will be incorporated? (Check all that apply)</p>
+                <label for='la'>Laboratory Assistance</label>
+                <p-triStateCheckbox id='la' [(ngModel)]='intakeForm._vlaboratoryAssistance'></p-triStateCheckbox>
+                <label for='dc'>Data Collection</label>
+                <p-triStateCheckbox id='dc' [(ngModel)]='intakeForm._dataCollection'></p-triStateCheckbox>
+                <label for='rw'>Report Writing</label>
+                <p-triStateCheckbox id='rw' [(ngModel)]='intakeForm._reportWriting'></p-triStateCheckbox>
+                <label for='lr'>Literature Review</label>
+                <p-triStateCheckbox id='lr' [(ngModel)]='intakeForm._literatureReview'></p-triStateCheckbox>
+                <label for='coda'>Coding Or Data Entry</label>
+                <p-triStateCheckbox id='coda' [(ngModel)]='intakeForm._codingOrDataEntry'></p-triStateCheckbox>
+                <label for='p'>Presentation</label>
+                <p-triStateCheckbox id='p' [(ngModel)]='intakeForm._presentation'></p-triStateCheckbox>
+                <label for='ar'>Archival Research</label>
+                <p-triStateCheckbox id='ar' [(ngModel)]='intakeForm._archivalResearch'></p-triStateCheckbox>
+                <label for='da'>Data Analysis</label>
+                <p-triStateCheckbox id='da' [(ngModel)]='intakeForm._dataAnalysis'></p-triStateCheckbox>
+                <label for='oa'>Other Activities</label>
+                <p-triStateCheckbox id='oa' [(ngModel)]='intakeForm._otherActvities'></p-triStateCheckbox>
+                <!-- otherActivitiesList:String[]; -->
+            </div>
+        </div>>    
         <div class='nav-arrow-bar title'>
             <img src='../../../assets/images/right-arrow.png' class='right-arrow' (click)='changeIndex("right")'>
         </div>
