@@ -1,6 +1,8 @@
 <div id='dash-bar'>
     <label>{{userName}}'s Proposal's</label>
     <button>New Proposal</button>
+    <label [routerLink]="['/home']">Home</label>
+
 </div>
 <div id='proposals'>
     <div class='dash-bar-header title'>
@@ -9,8 +11,8 @@
         <p>Status</p>
     </div>
     <div *ngFor='let proposal of condensedProposals' class='proposal'>
-        <a>proposal.name</a>
-        <p>proposal.date</p>
+        <label [routerLink]="['/editproposal', proposal.id]">proposal.name</label>
+        <label>proposal.date</label>
         <label>proposal.status</label>
     </div>
 </div>

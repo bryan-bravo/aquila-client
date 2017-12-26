@@ -17,8 +17,8 @@ export class EditProposalComponent implements OnInit {
 
   ngOnInit() {
     this.getParams();
-    this.menuState=true;
-    this.routerState=false;
+    this.menuState=false;
+    this.routerState=true;
   }
   getParams(){                                            
     this.router.params.subscribe(params => {

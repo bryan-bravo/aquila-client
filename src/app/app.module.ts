@@ -19,6 +19,7 @@ import {ProgressBarModule} from 'primeng/primeng';
 import {TriStateCheckboxModule} from 'primeng/primeng';
 import {CalendarModule} from 'primeng/primeng';
 import {DataTableModule,SharedModule} from 'primeng/primeng';
+import {DialogModule} from 'primeng/primeng';
 
 //generated components
 import { AppComponent } from './app.component';
@@ -83,7 +84,8 @@ const AppRoutes: Routes =[
     StepsModule,
     TriStateCheckboxModule,
     CalendarModule,
-    DataTableModule
+    DataTableModule,
+    DialogModule
   ],
   providers: [AuthenticationService, PreawardService,MessageService],   
   bootstrap: [AppComponent]

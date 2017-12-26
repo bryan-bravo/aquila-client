@@ -38,10 +38,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.authenticate(this.username,this.password).subscribe(response=>{
       //if user exists
       if(response.username!=null){
-        let user = new User(
-          response.id,
-          response.username
-        );
+        let user ={};
          this.authenticationService.storeUserData(user);
         this.router.navigate(['/home']);
       }
@@ -52,5 +49,5 @@ export class LoginComponent implements OnInit {
     });
 
   }
-  
+   
 }
