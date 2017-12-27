@@ -10,23 +10,23 @@
     <div *ngIf='index==0' id='general-info'>
         <p class='title'>General Information</p>
         <label>Principal Investigator</label>
-        <input type="text" [(ngModel)]='intakeForm._principalInvestigator' pInputText>
+        <input type="text" [(ngModel)]='intakeForm.principalInvestigator' pInputText>
         <label>College</label>
         <input  type="text" pInputText>
         <label>Sponsor</label>
-        <input  type="text" [(ngModel)]='intakeForm._sponsor' pInputText>
+        <input  type="text" [(ngModel)]='intakeForm.sponsor' pInputText>
         <label>Project Title</label>
-        <input  type="text" [(ngModel)]='intakeForm._projectTitle' pInputText>
+        <input  type="text" [(ngModel)]='intakeForm.projectTitle' pInputText>
         <label> Proposed Funding Amount $</label>
-        <input  type="text" [(ngModel)]='intakeForm._proposedFundingAmount' pInputText>
+        <input  type="text" [(ngModel)]='intakeForm.proposedFundingAmount' pInputText>
         <label> Start Date</label>
         <p-calendar  [(ngModel)]='intakeForm.startDate'></p-calendar>
         <label> End Date</label>
-        <p-calendar  [(ngModel)]='intakeForm._endDate'></p-calendar>
+        <p-calendar  [(ngModel)]='intakeForm.endDate'></p-calendar>
         <!-- personnel object -->
         <div id='personnel'>
             <p class='title'>Personnel</p>
-            <p-dataTable [value]="intakeForm._personnel" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'personnel')">
+            <p-dataTable [value]="intakeForm.personnel" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'personnel')">
                 <p-column field="name" header="Name"></p-column>
                 <p-column field="employer" header="Employer"></p-column>
                 <p-column field="positionTitleOnGrant" header="Position Title On Grant"></p-column>
@@ -38,41 +38,41 @@
         </div>
         <p class='title'>PARTICIPATION SUPPORT</p>
         <label>Do you anticipate any participation stipends as part of your proposal?</label>
-        <p-triStateCheckbox [(ngModel)]='intakeForm._anticipateStipend'></p-triStateCheckbox>
+        <p-triStateCheckbox [(ngModel)]='intakeForm.anticipateStipend'></p-triStateCheckbox>
         <!-- if stipend is true -->
-        <div id='anticipate-stipend-true' *ngIf='intakeForm._anticipateStipend'>
+        <div id='anticipate-stipend-true' *ngIf='intakeForm.anticipateStipend'>
             <label>Please identify the type of Stipend:Study Participant, Student Tuition, Travel.. etc, and provide your Participation Stipend eligibility criteria and selection process below.</label>
-            <input type="text" [(ngModel)]='intakeForm._stipends' pInputText>
+            <input type="text" [(ngModel)]='intakeForm.stipends' pInputText>
             <label>Faculty Student Research/Creative Activities</label>
-            <p-triStateCheckbox [(ngModel)]='intakeForm._facultyStudentResearchCreativeActivities'></p-triStateCheckbox>
+            <p-triStateCheckbox [(ngModel)]='intakeForm.facultyStudentResearchCreativeActivities'></p-triStateCheckbox>
             <label>Will this project actively involve students in Research</label>
-            <p-triStateCheckbox  [(ngModel)]='intakeForm._studentsInResearch'></p-triStateCheckbox>
+            <p-triStateCheckbox  [(ngModel)]='intakeForm.studentsInResearch'></p-triStateCheckbox>
             <!-- if rsca is true -->
-            <div class='rsca-actvities' *ngIf='intakeForm._studentsInResearch'>
+            <div class='rsca-actvities' *ngIf='intakeForm.studentsInResearch'>
                 <p>Please answer the following</p>
                 <label> Number Of Undergrad Students</label>
-                <input type="text" [(ngModel)]='intakeForm._noOfUnderGradStudents' pInputText>
+                <input type="text" [(ngModel)]='intakeForm.noOfUnderGradStudents' pInputText>
                 <label > Number Of Grad Students</label>
-                <input type="text" [(ngModel)]='intakeForm._noOfGradStudents' pInputText>
+                <input type="text" [(ngModel)]='intakeForm.noOfGradStudents' pInputText>
                 <p>What type of RSCA activities will be incorporated? (Check all that apply)</p>
                 <label >Laboratory Assistance</label>
-                <p-triStateCheckbox  [(ngModel)]='intakeForm._vlaboratoryAssistance'></p-triStateCheckbox>
+                <p-triStateCheckbox  [(ngModel)]='intakeForm.vlaboratoryAssistance'></p-triStateCheckbox>
                 <label>Data Collection</label>
-                <p-triStateCheckbox  [(ngModel)]='intakeForm._dataCollection'></p-triStateCheckbox>
+                <p-triStateCheckbox  [(ngModel)]='intakeForm.dataCollection'></p-triStateCheckbox>
                 <label >Report Writing</label>
-                <p-triStateCheckbox  [(ngModel)]='intakeForm._reportWriting'></p-triStateCheckbox>
+                <p-triStateCheckbox  [(ngModel)]='intakeForm.reportWriting'></p-triStateCheckbox>
                 <label >Literature Review</label>
-                <p-triStateCheckbox [(ngModel)]='intakeForm._literatureReview'></p-triStateCheckbox>
+                <p-triStateCheckbox [(ngModel)]='intakeForm.literatureReview'></p-triStateCheckbox>
                 <label >Coding Or Data Entry</label>
-                <p-triStateCheckbox [(ngModel)]='intakeForm._codingOrDataEntry'></p-triStateCheckbox>
+                <p-triStateCheckbox [(ngModel)]='intakeForm.codingOrDataEntry'></p-triStateCheckbox>
                 <label>Presentation</label>
-                <p-triStateCheckbox [(ngModel)]='intakeForm._presentation'></p-triStateCheckbox>
+                <p-triStateCheckbox [(ngModel)]='intakeForm.presentation'></p-triStateCheckbox>
                 <label>Archival Research</label>
-                <p-triStateCheckbox [(ngModel)]='intakeForm._archivalResearch'></p-triStateCheckbox>
+                <p-triStateCheckbox [(ngModel)]='intakeForm.archivalResearch'></p-triStateCheckbox>
                 <label>Data Analysis</label>
-                <p-triStateCheckbox [(ngModel)]='intakeForm._dataAnalysis'></p-triStateCheckbox>
+                <p-triStateCheckbox [(ngModel)]='intakeForm.dataAnalysis'></p-triStateCheckbox>
                 <label>Other Activities</label>
-                <p-triStateCheckbox [(ngModel)]='intakeForm._otherActvities'></p-triStateCheckbox>
+                <p-triStateCheckbox [(ngModel)]='intakeForm.otherActvities'></p-triStateCheckbox>
                 <!-- otherActivitiesList:String[]; -->
             </div>
         </div>    
@@ -83,7 +83,7 @@
     <!-- second page -->
     <div *ngIf='index==1' id='participation'>
         <p class='title'>SUBGRANT(S) OR SUBCONTRACT(S)</p>
-        <p-dataTable [value]="intakeForm._subGrantsOrSubContracts" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'subgrantsubcontract')">
+        <p-dataTable [value]="intakeForm.subGrantsOrSubContracts" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'subgrantsubcontract')">
             <p-column field="institutionName" header="Institution Name"></p-column>
             <p-column field="proposedFundingAmount" header="Proposed Funding Amount"></p-column>
             <p-column field="contactPerson" header="Contact Person"></p-column>
@@ -93,7 +93,7 @@
             </p-footer>
         </p-dataTable>
         <p class='title'>PROJECT LOCATIONS</p>
-        <p-dataTable [value]="intakeForm?._projectLocations"  [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'projectlocation')">
+        <p-dataTable [value]="intakeForm.projectLocations"  [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'projectlocation')">
             <p-column field="siteName" header="Site Name"></p-column>
             <p-column field="siteAddress" header="Site Address"></p-column>
             <p-column field="projectedPercentOfTimeAtState" header="Projected Percent Of Time At State"></p-column>
@@ -104,7 +104,7 @@
         </p-dataTable>
         <p class='title'>ADDITIONAL PARTIES INVOLVED (e.g Prime Sponsor, Third Party, etc.) </p>
 
-        <p-dataTable [value]="intakeForm?._additionalInvolvedParties" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'additionalparty')">
+        <p-dataTable [value]="intakeForm.additionalInvolvedParties" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'additionalparty')">
             <p-column field="partyName" header="Party Name"></p-column>
             <p-column field="supervisor" header="Supervisor"></p-column>
             <p-column field="explanationOfInvolvement" header="Explanation Of Involvement"></p-column>
@@ -123,16 +123,16 @@
         <p class='title'>BUDGET (if possible, bring a draft and budget justification to the first meeting with UAS Grants and Contracts)</p>
         <div id='budget'>
             <label> Agency F&A (Indirect) Cost Rate Percentage</label>
-            <input type="text" pInputText [(ngModel)]='intakeForm._agencyCostRatePercentage'>
+            <input type="text" pInputText [(ngModel)]='intakeForm.agencyCostRatePercentage'>
             <label>Is costsharing required by the agency?</label>
-            <p-triStateCheckbox [(ngModel)]='intakeForm._agencyCostSharing'></p-triStateCheckbox>
+            <p-triStateCheckbox [(ngModel)]='intakeForm.agencyCostSharing'></p-triStateCheckbox>
             <label>Is costsharing requested by the PI?</label>
-            <p-triStateCheckbox [(ngModel)]='intakeForm._piCostSharing'></p-triStateCheckbox>
+            <p-triStateCheckbox [(ngModel)]='intakeForm.piCostSharing'></p-triStateCheckbox>
             <label> Count of computers to be requested?</label>
-            <input type="text" pInputText [(ngModel)]='intakeForm._computersRequested'>
+            <input type="text" pInputText [(ngModel)]='intakeForm.computersRequested'>
             <label class='title'> Equipment to Be Requested?</label>
             <!-- requested equipment -->
-            <p-dataTable [value]="intakeForm?._requestedEquipment"  [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'requestedequipment')">
+            <p-dataTable [value]="intakeForm.requestedEquipment"  [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'requestedequipment')">
                 <p-column field="name" header="Name"></p-column>
                 <p-column field="approximateCost" header="Approximate Cost"></p-column>
                 <p-footer>
@@ -141,7 +141,7 @@
             </p-dataTable>
         </div>
         <p class='title'>SPACE(Indicate if any space will be required as part of the proposed work/activity) </p>
-        <p-dataTable [value]="intakeForm?._spaces" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'space')">
+        <p-dataTable [value]="intakeForm.spaces" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'space')">
             <p-column field="item" header="Item (personnel,equipment, storage,. etc)"></p-column>
             <p-column field="newSpace" header="New Space,change of use, renovation?"></p-column>
             <p-column field="sourceOfFunds" header="Source Of Funds"></p-column>
@@ -150,7 +150,7 @@
             </p-footer>        
         </p-dataTable>
         <p class='title'>HAZARDOUS SUBSTANCES (Consult with EHS to obtain proper clearance or confirmation of approval to work with hazardous agents)</p>
-        <p-dataTable [value]="intakeForm?._hazardousSubstances"  [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'hazard')">
+        <p-dataTable [value]="intakeForm.hazardousSubstances"  [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'hazard')">
             <p-column field="agent" header="Name Of Agent"></p-column>
             <p-column field="type" header="Type(biohazard, radiation, recombinant DNA..)"></p-column>
             <p-footer>
@@ -166,9 +166,9 @@
     <div *ngIf='index==3' id='other'>
         <p class='title'>OTHER COMPLIANCES</p>
         <label for='hs'>Human Subjects (If yes, consult with IRB Compliance Specialist [Elia Amaro, x3798])</label>
-        <p-triStateCheckbox id='hs' [(ngModel)]='intakeForm._humanSubject'></p-triStateCheckbox>
+        <p-triStateCheckbox id='hs' [(ngModel)]='intakeForm.humanSubject'></p-triStateCheckbox>
         <label for='va'>Vertebrate Animals (If yes, consult with IACUC Compliance Specialist [Elia Amaro, x3798])</label>
-        <p-triStateCheckbox id='va' [(ngModel)]='intakeForm._vertebrateAnimals'></p-triStateCheckbox>
+        <p-triStateCheckbox id='va' [(ngModel)]='intakeForm.vertebrateAnimals'></p-triStateCheckbox>
         <!-- <label for='qf'> Questionare Field</label>
         <input id='qf' type="text" pInputText>
         <label for='ct'> Category Title</label>
@@ -176,21 +176,21 @@
         <p class='title'> OTHER SERVICES (indicate which of the following services you will need for this proposal)</p>
         <label for='awpd'>Assistance With Proposal Development (e.g,conceptualization, writing, editing)</label>
         <label>If yes, contact UAS Grants & Contracts and/or the Associate Vice President for Research at least one month in advance</label>
-        <p-triStateCheckbox id='awpd' [(ngModel)]='intakeForm._assistanceWithProposalDevelopment'></p-triStateCheckbox>
+        <p-triStateCheckbox id='awpd' [(ngModel)]='intakeForm.assistanceWithProposalDevelopment'></p-triStateCheckbox>
         <label for='ta'>Technical Assistance</label>
-        <p-triStateCheckbox id='ta' [(ngModel)]='intakeForm._technicalAssistance'></p-triStateCheckbox>
+        <p-triStateCheckbox id='ta' [(ngModel)]='intakeForm.technicalAssistance'></p-triStateCheckbox>
         <label for='losp'>Letter Of Support President</label>
-        <p-triStateCheckbox id='losp' [(ngModel)]='intakeForm._letterOfSupportPresident'></p-triStateCheckbox>
+        <p-triStateCheckbox id='losp' [(ngModel)]='intakeForm.letterOfSupportPresident'></p-triStateCheckbox>
         <label for='lospr'>Letter Of Support Provost</label>
-        <p-triStateCheckbox id='lospr' [(ngModel)]='intakeForm._letterOfSupportProvost'></p-triStateCheckbox>
+        <p-triStateCheckbox id='lospr' [(ngModel)]='intakeForm.letterOfSupportProvost'></p-triStateCheckbox>
         <label for='losavpor'>Letter Of Support Associate VP Of Research</label>
-        <p-triStateCheckbox id='losavpor' [(ngModel)]='intakeForm._letterOfSupportAssocVPOfResearch'></p-triStateCheckbox>
+        <p-triStateCheckbox id='losavpor' [(ngModel)]='intakeForm.letterOfSupportAssocVPOfResearch'></p-triStateCheckbox>
         <label for='dofdp'>Duplication Of Final Document Package</label>
-        <p-triStateCheckbox id='dofdp' [(ngModel)]='intakeForm.__duplicationfFinalDocumentPackage'></p-triStateCheckbox>
+        <p-triStateCheckbox id='dofdp' [(ngModel)]='intakeForm._duplicationfFinalDocumentPackage'></p-triStateCheckbox>
         <label for='noc'> Number Of Copies</label>
-        <input id='noc' type="text" [(ngModel)]='intakeForm._noOfCopies' pInputText>
+        <input id='noc' type="text" [(ngModel)]='intakeForm.noOfCopies' pInputText>
         <p class='title'>PROJECT SUMMARY Please provide a brief project summary, scope of work, or abstract, of your proposal</p>
-        <input id='s' type="text" [(ngModel)]='intakeForm._summary' pInputText>
+        <input id='s' type="text" [(ngModel)]='intakeForm.summary' pInputText>
         <div class='nav-arrow-bar title'>
             <img src='../../../assets/images/left-arrow.png' class='left-arrow' (click)='changeIndex("left")'>
         </div>

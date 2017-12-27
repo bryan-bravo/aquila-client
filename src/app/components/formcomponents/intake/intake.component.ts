@@ -33,7 +33,7 @@ export class IntakeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  this.index=2;
+  this.index=0;
   this.messWithIntake();
   this.displayDialog=false;
   }
@@ -52,16 +52,17 @@ export class IntakeComponent implements OnInit {
       this.index=this.index+1;
   }
   messWithIntake(){
-    this.intakeForm ={
-      _id:'1',
-      _personnel:[new Personnel("bork","bork","bork","bork")],
-      _subGrantsOrSubContracts:[new SubgrantSubProject("bork",0,"bork","bork")],
-      _projectLocations: [new ProjectLocation("bork","bork","bork",true)],
-      _additionalInvolvedParties:[new AdditionalParty("bork","bork","bork")],
-      _spaces:[ new Space("bork","bork","bork")],
-      _requestedEquipment:[new RequestedEquipment("bork",0)],
-      _hazardousSubstances:[new Hazard("bork","bork")]
-    };
+    this.intakeForm =new IntakeForm('1');
+    this.intakeForm.personnel =[new Personnel("bork","bork","bork","bork")];
+      // _id:'1',
+      // _personnel:[new Personnel("bork","bork","bork","bork")],
+      // _subGrantsOrSubContracts:[new SubgrantSubProject("bork",0,"bork","bork")],
+      // _projectLocations: [new ProjectLocation("bork","bork","bork",true)],
+      // _additionalInvolvedParties:[new AdditionalParty("bork","bork","bork")],
+      // _spaces:[ new Space("bork","bork","bork")],
+      // _requestedEquipment:[new RequestedEquipment("bork",0)],
+      // _hazardousSubstances:[new Hazard("bork","bork")]
+    
   }
   //when add is clicked on any datatable
   showDialogToAdd(type){
@@ -133,84 +134,84 @@ export class IntakeComponent implements OnInit {
   findIndex(): number {
     let type=this.intakeInnerClass;
     if(type=='personnel')  
-      return this.intakeForm._personnel.indexOf(this.personnel);
+      return this.intakeForm.personnel.indexOf(this.personnel);
     if(type=='subgrantsubcontract')
-      return this.intakeForm._subGrantsOrSubContracts.indexOf(this.subgrantSubProject);
+      return this.intakeForm.subGrantsOrSubContracts.indexOf(this.subgrantSubProject);
     if(type=='projectlocation')
-      return this.intakeForm._projectLocations.indexOf(this.projectLocation);
+      return this.intakeForm.projectLocations.indexOf(this.projectLocation);
     if(type=='additionalparty')
-      return this.intakeForm._additionalInvolvedParties.indexOf(this.additionalParty);
+      return this.intakeForm.additionalInvolvedParties.indexOf(this.additionalParty);
     if(type=='space')
-      return this.intakeForm._spaces.indexOf(this.space);
+      return this.intakeForm.spaces.indexOf(this.space);
     if(type=='requestedequipment')
-      return this.intakeForm._requestedEquipment.indexOf(this.requestedEquipment);
+      return this.intakeForm.requestedEquipment.indexOf(this.requestedEquipment);
     if(type=='hazard')
-      return this.intakeForm._hazardousSubstances.indexOf(this.hazard);
+      return this.intakeForm.hazardousSubstances.indexOf(this.hazard);
   }
  
   save() {
     let type=this.intakeInnerClass;
     if(type=='personnel'){ 
-      let personnelList = [...this.intakeForm._personnel];
+      let personnelList = [...this.intakeForm.personnel];
       if(this.newPersonnel)
           personnelList.push(this.personnel);
       else
           personnelList[this.findIndex()] = this.personnel;
-      this.intakeForm._personnel = personnelList;
+      this.intakeForm.personnel = personnelList;
     }
 
     if(type=='subgrantsubcontract'){
-      let subGrantSubProjectList = [...this.intakeForm._subGrantsOrSubContracts];
+      let subGrantSubProjectList = [...this.intakeForm.subGrantsOrSubContracts];
       if(this.newSubgrantSubProject)
       subGrantSubProjectList.push(this.subgrantSubProject);
       else
       subGrantSubProjectList[this.findIndex()] = this.subgrantSubProject;
-      this.intakeForm._subGrantsOrSubContracts = subGrantSubProjectList;
+      this.intakeForm.subGrantsOrSubContracts = subGrantSubProjectList;
      }
 
     if(type=='projectlocation'){
-      let projectLocationList = [... this.intakeForm._projectLocations];
+      let projectLocationList = [... this.intakeForm.projectLocations];
       if(this.newProjectLocation)
         projectLocationList.push(this.projectLocation)
       else
         projectLocationList[this.findIndex()]=this.projectLocation;
-      this.intakeForm._projectLocations = projectLocationList;
+      this.intakeForm.projectLocations = projectLocationList;
      }
 
     if(type=='additionalparty'){
-      let additionalPartyList =[... this.intakeForm._additionalInvolvedParties];
+      let additionalPartyList =[... this.intakeForm.additionalInvolvedParties];
       if(this.newAdditionalParty)
         additionalPartyList.push(this.additionalParty);
       else
         additionalPartyList[this.findIndex()] = this.additionalParty;
-        this.intakeForm._additionalInvolvedParties=additionalPartyList;
+        this.intakeForm.additionalInvolvedParties=additionalPartyList;
     }
 
     if(type=='space'){
-      let spaceList=[... this.intakeForm._spaces];
+      let spaceList=[... this.intakeForm.spaces];
       if(this.newSpace)
         spaceList.push(this.space);
       else
         spaceList[this.findIndex()] = this.space;
-      this.intakeForm._spaces = spaceList;  
+      this.intakeForm.spaces = spaceList;  
     }
 
     if(type=='requestedequipment'){
-      let equipmentList =[... this.intakeForm._requestedEquipment];
+      let equipmentList =[... this.intakeForm.requestedEquipment];
       if(this.newRequestedEquipment)
         equipmentList.push(this.requestedEquipment);
       else
         equipmentList[this.findIndex()] =this.requestedEquipment;
-        this.intakeForm._requestedEquipment = equipmentList;
+        this.intakeForm.requestedEquipment = equipmentList;
     }
     
     if(type=='hazard'){
-      let hazardList =[... this.intakeForm._hazardousSubstances];
+      let hazardList =[... this.intakeForm.hazardousSubstances];
       if(this.newHazard)
         hazardList.push(this.hazard);
       else
         hazardList[this.findIndex()] = this.hazard;
-      this.intakeForm._hazardousSubstances =hazardList;  
+      this.intakeForm.hazardousSubstances =hazardList;  
     }
     //reset  
     this.displayDialog = false;
@@ -219,25 +220,25 @@ export class IntakeComponent implements OnInit {
     let type=this.intakeInnerClass;
     let index = this.findIndex();
     if(type=='personnel')
-      this.intakeForm._personnel = this.intakeForm._personnel.filter((val,i) => i!=index);
+      this.intakeForm.personnel = this.intakeForm.personnel.filter((val,i) => i!=index);
     
     if(type=='subgrantsubcontract')
-      this.intakeForm._subGrantsOrSubContracts = this.intakeForm._subGrantsOrSubContracts.filter((val,i) => i!=index);
+      this.intakeForm.subGrantsOrSubContracts = this.intakeForm.subGrantsOrSubContracts.filter((val,i) => i!=index);
     
     if(type=='projectlocation')
-      this.intakeForm._projectLocations = this.intakeForm._projectLocations.filter((val,i) => i!=index);
+      this.intakeForm.projectLocations = this.intakeForm.projectLocations.filter((val,i) => i!=index);
     
     if(type=='additionalparty')
-      this.intakeForm._additionalInvolvedParties = this.intakeForm._additionalInvolvedParties.filter((val,i) => i!=index);
+      this.intakeForm.additionalInvolvedParties = this.intakeForm.additionalInvolvedParties.filter((val,i) => i!=index);
     
     if(type=='space')
-      this.intakeForm._spaces = this.intakeForm._spaces.filter((val,i) => i!=index);
+      this.intakeForm.spaces = this.intakeForm.spaces.filter((val,i) => i!=index);
     
     if(type=='requestedequipment')
-      this.intakeForm._requestedEquipment = this.intakeForm._requestedEquipment.filter((val,i) => i!=index);
+      this.intakeForm.requestedEquipment = this.intakeForm.requestedEquipment.filter((val,i) => i!=index);
     
     if(type=='hazard')
-      this.intakeForm._hazardousSubstances = this.intakeForm._hazardousSubstances.filter((val,i) => i!=index);
+      this.intakeForm.hazardousSubstances = this.intakeForm.hazardousSubstances.filter((val,i) => i!=index);
         
       this.displayDialog = false;
   }    

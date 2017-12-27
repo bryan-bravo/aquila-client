@@ -21,4 +21,7 @@ export class EquipmentComponent implements OnInit {
       'background-color':'rgb(46, 236, 29)'
     };   
   }
+  messWithEquipment(){
+console.log(this.equipmentForm)
+  }
 }
