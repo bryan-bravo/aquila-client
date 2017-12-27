@@ -1,0 +1,141 @@
+<div id='container'>
+    <div id='dash-bar'>
+        <h3>UAS Grants and Contracts New Equipment Approval Form</h3>
+        <div [ngStyle]='setProgressBar(50)'></div>
+        <!-- breadcrumbs -->
+        <div id=''></div>
+    </div>
+    <!-- page 1 General Information -->
+    <div class='page'>
+        <p class='title'>General Information</p>
+        <label >Faculty Name</label>
+        <input type="text" [(ngModel)]='equipmentForm.facultyName' pInputText>
+        <label >Department</label>
+        <input type="text" [(ngModel)]='equipmentForm.department' pInputText>
+        <label >Grant-Agency</label>
+        <input type="text" [(ngModel)]='equipmentForm.grantAgency' pInputText>
+        <label >Proposal Title</label>
+        <input type="text" [(ngModel)]='equipmentForm.proposalTitle' pInputText>
+        <label>Extension</label>
+        <p-triStateCheckbox [(ngModel)]='equipmentForm.extension'></p-triStateCheckbox>
+        <label>Extension Amount</label>
+        <input type="text" [(ngModel)]='equipmentForm.extensionValue' pInputText>
+        <label>Cost Share</label>  
+        <p-triStateCheckbox [(ngModel)]='equipmentForm.costShare'></p-triStateCheckbox>
+        <label>Donation</label>
+        <p-triStateCheckbox [(ngModel)]='equipmentForm.donation'></p-triStateCheckbox>
+        <label>New Equipment</label>
+        <p-triStateCheckbox [(ngModel)]='equipmentForm.newEquipment'></p-triStateCheckbox>
+    </div>
+    <!-- page 2 Equipment -->
+    <div class='page'>
+        <p class='title'>Equipment</p>
+        <label>Type Of Equipment (List each equipment item and attach specifications/quote nad url/website if available)</label>
+        <label>Equipment Location</label>
+        <label>Building</label>
+        <input type="text" [(ngModel)]='equipmentForm.buildingLocation' pInputText >
+        <label>Room</label>
+        <input type="text" [(ngModel)]='equipmentForm.roomLocation' pInputText>
+        <label>Company Donating</label>
+        <input type="text" [(ngModel)]='equipmentForm.companyDonating' pInputText>
+        <label>Previous Use</label>
+        <input type="text" [(ngModel)]='equipmentForm.previousUse' pInputText>
+      </div>
+    <!-- page 3 check all that apply  -->
+    <div class='page'>
+        <p class='title'>Please Check all that apply</p>   
+        <label>Space Modification Requirement (e.g Removal of walls or bench)</label>
+        <p-triStateCheckbox [(ngModel)]='equipmentForm.spaceModificationRequirement'></p-triStateCheckbox>
+        <!--  electrical changes-->
+        <label>Electrical Modification(s)</label>
+        <p-triStateCheckbox [(ngModel)]='equipmentForm.electricalModification'></p-triStateCheckbox>
+        <div class='requirement-list' *ngIf='equipmentForm.electricalModification'>
+            <label>Volts</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.volts'></p-triStateCheckbox>
+            <label>Amps</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.amp'></p-triStateCheckbox>
+            <label>Phase</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.phase'></p-triStateCheckbox>
+            <label>Dedicated Power</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.dedicatedPower'></p-triStateCheckbox>
+            <label>Circuit Breaker Specification</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.circuitBreakerSpecification'></p-triStateCheckbox>
+            <label>Motor/Compressor (if applied) specification </label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.motorCompressorSpecification'></p-triStateCheckbox>
+            <label>Special Conduit Requirements</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.specialNeeds'></p-triStateCheckbox>
+            <label>Special Conduit Requirements</label>
+            <input type="text" [(ngModel)]='equipmentForm.specialNeedsString' pInputText>
+            <label>FWR Paid For</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.fwr'></p-triStateCheckbox>
+            <label>FWR Paid For By</label>
+            <input type="text" [(ngModel)]='equipmentForm.fwrPaidBy' pInputText>
+        </div>
+          <!-- HVAC -->
+        <label>Heating,Ventilation, Air Conditioning Requirements (HVAC)</label>
+        <p-triStateCheckbox [(ngModel)]='equipmentForm.hvac'></p-triStateCheckbox>
+        <div class='requirement-list' *ngIf='equipmentForm.hvac'>
+            <label>Air/chilled water flow(s) requirement</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.airChilledWaterFlow'></p-triStateCheckbox>
+            <label>Temperature(s) setting/control requirement</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.temperature'></p-triStateCheckbox>
+            <label>Humidity control/requirement</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.humidityControl'></p-triStateCheckbox>
+            <label>Supply pressure (static operating) at user's end</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.supplyPressure'></p-triStateCheckbox>
+            <label>Central package unit selection/specification</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.centralPackageUnit'></p-triStateCheckbox>
+            <label>Special duct work/AHU/damper/valving/motor (w/specifications as applied)</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.specialWork'></p-triStateCheckbox>
+            <label>Noise Requirement (if applied)</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.noiseRequirement'></p-triStateCheckbox>
+        </div>
+        <!-- plumbing -->
+        <label>Plumbing Modification(s)</label>
+        <p-triStateCheckbox [(ngModel)]='equipmentForm.plumbing'></p-triStateCheckbox>
+        <div class='requirement-list' *ngIf='equipmentForm.plumbing'>
+            <label>Fluid (water,natural gas, air, others)</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.fluid'></p-triStateCheckbox>
+            <label>Flow Rate (gpm,cfm)</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.flowRate'></p-triStateCheckbox>
+            <label>Pressure (static/operating) requirement (at user's end)</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.pressure'></p-triStateCheckbox>
+            <label>Fluid temperature requirement</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.fluidTemperature'></p-triStateCheckbox>
+            <label>Pump/compressor/motor specifications</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.pumpCompressorMotor'></p-triStateCheckbox>
+        </div>
+        <!-- network -->
+        <label>Network Requirement(s)</label>
+        <p-triStateCheckbox [(ngModel)]='equipmentForm.network'></p-triStateCheckbox>
+        <div class='requirement-list' *ngIf='equipmentForm.network'>
+            <label>Maintenance</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.maintenance'></p-triStateCheckbox>
+            <label>License Requirements</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.licenseRequirements'></p-triStateCheckbox>
+            <label>Hardware</label>
+            <p-triStateCheckbox [(ngModel)]='equipmentForm.hardware'></p-triStateCheckbox>
+        </div> 
+        <!-- hazardous material IMPORTANT  -->
+        <label>Hazardous Material</label>
+        <p-triStateCheckbox [(ngModel)]='equipmentForm.hazardousMaterial'></p-triStateCheckbox>
+        <div class='requirement-list' *ngIf='equipmentForm.hazardousMaterial'>
+            <label>Attach list of chemicals and quantities</label>
+            <label>Attach radiation use - source</label>
+        </div>
+        <label>Maintenance Requirement</label>
+        <p-triStateCheckbox [(ngModel)]='equipmentForm.maintenanceRequirement'></p-triStateCheckbox>
+        <!-- LIST OF REQUIREMENTS -->
+        <label>Size Of Equipment</label>
+        <p-triStateCheckbox [(ngModel)]='equipmentForm.sizeOfEquipment'></p-triStateCheckbox>
+        <div class='requirement-list'>
+            <label >Height ft</label>
+            <input type="text" [(ngModel)]='equipmentForm.height' pInputText>
+            <label >Width ft</label>
+            <input type="text" [(ngModel)]='equipmentForm.width' pInputText>
+            <label >Length ft</label>
+            <input type="text" [(ngModel)]='equipmentForm.length' pInputText>
+        </div> 
+    </div> 
+    <!-- signatures   -->
+</div>

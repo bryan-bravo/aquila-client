@@ -1,5 +1,4 @@
 export interface  IntakeForm {
-
       readonly _id:string; 
     //A
     _principalInvestigator?:string;
@@ -19,7 +18,7 @@ export interface  IntakeForm {
       _noOfUndergradStudents?:number;
       _noOfGradStudents?:number
       _vlaboratoryAssitance?:boolean;
-      _dataCollection?:boolean;
+      _dataCollection?:boolean; 
       _reportWriting?:boolean;
       _literatureReview?:boolean;
       _codingOrDataEntry?:boolean;

@@ -33,6 +33,7 @@ import { IntakeComponent } from './components/formcomponents/intake/intake.compo
 import { BudgetComponent } from './components/formcomponents/budget/budget.component';
 import { TimelineComponent } from './components/formcomponents/timeline/timeline.component';
 import { PiPreAwardComponent } from './components/pi-pre-award/pi-pre-award.component';
+import { EquipmentComponent } from './components/formcomponents/equipment/equipment.component';
 
 //services
 import{AuthenticationService} from './services/authentication.service';
@@ -47,7 +48,7 @@ const AppRoutes: Routes =[
       children:[
         {path:'Intake', component:IntakeComponent},  
         {path:'Budget', component:BudgetComponent},
-        {path:'Timeline', component:TimelineComponent},  
+        {path:'Equipment', component:EquipmentComponent},  
       ]
     }
 ];
@@ -63,6 +64,7 @@ const AppRoutes: Routes =[
     BudgetComponent,
     TimelineComponent,
     PiPreAwardComponent,
+    EquipmentComponent,
     
   ],
   imports: [
