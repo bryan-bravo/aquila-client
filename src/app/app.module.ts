@@ -34,12 +34,14 @@ import { BudgetComponent } from './components/formcomponents/budget/budget.compo
 import { TimelineComponent } from './components/formcomponents/timeline/timeline.component';
 import { PiPreAwardComponent } from './components/pi-pre-award/pi-pre-award.component';
 import { EquipmentComponent } from './components/formcomponents/equipment/equipment.component';
+import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
+import { FormFooterComponent } from './components/form-footer/form-footer.component';
 
 //services
 import{AuthenticationService} from './services/authentication.service';
 import{PreawardService} from './services/preaward.service';
 import {ProposalService} from './services/proposal.service';
-import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
+
 const AppRoutes: Routes =[
     {path:'', component:LandingPageComponent},  
     {path:'login', component:LoginComponent},  
@@ -61,6 +63,7 @@ const AppRoutes: Routes =[
     PiPreAwardComponent,
     EquipmentComponent,
     BreadCrumbComponent,
+    FormFooterComponent,
     
   ],
   imports: [

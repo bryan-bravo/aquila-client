@@ -49,11 +49,8 @@ export class IntakeComponent implements OnInit {
       'background-color':'rgb(46, 236, 29)'
     };   
   }
-  changeIndex(direction){    
-    if(direction=='left')
-      this.index=this.index-1;
-    if(direction=='right')
-      this.index=this.index+1;
+  updateIndex(value){    
+   this.index=value;
   }
 
   update(){
