@@ -39,6 +39,7 @@ import { EquipmentComponent } from './components/formcomponents/equipment/equipm
 import{AuthenticationService} from './services/authentication.service';
 import{PreawardService} from './services/preaward.service';
 import {ProposalService} from './services/proposal.service';
+import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
 const AppRoutes: Routes =[
     {path:'', component:LandingPageComponent},  
     {path:'login', component:LoginComponent},  
@@ -59,6 +60,7 @@ const AppRoutes: Routes =[
     TimelineComponent,
     PiPreAwardComponent,
     EquipmentComponent,
+    BreadCrumbComponent,
     
   ],
   imports: [

@@ -23,3 +23,7 @@ export class ProposalService {
     this.formSource.next(intakeForm);
   }
 }
+//user clicks on form
+//edit proposal calls parent Update Proposal
+//form is created, which calls get IntakeForm
+//user updates Proposal on interaction

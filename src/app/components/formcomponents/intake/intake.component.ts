@@ -13,6 +13,7 @@ import { Subscription }   from 'rxjs/Subscription';
 export class IntakeComponent implements OnInit {
   intakeForm:IntakeForm;  
   index:number;
+  breadCrumbStrings: string[] = ['General Info','Participation','Compliances','Other'];
   //CRUD stuff
   displayDialog:boolean;
   intakeInnerClass:string;

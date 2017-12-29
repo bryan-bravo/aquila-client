@@ -2,9 +2,8 @@
     <div id='dash-bar'>
         <h3>UAS Grants and Contracts Intake Form</h3>
         <div [ngStyle]='setProgressBar(34)'></div>
-        <!-- breadcrumbs -->
-        <div id=''>
-        </div>
+        <app-bread-crumb [index]='index' [pages]='breadCrumbStrings' ></app-bread-crumb>
+
     </div>
     <!-- first page A,B,C -->
     <div *ngIf='index==0' id='general-info'>
@@ -163,7 +162,7 @@
             <img src='../../../assets/images/right-arrow.png' class='right-arrow' (click)='changeIndex("right")'>
         </div>
     </div>
-
+    <!-- other -->
     <div *ngIf='index==3' id='other'>
         <p class='title'>OTHER COMPLIANCES</p>
         <label for='hs'>Human Subjects (If yes, consult with IRB Compliance Specialist [Elia Amaro, x3798])</label>
