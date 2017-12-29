@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {IntakeForm,Personnel,SubgrantSubProject,ProjectLocation, AdditionalParty,Space,RequestedEquipment,Hazard} from '../../../models/PreAward/IntakeForm';
 import {MenuItem} from 'primeng/primeng';
 import { Proposal } from '../../../models/PreAward/Proposal';
+import {ProposalService} from '../../../services/proposal.service';
+import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-intake',
@@ -29,14 +31,15 @@ export class IntakeComponent implements OnInit {
   hazard:Hazard = new Hazard();
   newHazard:boolean;
 
-
-  constructor() { }
+  constructor(private proposalService: ProposalService) {
+    this.intakeForm = this.proposalService.getIntakeForm();//make this into observable
+   }
 
   ngOnInit() {
   this.index=0;
-  this.messWithIntake();
   this.displayDialog=false;
   }
+  //make into pipe
   setProgressBar(percentage){
     let formattedWidth = percentage+'%';
     return{
@@ -51,50 +54,42 @@ export class IntakeComponent implements OnInit {
     if(direction=='right')
       this.index=this.index+1;
   }
-  messWithIntake(){
-    this.intakeForm =new IntakeForm('1');
-    this.intakeForm.personnel =[new Personnel("bork","bork","bork","bork")];
-      // _id:'1',
-      // _personnel:[new Personnel("bork","bork","bork","bork")],
-      // _subGrantsOrSubContracts:[new SubgrantSubProject("bork",0,"bork","bork")],
-      // _projectLocations: [new ProjectLocation("bork","bork","bork",true)],
-      // _additionalInvolvedParties:[new AdditionalParty("bork","bork","bork")],
-      // _spaces:[ new Space("bork","bork","bork")],
-      // _requestedEquipment:[new RequestedEquipment("bork",0)],
-      // _hazardousSubstances:[new Hazard("bork","bork")]
-    
+
+  update(){
+    //make request
+    this.proposalService.updateIntakeForm(this.intakeForm);
   }
   //when add is clicked on any datatable
   showDialogToAdd(type){
-  if(type=='personnel'){  
-    this.newPersonnel=true;
-    this.personnel=new Personnel();
-  }
-  if(type=='subgrantsubcontract'){
-    this.newSubgrantSubProject=true;
-    this.subgrantSubProject=new SubgrantSubProject();
-  }
-  if(type=='projectlocation'){
-    this.newProjectLocation=true;
-    this.projectLocation = new ProjectLocation();
-  }
-  if(type=='additionalparty'){
-    this.newAdditionalParty=true;
-    this.additionalParty = new AdditionalParty();
-  }
-  if(type=='space'){
-    this.newSpace=true;
-    this.space = new Space();
-  }
-  if(type=='requestedequipment'){
-    this.newRequestedEquipment=true;
-    this.requestedEquipment= new RequestedEquipment();
-  }
-  if(type=='hazard'){
-    this.newHazard=true;
-    this.hazard = new Hazard();
-  }
-  this.intakeInnerClass=type;
+    if(type=='personnel'){  
+      this.newPersonnel=true;
+      this.personnel=new Personnel();
+    }
+    if(type=='subgrantsubcontract'){
+      this.newSubgrantSubProject=true;
+      this.subgrantSubProject=new SubgrantSubProject();
+    }
+    if(type=='projectlocation'){
+      this.newProjectLocation=true;
+      this.projectLocation = new ProjectLocation();
+    }
+    if(type=='additionalparty'){
+      this.newAdditionalParty=true;
+      this.additionalParty = new AdditionalParty();
+    }
+    if(type=='space'){
+      this.newSpace=true;
+      this.space = new Space();
+    }
+    if(type=='requestedequipment'){
+      this.newRequestedEquipment=true;
+      this.requestedEquipment= new RequestedEquipment();
+    }
+    if(type=='hazard'){
+      this.newHazard=true;
+      this.hazard = new Hazard();
+    }
+    this.intakeInnerClass=type;
     this.displayDialog=true;
   }
   //when a data entry in data table is clicked
@@ -148,11 +143,14 @@ export class IntakeComponent implements OnInit {
     if(type=='hazard')
       return this.intakeForm.hazardousSubstances.indexOf(this.hazard);
   }
- 
+ //save new CRUD element
   save() {
     let type=this.intakeInnerClass;
     if(type=='personnel'){ 
+      if(!this.intakeForm.personnel)
+        this.intakeForm.personnel=[];
       let personnelList = [...this.intakeForm.personnel];
+
       if(this.newPersonnel)
           personnelList.push(this.personnel);
       else
@@ -161,15 +159,19 @@ export class IntakeComponent implements OnInit {
     }
 
     if(type=='subgrantsubcontract'){
+      if(!this.intakeForm.subGrantsOrSubContracts)
+        this.intakeForm.subGrantsOrSubContracts=[];
       let subGrantSubProjectList = [...this.intakeForm.subGrantsOrSubContracts];
       if(this.newSubgrantSubProject)
-      subGrantSubProjectList.push(this.subgrantSubProject);
+        subGrantSubProjectList.push(this.subgrantSubProject);
       else
-      subGrantSubProjectList[this.findIndex()] = this.subgrantSubProject;
+        subGrantSubProjectList[this.findIndex()] = this.subgrantSubProject;
       this.intakeForm.subGrantsOrSubContracts = subGrantSubProjectList;
      }
 
     if(type=='projectlocation'){
+      if(!this.intakeForm.projectLocations)
+        this.intakeForm.projectLocations=[];
       let projectLocationList = [... this.intakeForm.projectLocations];
       if(this.newProjectLocation)
         projectLocationList.push(this.projectLocation)
@@ -179,6 +181,8 @@ export class IntakeComponent implements OnInit {
      }
 
     if(type=='additionalparty'){
+      if(!this.intakeForm.additionalInvolvedParties)
+        this.intakeForm.additionalInvolvedParties=[];
       let additionalPartyList =[... this.intakeForm.additionalInvolvedParties];
       if(this.newAdditionalParty)
         additionalPartyList.push(this.additionalParty);
@@ -188,6 +192,8 @@ export class IntakeComponent implements OnInit {
     }
 
     if(type=='space'){
+      if(!this.intakeForm.spaces)
+        this.intakeForm.spaces=[];
       let spaceList=[... this.intakeForm.spaces];
       if(this.newSpace)
         spaceList.push(this.space);
@@ -197,6 +203,8 @@ export class IntakeComponent implements OnInit {
     }
 
     if(type=='requestedequipment'){
+      if(!this.intakeForm.requestedEquipment)
+        this.intakeForm.requestedEquipment=[];
       let equipmentList =[... this.intakeForm.requestedEquipment];
       if(this.newRequestedEquipment)
         equipmentList.push(this.requestedEquipment);
@@ -206,16 +214,19 @@ export class IntakeComponent implements OnInit {
     }
     
     if(type=='hazard'){
+      if(!this.intakeForm.hazardousSubstances)
+        this.intakeForm.hazardousSubstances=[];
       let hazardList =[... this.intakeForm.hazardousSubstances];
       if(this.newHazard)
         hazardList.push(this.hazard);
       else
         hazardList[this.findIndex()] = this.hazard;
-      this.intakeForm.hazardousSubstances =hazardList;  
+      this.intakeForm.hazardousSubstances = hazardList;  
     }
     //reset  
     this.displayDialog = false;
   }
+  //delete a CRUD element
   delete() {
     let type=this.intakeInnerClass;
     let index = this.findIndex();

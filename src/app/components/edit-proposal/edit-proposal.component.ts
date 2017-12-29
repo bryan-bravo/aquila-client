@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import {Proposal} from '../../models/PreAward/Proposal';
-import {MockData} from './mock-data';
+import {ProposalService} from '../../services/proposal.service';
+import { IntakeForm } from '../../models/PreAward/IntakeForm';
+// import {MockData} from './mock-data';
 @Component({
   selector: 'app-edit-proposal',
   templateUrl: './edit-proposal.component.html',
@@ -12,16 +14,22 @@ export class EditProposalComponent implements OnInit {
   proposal:Proposal;
   menuState:boolean;//determines if menu or form field is shown
   routerState:boolean;
-  constructor(private router:ActivatedRoute) { }
-
+  currentForm:string;
+  constructor(private activatedRoute:ActivatedRoute,private router:Router, private proposalService:ProposalService) { 
+    proposalService.updatedFormtoProposal$.subscribe(form=>{
+      console.log(form)
+    });
+  }
 
   ngOnInit() {
     this.getParams();
-    this.menuState=false;
-    this.routerState=true;
+    this.menuState=true;
+    this.routerState=false;
+    this.currentForm='';
+    this.proposal= new Proposal(new IntakeForm('1','bork'));
   }
   getParams(){                                            
-    this.router.params.subscribe(params => {
+    this.activatedRoute.params.subscribe(params => {
        this.proposalId=params['id'];
     });	
     }
@@ -33,13 +41,21 @@ export class EditProposalComponent implements OnInit {
       'background-color':'rgb(46, 236, 29)'
     };   
   }
-  setLabel(){
-
-  }
+  setLabel(){}
+  //alternates between menu and form
   changeState(){
     this.menuState=!this.menuState;
     this.routerState=!this.routerState;
   }
+  setCurrentForm(form){
+    this.currentForm=form;
+    this.sendForm();
+    this.changeState();
+  }
+  sendForm(){
+    this.proposalService.parentUpdatesProposal(this.proposal);
+  }
+
 }
 
    

@@ -23,6 +23,7 @@
         <p-calendar  [(ngModel)]='intakeForm.startDate'></p-calendar>
         <label> End Date</label>
         <p-calendar  [(ngModel)]='intakeForm.endDate'></p-calendar>
+        <label (click)='update()'>Update</label>
         <!-- personnel object -->
         <div id='personnel'>
             <p class='title'>Personnel</p>

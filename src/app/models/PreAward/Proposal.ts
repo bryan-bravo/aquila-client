@@ -2,8 +2,8 @@ import { IntakeForm } from './IntakeForm';
 export class Proposal{
 
     private _intakeForm:IntakeForm;
-
-	constructor(intakeForm:IntakeForm) {
+// budget,equipment,timeline....coi forms
+	constructor(intakeForm?:IntakeForm) {
         this._intakeForm=intakeForm;
     }
 

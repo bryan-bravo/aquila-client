@@ -7,12 +7,10 @@
         <label class='optional-indicator'>Submit</label>
         <label class='optional-indicator'> Help</label>
     </div>
-    <div class='required-forms' id='intake'>
+    <div class='required-forms' id='intake' (click)='setCurrentForm("Intake")'>
         <p class='title'>Intake Form </p>
         <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
         </div>
-        <!-- <a [routerLink]='["Intake"]'>Intake</a> -->
-
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
         <label class='required-indicator required-form'>Required</label>
 
@@ -73,8 +71,20 @@
 
     </div>
 </div>
-<label id='menu-return' class='optional-indicator' (click)='changeState()'>Menu</label>
 
 <div *ngIf='routerState' id='router-container'>
-    <router-outlet></router-outlet>
+    <label id='menu-return' class='optional-indicator' (click)='changeState()'>Menu</label>
+
+    <!-- routeroutlet -->
+    <app-intake *ngIf='currentForm=="Intake"'></app-intake>
+<!-- intakeForm -->
+<!-- budget form -->
+<!-- timeline -->
+<!-- approval -->
+<!-- equipment -->
+<!-- COI -->
+<!-- COI -->
+<!-- COI -->
+<!-- COI -->
+<!-- COI -->
 </div>

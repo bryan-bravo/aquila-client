@@ -38,19 +38,13 @@ import { EquipmentComponent } from './components/formcomponents/equipment/equipm
 //services
 import{AuthenticationService} from './services/authentication.service';
 import{PreawardService} from './services/preaward.service';
-
+import {ProposalService} from './services/proposal.service';
 const AppRoutes: Routes =[
     {path:'', component:LandingPageComponent},  
     {path:'login', component:LoginComponent},  
     {path:'home', component:PiHomePageComponent},//will have can activate thing   
    {path:'pipreaward', component:PiPreAwardComponent} ,
-    {path:'editproposal/:id',component:EditProposalComponent,
-      children:[
-        {path:'Intake', component:IntakeComponent},  
-        {path:'Budget', component:BudgetComponent},
-        {path:'Equipment', component:EquipmentComponent},  
-      ]
-    }
+    {path:'editproposal/:id',component:EditProposalComponent}
 ];
 @NgModule({
   declarations: [
@@ -89,7 +83,7 @@ const AppRoutes: Routes =[
     DataTableModule,
     DialogModule
   ],
-  providers: [AuthenticationService, PreawardService,MessageService],   
+  providers: [AuthenticationService,PreawardService,ProposalService,MessageService],   
   bootstrap: [AppComponent]
 })
 export class AppModule { }
