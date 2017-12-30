@@ -8,11 +8,19 @@ import {EquipmentForm} from '../../../models/PreAward/EquipmentForm';
 })
 export class EquipmentComponent implements OnInit {
   equipmentForm:EquipmentForm;
+  index:number;
+  breadCrumbStrings: string[] = ['General Info','Equipment','Requirements'];
+
   constructor() { }
 
   ngOnInit() {
+    this.index=0;
     this.equipmentForm = new EquipmentForm('1');
   }
+  // listens for index updates from form footer
+  updateIndex(value){    
+    this.index=value;
+   }
   setProgressBar(percentage){
     let formattedWidth = percentage+'%';
     return{

@@ -15,7 +15,7 @@
         <label class='required-indicator required-form'>Required</label>
 
     </div>
-    <div class='required-forms' id='budget'>
+    <div class='required-forms' id='budget' (click)='setCurrentForm("Budget")'>
         <p class='title'>Budget Form</p>
         <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
         </div>
@@ -38,7 +38,7 @@
 
     </div>
     <div id='optional-forms-container'>
-        <div>
+        <div (click)='setCurrentForm("Equipment")'>
             <p class='title'>Equipment</p>
             <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
             </div>
@@ -75,10 +75,9 @@
 <div *ngIf='routerState' id='router-container'>
     <label id='menu-return' class='optional-indicator' (click)='changeState()'>Menu</label>
 
-    <!-- routeroutlet -->
     <app-intake *ngIf='currentForm=="Intake"'></app-intake>
-<!-- intakeForm -->
-<!-- budget form -->
+    <app-budget *ngIf='currentForm=="Budget"'></app-budget>
+    <app-equipment *ngIf='currentForm=="Equipment"'></app-equipment>
 <!-- timeline -->
 <!-- approval -->
 <!-- equipment -->

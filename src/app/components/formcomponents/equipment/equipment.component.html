@@ -1,13 +1,13 @@
 <div id='container'>
     <div id='dash-bar'>
         <h3>UAS Grants and Contracts New Equipment Approval Form</h3>
+        <app-bread-crumb [index]='index' [pages]='breadCrumbStrings' ></app-bread-crumb>
         <div [ngStyle]='setProgressBar(50)'></div>
-        <!-- breadcrumbs -->
-        <button (click)='messWithEquipment()'>bork</button>
+       <button (click)='messWithEquipment()'>bork</button>
         <div id=''></div>
     </div>
     <!-- page 1 General Information -->
-    <div class='page'>
+    <div *ngIf='index==0' class='page'>
         <p class='title'>General Information</p>
         <label >Faculty Name</label>
         <input type="text" [(ngModel)]='equipmentForm.facultyName' pInputText>
@@ -29,7 +29,7 @@
         <p-triStateCheckbox [(ngModel)]='equipmentForm.newEquipment'></p-triStateCheckbox>
     </div>
     <!-- page 2 Equipment -->
-    <div class='page'>
+    <div *ngIf='index==1' class='page'>
         <p class='title'>Equipment</p>
         <label>Type Of Equipment (List each equipment item and attach specifications/quote nad url/website if available)</label>
         <label>Equipment Location</label>
@@ -43,7 +43,7 @@
         <input type="text" [(ngModel)]='equipmentForm.previousUse' pInputText>
       </div>
     <!-- page 3 check all that apply  -->
-    <div class='page'>
+    <div *ngIf='index==2'class='page'>
         <p class='title'>Please Check all that apply</p>   
         <label>Space Modification Requirement (e.g Removal of walls or bench)</label>
         <p-triStateCheckbox [(ngModel)]='equipmentForm.spaceModificationRequirement'></p-triStateCheckbox>
@@ -138,5 +138,6 @@
             <input type="text" [(ngModel)]='equipmentForm.length' pInputText>
         </div> 
     </div> 
+    <app-form-footer [index]='index' [page-length]='breadCrumbStrings.length' (newIndex)='updateIndex($event)'></app-form-footer>
     <!-- signatures   -->
 </div>
