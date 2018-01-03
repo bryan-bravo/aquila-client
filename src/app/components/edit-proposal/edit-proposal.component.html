@@ -1,92 +1,94 @@
 <!-- this side task bar will contain all functions to edit, the models themselves will be delegated to inner components -->
 <!--  -->
 <div *ngIf='menuState' id='menu-state'>
-    <div id='dashboard'>
-        <label>Proposal Name</label>
-        <label class='optional-indicator'>Status</label>
-        <label class='optional-indicator'>Submit</label>
-        <label class='optional-indicator'> Help</label>
+  <div id='dashboard'>
+    <label>Proposal Name</label>
+    <label class='optional-indicator'>Status</label>
+    <label class='optional-indicator'>Submit</label>
+    <label class='optional-indicator'> Help</label>
+  </div>
+  <div class='required-forms' id='intake' (click)='setCurrentForm("Intake")'>
+    <p class='title'>Intake Form </p>
+    <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
     </div>
-    <div class='required-forms' id='intake' (click)='setCurrentForm("Intake")'>
-        <p class='title'>Intake Form </p>
-        <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
-        </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
-        <label class='required-indicator required-form'>Required</label>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
+      earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
+    <label class='required-indicator required-form'>Required</label>
 
+  </div>
+  <div class='required-forms' id='budget' (click)='setCurrentForm("Budget")'>
+    <p class='title'>Budget Form</p>
+    <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
     </div>
-    <div class='required-forms' id='budget' (click)='setCurrentForm("Budget")'>
-        <p class='title'>Budget Form</p>
-        <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
-        </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
-        <label class='required-indicator required-form'>Required</label>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
+      earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
+    <label class='required-indicator required-form'>Required</label>
 
+  </div>
+  <div class='required-forms' id='timeline'>
+    <p class='title'>Timeline</p>
+    <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
+      earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
+
+  </div>
+  <div class='required-forms' id='approval'>
+    <p class='title'>Approval Form</p>
+    <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
+      earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
+
+    <label class='required-indicator required-form'>Required</label>
+
+  </div>
+  <div id='optional-forms-container'>
+    <div (click)='setCurrentForm("Equipment")'>
+      <p class='title'>Equipment</p>
+      <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
+      </div>
+      <p>Lorem ipsum dolor sit amet </p>
+      <label class='optional-indicator optional-form'>Optional</label>
     </div>
-    <div class='required-forms' id='timeline'>
-        <p class='title'>Timeline</p>
-        <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
-
+    <div (click)='setCurrentForm("coi-oi-phs")'>
+      <p class='title'>COI OI KP PHS </p>
+      <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
+      </div>
+      <p>Lorem ipsum dolor sit amet</p>
+      <label class='optional-indicator optional-form'>Optional</label>
     </div>
-    <div class='required-forms' id='approval'>
-        <p class='title'>Approval Form</p>
-        <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
-
-        <label class='required-indicator required-form'>Required</label>
-
+    <div (click)='setCurrentForm("coi-oi-nonphs")'>
+      <p class='title'>COI OI KP NONPHS</p>
+      <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
+      </div>
+      <p>Lorem ipsum dolor sit amet </p>
+      <label class='optional-indicator optional-form'>Optional</label>
     </div>
-    <div id='optional-forms-container'>
-        <div (click)='setCurrentForm("Equipment")'>
-            <p class='title'>Equipment</p>
-            <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
-            </div>
-            <p>Lorem ipsum dolor sit amet </p>
-            <label class='optional-indicator optional-form'>Optional</label>
-        </div>
-        <div (click)='setCurrentForm("coi-oi-phs")'>
-            <p class='title'>COI OI KP PHS </p>
-            <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
-            </div>
-            <p>Lorem ipsum dolor sit amet</p>
-            <label class='optional-indicator optional-form'>Optional</label>
-        </div>
-        <div (click)='setCurrentForm("coi-oi-nonphs")'>
-            <p class='title'>COI OI KP NONPHS</p>
-            <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
-            </div>
-            <p>Lorem ipsum dolor sit amet </p>
-            <label class='optional-indicator optional-form'>Optional</label>
-
-        </div>
-        <div (click)='setCurrentForm("coi-pi-phs")'>
-            <p class='title'>COI PI PHS</p>
-            <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
-            </div>
-            <p>Lorem ipsum dolor sit amet </p>
-            <label class='optional-indicator optional-form'>Optional</label>
-        </div>
-        <div (click)='setCurrentForm("coi-pi-nonphs")'>
-            <p class='title'>COI PI NON PHS</p>
-            <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
-            </div>
-            <p>Lorem ipsum dolor sit amet </p>
-            <label class='optional-indicator optional-form'>Optional</label>
-        </div>
+    <div (click)='setCurrentForm("coi-pi-phs")'>
+      <p class='title'>COI PI PHS</p>
+      <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
+      </div>
+      <p>Lorem ipsum dolor sit amet </p>
+      <label class='optional-indicator optional-form'>Optional</label>
     </div>
+    <div (click)='setCurrentForm("coi-pi-nonphs")'>
+      <p class='title'>COI PI NON PHS</p>
+      <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
+      </div>
+      <p>Lorem ipsum dolor sit amet </p>
+      <label class='optional-indicator optional-form'>Optional</label>
+    </div>
+  </div>
 </div>
 
 <div *ngIf='routerState' id='router-container'>
-    <label id='menu-return' class='optional-indicator' (click)='changeState()'>Menu</label>
-
-    <app-intake *ngIf='currentForm=="Intake"'></app-intake>
-    <app-budget *ngIf='currentForm=="Budget"'></app-budget>
-    <app-equipment *ngIf='currentForm=="Equipment"'></app-equipment>
-<!-- timeline -->
-<!-- approval -->
-    <app-coi *ngIf='currentForm=="coi-oi-phs"' [type]='"OIPHS"'></app-coi>    
-    <app-coi *ngIf='currentForm=="coi-oi-nonphs"' [type]='"OINONPHS"'></app-coi>    
-    <app-coi *ngIf='currentForm=="coi-pi-phs"' [type]='"PIPHS"'></app-coi>    
-    <app-coi *ngIf='currentForm=="coi-pi-nonphs"' [type]='"PINONPHS"'></app-coi>  
+  <label id='menu-return' class='optional-indicator' (click)='changeState()'>Menu</label>
+  <app-intake *ngIf='currentForm=="Intake"'></app-intake>
+  <app-budget *ngIf='currentForm=="Budget"'></app-budget>
+  <app-equipment *ngIf='currentForm=="Equipment"'></app-equipment>
+  <!-- timeline -->
+  <!-- approval -->
+  <app-coi *ngIf='currentForm=="coi-oi-phs"' [type]='"OIPHS"'></app-coi>
+  <app-coi *ngIf='currentForm=="coi-oi-nonphs"' [type]='"OINONPHS"'></app-coi>
+  <app-coi *ngIf='currentForm=="coi-pi-phs"' [type]='"PIPHS"'></app-coi>
+  <app-coi *ngIf='currentForm=="coi-pi-nonphs"' [type]='"PINONPHS"'></app-coi>
 </div>

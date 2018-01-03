@@ -2,7 +2,7 @@
 <!-- have download for original file -->
 <p class='form-title'>Blank Template</p>
 
-<a href='../../../assets/BudgetTemplate.xls' download>Budget Template</a> 
+<a href='../../../assets/BudgetTemplate.xls' download>Budget Template</a>
 
 <p class='form-title'>All previous versions of budget</p>
 <div>filename and date uploaded
@@ -10,7 +10,7 @@
 
 <p class='form-title'>Upload Budget</p>
 <form (submit)='upload()'>
-<input type='file' #fileInput (change)='validate()' > 
-<input type='submit'>
+  <input type='file' #fileInput (change)='validate()'>
+  <input type='submit'>
 </form>
 <label *ngIf='showFlag' class='required-indicator'>Please upload an Excel file</label>
