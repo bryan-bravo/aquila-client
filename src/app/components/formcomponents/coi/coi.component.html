@@ -1,5 +1,9 @@
 <h3 *ngIf='type=="OIPHS"'> Other Investigators/ Key Personnel Statement of Financial Interests/PHS</h3>
 <h3 *ngIf='type=="OINONPHS"'> Other Investigators/ Key Personnel Statement of Financial NSF and Other Non-PHS Governmental Agencies</h3>
+<h3 *ngIf='type=="PIPHS"'> Principal Investigator's Statement of Financial Interest/PHS</h3>
+<h3 *ngIf='type=="PINONPHS"'>Principal Investigator's Statement of Financial Interest NSF and Other Non-PHS Governmental Agencies</h3>
+
+
 <app-bread-crumb [index]='index' [pages]='breadCrumbStrings'></app-bread-crumb>
 <!-- page 1 -->
 <div *ngIf='index=="0"' class='form-flex-start'>

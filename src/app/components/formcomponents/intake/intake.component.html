@@ -39,16 +39,16 @@
     </div>
     <p class='title'>PARTICIPATION SUPPORT</p>
     <label>Do you anticipate any participation stipends as part of your proposal?</label>
-    <p-triStateCheckbox [(ngModel)]='intakeForm.anticipateStipend'></p-triStateCheckbox>
+    <input type='checkbox' [(ngModel)]='intakeForm.anticipateStipend'>
     <!-- if stipend is true -->
     <div id='anticipate-stipend-true' *ngIf='intakeForm.anticipateStipend'>
       <label>Please identify the type of Stipend:Study Participant, Student Tuition, Travel.. etc, and provide your Participation
         Stipend eligibility criteria and selection process below.</label>
       <input type="text" [(ngModel)]='intakeForm.stipends' pInputText>
       <label>Faculty Student Research/Creative Activities</label>
-      <p-triStateCheckbox [(ngModel)]='intakeForm.facultyStudentResearchCreativeActivities'></p-triStateCheckbox>
+      <input type='checkbox' [(ngModel)]='intakeForm.facultyStudentResearchCreativeActivities'>
       <label>Will this project actively involve students in Research</label>
-      <p-triStateCheckbox [(ngModel)]='intakeForm.studentsInResearch'></p-triStateCheckbox>
+      <input type='checkbox' [(ngModel)]='intakeForm.studentsInResearch'>
       <!-- if rsca is true -->
       <div class='rsca-actvities' *ngIf='intakeForm.studentsInResearch'>
         <p>Please answer the following</p>
@@ -58,23 +58,23 @@
         <input type="text" [(ngModel)]='intakeForm.noOfGradStudents' pInputText>
         <p>What type of RSCA activities will be incorporated? (Check all that apply)</p>
         <label>Laboratory Assistance</label>
-        <p-triStateCheckbox [(ngModel)]='intakeForm.vlaboratoryAssistance'></p-triStateCheckbox>
+        <input type='checkbox' [(ngModel)]='intakeForm.vlaboratoryAssistance'>
         <label>Data Collection</label>
-        <p-triStateCheckbox [(ngModel)]='intakeForm.dataCollection'></p-triStateCheckbox>
+        <input type='checkbox' [(ngModel)]='intakeForm.dataCollection'>
         <label>Report Writing</label>
-        <p-triStateCheckbox [(ngModel)]='intakeForm.reportWriting'></p-triStateCheckbox>
+        <input type='checkbox' [(ngModel)]='intakeForm.reportWriting'>
         <label>Literature Review</label>
-        <p-triStateCheckbox [(ngModel)]='intakeForm.literatureReview'></p-triStateCheckbox>
+        <input type='checkbox' [(ngModel)]='intakeForm.literatureReview'>
         <label>Coding Or Data Entry</label>
-        <p-triStateCheckbox [(ngModel)]='intakeForm.codingOrDataEntry'></p-triStateCheckbox>
+        <input type='checkbox' [(ngModel)]='intakeForm.codingOrDataEntry'>
         <label>Presentation</label>
-        <p-triStateCheckbox [(ngModel)]='intakeForm.presentation'></p-triStateCheckbox>
+        <input type='checkbox' [(ngModel)]='intakeForm.presentation'>
         <label>Archival Research</label>
-        <p-triStateCheckbox [(ngModel)]='intakeForm.archivalResearch'></p-triStateCheckbox>
+        <input type='checkbox' [(ngModel)]='intakeForm.archivalResearch'>
         <label>Data Analysis</label>
-        <p-triStateCheckbox [(ngModel)]='intakeForm.dataAnalysis'></p-triStateCheckbox>
+        <input type='checkbox' [(ngModel)]='intakeForm.dataAnalysis'>
         <label>Other Activities</label>
-        <p-triStateCheckbox [(ngModel)]='intakeForm.otherActvities'></p-triStateCheckbox>
+        <input type='checkbox' [(ngModel)]='intakeForm.otherActvities'>
         <!-- otherActivitiesList:String[]; -->
       </div>
     </div>
@@ -126,9 +126,9 @@
       <label> Agency F&A (Indirect) Cost Rate Percentage</label>
       <input type="text" pInputText [(ngModel)]='intakeForm.agencyCostRatePercentage'>
       <label>Is costsharing required by the agency?</label>
-      <p-triStateCheckbox [(ngModel)]='intakeForm.agencyCostSharing'></p-triStateCheckbox>
+      <input type='checkbox' [(ngModel)]='intakeForm.agencyCostSharing'>
       <label>Is costsharing requested by the PI?</label>
-      <p-triStateCheckbox [(ngModel)]='intakeForm.piCostSharing'></p-triStateCheckbox>
+      <input type='checkbox' [(ngModel)]='intakeForm.piCostSharing'>
       <label> Count of computers to be requested?</label>
       <input type="text" pInputText [(ngModel)]='intakeForm.computersRequested'>
       <label class='title'> Equipment to Be Requested?</label>
@@ -171,9 +171,9 @@
   <div *ngIf='index==3' id='other'>
     <p class='title'>OTHER COMPLIANCES</p>
     <label for='hs'>Human Subjects (If yes, consult with IRB Compliance Specialist [Elia Amaro, x3798])</label>
-    <p-triStateCheckbox id='hs' [(ngModel)]='intakeForm.humanSubject'></p-triStateCheckbox>
+    <input type='checkbox' id='hs' [(ngModel)]='intakeForm.humanSubject'>
     <label for='va'>Vertebrate Animals (If yes, consult with IACUC Compliance Specialist [Elia Amaro, x3798])</label>
-    <p-triStateCheckbox id='va' [(ngModel)]='intakeForm.vertebrateAnimals'></p-triStateCheckbox>
+    <input type='checkbox' id='va' [(ngModel)]='intakeForm.vertebrateAnimals'>
     <!-- <label for='qf'> Questionare Field</label>
         <input id='qf' type="text" pInputText>
         <label for='ct'> Category Title</label>
@@ -181,17 +181,17 @@
     <p class='title'> OTHER SERVICES (indicate which of the following services you will need for this proposal)</p>
     <label for='awpd'>Assistance With Proposal Development (e.g,conceptualization, writing, editing)</label>
     <label>If yes, contact UAS Grants & Contracts and/or the Associate Vice President for Research at least one month in advance</label>
-    <p-triStateCheckbox id='awpd' [(ngModel)]='intakeForm.assistanceWithProposalDevelopment'></p-triStateCheckbox>
+    <input type='checkbox' id='awpd' [(ngModel)]='intakeForm.assistanceWithProposalDevelopment'>
     <label for='ta'>Technical Assistance</label>
-    <p-triStateCheckbox id='ta' [(ngModel)]='intakeForm.technicalAssistance'></p-triStateCheckbox>
+    <input type='checkbox' id='ta' [(ngModel)]='intakeForm.technicalAssistance'>
     <label for='losp'>Letter Of Support President</label>
-    <p-triStateCheckbox id='losp' [(ngModel)]='intakeForm.letterOfSupportPresident'></p-triStateCheckbox>
+    <input type='checkbox' id='losp' [(ngModel)]='intakeForm.letterOfSupportPresident'>
     <label for='lospr'>Letter Of Support Provost</label>
-    <p-triStateCheckbox id='lospr' [(ngModel)]='intakeForm.letterOfSupportProvost'></p-triStateCheckbox>
+    <input type='checkbox' id='lospr' [(ngModel)]='intakeForm.letterOfSupportProvost'>
     <label for='losavpor'>Letter Of Support Associate VP Of Research</label>
-    <p-triStateCheckbox id='losavpor' [(ngModel)]='intakeForm.letterOfSupportAssocVPOfResearch'></p-triStateCheckbox>
+    <input type='checkbox' id='losavpor' [(ngModel)]='intakeForm.letterOfSupportAssocVPOfResearch'>
     <label for='dofdp'>Duplication Of Final Document Package</label>
-    <p-triStateCheckbox id='dofdp' [(ngModel)]='intakeForm._duplicationfFinalDocumentPackage'></p-triStateCheckbox>
+    <input type='checkbox' id='dofdp' [(ngModel)]='intakeForm._duplicationfFinalDocumentPackage'>
     <label for='noc'> Number Of Copies</label>
     <input id='noc' type="text" [(ngModel)]='intakeForm.noOfCopies' pInputText>
     <p class='title'>PROJECT SUMMARY Please provide a brief project summary, scope of work, or abstract, of your proposal</p>
@@ -229,7 +229,7 @@
       <label>Projected Percent Of Time At Site</label>
       <input pInputText [(ngModel)]="projectLocation.projectedPercentOfTimeAtState" />
       <label>Will an on campus space or rental agreement need to be arranged?</label>
-      <p-triStateCheckbox [(ngModel)]='projectLocation.onCampusSpaceOrOnCampusRentalNeeded'></p-triStateCheckbox>
+      <input type='checkbox' [(ngModel)]='projectLocation.onCampusSpaceOrOnCampusRentalNeeded'>
     </div>
     <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="intakeInnerClass=='additionalparty'">
       <label>Party Name</label>
