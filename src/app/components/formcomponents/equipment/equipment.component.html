@@ -7,8 +7,8 @@
         <div id=''></div>
     </div>
     <!-- page 1 General Information -->
-    <div *ngIf='index==0' class='page'>
-        <p class='title'>General Information</p>
+    <div *ngIf='index==0' class='form-flex-start'>
+        <p class='form-title'>General Information</p>
         <label >Faculty Name</label>
         <input type="text" [(ngModel)]='equipmentForm.facultyName' pInputText>
         <label >Department</label>
@@ -29,8 +29,8 @@
         <p-triStateCheckbox [(ngModel)]='equipmentForm.newEquipment'></p-triStateCheckbox>
     </div>
     <!-- page 2 Equipment -->
-    <div *ngIf='index==1' class='page'>
-        <p class='title'>Equipment</p>
+    <div *ngIf='index==1' class='form-flex-start'>
+        <p class='form-title'>Equipment</p>
         <label>Type Of Equipment (List each equipment item and attach specifications/quote nad url/website if available)</label>
         <label>Equipment Location</label>
         <label>Building</label>
@@ -43,14 +43,14 @@
         <input type="text" [(ngModel)]='equipmentForm.previousUse' pInputText>
       </div>
     <!-- page 3 check all that apply  -->
-    <div *ngIf='index==2'class='page'>
-        <p class='title'>Please Check all that apply</p>   
+    <div *ngIf='index==2' class='form-flex-start'>
+        <p class='form-title'>Please Check all that apply</p>   
         <label>Space Modification Requirement (e.g Removal of walls or bench)</label>
         <p-triStateCheckbox [(ngModel)]='equipmentForm.spaceModificationRequirement'></p-triStateCheckbox>
         <!--  electrical changes-->
         <label>Electrical Modification(s)</label>
         <p-triStateCheckbox [(ngModel)]='equipmentForm.electricalModification'></p-triStateCheckbox>
-        <div class='requirement-list' *ngIf='equipmentForm.electricalModification'>
+        <div class='requirement-list' *ngIf='equipmentForm.electricalModification' class='form-flex-start'>
             <label>Volts</label>
             <p-triStateCheckbox [(ngModel)]='equipmentForm.volts'></p-triStateCheckbox>
             <label>Amps</label>
@@ -75,7 +75,7 @@
           <!-- HVAC -->
         <label>Heating,Ventilation, Air Conditioning Requirements (HVAC)</label>
         <p-triStateCheckbox [(ngModel)]='equipmentForm.hvac'></p-triStateCheckbox>
-        <div class='requirement-list' *ngIf='equipmentForm.hvac'>
+        <div class='form-flex-start' *ngIf='equipmentForm.hvac'>
             <label>Air/chilled water flow(s) requirement</label>
             <p-triStateCheckbox [(ngModel)]='equipmentForm.airChilledWaterFlow'></p-triStateCheckbox>
             <label>Temperature(s) setting/control requirement</label>
@@ -94,7 +94,7 @@
         <!-- plumbing -->
         <label>Plumbing Modification(s)</label>
         <p-triStateCheckbox [(ngModel)]='equipmentForm.plumbing'></p-triStateCheckbox>
-        <div class='requirement-list' *ngIf='equipmentForm.plumbing'>
+        <div class='form-flex-start' *ngIf='equipmentForm.plumbing'>
             <label>Fluid (water,natural gas, air, others)</label>
             <p-triStateCheckbox [(ngModel)]='equipmentForm.fluid'></p-triStateCheckbox>
             <label>Flow Rate (gpm,cfm)</label>
@@ -109,7 +109,7 @@
         <!-- network -->
         <label>Network Requirement(s)</label>
         <p-triStateCheckbox [(ngModel)]='equipmentForm.network'></p-triStateCheckbox>
-        <div class='requirement-list' *ngIf='equipmentForm.network'>
+        <div class='form-flex-start' *ngIf='equipmentForm.network'>
             <label>Maintenance</label>
             <p-triStateCheckbox [(ngModel)]='equipmentForm.maintenance'></p-triStateCheckbox>
             <label>License Requirements</label>
@@ -120,7 +120,7 @@
         <!-- hazardous material IMPORTANT  -->
         <label>Hazardous Material</label>
         <p-triStateCheckbox [(ngModel)]='equipmentForm.hazardousMaterial'></p-triStateCheckbox>
-        <div class='requirement-list' *ngIf='equipmentForm.hazardousMaterial'>
+        <div class='form-flex-start' *ngIf='equipmentForm.hazardousMaterial'>
             <label>Attach list of chemicals and quantities</label>
             <label>Attach radiation use - source</label>
         </div>
@@ -129,7 +129,7 @@
         <!-- LIST OF REQUIREMENTS -->
         <label>Size Of Equipment</label>
         <p-triStateCheckbox [(ngModel)]='equipmentForm.sizeOfEquipment'></p-triStateCheckbox>
-        <div class='requirement-list'>
+        <div class='form-flex-start'>
             <label >Height ft</label>
             <input type="text" [(ngModel)]='equipmentForm.height' pInputText>
             <label >Width ft</label>

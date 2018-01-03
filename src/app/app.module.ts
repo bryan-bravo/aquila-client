@@ -36,6 +36,7 @@ import { PiPreAwardComponent } from './components/pi-pre-award/pi-pre-award.comp
 import { EquipmentComponent } from './components/formcomponents/equipment/equipment.component';
 import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
 import { FormFooterComponent } from './components/form-footer/form-footer.component';
+import { ConflictOfInterestComponent } from './components/formcomponents/coi/coi.component';
 
 //services
 import{AuthenticationService} from './services/authentication.service';
@@ -64,6 +65,7 @@ const AppRoutes: Routes =[
     EquipmentComponent,
     BreadCrumbComponent,
     FormFooterComponent,
+    ConflictOfInterestComponent,
     
   ],
   imports: [

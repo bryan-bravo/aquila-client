@@ -1,41 +1,41 @@
 export class ApprovalForm {
     //1-4
-    id:String;
-    projectTitle:String;
-    piName:String;
-    email:String;
-    college:String;
+    id:string;
+    projectTitle:string;
+    piName:string;
+    email:string;
+    college:string;
     deadlineDate:Date;
     preparedDate:Date;
-    preparedBy:String;
+    preparedBy:string;
     // 5
 	// need help
 	// 6
-    additionalSpace: Boolean;
-    vertebrateAnimal:Boolean;
-    biologicalHazard:Boolean;
-    conflictOfInterestStatement:Boolean;
-    humanSubjects:Boolean;
-    radiologicalHazards:Boolean;
-    computerEquipment:Boolean;
-    recombinantDNA:Boolean;
-    additionalSpaceApproved:String;
-    vertebrateAnimalApproved:String;
-    biologicalHazardsApproved:String;
-    conflictOfInterestStatementApproved:String;
-    humanSubjectsApproved:String;
-    radiologicalHazardsApproved:String;
-    computerEquipmentApproved:String;
-    recombinantDNAApproved:String;
+    additionalSpace: boolean;
+    vertebrateAnimal:boolean;
+    biologicalHazard:boolean;
+    conflictOfInterestStatement:boolean;
+    humanSubjects:boolean;
+    radiologicalHazards:boolean;
+    computerEquipment:boolean;
+    recombinantDNA:boolean;
+    additionalSpaceApproved:string;
+    vertebrateAnimalApproved:string;
+    biologicalHazardsApproved:string;
+    conflictOfInterestStatementApproved:string;
+    humanSubjectsApproved:string;
+    radiologicalHazardsApproved:string;
+    computerEquipmentApproved:string;
+    recombinantDNAApproved:string;
     //7
     piSignature:any;//signature
     piSignatureDate:Date;
     chairSignature:any;//signature
     chairSignatureDate:Date;
-    collegeDeanSignature:String;
+    collegeDeanSignature:string;
     collegeDeanSignatureDate:Date;
     //UCS
-    universityCostSharing:Boolean;
+    universityCostSharing:boolean;
     provostAndVPForAcademicAffairs:any;//signature;
     provostAndVPForAcademicAffairsSignature:Date;
     deanOfCollegeOrDesignee:any;//Signature
@@ -52,14 +52,14 @@ export class ApprovalForm {
     //9
     costSharingRequired:boolean;
     costSharingColleges:any[];//approvalcollege type
-    totalOfColleges:Number;
-    calStateLACostSharing:Number;
-    unRecoveredFACostSharing:Number;
-    unRecoveredFAMTDC:Number;
-    thirdPartyCostShare:Number;
-    totalCalStateLACostSharing:Number;
-    totalProposalCostSharing:Number;
-    internalNotes: String[];
+    totalOfColleges:number;
+    calStateLACostSharing:number;
+    unRecoveredFACostSharing:number;
+    unRecoveredFAMTDC:number;
+    thirdPartyCostShare:number;
+    totalCalStateLACostSharing:number;
+    totalProposalCostSharing:number;
+    internalNotes: string[];
     //10
     proposalPersonnelSignature:any;//signature
     departmentChairSignature:any; //signature
@@ -67,12 +67,12 @@ export class ApprovalForm {
     deanSignature:any; //signature
     deanSignatureDate:Date;
     //11
-    uasProjectId:String;
-    proposalCode:String;
-    coPis:String[];
-    typeOfProposal:String;
-    typeOfGrantContracts:String;
-    purposeOfProject:String;
-    cfdaNumber:Number;
+    uasProjectId:string;
+    proposalCode:string;
+    coPis:string[];
+    typeOfProposal:string;
+    typeOfGrantContracts:string;
+    purposeOfProject:string;
+    cfdanumber:number;
     //
 }

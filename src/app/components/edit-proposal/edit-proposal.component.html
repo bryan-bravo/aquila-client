@@ -42,33 +42,38 @@
             <p class='title'>Equipment</p>
             <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti </p>
+            <p>Lorem ipsum dolor sit amet </p>
             <label class='optional-indicator optional-form'>Optional</label>
         </div>
-        <div>
-            <p class='title'>Conflict Of Interest</p>
+        <div (click)='setCurrentForm("coi-oi-phs")'>
+            <p class='title'>COI OI KP PHS </p>
             <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti </p>
+            <p>Lorem ipsum dolor sit amet</p>
             <label class='optional-indicator optional-form'>Optional</label>
         </div>
-        <div>
-            <p class='title'>Conflict Of Interest</p>
+        <div (click)='setCurrentForm("coi-oi-nonphs")'>
+            <p class='title'>COI OI KP NONPHS</p>
             <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti </p>
+            <p>Lorem ipsum dolor sit amet </p>
             <label class='optional-indicator optional-form'>Optional</label>
 
         </div>
-        <div>
-            <p class='title'>Conflict Of Interest</p>
+        <div (click)='setCurrentForm("coi-pi-phs")'>
+            <p class='title'>COI PI PHS</p>
             <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti </p>
+            <p>Lorem ipsum dolor sit amet </p>
             <label class='optional-indicator optional-form'>Optional</label>
-
         </div>
-
+        <div (click)='setCurrentForm("coi-pi-nonphs")'>
+            <p class='title'>COI PI NON PHS</p>
+            <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
+            </div>
+            <p>Lorem ipsum dolor sit amet </p>
+            <label class='optional-indicator optional-form'>Optional</label>
+        </div>
     </div>
 </div>
 
@@ -80,10 +85,8 @@
     <app-equipment *ngIf='currentForm=="Equipment"'></app-equipment>
 <!-- timeline -->
 <!-- approval -->
-<!-- equipment -->
-<!-- COI -->
-<!-- COI -->
-<!-- COI -->
-<!-- COI -->
-<!-- COI -->
+    <app-coi *ngIf='currentForm=="coi-oi-phs"' [type]='"OIPHS"'></app-coi>    
+    <app-coi *ngIf='currentForm=="coi-oi-nonphs"' [type]='"OINONPHS"'></app-coi>    
+    <app-coi *ngIf='currentForm=="coi-pi-phs"' [type]='"PIPHS"'></app-coi>    
+    <app-coi *ngIf='currentForm=="coi-pi-nonphs"' [type]='"PINONPHS"'></app-coi>  
 </div>

@@ -7,11 +7,6 @@
     align-items:flex-start;
 }
 /* put this in styles css resolve conflict */
-.title {
-    width: 100%;
-    background-color: #fff3b5;
-    border: 2px solid #ffd400;
-}
 
 h3 {
     margin-top: 0;
