@@ -26,7 +26,8 @@ export class EditProposalComponent implements OnInit {
     this.menuState=true;
     this.routerState=false;
     this.currentForm='';
-    this.proposal= new Proposal(new IntakeForm('1','bork'));
+    this.proposal= new Proposal(1,'Kool Aid Fountains');
+    this.proposal.intakeForm=new IntakeForm('1','bork');
   }
   getParams(){                                            
     this.activatedRoute.params.subscribe(params => {
@@ -41,8 +42,11 @@ export class EditProposalComponent implements OnInit {
       'background-color':'rgb(46, 236, 29)'
     };   
   }
-  setLabel(){}
-  //alternates between menu and form
+  //styles the bottom right label if 
+  setRequiredForms(form){
+
+  }
+  lockForm
   changeState(){
     this.menuState=!this.menuState;
     this.routerState=!this.routerState;

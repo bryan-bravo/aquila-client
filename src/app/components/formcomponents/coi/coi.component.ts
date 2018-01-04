@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {ConflictOfInterestOIKPForm} from '../../../models/PreAward/ConflictOfInterestOIKPForm';
+import {ConflictOfInterest} from '../../../models/PreAward/ConflictOfInterest';
 @Component({
   selector: 'app-coi',
   templateUrl: './coi.component.html',
@@ -7,7 +7,7 @@ import {ConflictOfInterestOIKPForm} from '../../../models/PreAward/ConflictOfInt
 })
 export class ConflictOfInterestComponent implements OnInit {
   @Input() type:string;// PHS or NONPHS
-  coiForm:ConflictOfInterestOIKPForm;
+  coiForm:ConflictOfInterest;
   index:number=0;
   breadCrumbStrings:string[]=['General Info','Disclosure and Certification','Significant Financial Interest'];
   constructor() {
@@ -15,8 +15,8 @@ export class ConflictOfInterestComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.coiForm = new ConflictOfInterestOIKPForm(1,this.type);
-    this.coiForm.sponsorPHS = new Map([[true,'']]);  
+    this.coiForm = new ConflictOfInterest(1,this.type);
+    // this.coiForm.sponsorPHS = new Map([[true,'']]);  
   }
   updateIndex(value){    
     this.index=value;

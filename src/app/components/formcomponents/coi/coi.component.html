@@ -7,7 +7,6 @@
 <app-bread-crumb [index]='index' [pages]='breadCrumbStrings'></app-bread-crumb>
 <!-- page 1 -->
 <div *ngIf='index=="0"' class='form-flex-start'>
-
   <p *ngIf='type=="OIPHS"||type=="PIPHS"'> Under Cal State La's Conflict of Interest policy, the Principal Investigator and all other investigators/key personnel
     who have or share responsibilty for the design, conduct, or reporting of PHS sponsored projects must report their personal
     financial interests in any organization(s) that, to the best of the investigator's knowledge, may have a significant
@@ -145,7 +144,7 @@
 <!-- last page -->
 <div *ngIf='index=="2"'>
   <!-- PHS -->
-  <div *ngIf='type=="OIPHS"'>
+  <div *ngIf='type=="OIPHS"||type=="PIPHS"'>
     <p class='form-title'>Institutional Responsibilities</p>
     <p>
       Institutional responsibility refers to an Investigator's professional responsibilities on behalf of the institution, and
@@ -155,7 +154,7 @@
     </p>
   </div>
   <!-- NONPHS -->
-  <div *ngIf='type=="OINONPHS"'>
+  <div *ngIf='type=="OINONPHS"||type=="PINONPHS"'>
     <p class='form-title'>Significant Financial Interests</p>
     <p>
       Significant financial interests are involved and must be disclosed where one or more of the following financial interests

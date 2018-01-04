@@ -2,7 +2,8 @@
 <!--  -->
 <div *ngIf='menuState' id='menu-state'>
   <div id='dashboard'>
-    <label>Proposal Name</label>
+    <label id='name'>{{proposal.proposalName}}</label>
+    <label >Status:</label>
     <label class='optional-indicator'>Status</label>
     <label class='optional-indicator'>Submit</label>
     <label class='optional-indicator'> Help</label>
