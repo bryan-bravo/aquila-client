@@ -18,6 +18,13 @@
     width: 20%;
 }
 
+#form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
 #bottom {
     height: 70%;
     width: 100vw;

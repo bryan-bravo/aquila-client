@@ -4,12 +4,15 @@
     display: block;
 }
 
-#container {}
+#container {
+
+}
 
 #general-info,
 .rsca-actvities,
 #budget,
-#other {
+#other,
+#anticipate-stipend-true {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -25,11 +28,4 @@
 h3 {
     margin-top: 0;
     padding-top: 10px;
-}
-
-.nav-arrow-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
 }

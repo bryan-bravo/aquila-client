@@ -20,6 +20,9 @@ constructor(private http:Http) {
     localStorage.setItem('user', JSON.stringify(user));
     this.user = user;
   }
+  getUserData(){
+    return JSON.parse(localStorage.getItem('user'));
+  }
 
 
 }

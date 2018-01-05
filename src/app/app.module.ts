@@ -19,6 +19,7 @@ import {ProgressBarModule} from 'primeng/primeng';
 import {TriStateCheckboxModule} from 'primeng/primeng';
 import {CalendarModule} from 'primeng/primeng';
 import {DataTableModule,SharedModule} from 'primeng/primeng';
+import {DialogModule} from 'primeng/primeng';
 
 //generated components
 import { AppComponent } from './app.component';
@@ -32,23 +33,22 @@ import { IntakeComponent } from './components/formcomponents/intake/intake.compo
 import { BudgetComponent } from './components/formcomponents/budget/budget.component';
 import { TimelineComponent } from './components/formcomponents/timeline/timeline.component';
 import { PiPreAwardComponent } from './components/pi-pre-award/pi-pre-award.component';
+import { EquipmentComponent } from './components/formcomponents/equipment/equipment.component';
+import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
+import { FormFooterComponent } from './components/form-footer/form-footer.component';
+import { ConflictOfInterestComponent } from './components/formcomponents/coi/coi.component';
 
 //services
 import{AuthenticationService} from './services/authentication.service';
 import{PreawardService} from './services/preaward.service';
+import {ProposalService} from './services/proposal.service';
 
 const AppRoutes: Routes =[
     {path:'', component:LandingPageComponent},  
     {path:'login', component:LoginComponent},  
     {path:'home', component:PiHomePageComponent},//will have can activate thing   
    {path:'pipreaward', component:PiPreAwardComponent} ,
-    {path:'editproposal/:id',component:EditProposalComponent,
-      children:[
-        {path:'Intake', component:IntakeComponent},  
-        {path:'Budget', component:BudgetComponent},
-        {path:'Timeline', component:TimelineComponent},  
-      ]
-    }
+    {path:'editproposal/:id',component:EditProposalComponent}
 ];
 @NgModule({
   declarations: [
@@ -62,6 +62,10 @@ const AppRoutes: Routes =[
     BudgetComponent,
     TimelineComponent,
     PiPreAwardComponent,
+    EquipmentComponent,
+    BreadCrumbComponent,
+    FormFooterComponent,
+    ConflictOfInterestComponent,
     
   ],
   imports: [
@@ -83,9 +87,10 @@ const AppRoutes: Routes =[
     StepsModule,
     TriStateCheckboxModule,
     CalendarModule,
-    DataTableModule
+    DataTableModule,
+    DialogModule
   ],
-  providers: [AuthenticationService, PreawardService,MessageService],   
+  providers: [AuthenticationService,PreawardService,ProposalService,MessageService],   
   bootstrap: [AppComponent]
 })
 export class AppModule { }

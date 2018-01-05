@@ -1,24 +1,43 @@
 <div id='link-container'>
-    <div (click)='navigate("pipreaward")' class='main-window'>
-        <p class='title'>Pre Award</p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus. Atque, placeat fuga illo sit non est </p>
-    </div>
-    <div class='main-window'>
-        <p class='title'>Post Award</p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus. Atque, placeat fuga illo sit non est </p>
+  <div (click)='navigate("pipreaward")' class='main-window'>
+    <p class='title'>Pre Award</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus. Atque,
+      placeat fuga illo sit non est </p>
+  </div>
+  <div class='main-window'>
+    <p class='title'>Post Award</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus. Atque,
+      placeat fuga illo sit non est </p>
 
-    </div>
-    <div class='main-window'>
-        <p class='title'>Settings</p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus. Atque, placeat fuga illo sit non est </p>
+  </div>
+  <div (click)='settingsClicked()' class='main-window'>
+    <p class='title'>Settings</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus. Atque,
+      placeat fuga illo sit non est </p>
 
-    </div>
-    <div class='main-window'>
-        <p class='title'>Help</p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus. Atque, placeat fuga illo sit non est </p>
+  </div>
+  <div class='main-window'>
+    <p class='title'>Help</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus. Atque,
+      placeat fuga illo sit non est </p>
 
-    </div>
+  </div>
 </div>
+<!-- will be bound to the user in component -->
+<form (ngSubmit)='submit()' *ngIf='userInfoPrompt' id='form'>
+  <p>My Information</p>
+  <label>First Name</label>
+  <input type="text" pInputText>
+  <label>Last Name</label>
+  <input type="text" pInputText>
+  <label>Phone Number</label>
+  <input type="text" pInputText>
+  <label>Email</label>
+  <input type="text" pInputText>
+  <label>Address</label>
+  <input type="text" pInputText>
+  <input type="submit">
+
+</form>
 <div id='bottom'>
-    <!-- this is where the new user prompt will be -->
 </div>

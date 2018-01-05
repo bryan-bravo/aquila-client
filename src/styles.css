@@ -14,7 +14,7 @@ body {
     min-height: 100%;
     overflow-x: hidden;
 }
-
+/* buttons */
 .required-indicator {
     padding: 3px;
     color: rgb(255, 255, 255);
@@ -28,7 +28,7 @@ body {
     background-color: rgb(197, 197, 197);
     border-radius: 2px;
 }
-
+/* windows */
 .main-window {
     color: rgb(36, 36, 36);
     background-color: rgb(241, 241, 241);
@@ -54,22 +54,19 @@ body {
     background-color: rgb(255, 243, 182);
     color: rgb(36, 36, 36);
 }
-
-.left-arrow {
-    height: 36px;
-    align-self: flex-start;
-    border: 1px solid grey;
-    border-radius: 50%;
-    padding: 4px;
+/* forms */
+.form-title {
+    width: 100%;
+    background-color: #fff3b5;
+    border: 2px solid #ffd400;
+}
+.form-flex-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
-.right-arrow {
-    height: 36px;
-    align-self: flex-end;
-    border: 1px solid grey;
-    border-radius: 50%;
-    padding: 4px;
-}
 
 
 /* c6c5c5 */
