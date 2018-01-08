@@ -23,6 +23,20 @@ constructor(private http:Http) {
   getUserData(){
     return JSON.parse(localStorage.getItem('user'));
   }
+  //typescript object
+  getUser(){
+    let user = JSON.parse(localStorage.getItem('user'));
+    return new User(user.id,user.username,user.firstName, user.lastName, user.email,user.phone);
+  }
+  loggedIn(){
+    if(localStorage.getItem('user'))
+    return true;
+    else
+    return false;
+  }
+  logout(){
+    localStorage.clear();
+  }
 
 
 }

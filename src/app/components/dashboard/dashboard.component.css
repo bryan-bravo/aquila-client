@@ -9,12 +9,12 @@
     font-size: 18px;
 }
 
-#login {
+a {
     text-decoration: none;
     color: white;
 }
 
-#login:hover {
+a:hover {
     background-color: gold;
     color: black;
 }

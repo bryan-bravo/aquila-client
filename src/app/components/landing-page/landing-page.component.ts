@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MockDataService } from '../../services/mock-data.service';
 
 @Component({
   selector: 'app-landing-page',

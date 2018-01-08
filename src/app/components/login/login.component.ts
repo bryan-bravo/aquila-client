@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import{AuthenticationService} from '../../services/authentication.service';
 import {Router} from '@angular/router';
 import {User} from '../../models/User';
+import { MockDataService } from '../../services/mock-data.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   signInSAML:boolean;//if true sign in with saml, if not sign in with username
   constructor(
     private authenticationService:AuthenticationService,	
+    private mockService:MockDataService,
     private router:Router
   ) { } 
 
@@ -35,19 +37,33 @@ export class LoginComponent implements OnInit {
     if(!this.password)
       this.passwordFlag=true;
     //now working with response of authentitication  
-    this.authenticationService.authenticate(this.username,this.password).subscribe(response=>{
-      //if user exists
-      if(response.username!=null){
-        let user ={};
-         this.authenticationService.storeUserData(user);
-        this.router.navigate(['/home']);
-      }
-      //if user does not exist
-      else{
+
+    this.mockService.login(this.username,this.password,this.signInSAML).subscribe(response=>{
+      // console.log(response)
+      //invalid user
+      if(response.user==undefined)
         this.failedLoginFlag=true;
+      //new user
+      else{
+        this.authenticationService.storeUserData(response.user);
+        this.router.navigate(['/home']);  
       }
     });
 
   }
-   
+  setSAML(value){
+    this.signInSAML=value;
+  }
 }
+// this.authenticationService.authenticate(this.username,this.password).subscribe(response=>{
+//   //if user exists
+//   if(response.username!=null){
+//     let user ={};
+//      this.authenticationService.storeUserData(user);
+//     this.router.navigate(['/home']);
+//   }
+//   //if user does not exist
+//   else{
+//     this.failedLoginFlag=true;
+//   }
+// });

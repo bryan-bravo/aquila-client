@@ -24,20 +24,26 @@
   </div>
 </div>
 <!-- will be bound to the user in component -->
-<form (ngSubmit)='submit()' *ngIf='userInfoPrompt' id='form'>
+<div *ngIf='userInfoPrompt' id='form'>
   <p>My Information</p>
+  <div *ngIf='firstTimeUser'>
+    <label>User Name</label>
+    <input type="text" pInputText [(ngModel)]='user.username' (keyup)='validateUsername()'>
+    <label class='required-indicator'>username taken</label>
+    <label class='optional-indicator'>username valid</label>
+  </div>
   <label>First Name</label>
-  <input type="text" pInputText>
+  <input type="text" pInputText [(ngModel)]='user.firstName'>
   <label>Last Name</label>
-  <input type="text" pInputText>
+  <input type="text" pInputText [(ngModel)]='user.lastName'>
   <label>Phone Number</label>
-  <input type="text" pInputText>
-  <label>Email</label>
-  <input type="text" pInputText>
-  <label>Address</label>
-  <input type="text" pInputText>
-  <input type="submit">
+  <input type="text" pInputText [(ngModel)]='user.phone'>
+  <label>Contact Email</label>
+  <input type="text" pInputText [(ngModel)]='user.email'>
+  <!-- <label>Address</label>
+  <input type="text" pInputText> -->
+  <input  *ngIf='canSubmit()' type="submit" (click)='submit()'>
 
-</form>
+</div>
 <div id='bottom'>
 </div>
