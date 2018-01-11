@@ -153,6 +153,39 @@
       such as research, research consultation, teaching, professional practice, institutional committee memberships, and
       service on panels such as Institutional Review Boards or Data and Safety Monitoring Boards.
     </p>
+
+    <p class='form-title'>Significant Financial Interest(s): Significant Financial Interests include but are not limited to:</p>
+        <p><br>1. For publicly traded entity: Income or other payments for services including salary, and any payment for services not
+        otherwise identified as salary, including but not limited to, consulting payments, honoraria, paid authorship, or any
+        payments or consieration of value, including payments made to a health sciences compensation plan, received during the
+        prior 12 months and the value of any equity interest(including stock, stock options or other ownership interests, as
+        determined by public prices or other reasonable measure of fair market value) in the entity as of the date of disclosure,
+        when aggregated, exceeds $5,000.<br>
+        <br>[Investigators are not required disclose SFI in mutual funds or other investment vehicles such as retirement funds as long
+        as the Investigator does not directly control decisions made for these investments vehicles]<br>
+        <br>2. For a non-publicly traded entity: Income or other payment for services including salary, and any payment for services note
+        not otherwise identified as salary, including but not limited to, consulting payments, honoraria, paid authorship, any other
+        payments or consideration of value, including payments made to a health sciences compensation plan, received during the prior
+        12 months that exceeds $5,000, or equity interest of any amount, including, but not limited to stock, stock options, or
+        ownership interest in the entity.<br>
+        <br>[Invesigators are not required to diclose (a) payments made by Cal State LA or UAS, including salary, stipends, royalty payments,
+        honararia, reimbursement of expenses or any other remuneration from Cal State LA or UASl or (b) income for seminars, lectures,
+        teaching engagements, or service on advisory committees or review panels sponsored by federal, state or local governments, a US
+        institution of higher education, or a research institute, academic medical center or hospital that is affiliated with an institution of
+        higher education so long as they do not involve contractual obligations that would conflict with the researcher's obligations as a Cal
+        State LA employee under the terms of the California State University's patent, copyright or other intellectual property policies.]<br>
+        <br>3. Intellectual property right and interests: Income received during the previous 12 months that exceeds $5,000 for such rights and
+        interests.<br>
+        <br>[SFIs do not include royalties received from Cal State LA or UAS related patents or copyrights]<br>
+        <br>4. Travel: The occurrence of any sponsored or reimbursed travel (for the Investigator only) must be disclosed whether payment is
+        made to the Investigator directly, or expenses are paid on behalf of the Investigator by a for-profit or non-profit organization:<br>
+        <br>a. Either prospectively, by listing all travel that the Investigator anticipated will be sponsored or reimbursed during next 12 months, or<br>
+        <br>b. Within 30 days of the occurrence if the trip wasn't reported prospectively.<br>
+        <br>[Investigators are not required to disclose travel that is reimbursed or sponsored by federal, state or local governments, a US institution of
+        higher education, or research institute, academic medical center or hospital that is affiliated with an institution of higher education]<br>
+        <br>Under the California Public Records Act, this infomation may be made available to the public upon request.
+        </p>
+
   </div>
   <!-- NONPHS -->
   <div *ngIf='type=="OINONPHS"||type=="PINONPHS"'>
@@ -162,7 +195,35 @@
       of the investigator (and those of the investigator's spouse/domestic partner or dependent children) resonably appears
       to be related to the investigator's institutional responsibilities
     </p>
+    <input type='checkbox'>
+    <label>
+        <p>A significant financial interest exists if an equity interest that, when aggregated for the investigator and
+        investigator's spouse/domestic partner and dependent children, exceeds $10,000 in value as determined through reference to public
+        prices or other reasonable measures of matket value, and represent more than a 5% ownership interest in any single entity
+        </p>
+    </label>
+    <input type='checkbox'>
+    <label>
+        <p> A significant financial interest exists when salary, royalties or other payments that, when aggregated for the investigator
+            and the investigator's spouse/domestic partner of dependent children, have exceeded or are expected to exceed $10,000 during any
+            immediately preceding or following 12 month period.
+        </p>
+    </label>
+    <p>For National Science Foundation (NSF), significant financial interest<b> does not </b>include:</p>
+    <input type='checkbox'>
+    <label><br>Salary, royalties or other remuneration from the applicant Institution<br></label>
+    <input type='checkbox'>
+    <label><br>Any ownership interest in the Institution, if the Institution is an applicant under Small Business
+    Innocation Program or Small Business Technology Transfer Program<br></label>
+    <input type='checkbox'>
+    <label><br>Income from seminars, lectures, or teaching engagements sponsored by public or nonprofit entities<br></label>
+    <input type='checkbox'>
+    <label><br>Income from service on advisory committees or review panels for public or nonprofit entities<br></label>
+    <input type='checkbox'>
+    <label><br>Equity interest and/or salary, royalty and other payments do not exceed the thresholds in the section regarding NSF
+    immediately above<br></label>
+    <p><br>Under the California Public Records Act, this infomation may be made available to the public upon request.<br
+    </p>
   </div>
 </div>
 <app-form-footer [index]='index' [page-length]='breadCrumbStrings.length' (newIndex)='updateIndex($event)'></app-form-footer>
-
