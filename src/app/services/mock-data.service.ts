@@ -1,18 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {  HttpHeaders } from '@angular/common/http';
 import { Observable} from 'rxjs/Observable';
 import {Users,Proposals} from './mock-data';
 import { of } from 'rxjs/observable/of';
 @Injectable()
 export class MockDataService {
-  private usersUrl='api/users';
   private idSeed=100;
   constructor(
-    private http: HttpClient
     ) { }
-    getUsers(): Observable<any[]> {
-      return this.http.get<any[]>(this.usersUrl);
-    }
     login(identifier,password,SAML):Observable<any>  {
       let response={'user':{}};
       let users= Users;
