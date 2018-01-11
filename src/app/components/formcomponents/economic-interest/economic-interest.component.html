@@ -1,0 +1,20 @@
+<div id='container'>
+  <!-- dash bar -->
+  <h3>Economic Interest</h3>
+  <app-bread-crumb [index]='index' [pages]='breadCrumbStrings'></app-bread-crumb>
+  <!-- pages -->
+  <div *ngIf='index==0' class='form-flex-start'>
+    <label>First Name</label>
+    <input type='text' pInputText/>
+    <label>Middle Name</label>
+    <input type='text' pInputText/>
+    <label>Last Name</label>
+    <input type='text' pInputText/>
+  </div>
+  <div *ngIf='index==1' class='local-css-class'>
+    page n
+  </div>
+   <!-- footer -->
+  <app-form-footer [index]='index' [page-length]='breadCrumbStrings.length' (newIndex)='updateIndex($event)'></app-form-footer>
+
+</div>

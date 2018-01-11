@@ -80,7 +80,7 @@
       <p>Lorem ipsum dolor sit amet </p>
       <label class='optional-indicator optional-form'>Optional</label>
     </div>
-    <div (click)='setCurrentForm("")'>
+    <div (click)='setCurrentForm("economic-interest")'>
       <p class='title'>PI Statement Of Economic Interest</p>
       <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
       </div>
@@ -101,4 +101,5 @@
   <app-coi *ngIf='currentForm=="coi-oi-nonphs"' [type]='"OINONPHS"'></app-coi>
   <app-coi *ngIf='currentForm=="coi-pi-phs"' [type]='"PIPHS"'></app-coi>
   <app-coi *ngIf='currentForm=="coi-pi-nonphs"' [type]='"PINONPHS"'></app-coi>
+  <app-economic-interest *ngIf='currentForm=="economic-interest"'></app-economic-interest>
 </div>
