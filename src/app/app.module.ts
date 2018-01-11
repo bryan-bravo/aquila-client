@@ -44,9 +44,6 @@ import{PreawardService} from './services/preaward.service';
 import {ProposalService} from './services/proposal.service';
 
 //mock backend 
-
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { HttpClientModule } from '@angular/common/http';
 import { InMemoryDataService }  from './in-memory-data.service';
 import { MockDataService } from './services/mock-data.service';
 import { EconomicInterestComponent } from './components/formcomponents/economic-interest/economic-interest.component';
@@ -98,13 +95,6 @@ const AppRoutes: Routes =[
     DataTableModule,
     DialogModule,
     //mock backend
-    HttpClientModule,
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
   ],
   providers: [AuthenticationService,PreawardService,ProposalService,MessageService,MockDataService],   
   bootstrap: [AppComponent]
