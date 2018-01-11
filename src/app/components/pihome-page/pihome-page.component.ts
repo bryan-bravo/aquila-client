@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  Router }   from '@angular/router';
 import {AuthenticationService} from '../../services/authentication.service';
+import { MockDataService } from '../../services/mock-data.service';
 
 @Component({
   selector: 'app-pihome-page',
@@ -8,60 +9,82 @@ import {AuthenticationService} from '../../services/authentication.service';
   styleUrls: ['./pihome-page.component.css']
 })
 export class PiHomePageComponent implements OnInit {
-  name:string;
   firstTimeUser:boolean;
   userInfoPrompt:boolean;
- user:any;
-
-  constructor(private router:Router, private authService:AuthenticationService) { }
+  user:any;
+  constructor(
+    private router:Router, 
+    private authService:AuthenticationService,
+    private mockService:MockDataService
+  ) { }
  
   ngOnInit() {
-    this.name='Bryan';
+    this.user = this.authService.getUserData();
     this.setUserInfoPrompt();
   }
+  
+  setUserInfoPrompt(){
+    if(this.checkIfFirstTimeUser()==true){
+      this.firstTimeUser=true;
+      this.userInfoPrompt=true;
+    }
+    else{
+      this.firstTimeUser=false;
+      this.userInfoPrompt=false;
+    }
+  }
+ 
+  //checks if user has username, meaning they are in our systen
+  checkIfFirstTimeUser():boolean{
+    if(this.user.username==null)
+      return true;
+    else
+      return false;  
+  }
+
+  //makes sure forms are properly filled out
+  canSubmit(){
+    //implement based off of any forms empty and if username is valid
+    return true;
+  }
+  
+  //when form fields are submitted
+  submit(){
+    //not first time user
+    if(!this.firstTimeUser){
+      this.mockService.updateUser(this.user).subscribe((response)=>{
+        this.user = response.user;
+        this.authService.storeUserData(this.user);
+        this.firstTimeUser=false;
+        this.userInfoPrompt=false;
+      });     
+    }
+    //first time user
+    else{
+      this.mockService.createUser(this.user).subscribe((response)=>{
+        this.user = response.user;
+        this.authService.storeUserData(this.user);
+        this.firstTimeUser=false;
+        this.userInfoPrompt=false;
+      });      
+
+    }
+  }
+  
+  //stops routing if first time using
   navigate(location){
     if(!this.firstTimeUser)
         this.router.navigate([location]);    
     }
-  checkIfFirstTimeUser():boolean{
-    let user = this.authService.getUserData();
-    if(user!=null)
-      return false;
-    else
-      return true;
-    
-      }
-      settingsClicked(){
-        this.userInfoPrompt=true;        
-      }
-      setUserInfoPrompt(){
-        if(this.checkIfFirstTimeUser()==true){
-          this.firstTimeUser=true;
-          this.userInfoPrompt=true;
-        }
-        else{
-          this.firstTimeUser=false;
-          this.userInfoPrompt=false;
-          //set the user field to user obtained from local storage
-        }
-      }
-  submit(){
-    //not first time user
-    if(!this.firstTimeUser){
-      console.log('put')
-      //make put request
-      //update user
-      //update user in local storage
-    }
-    //first time user
-    else{
-      console.log('post')
-      
-      //make post request
-      //set first time user false
-      //update user
-      //put user in l storage
-    }
+  
+  //prompts form fields
+  settingsClicked(){
+    this.userInfoPrompt=true;        
+  }
+  
+  //new user username validation
+  validateUsername(){
+    console.log(this.user.username)
   }
 }
  

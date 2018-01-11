@@ -51,13 +51,13 @@ body {
 .title {
     margin: 0;
     padding: 2px;
-    background-color: rgb(255, 243, 182);
+    background-color: rgb(254, 220, 89);
     color: rgb(36, 36, 36);
 }
 /* forms */
 .form-title {
     width: 100%;
-    background-color: #fff3b5;
+    background-color: rgb(254, 220, 89);
     border: 2px solid #ffd400;
 }
 .form-flex-start {

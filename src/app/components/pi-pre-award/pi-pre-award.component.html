@@ -1,7 +1,7 @@
 <div id='dash-bar'>
-  <label>{{userName}}'s Proposal's</label>
-  <button>New Proposal</button>
-  <label [routerLink]="['/home']">Home</label>
+  <label>{{user.username}}'s Proposal's</label>
+  <button class='optional-indicator' (click)="op.toggle($event)" >New Proposal</button>
+  <button class='optional-indicator' [routerLink]="['/home']">Home</button>
 
 </div>
 <div id='proposals'>
@@ -11,8 +11,13 @@
     <p>Status</p>
   </div>
   <div *ngFor='let proposal of condensedProposals' class='proposal'>
-    <label [routerLink]="['/editproposal', proposal.id]">proposal.name</label>
-    <label>proposal.date</label>
-    <label>proposal.status</label>
+    <label [routerLink]="['/editproposal', proposal.id]">{{proposal.proposalName}}</label>
+    <label>{{proposal.dateCreated}}</label>
+    <label>{{proposal.status}}</label>
   </div>
+  <p-overlayPanel header="New Proposal" showEffect="fade" #op>
+    <label>Proposal Name</label>
+    <input type='input' pInputText [(ngModel)]='newProposalName'>
+    <button (click)='createProposal()'>Submit</button>
+  </p-overlayPanel>
 </div>

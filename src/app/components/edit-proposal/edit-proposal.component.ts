@@ -42,7 +42,7 @@ export class EditProposalComponent implements OnInit {
       'background-color':'rgb(46, 236, 29)'
     };   
   }
-  //styles the bottom right label if 
+  //styles the bottom right label if form is required
   setRequiredForms(form){
 
   }

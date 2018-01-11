@@ -1,5 +1,5 @@
 <p>AQUILA</p>
 <!-- login -->
-<a *ngIf="!loggedIn" id='login' [routerLink]="['/login']">Login</a>
+<a *ngIf="!authService.loggedIn()" id='login' [routerLink]="['/login']">Login</a>
 <!-- logout -->
-<a *ngIf="loggedIn">LogOut</a>
+<a *ngIf="authService.loggedIn()" (click)='authService.logout()' [routerLink]="['/']">LogOut</a>

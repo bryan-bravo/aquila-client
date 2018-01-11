@@ -5,8 +5,10 @@
     <label id='name'>{{proposal.proposalName}}</label>
     <label >Status:</label>
     <label class='optional-indicator'>Status</label>
-    <label class='optional-indicator'>Submit</label>
-    <label class='optional-indicator'> Help</label>
+    <button class='optional-indicator' [routerLink]="['/pipreaward']">Pre Award</button>
+
+    <button class='optional-indicator'>Submit</button>
+    <button class='optional-indicator'> Help</button>
   </div>
   <div class='required-forms' id='intake' (click)='setCurrentForm("Intake")'>
     <p class='title'>Intake Form </p>
@@ -78,7 +80,7 @@
       <p>Lorem ipsum dolor sit amet </p>
       <label class='optional-indicator optional-form'>Optional</label>
     </div>
-    <div (click)='setCurrentForm("")'>
+    <div (click)='setCurrentForm("economic-interest")'>
       <p class='title'>PI Statement Of Economic Interest</p>
       <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
       </div>
@@ -89,7 +91,7 @@
 </div>
 
 <div *ngIf='routerState' id='router-container'>
-  <label id='menu-return' class='optional-indicator' (click)='changeState()'>Menu</label>
+  <button id='menu-return' class='optional-indicator' (click)='changeState()'>Menu</button>
   <app-intake *ngIf='currentForm=="Intake"'></app-intake>
   <app-budget *ngIf='currentForm=="Budget"'></app-budget>
   <app-equipment *ngIf='currentForm=="Equipment"'></app-equipment>
@@ -99,4 +101,5 @@
   <app-coi *ngIf='currentForm=="coi-oi-nonphs"' [type]='"OINONPHS"'></app-coi>
   <app-coi *ngIf='currentForm=="coi-pi-phs"' [type]='"PIPHS"'></app-coi>
   <app-coi *ngIf='currentForm=="coi-pi-nonphs"' [type]='"PINONPHS"'></app-coi>
+  <app-economic-interest *ngIf='currentForm=="economic-interest"'></app-economic-interest>
 </div>
