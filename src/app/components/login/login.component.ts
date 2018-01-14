@@ -18,10 +18,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private mockService: MockDataService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
+    this.checkIfLoggedIn();
     this.usernameFlag = false;
     this.passwordFlag = false;
     this.failedLoginFlag = false;
@@ -47,6 +48,11 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']);
       }
     });
+  }
+  checkIfLoggedIn() {
+    if (this.authenticationService.loggedIn()) {
+      this.router.navigate(['/home']);
+    }
   }
 }
 // this.authenticationService.authenticate(this.username,this.password).subscribe(response=>{
