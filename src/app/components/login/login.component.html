@@ -2,12 +2,6 @@
   <!-- <img id='logo' src='../../../assets/images/logo.jpg' /> -->
   <form id='login' (ngSubmit)="submit()">
     <img id='logo' src='../../../assets/images/logo.jpg' />
-    <p>Sign in with</p>
-    <div>
-      <label class='optional-indicator'(click)='setSAML(true)'>Cal State LA email</label>|
-      <label class='optional-indicator'(click)='setSAML(false)'>Aquila username</label>
-
-    </div>
     <span class="ui-float-label">
       <input id="username" type="text" size="30" pInputText [(ngModel)]="username" name="username" />
       <label *ngIf='signInSAML' for="username">Cal State LA email</label>

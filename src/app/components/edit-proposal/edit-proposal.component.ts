@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router }   from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import {Proposal} from '../../models/PreAward/Proposal';
 import {ProposalService} from '../../services/proposal.service';
 import { IntakeForm } from '../../models/PreAward/IntakeForm';
@@ -10,56 +10,50 @@ import { IntakeForm } from '../../models/PreAward/IntakeForm';
   styleUrls: ['./edit-proposal.component.css']
 })
 export class EditProposalComponent implements OnInit {
-  proposalId:string;//current proposal request being modified
-  proposal:Proposal;
-  menuState:boolean;//determines if menu or form field is shown
-  routerState:boolean;
-  currentForm:string;
-  constructor(private activatedRoute:ActivatedRoute,private router:Router, private proposalService:ProposalService) { 
-    proposalService.updatedFormtoProposal$.subscribe(form=>{
-      console.log(form)
+  proposalId: string; // current proposal request being modified
+  proposal: Proposal;
+  menuState: boolean; // determines if menu or form field is shown
+  routerState: boolean;
+  currentForm: string;
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private proposalService: ProposalService) {
+    proposalService.updatedFormtoProposal$.subscribe(form => {
+      console.log(form);
     });
   }
 
   ngOnInit() {
     this.getParams();
-    this.menuState=true;
-    this.routerState=false;
-    this.currentForm='';
-    this.proposal= new Proposal(1,'Kool Aid Fountains');
-    this.proposal.intakeForm=new IntakeForm('1','bork');
+    this.menuState = true;
+    this.routerState = false;
+    this.currentForm = '';
+    this.proposal = new Proposal(1, 'Kool Aid Fountains');
+    this.proposal.intakeForm = new IntakeForm('1', 'bork');
   }
-  getParams(){                                            
+  getParams() {
     this.activatedRoute.params.subscribe(params => {
-       this.proposalId=params['id'];
-    });	
+       this.proposalId = params['id'];
+    });
     }
-  setProgressBar(percentage){
-    let formattedWidth = percentage+'%';
+  setProgressBar(percentage) {
+    const formattedWidth = percentage + '%';
     return{
-      'height':'2px;',
-      'width':formattedWidth,
-      'background-color':'rgb(46, 236, 29)'
-    };   
+      'height': '2px;',
+      'width': formattedWidth,
+      'background-color': 'rgb(46, 236, 29)'
+    };
   }
-  //styles the bottom right label if form is required
-  setRequiredForms(form){
-
+  // styles the bottom right label if form is required
+  setRequiredForms(form) {}
+  changeState() {
+    this.menuState = !this.menuState;
+    this.routerState = !this.routerState;
   }
-  lockForm
-  changeState(){
-    this.menuState=!this.menuState;
-    this.routerState=!this.routerState;
-  }
-  setCurrentForm(form){
-    this.currentForm=form;
+  setCurrentForm(form) {
+    this.currentForm = form;
     this.sendForm();
     this.changeState();
   }
-  sendForm(){
+  sendForm() {
     this.proposalService.parentUpdatesProposal(this.proposal);
   }
-
 }
-
-   

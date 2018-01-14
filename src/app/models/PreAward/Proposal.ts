@@ -1,13 +1,13 @@
 import { IntakeForm } from './IntakeForm';
 import { User } from '../User';
-export class Proposal{
-	private _id:number;
-	private _proposalName:string;
-	private _dateCreated: Date;
-	private _status:string;
-	private _user:User;
-	private _requiredForms:string[];
-	private _intakeForm:IntakeForm;
+export class Proposal {
+  private _id: number;
+  private _proposalName: string;
+  private _dateCreated: Date;
+  private _status: string;
+  private _user: User;
+  private _requiredForms: string[];
+  private _intakeForm: IntakeForm;
 
 	constructor(
 		id: number, 

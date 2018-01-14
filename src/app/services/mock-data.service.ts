@@ -1,86 +1,79 @@
 import { Injectable } from '@angular/core';
 import {  HttpHeaders } from '@angular/common/http';
 import { Observable} from 'rxjs/Observable';
-import {Users,Proposals} from './mock-data';
+import {Users, Proposals} from './mock-data';
 import { of } from 'rxjs/observable/of';
 @Injectable()
 export class MockDataService {
-  private idSeed=100;
+  private idSeed = 100;
   constructor(
     ) { }
-    login(identifier,password,SAML):Observable<any>  {
-      let response={'user':{}};
-      let users= Users;
-      let user = users.find((element)=>{
-        if(SAML){
-          if(element.email==identifier && element.password==password)
-          return element;
-        }else{
-          if(element.username==identifier && element.password==password)
-          return element;
-        }
-
+    login(identifier, password): Observable<any>  {
+      const response = {'user': {}};
+      const users = Users;
+      const user = users.find((element) => {
+          if (element.username === identifier && element.password === password) {
+            return element;
+          }
       });
-      response.user=user;
-      return of(response);
-      // return this.http.post<any[]>(this.usersUrl);
-    }
-    createUser(user){
-      let response={'user':{}};
-      user.id=this.idSeed++;
-      let index = Users.findIndex((element)=>{
-        if(element.email==user.email){
-          return element;
-        }
-      }); 
-      Users[index]=user;
       response.user = user;
       return of(response);
     }
-    updateUser(user){
-      let response={'user':{}};
-      let index = Users.findIndex((element)=>{
-        if(element.email==user.email){
+    createUser(user) {
+      const response = {'user': {}};
+      user.id = this.idSeed++;
+      const index = Users.findIndex((element) => {
+        if (element.email ===  user.email) {
           return element;
         }
-      }); 
-      Users[index]=user;
+      });
+      Users[index] = user;
       response.user = user;
       return of(response);
     }
-    getCondensedProposals(userid){
-      let response={'proposals':[]};
-      Proposals.forEach((proposal)=>{
-        if(proposal.user.id==userid)
+    updateUser(user) {
+      const response = {'user': {}};
+      const index = Users.findIndex((element) => {
+        if (element.email === user.email) {
+          return element;
+        }
+      });
+      Users[index] = user;
+      response.user = user;
+      return of(response);
+    }
+    getCondensedProposals(userid) {
+      const response = {'proposals': []};
+      Proposals.forEach((proposal) => {
+        if (proposal.user.id === userid) {
           response.proposals.push(proposal);
+        }
       });
-      return of(response)
+      return of(response);
     }
-    createProposal(proposalName,userId){
-      let response ={'proposal':{}};
-      let index = Users.findIndex((element)=>{
-        if(element.id==userId){
+    createProposal(proposalName, userId ) {
+      const response = {'proposal': {}};
+      const index = Users.findIndex((element) => {
+        if (element.id === userId) {
           return element;
         }
-      }); 
-      let newProposal ={
-        'id':this.idSeed++,
-        'proposalName':proposalName,
+      });
+      const newProposal = {
+        'id': this.idSeed++,
+        'proposalName': proposalName,
         'dateCreated': new Date(),
-        'status':'draft',
+        'status': 'draft',
         'user':  Users[index],
-        requiredForms:['intake','budget']
+        requiredForms: ['intake', 'budget']
         };
-      Proposals.push(newProposal); 
-      response.proposal= newProposal;  
-      return of(response);    
+      Proposals.push(newProposal);
+      response.proposal = newProposal;
+      return of(response);
       }
-      getProposal(id){
+      getProposal(id) {
 
       }
-    }  
-
-   
+    }
 // const users = [
 //   { id: 1, username:'Aquaman', password:'bork', firstName: 'Arthur', lastName:'Curry', email:'text@email.com',phone:'22222222'},
 //   { id: 2, username:'Wonderwoman', password:'bork',  firstName: 'Diana',lastName:'Prince',email:'text@email.com',phone:'22222222' },

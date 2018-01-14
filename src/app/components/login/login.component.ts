@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import{AuthenticationService} from '../../services/authentication.service';
+import {AuthenticationService} from '../../services/authentication.service';
 import {Router} from '@angular/router';
 import {User} from '../../models/User';
 import { MockDataService } from '../../services/mock-data.service';
@@ -10,49 +10,43 @@ import { MockDataService } from '../../services/mock-data.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username:string;
-  usernameFlag:boolean;
-  password:string;
-  passwordFlag:boolean;
-  failedLoginFlag:boolean;
-  signInSAML:boolean;//if true sign in with saml, if not sign in with username
+  username: string;
+  usernameFlag: boolean;
+  password: string;
+  passwordFlag: boolean;
+  failedLoginFlag: boolean;
   constructor(
-    private authenticationService:AuthenticationService,	
-    private mockService:MockDataService,
-    private router:Router
-  ) { } 
+    private authenticationService: AuthenticationService,
+    private mockService: MockDataService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.usernameFlag=false;
-    this.passwordFlag=false;
-    this.failedLoginFlag=false;
-    this.signInSAML=true;
+    this.usernameFlag = false;
+    this.passwordFlag = false;
+    this.failedLoginFlag = false;
   }
 
-  //when login form is submitted
-  submit(){    
-    if(!this.username) 
-      this.usernameFlag=true;
+  // when login form is submitted
+  submit() {
+    if (!this.username) {
+      this.usernameFlag = true;
+    }
 
-    if(!this.password)
-      this.passwordFlag=true;
-    //now working with response of authentitication  
-
-    this.mockService.login(this.username,this.password,this.signInSAML).subscribe(response=>{
-      // console.log(response)
-      //invalid user
-      if(response.user==undefined)
-        this.failedLoginFlag=true;
-      //new user
-      else{
+    if (!this.password) {
+      this.passwordFlag = true;
+    }
+    // now working with response of authentitication
+    this.mockService.login(this.username, this.password).subscribe(response => {
+      // invalid user
+      if (response.user == undefined) {
+        this.failedLoginFlag = true;
+      // new user
+    } else {
         this.authenticationService.storeUserData(response.user);
-        this.router.navigate(['/home']);  
+        this.router.navigate(['/home']);
       }
     });
-
-  }
-  setSAML(value){
-    this.signInSAML=value;
   }
 }
 // this.authenticationService.authenticate(this.username,this.password).subscribe(response=>{

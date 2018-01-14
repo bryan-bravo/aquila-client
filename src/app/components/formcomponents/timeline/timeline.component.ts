@@ -7,7 +7,7 @@ import {TimeLine} from '../../../models/PreAward/TimeLine';
   styleUrls: ['./timeline.component.css']
 })
 export class TimelineComponent implements OnInit {
-  timeline:TimeLine;
+  timeline: TimeLine;
   constructor() { }
 
   ngOnInit() {

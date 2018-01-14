@@ -6,7 +6,7 @@
   </div>
   <!-- first page A,B,C -->
   <div *ngIf='index==0' id='general-info'>
-    <p class='title'>General Information</p>
+    <p class='form-title'>General Information</p>
     <label>Principal Investigator</label>
     <input type="text" [(ngModel)]='intakeForm.principalInvestigator' pInputText>
     <label>College</label>
@@ -24,7 +24,7 @@
     <label (click)='update()'>Update</label>
     <!-- personnel object -->
     <div id='personnel'>
-      <p class='title'>Personnel</p>
+      <p class='form-title'>Personnel</p>
       <p-dataTable [value]="intakeForm.personnel" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'personnel')">
         <p-column field="name" header="Name"></p-column>
         <p-column field="employer" header="Employer"></p-column>
@@ -37,7 +37,7 @@
         </p-footer>
       </p-dataTable>
     </div>
-    <p class='title'>PARTICIPATION SUPPORT</p>
+    <p class='form-title'>PARTICIPATION SUPPORT</p>
     <label>Do you anticipate any participation stipends as part of your proposal?</label>
     <input type='checkbox' [(ngModel)]='intakeForm.anticipateStipend'>
     <!-- if stipend is true -->
@@ -81,7 +81,7 @@
   </div>
   <!-- second page -->
   <div *ngIf='index==1' id='participation'>
-    <p class='title'>SUBGRANT(S) OR SUBCONTRACT(S)</p>
+    <p class='form-title'>SUBGRANT(S) OR SUBCONTRACT(S)</p>
     <p-dataTable [value]="intakeForm.subGrantsOrSubContracts" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'subgrantsubcontract')">
       <p-column field="institutionName" header="Institution Name"></p-column>
       <p-column field="proposedFundingAmount" header="Proposed Funding Amount"></p-column>
@@ -94,7 +94,7 @@
         </div>
       </p-footer>
     </p-dataTable>
-    <p class='title'>PROJECT LOCATIONS</p>
+    <p class='form-title'>PROJECT LOCATIONS</p>
     <p-dataTable [value]="intakeForm.projectLocations" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'projectlocation')">
       <p-column field="siteName" header="Site Name"></p-column>
       <p-column field="siteAddress" header="Site Address"></p-column>
@@ -106,7 +106,7 @@
         </div>
       </p-footer>
     </p-dataTable>
-    <p class='title'>ADDITIONAL PARTIES INVOLVED (e.g Prime Sponsor, Third Party, etc.) </p>
+    <p class='form-title'>ADDITIONAL PARTIES INVOLVED (e.g Prime Sponsor, Third Party, etc.) </p>
 
     <p-dataTable [value]="intakeForm.additionalInvolvedParties" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'additionalparty')">
       <p-column field="partyName" header="Party Name"></p-column>
@@ -121,7 +121,7 @@
   </div>
   <!-- GHI -->
   <div *ngIf='index==2' id='compliances'>
-    <p class='title'>BUDGET (if possible, bring a draft and budget justification to the first meeting with UAS Grants and Contracts)</p>
+    <p class='form-title'>BUDGET (if possible, bring a draft and budget justification to the first meeting with UAS Grants and Contracts)</p>
     <div id='budget'>
       <label> Agency F&A (Indirect) Cost Rate Percentage</label>
       <input type="text" pInputText [(ngModel)]='intakeForm.agencyCostRatePercentage'>
@@ -131,7 +131,7 @@
       <input type='checkbox' [(ngModel)]='intakeForm.piCostSharing'>
       <label> Count of computers to be requested?</label>
       <input type="text" pInputText [(ngModel)]='intakeForm.computersRequested'>
-      <label class='title'> Equipment to Be Requested?</label>
+      <label class='form-title'> Equipment to Be Requested?</label>
       <!-- requested equipment -->
       <p-dataTable [value]="intakeForm.requestedEquipment" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'requestedequipment')">
         <p-column field="name" header="Name"></p-column>
@@ -144,7 +144,7 @@
         </p-footer>
       </p-dataTable>
     </div>
-    <p class='title'>SPACE(Indicate if any space will be required as part of the proposed work/activity) </p>
+    <p class='form-title'>SPACE(Indicate if any space will be required as part of the proposed work/activity) </p>
     <p-dataTable [value]="intakeForm.spaces" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'space')">
       <p-column field="item" header="Item (personnel,equipment, storage,. etc)"></p-column>
       <p-column field="newSpace" header="New Space,change of use, renovation?"></p-column>
@@ -155,7 +155,7 @@
         </div>
       </p-footer>
     </p-dataTable>
-    <p class='title'>HAZARDOUS SUBSTANCES (Consult with EHS to obtain proper clearance or confirmation of approval to work with hazardous
+    <p class='form-title'>HAZARDOUS SUBSTANCES (Consult with EHS to obtain proper clearance or confirmation of approval to work with hazardous
       agents)</p>
     <p-dataTable [value]="intakeForm.hazardousSubstances" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'hazard')">
       <p-column field="agent" header="Name Of Agent"></p-column>
@@ -169,7 +169,7 @@
   </div>
   <!-- other -->
   <div *ngIf='index==3' id='other'>
-    <p class='title'>OTHER COMPLIANCES</p>
+    <p class='form-title'>OTHER COMPLIANCES</p>
     <label for='hs'>Human Subjects (If yes, consult with IRB Compliance Specialist [Elia Amaro, x3798])</label>
     <input type='checkbox' id='hs' [(ngModel)]='intakeForm.humanSubject'>
     <label for='va'>Vertebrate Animals (If yes, consult with IACUC Compliance Specialist [Elia Amaro, x3798])</label>
@@ -178,7 +178,7 @@
         <input id='qf' type="text" pInputText>
         <label for='ct'> Category Title</label>
         <input id='ct' type="text" pInputText> -->
-    <p class='title'> OTHER SERVICES (indicate which of the following services you will need for this proposal)</p>
+    <p class='form-title'> OTHER SERVICES (indicate which of the following services you will need for this proposal)</p>
     <label for='awpd'>Assistance With Proposal Development (e.g,conceptualization, writing, editing)</label>
     <label>If yes, contact UAS Grants & Contracts and/or the Associate Vice President for Research at least one month in advance</label>
     <input type='checkbox' id='awpd' [(ngModel)]='intakeForm.assistanceWithProposalDevelopment'>
@@ -194,10 +194,10 @@
     <input type='checkbox' id='dofdp' [(ngModel)]='intakeForm._duplicationfFinalDocumentPackage'>
     <label for='noc'> Number Of Copies</label>
     <input id='noc' type="text" [(ngModel)]='intakeForm.noOfCopies' pInputText>
-    <p class='title'>PROJECT SUMMARY Please provide a brief project summary, scope of work, or abstract, of your proposal</p>
+    <p class='form-title'>PROJECT SUMMARY Please provide a brief project summary, scope of work, or abstract, of your proposal</p>
     <input id='s' type="text" [(ngModel)]='intakeForm.summary' pInputText>
   </div>
-  <app-form-footer [index]='index' [page-length]='breadCrumbStrings.length' (newIndex)='updateIndex($event)'></app-form-footer>
+  <app-form-footer [index]='index' [length]='breadCrumbStrings.length' (newIndex)='updateIndex($event)'></app-form-footer>
   <!-- dialog for crud stuff -->
   <p-dialog header="intakeInnerClass" [(visible)]="displayDialog" [responsive]="true" showEffect="fade">
     <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="intakeInnerClass=='personnel'">

@@ -1,13 +1,13 @@
-//core angular
+// core angular
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//ngPrime 
+// ngPrime
 import {ButtonModule, PaginatorModule} from 'primeng/primeng';
 import {InputTextModule} from 'primeng/primeng';
-import {StepsModule,MenubarModule,MenuItem} from 'primeng/primeng';
+import {StepsModule, MenubarModule, MenuItem} from 'primeng/primeng';
 import {DataListModule} from 'primeng/primeng';
 import {Header} from 'primeng/primeng';
 import {MessagesModule} from 'primeng/primeng';
@@ -18,13 +18,13 @@ import {OverlayPanelModule} from 'primeng/primeng';
 import {ProgressBarModule} from 'primeng/primeng';
 import {TriStateCheckboxModule} from 'primeng/primeng';
 import {CalendarModule} from 'primeng/primeng';
-import {DataTableModule,SharedModule} from 'primeng/primeng';
+import {DataTableModule, SharedModule} from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
 
-//generated components
+// generated components
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import {RouterModule,Routes} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { PiHomePageComponent } from './components/pihome-page/pihome-page.component';
 import { LoginComponent } from './components/login/login.component';
@@ -37,22 +37,21 @@ import { EquipmentComponent } from './components/formcomponents/equipment/equipm
 import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
 import { FormFooterComponent } from './components/form-footer/form-footer.component';
 import { ConflictOfInterestComponent } from './components/formcomponents/coi/coi.component';
+import { EconomicInterestComponent } from './components/formcomponents/economic-interest/economic-interest.component';
 
-//services
-import{AuthenticationService} from './services/authentication.service';
-import{PreawardService} from './services/preaward.service';
+// services
+import {AuthenticationService} from './services/authentication.service';
+import {PreawardService} from './services/preaward.service';
 import {ProposalService} from './services/proposal.service';
 
-//mock backend 
-import { InMemoryDataService }  from './in-memory-data.service';
+// mock backend
 import { MockDataService } from './services/mock-data.service';
-import { EconomicInterestComponent } from './components/formcomponents/economic-interest/economic-interest.component';
-const AppRoutes: Routes =[
-    {path:'', component:LandingPageComponent},  
-    {path:'login', component:LoginComponent},  
-    {path:'home', component:PiHomePageComponent},//will have can activate thing   
-   {path:'pipreaward', component:PiPreAwardComponent} ,
-    {path:'editproposal/:id',component:EditProposalComponent}
+const AppRoutes: Routes = [
+    {path: '', component: LandingPageComponent},
+    {path: 'login', component: LoginComponent},
+    {path: 'home', component: PiHomePageComponent}, // will have can activate thing
+    {path: 'pipreaward', component: PiPreAwardComponent} ,
+    {path: 'editproposal/:id', component: EditProposalComponent}
 ];
 @NgModule({
   declarations: [
@@ -71,7 +70,6 @@ const AppRoutes: Routes =[
     FormFooterComponent,
     ConflictOfInterestComponent,
     EconomicInterestComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -94,9 +92,8 @@ const AppRoutes: Routes =[
     CalendarModule,
     DataTableModule,
     DialogModule,
-    //mock backend
   ],
-  providers: [AuthenticationService,PreawardService,ProposalService,MessageService,MockDataService],   
+  providers: [AuthenticationService, PreawardService, ProposalService, MessageService, MockDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
