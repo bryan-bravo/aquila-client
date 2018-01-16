@@ -27,7 +27,7 @@ export class EditProposalComponent implements OnInit {
     this.routerState = false;
     this.currentForm = '';
     // this.proposal = new Proposal(1, 'Kool Aid Fountains');
-    this.proposal.intakeForm = new IntakeForm('1', 'bork');
+    // this.proposal.intakeForm = new IntakeForm('1', 'bork');
   }
   getParams() {
     this.activatedRoute.params.subscribe(params => {
