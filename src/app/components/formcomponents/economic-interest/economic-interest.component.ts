@@ -6,16 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./economic-interest.component.css']
 })
 export class EconomicInterestComponent implements OnInit {
-  index: number; // which page you are on
+  index:number;//which page you are on
   breadCrumbStrings: string[];
+
   constructor() { }
 
   ngOnInit() {
     this.index = 0;
-    this.breadCrumbStrings = ['General Info', 'Page N']; // page title
+    this.breadCrumbStrings = ['Instructions for Completing Form 700-U','General Information', 'Funding Entity', 'Filer Information', 'Verification'];//page title 
   }
   // listens for index updates from form footer
-  updateIndex(value) {
-    this.index = value;
+  updateIndex(value){
+    this.index=value;
    }
 }

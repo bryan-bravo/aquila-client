@@ -43,9 +43,8 @@ import { EconomicInterestComponent } from './components/formcomponents/economic-
 import {AuthenticationService} from './services/authentication.service';
 import {PreawardService} from './services/preaward.service';
 import {ProposalService} from './services/proposal.service';
-
-// mock backend
 import { MockDataService } from './services/mock-data.service';
+
 const AppRoutes: Routes = [
     {path: '', component: LandingPageComponent},
     {path: 'login', component: LoginComponent},
