@@ -8,8 +8,8 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-loggedIn:boolean;
-  constructor(private authService:AuthenticationService) { }
+  loggedIn: boolean;
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
   }

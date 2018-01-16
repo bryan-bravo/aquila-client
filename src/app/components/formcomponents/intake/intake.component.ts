@@ -1,9 +1,10 @@
 import { Component, OnInit} from '@angular/core';
-import {IntakeForm,Personnel,SubgrantSubProject,ProjectLocation, AdditionalParty,Space,RequestedEquipment,Hazard} from '../../../models/PreAward/IntakeForm';
+import {IntakeForm, Personnel, SubgrantSubProject, ProjectLocation} from '../../../models/PreAward/IntakeForm';
+import { AdditionalParty, Space, RequestedEquipment, Hazard} from '../../../models/PreAward/IntakeForm';
 import {MenuItem} from 'primeng/primeng';
 import { Proposal } from '../../../models/PreAward/Proposal';
 import {ProposalService} from '../../../services/proposal.service';
-import { Subscription }   from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-intake',
@@ -11,10 +12,10 @@ import { Subscription }   from 'rxjs/Subscription';
   styleUrls: ['./intake.component.css']
 })
 export class IntakeComponent implements OnInit {
-  intakeForm:IntakeForm;  
+  intakeForm:IntakeForm;
   index:number;
   breadCrumbStrings: string[] = ['General Info','Participation','Compliances','Other'];
-  //CRUD stuff
+  // CRUD stuff
   displayDialog:boolean;
   intakeInnerClass:string;
   personnel:Personnel = new Personnel();
@@ -33,222 +34,243 @@ export class IntakeComponent implements OnInit {
   newHazard:boolean;
 
   constructor(private proposalService: ProposalService) {
-    this.intakeForm = this.proposalService.getIntakeForm();//make this into observable
+    this.intakeForm = this.proposalService.getIntakeForm(); // make this into observable
    }
 
   ngOnInit() {
-  this.index=0;
-  this.displayDialog=false;
+  this.index = 0;
+  this.displayDialog = false;
   }
-  //make into pipe
-  setProgressBar(percentage){
-    let formattedWidth = percentage+'%';
-    return{
+  // make into pipe
+  setProgressBar(percentage) {
+    const formattedWidth = percentage + '%';
+    return {
       'height':'10px',
       'width':formattedWidth,
       'background-color':'rgb(46, 236, 29)'
-    };   
+    };
   }
-  updateIndex(value){    
-   this.index=value;
+  updateIndex(value) {
+   this.index = value;
   }
 
-  update(){
-    //make request
+  update() {
+    // make request
     this.proposalService.updateIntakeForm(this.intakeForm);
   }
-  //when add is clicked on any datatable
-  showDialogToAdd(type){
-    if(type=='personnel'){  
-      this.newPersonnel=true;
-      this.personnel=new Personnel();
+  // when add is clicked on any datatable
+  showDialogToAdd(type) {
+    if(type === 'personnel') {
+      this.newPersonnel = true;
+      this.personnel = new Personnel();
     }
-    if(type=='subgrantsubcontract'){
-      this.newSubgrantSubProject=true;
-      this.subgrantSubProject=new SubgrantSubProject();
+    if(type === 'subgrantsubcontract') {
+      this.newSubgrantSubProject = true;
+      this.subgrantSubProject = new SubgrantSubProject();
     }
-    if(type=='projectlocation'){
-      this.newProjectLocation=true;
+    if(type === 'projectlocation') {
+      this.newProjectLocation = true;
       this.projectLocation = new ProjectLocation();
     }
-    if(type=='additionalparty'){
-      this.newAdditionalParty=true;
+    if(type === 'additionalparty') {
+      this.newAdditionalParty = true;
       this.additionalParty = new AdditionalParty();
     }
-    if(type=='space'){
-      this.newSpace=true;
+    if(type === 'space') {
+      this.newSpace = true;
       this.space = new Space();
     }
-    if(type=='requestedequipment'){
-      this.newRequestedEquipment=true;
-      this.requestedEquipment= new RequestedEquipment();
+    if(type === 'requestedequipment') {
+      this.newRequestedEquipment = true;
+      this.requestedEquipment = new RequestedEquipment();
     }
-    if(type=='hazard'){
-      this.newHazard=true;
+    if(type === 'hazard') {
+      this.newHazard = true;
       this.hazard = new Hazard();
     }
-    this.intakeInnerClass=type;
-    this.displayDialog=true;
+    this.intakeInnerClass = type;
+    this.displayDialog = true;
   }
-  //when a data entry in data table is clicked
-  onRowSelect(event,type) {
-    if(type=='personnel'){  
+  // when a data entry in data table is clicked
+  onRowSelect(event, type) {
+    if (type === 'personnel') {
       this.newPersonnel = false;
-      this.personnel=event.data;
+      this.personnel = event.data;
     }
-    if(type=='subgrantsubcontract'){
-      this.newSubgrantSubProject=false;
-      this.subgrantSubProject=event.data;
+    if (type === 'subgrantsubcontract') {
+      this.newSubgrantSubProject = false;
+      this.subgrantSubProject = event.data;
     }
-    if(type=='projectlocation'){
-    this.newProjectLocation=false;
-    this.projectLocation=event.data;
+    if (type === 'projectlocation') {
+      this.newProjectLocation = false;
+      this.projectLocation = event.data;
     }
-    if(type=='additionalparty'){
-      this.newAdditionalParty=false;
-      this.additionalParty = event.data
+    if (type === 'additionalparty') {
+      this.newAdditionalParty = false;
+      this.additionalParty = event.data;
     }
-    if(type=='space'){
-      this.newSpace=false;
-      this.space= event.data;
+    if (type === 'space') {
+      this.newSpace = false;
+      this.space = event.data;
     }
-    if(type=='requestedequipment'){
-      this.newRequestedEquipment=false;
-      this.requestedEquipment=event.data;
+    if (type === 'requestedequipment') {
+      this.newRequestedEquipment = false;
+      this.requestedEquipment = event.data;
     }
-    if(type=='hazard'){
-      this.newHazard=false;
+    if (type === 'hazard') {
+      this.newHazard = false;
       this.hazard = event.data;
     }
-      this.intakeInnerClass=type;
+      this.intakeInnerClass = type;
       this.displayDialog = true;
   }
- //finds the index in its array, of the selected object in a data table
+ // finds the index in its array, of the selected object in a data table
   findIndex(): number {
-    let type=this.intakeInnerClass;
-    if(type=='personnel')  
+    const type = this.intakeInnerClass;
+    if (type === 'personnel') {
       return this.intakeForm.personnel.indexOf(this.personnel);
-    if(type=='subgrantsubcontract')
+    }
+    if (type === 'subgrantsubcontract') {
       return this.intakeForm.subGrantsOrSubContracts.indexOf(this.subgrantSubProject);
-    if(type=='projectlocation')
+    }
+    if (type === 'projectlocation') {
       return this.intakeForm.projectLocations.indexOf(this.projectLocation);
-    if(type=='additionalparty')
+    }
+    if (type === 'additionalparty') {
       return this.intakeForm.additionalInvolvedParties.indexOf(this.additionalParty);
-    if(type=='space')
+    }
+    if (type === 'space') {
       return this.intakeForm.spaces.indexOf(this.space);
-    if(type=='requestedequipment')
+    }
+    if (type === 'requestedequipment') {
       return this.intakeForm.requestedEquipment.indexOf(this.requestedEquipment);
-    if(type=='hazard')
+    }
+    if (type === 'hazard'){
       return this.intakeForm.hazardousSubstances.indexOf(this.hazard);
+    }
   }
- //save new CRUD element
+ // save new CRUD element
   save() {
-    let type=this.intakeInnerClass;
-    if(type=='personnel'){ 
-      if(!this.intakeForm.personnel)
-        this.intakeForm.personnel=[];
-      let personnelList = [...this.intakeForm.personnel];
-
-      if(this.newPersonnel)
-          personnelList.push(this.personnel);
-      else
-          personnelList[this.findIndex()] = this.personnel;
+    const type = this.intakeInnerClass;
+    if (type === 'personnel') {
+      if (!this.intakeForm.personnel) {
+        this.intakeForm.personnel = [];
+      }
+      const personnelList = [...this.intakeForm.personnel];
+      if (this.newPersonnel) {
+        personnelList.push(this.personnel);
+      } else {
+        personnelList[this.findIndex()] = this.personnel;
+      }
       this.intakeForm.personnel = personnelList;
     }
 
-    if(type=='subgrantsubcontract'){
-      if(!this.intakeForm.subGrantsOrSubContracts)
-        this.intakeForm.subGrantsOrSubContracts=[];
-      let subGrantSubProjectList = [...this.intakeForm.subGrantsOrSubContracts];
-      if(this.newSubgrantSubProject)
+    if (type === 'subgrantsubcontract') {
+      if (!this.intakeForm.subGrantsOrSubContracts) {
+        this.intakeForm.subGrantsOrSubContracts = [];
+      }
+      const subGrantSubProjectList = [...this.intakeForm.subGrantsOrSubContracts];
+      if (this.newSubgrantSubProject) {
         subGrantSubProjectList.push(this.subgrantSubProject);
-      else
+      } else {
         subGrantSubProjectList[this.findIndex()] = this.subgrantSubProject;
+      }
       this.intakeForm.subGrantsOrSubContracts = subGrantSubProjectList;
      }
 
-    if(type=='projectlocation'){
-      if(!this.intakeForm.projectLocations)
-        this.intakeForm.projectLocations=[];
-      let projectLocationList = [... this.intakeForm.projectLocations];
-      if(this.newProjectLocation)
-        projectLocationList.push(this.projectLocation)
-      else
-        projectLocationList[this.findIndex()]=this.projectLocation;
+    if ( type === 'projectlocation') {
+      if (!this.intakeForm.projectLocations) {
+        this.intakeForm.projectLocations = [];
+      }
+      const projectLocationList = [... this.intakeForm.projectLocations];
+      if (this.newProjectLocation) {
+        projectLocationList.push(this.projectLocation);
+      } else {
+        projectLocationList[this.findIndex()] = this.projectLocation;
+      }
       this.intakeForm.projectLocations = projectLocationList;
      }
 
-    if(type=='additionalparty'){
-      if(!this.intakeForm.additionalInvolvedParties)
-        this.intakeForm.additionalInvolvedParties=[];
-      let additionalPartyList =[... this.intakeForm.additionalInvolvedParties];
-      if(this.newAdditionalParty)
+    if (type === 'additionalparty') {
+      if (!this.intakeForm.additionalInvolvedParties) {
+        this.intakeForm.additionalInvolvedParties = [];
+      }
+      const additionalPartyList = [... this.intakeForm.additionalInvolvedParties];
+      if (this.newAdditionalParty) {
         additionalPartyList.push(this.additionalParty);
-      else
+      } else {
         additionalPartyList[this.findIndex()] = this.additionalParty;
-        this.intakeForm.additionalInvolvedParties=additionalPartyList;
+      }
+      this.intakeForm.additionalInvolvedParties = additionalPartyList;
     }
 
-    if(type=='space'){
-      if(!this.intakeForm.spaces)
-        this.intakeForm.spaces=[];
-      let spaceList=[... this.intakeForm.spaces];
-      if(this.newSpace)
+    if (type === 'space') {
+      if (!this.intakeForm.spaces) {
+        this.intakeForm.spaces = [];
+      }
+      const spaceList = [... this.intakeForm.spaces];
+      if (this.newSpace) {
         spaceList.push(this.space);
-      else
+      } else {
         spaceList[this.findIndex()] = this.space;
-      this.intakeForm.spaces = spaceList;  
+      }
+      this.intakeForm.spaces = spaceList;
     }
 
-    if(type=='requestedequipment'){
-      if(!this.intakeForm.requestedEquipment)
-        this.intakeForm.requestedEquipment=[];
-      let equipmentList =[... this.intakeForm.requestedEquipment];
-      if(this.newRequestedEquipment)
+    if (type === 'requestedequipment') {
+      if (!this.intakeForm.requestedEquipment) {
+        this.intakeForm.requestedEquipment = [];
+      }
+      const equipmentList = [... this.intakeForm.requestedEquipment];
+      if (this.newRequestedEquipment) {
         equipmentList.push(this.requestedEquipment);
-      else
-        equipmentList[this.findIndex()] =this.requestedEquipment;
+      } else {
+        equipmentList[this.findIndex()] = this.requestedEquipment;
+      }
         this.intakeForm.requestedEquipment = equipmentList;
     }
-    
-    if(type=='hazard'){
-      if(!this.intakeForm.hazardousSubstances)
-        this.intakeForm.hazardousSubstances=[];
-      let hazardList =[... this.intakeForm.hazardousSubstances];
-      if(this.newHazard)
+
+    if (type === 'hazard') {
+      if (!this.intakeForm.hazardousSubstances) {
+        this.intakeForm.hazardousSubstances = [];
+      }
+      const hazardList = [... this.intakeForm.hazardousSubstances];
+      if (this.newHazard) {
         hazardList.push(this.hazard);
-      else
+      } else {
         hazardList[this.findIndex()] = this.hazard;
-      this.intakeForm.hazardousSubstances = hazardList;  
+      }
+      this.intakeForm.hazardousSubstances = hazardList;
     }
-    //reset  
+    // reset
     this.displayDialog = false;
   }
-  //delete a CRUD element
+  // delete a CRUD element
   delete() {
-    let type=this.intakeInnerClass;
-    let index = this.findIndex();
-    if(type=='personnel')
-      this.intakeForm.personnel = this.intakeForm.personnel.filter((val,i) => i!=index);
-    
-    if(type=='subgrantsubcontract')
-      this.intakeForm.subGrantsOrSubContracts = this.intakeForm.subGrantsOrSubContracts.filter((val,i) => i!=index);
-    
-    if(type=='projectlocation')
-      this.intakeForm.projectLocations = this.intakeForm.projectLocations.filter((val,i) => i!=index);
-    
-    if(type=='additionalparty')
-      this.intakeForm.additionalInvolvedParties = this.intakeForm.additionalInvolvedParties.filter((val,i) => i!=index);
-    
-    if(type=='space')
-      this.intakeForm.spaces = this.intakeForm.spaces.filter((val,i) => i!=index);
-    
-    if(type=='requestedequipment')
-      this.intakeForm.requestedEquipment = this.intakeForm.requestedEquipment.filter((val,i) => i!=index);
-    
-    if(type=='hazard')
-      this.intakeForm.hazardousSubstances = this.intakeForm.hazardousSubstances.filter((val,i) => i!=index);
-        
-      this.displayDialog = false;
-  }    
+    const type = this.intakeInnerClass;
+    const index = this.findIndex();
+    if (type === 'personnel') {
+      this.intakeForm.personnel = this.intakeForm.personnel.filter((val, i) => i !== index);
+    }
+    if (type === 'subgrantsubcontract') {
+      this.intakeForm.subGrantsOrSubContracts = this.intakeForm.subGrantsOrSubContracts.filter((val, i) => i !== index);
+    }
+    if (type === 'projectlocation') {
+      this.intakeForm.projectLocations = this.intakeForm.projectLocations.filter((val, i) => i !== index);
+    }
+    if (type === 'additionalparty') {
+      this.intakeForm.additionalInvolvedParties = this.intakeForm.additionalInvolvedParties.filter((val, i) => i !== index);
+    }
+    if (type === 'space') {
+      this.intakeForm.spaces = this.intakeForm.spaces.filter((val, i) => i !== index);
+    }
+    if (type === 'requestedequipment') {
+      this.intakeForm.requestedEquipment = this.intakeForm.requestedEquipment.filter((val, i) => i !== index);
+    }
+    if (type === 'hazard') {
+      this.intakeForm.hazardousSubstances = this.intakeForm.hazardousSubstances.filter((val, i) => i !== index);
+    }
+    this.displayDialog = false;
+  }
 }
+

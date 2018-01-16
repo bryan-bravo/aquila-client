@@ -7,30 +7,29 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class BudgetComponent implements OnInit {
   @ViewChild('fileInput') file;
-  showFlag:boolean;
+  showFlag: boolean;
   constructor() { }
 
   ngOnInit() {
-  this.showFlag=false;
+  this.showFlag = false;
   }
-  validate(){
-    var fileToUpload = this.getFileFromInput(this.file);//this is file
-    var fileInput=this.file;//this is view element
-     if(!fileToUpload.name.includes('xls')){
-      fileInput.nativeElement.value='';
-      this.showFlag=true;
+  validate() {
+    const fileToUpload = this.getFileFromInput(this.file); // this is file
+    const fileInput = this.file; // this is view element
+     if (!fileToUpload.name.includes('xls')) {
+      fileInput.nativeElement.value = '';
+      this.showFlag = true;
      }
   }
-  
-  upload(){
+  upload() {
   }
   getFileFromInput(fileInput) {
-    let fi = fileInput.nativeElement;
+    const fi = fileInput.nativeElement;
       if (fi.files && fi.files[0]) {
-          var fileToUpload = fi.files[0];
-      return fileToUpload;	
+          const fileToUpload = fi.files[0];
+      return fileToUpload;
     }
     return null;
     }
-        
 }
+

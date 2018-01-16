@@ -6,25 +6,25 @@ import {ConflictOfInterest} from '../../../models/PreAward/ConflictOfInterest';
   styleUrls: ['./coi.component.css']
 })
 export class ConflictOfInterestComponent implements OnInit {
-  @Input() type:string;// PHS or NONPHS
-  coiForm:ConflictOfInterest;
-  index:number=0;
-  breadCrumbStrings:string[]=['General Info','Disclosure and Certification','Significant Financial Interest'];
+  @Input() type: string; // PHS or NONPHS
+  coiForm: ConflictOfInterest;
+  index: number;
+  breadCrumbStrings: string[];
   constructor() {
-    
    }
 
   ngOnInit() {
-    this.coiForm = new ConflictOfInterest(1,this.type);
-    // this.coiForm.sponsorPHS = new Map([[true,'']]);  
+    this.index = 0;
+    this.breadCrumbStrings = ['General Info', 'Disclosure and Certification', 'Significant Financial Interest'];
+    this.coiForm = new ConflictOfInterest(1, this.type);
+    // this.coiForm.sponsorPHS = new Map([[true,'']]);
   }
-  updateIndex(value){    
-    this.index=value;
+  updateIndex(value) {
+    this.index = value;
    }
-  
 }
 // types
 // PIPHS
 // PINONPHS
-// OIPHS 
+// OIPHS
 // OINONPHS

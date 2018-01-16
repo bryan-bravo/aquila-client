@@ -6,20 +6,22 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./form-footer.component.css']
 })
 export class FormFooterComponent implements OnInit {
-  @Input('index') _index:number;
-  @Input('page-length') pageLength:number;
+  @Input('index') index: number;
+  @Input('length') length: number; // pages length
   @Output() newIndex = new EventEmitter<number>();
   constructor() { }
 
   ngOnInit() {
   }
-  changeIndex(direction){    
-    if(direction=='left')
-      this._index=this._index-1;
-
-    if(direction=='right')
-      this._index=this._index+1;
-    this.newIndex.emit(this._index);
+  changeIndex(direction) {
+    if (direction === 'left') {
+      this.index = this.index - 1;
     }
+
+    if (direction === 'right') {
+      this.index = this.index + 1;
+    }
+    this.newIndex.emit(this.index);
+  }
 
 }

@@ -7,8 +7,8 @@ import {NgClass} from '@angular/common';
   styleUrls: ['./bread-crumb.component.css']
 })
 export class BreadCrumbComponent implements OnInit {
-  @Input('index') _index:number;
-  @Input('pages') pages:string[];
+  @Input('index') index: number;
+  @Input('pages') pages: string[];
 
   constructor() { }
 
