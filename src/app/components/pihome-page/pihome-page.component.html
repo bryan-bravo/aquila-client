@@ -1,3 +1,10 @@
+<!-- dash bar -->
+<div id='dash-bar'>
+<h3>Home</h3>
+<img src='../../../assets/images/info.png'>
+<img src='../../../assets/images/settings.png' (click)='settingsClicked()' >
+</div>
+<!-- boxes -->
 <div id='link-container'>
   <div (click)='navigate("pipreaward")' class='main-window'>
     <p class='title'>Pre Award</p>
@@ -8,22 +15,9 @@
     <p class='title'>Post Award</p>
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus. Atque,
       placeat fuga illo sit non est </p>
-
-  </div>
-  <div (click)='settingsClicked()' class='main-window'>
-    <p class='title'>Settings</p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus. Atque,
-      placeat fuga illo sit non est </p>
-
-  </div>
-  <div class='main-window'>
-    <p class='title'>Help</p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus. Atque,
-      placeat fuga illo sit non est </p>
-
   </div>
 </div>
-<!-- will be bound to the user in component -->
+<!-- edit user info -->
 <div *ngIf='userInfoPrompt' id='form'>
   <p>My Information</p>
   <div *ngIf='firstTimeUser'>
@@ -45,5 +39,6 @@
   <input  *ngIf='canSubmit()' type="submit" (click)='submit()'>
 
 </div>
+<!-- aesthetic yellow bottom -->
 <div id='bottom'>
 </div>

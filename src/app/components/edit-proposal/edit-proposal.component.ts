@@ -26,7 +26,7 @@ export class EditProposalComponent implements OnInit {
     this.menuState = true;
     this.routerState = false;
     this.currentForm = '';
-    this.proposal = new Proposal(1, 'Kool Aid Fountains');
+    // this.proposal = new Proposal(1, 'Kool Aid Fountains');
     this.proposal.intakeForm = new IntakeForm('1', 'bork');
   }
   getParams() {

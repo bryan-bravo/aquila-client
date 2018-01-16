@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {  Router, RouterLink } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 import { User } from '../../models/User';
+import { Proposal } from '../../models/PreAward/Proposal';
+
 import { MockDataService } from '../../services/mock-data.service';
 @Component({
   selector: 'app-pi-pre-award',
@@ -10,7 +12,7 @@ import { MockDataService } from '../../services/mock-data.service';
 })
 export class PiPreAwardComponent implements OnInit {
   user: User;
-  condensedProposals: any[];
+  condensedProposals: Proposal[];
   displayDialog: boolean;
   newProposalName: string;
   constructor(
@@ -36,7 +38,7 @@ export class PiPreAwardComponent implements OnInit {
   }
   createProposal() {
     this.mockService.createProposal(this.newProposalName, this.user.id).subscribe( (response) => {
-      this.condensedProposals.push(response.proposal);
+      // this.condensedProposals.push(response.proposal);
     });
   }
 }

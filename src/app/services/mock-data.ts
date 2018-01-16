@@ -1,4 +1,4 @@
-export var Users: any[] = [
+export const Users: any[] = [
   {
     id: 1,
     username: 'Aquaman',
@@ -34,61 +34,78 @@ export var Users: any[] = [
     lastName: 'Kent',
     email: 'text3@email.com',
     phone: '22222222'
-  },{
-    email:'bork@email.com',
-    password:'bork'
+  },
+  {
+    email: 'bork@email.com',
+    password: 'bork'
   }
 
 ];
 
-export var Proposals :any[]=[
-{
-'id':'0',
-'proposalName':'Bat Cave',
-'dateCreated': new Date(),
-'status':'draft',
-'user':  {
-  id: 3,
-  username: 'Batman',
-  password: 'bork',
-  firstName: 'Bruce',
-  lastName: 'Wayne',
-  email: 'text2@email.com',
-  phone: '22222222'
+export const Proposals :any[] = [
+  {
+  "id": 1,
+  "proposalName": "proposal 1",
+  "dateCreated": "2018-01-12",
+  "status": "Draft",
+  "user": {
+      "id": 1,
+      "username": "bboayes",
+      "password": "1234",
+      "lastName": "boayes",
+      "firstName": "berry",
+      "email": "bboayes@email.com"
   },
-requiredForms:['intake','budget']
+  "intakeForm": {
+      "id": 3,
+      "principleInvestigator": "berry boayes",
+      "department": null,
+      "college": null,
+      "projectTitle": "proposal 1",
+      "proposedFundingAmount": null,
+      "startDate": null,
+      "endDate": null,
+      "personnel": [],
+      "subgrantsOrSubcontracts": [],
+      "projectLocations": [],
+      "additionalPartiesInvolved": [],
+      "space": [],
+      "otherActivitiesList": [],
+      "requestedEquipment": {},
+      "hazardousSubstances": {}
+  }
 },
 {
-  'id':'1',
-  'proposalName':'Bat Mobile',
-  'dateCreated': new Date(),
-  'status':'draft',
-  'user':  {
-    id: 3,
-    username: 'Batman',
-    password: 'bork',
-    firstName: 'Bruce',
-    lastName: 'Wayne',
-    email: 'text2@email.com',
-    phone: '22222222'
-    },
-  requiredForms:['intake','budget']
+  "id": 2,
+  "proposalName": "proposal 2",
+  "dateCreated": "2018-01-12",
+  "status": "Draft",
+  "user": {
+      "id": 1,
+      "username": "bboayes",
+      "password": "1234",
+      "lastName": "boayes",
+      "firstName": "berry",
+      "email": "bboayes@email.com"
   },
-{
-  'id':'2',
-'proposalName':'Atlantis',
-'dateCreated': new Date(),
-'status':'draft',
-'user':  {
-  id: 1,
-  username: 'Aquaman',
-  password: 'bork',
-  firstName: 'Arthur',
-  lastName: 'Curry',
-  email: 'text@email.com',
-  phone: '22222222'
-  },
-requiredForms:['intake','budget','equipment']
+  "intakeForm": {
+      "id": 5,
+      "principleInvestigator": "berry boayes",
+      "department": null,
+      "college": null,
+      "projectTitle": "proposal 2",
+      "proposedFundingAmount": null,
+      "startDate": null,
+      "endDate": null,
+      "personnel": [],
+      "subgrantsOrSubcontracts": [],
+      "projectLocations": [],
+      "additionalPartiesInvolved": [],
+      "space": [],
+      "otherActivitiesList": [],
+      "requestedEquipment": {},
+      "hazardousSubstances": {}
+  }
 }
 ];
 	// private _intakeForm:IntakeForm;
