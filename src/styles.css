@@ -14,7 +14,7 @@ body {
     min-height: 100%;
     overflow-x: hidden;
 }
-/* buttons */
+/* labels */
 .required-indicator {
     padding: 3px;
     color: rgb(255, 255, 255);
@@ -27,6 +27,19 @@ body {
     color: rgb(46, 46, 46);
     background-color: rgb(197, 197, 197);
     border-radius: 2px;
+}
+/* buttons */
+.button{
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+}
+.button-blue{
+    border: none;
+    padding: 5px;
+    background-color: #0eb2e2;
+    color: white;
+    border-radius: 4px;
 }
 /* windows */
 .main-window {
@@ -69,4 +82,4 @@ body {
 
 
 
-/* c6c5c5 */
+/* blue    color: #0eb2e2; */
