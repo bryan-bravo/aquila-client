@@ -1,44 +1,46 @@
 <!-- dash bar -->
-<div id='dash-bar'>
-<h3>Home</h3>
-<img src='../../../assets/images/info.png'>
-<img src='../../../assets/images/settings.png' (click)='settingsClicked()' >
-</div>
-<!-- boxes -->
-<div id='link-container'>
-  <div (click)='navigate("pipreaward")' class='main-window'>
-    <p class='title'>Pre Award</p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus. Atque,
-      placeat fuga illo sit non est </p>
+<div id='container'>
+  <div id='dash-bar'>
+    <h3 id='home'>Home</h3>
+    <img src='../../../assets/images/help.png'>
+    <img src='../../../assets/images/settings.png' (click)='settingsClicked()'>
   </div>
-  <div class='main-window'>
-    <p class='title'>Post Award</p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus. Atque,
-      placeat fuga illo sit non est </p>
+  <!-- boxes -->
+  <div id='link-container'>
+    <div (click)='navigate("pipreaward")' class='main-window'>
+      <p class='title'>Pre Award</p>
+      <p class='content'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus.
+        Atque, placeat fuga illo sit non est </p>
+    </div>
+    <div class='main-window'>
+      <p class='title'>Post Award</p>
+      <p class='content'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus.
+        Atque, placeat fuga illo sit non est </p>
+    </div>
+    <!-- edit user info -->
+    <p-dialog header="General Account Settings" [(visible)]="userInfoPrompt" [responsive]="true" showEffect="fade">
+      <div id='form'>
+        <div *ngIf='firstTimeUser'>
+          <label>User Name</label>
+          <input type="text" pInputText [(ngModel)]='user.username' (keyup)='validateUsername()'>
+          <label class='required-indicator'>username taken</label>
+          <label class='optional-indicator'>username valid</label>
+        </div>
+        <label>First Name</label>
+        <input type="text" pInputText [(ngModel)]='user.firstName'>
+        <label>Last Name</label>
+        <input type="text" pInputText [(ngModel)]='user.lastName'>
+        <label>Phone Number</label>
+        <input type="text" pInputText [(ngModel)]='user.phone'>
+        <label>Contact Email</label>
+        <input type="text" pInputText [(ngModel)]='user.email'>
+        <input *ngIf='canSubmit()' type="submit" (click)='submit()'>
+      </div>
+    </p-dialog>
   </div>
-</div>
-<!-- edit user info -->
-<div *ngIf='userInfoPrompt' id='form'>
-  <p>My Information</p>
-  <div *ngIf='firstTimeUser'>
-    <label>User Name</label>
-    <input type="text" pInputText [(ngModel)]='user.username' (keyup)='validateUsername()'>
-    <label class='required-indicator'>username taken</label>
-    <label class='optional-indicator'>username valid</label>
-  </div>
-  <label>First Name</label>
-  <input type="text" pInputText [(ngModel)]='user.firstName'>
-  <label>Last Name</label>
-  <input type="text" pInputText [(ngModel)]='user.lastName'>
-  <label>Phone Number</label>
-  <input type="text" pInputText [(ngModel)]='user.phone'>
-  <label>Contact Email</label>
-  <input type="text" pInputText [(ngModel)]='user.email'>
-  <!-- <label>Address</label>
-  <input type="text" pInputText> -->
-  <input  *ngIf='canSubmit()' type="submit" (click)='submit()'>
 
 </div>
-<!-- aesthetic yellow bottom -->
+
+<!-- aesthetic yellow bottom
 <div id='bottom'>
-</div>
+</div> -->

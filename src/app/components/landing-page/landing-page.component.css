@@ -38,6 +38,7 @@ background-color: rgb(241, 199, 45);
     flex-direction: column;
     justify-content: space-between;
     margin:1.5em;
+    line-height: 1.8;
 }
 .home-title{
     color: #0eb2e2;
