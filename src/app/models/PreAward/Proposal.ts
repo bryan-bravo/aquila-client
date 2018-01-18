@@ -8,5 +8,5 @@ export class Proposal {
    status: string;
    user: User;
    requiredForms: string[];
-   intakeForm: IntakeForm;
+   intakeForm:any;
 }

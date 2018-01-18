@@ -1,5 +1,5 @@
 <div id='dash-bar'>
-  <label>{{user.username}}'s Proposal's</label>
+  <label>{{userName}}'s Proposal's</label>
   <button class='button' [routerLink]="['/home']">Home</button>
   <button class='button-blue' (click)="op.toggle($event)" >New Proposal</button>
 </div>
@@ -9,7 +9,7 @@
     <p>Date</p>
     <p>Status</p>
   </div>
-  <div *ngFor='let proposal of condensedProposals' class='proposal'>
+  <div *ngFor='let proposal of usersProposals' class='proposal'>
     <label [routerLink]="['/editproposal', proposal.id]">{{proposal.proposalName}}</label>
     <label>{{proposal.dateCreated}}</label>
     <label>{{proposal.status}}</label>

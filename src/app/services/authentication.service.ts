@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {User} from '../models/User';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthenticationService {
@@ -9,11 +9,20 @@ user: User;
 
 constructor(private http: HttpClient) {
    }
-  authenticate(username, password) {
+  authenticate(username, password): Observable<User> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    // dont need to specify res.json() anymore
-    return this.http.post('api/login', {"username": username, "password": password}, {headers: headers});
+    return this.http.post<User>('api/login', {"username": username, "password": password}, {headers: headers});
+  }
+  saveUser(user): Observable<User> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post<User>('api/saveuser', user, {headers: headers});
+  }
+  editUser(user): Observable<User> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put<User>('api/edituser', user, {headers: headers});
   }
   storeUserData(user) {
     // localStorage.setItem('id_token', token);
@@ -23,10 +32,10 @@ constructor(private http: HttpClient) {
   getUserData() {
     return JSON.parse(localStorage.getItem('user'));
   }
-  // typescript object
+  // delete this
   getUser() {
     const user = JSON.parse(localStorage.getItem('user'));
-    return new User(user.id, user.username, user.firstName, user.lastName, user.email, user.phone);
+    return user;
   }
   loggedIn() {
     if (localStorage.getItem('user')) {

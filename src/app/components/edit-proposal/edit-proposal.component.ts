@@ -16,6 +16,7 @@ export class EditProposalComponent implements OnInit {
   routerState: boolean;
   currentForm: string;
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private proposalService: ProposalService) {
+    // listens for updates from the children form container
     proposalService.updatedFormtoProposal$.subscribe(form => {
       console.log(form);
     });
@@ -26,9 +27,9 @@ export class EditProposalComponent implements OnInit {
     this.menuState = true;
     this.routerState = false;
     this.currentForm = '';
-    // this.proposal = new Proposal(1, 'Kool Aid Fountains');
-    // this.proposal.intakeForm = new IntakeForm('1', 'bork');
+
   }
+  // get id from pi preaward component
   getParams() {
     this.activatedRoute.params.subscribe(params => {
        this.proposalId = params['id'];
@@ -43,16 +44,21 @@ export class EditProposalComponent implements OnInit {
     };
   }
   // styles the bottom right label if form is required
-  setRequiredForms(form) {}
+  setRequiredForms(form) {
+    // needs to be implemented
+  }
+  // toggle between form and menu
   changeState() {
     this.menuState = !this.menuState;
     this.routerState = !this.routerState;
   }
+  // set which form to display
   setCurrentForm(form) {
     this.currentForm = form;
     this.sendForm();
     this.changeState();
   }
+  // when child component is instantied, update proposal in service
   sendForm() {
     this.proposalService.parentUpdatesProposal(this.proposal);
   }
