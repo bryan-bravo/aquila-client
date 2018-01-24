@@ -60,7 +60,7 @@ duplicationfFinalDocumentPackage: boolean;
 noOfCopies: number;
 // L
 projectSummary: string;
-} 
+}
  export class Personnel {
     name: string;
     employer: string;
