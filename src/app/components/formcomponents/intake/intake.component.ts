@@ -12,26 +12,26 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./intake.component.css']
 })
 export class IntakeComponent implements OnInit {
-  intakeForm:IntakeForm;
-  index:number;
-  breadCrumbStrings: string[] = ['General Info','Participation','Compliances','Other'];
+  intakeForm: IntakeForm;
+  index: number;
+  breadCrumbStrings: string[] = ['General Info', 'Participation', 'Compliances', 'Other'];
   // CRUD stuff
-  displayDialog:boolean;
-  intakeInnerClass:string;
-  personnel:Personnel = new Personnel();
-  newPersonnel:boolean;
-  subgrantSubProject:SubgrantSubProject = new SubgrantSubProject();
-  newSubgrantSubProject:boolean;
+  displayDialog: boolean;
+  intakeInnerClass: string;
+  personnel: Personnel = new Personnel();
+  newPersonnel: boolean;
+  subgrantSubProject: SubgrantSubProject = new SubgrantSubProject();
+  newSubgrantSubProject: boolean;
   projectLocation: ProjectLocation = new ProjectLocation();
-  newProjectLocation:boolean;
-  additionalParty:AdditionalParty = new AdditionalParty();
-  newAdditionalParty:boolean;
+  newProjectLocation: boolean;
+  additionalParty: AdditionalParty = new AdditionalParty();
+  newAdditionalParty: boolean;
   requestedEquipment: RequestedEquipment = new RequestedEquipment();
-  newRequestedEquipment:boolean;
-  space:Space =new Space();
-  newSpace:boolean;
-  hazard:Hazard = new Hazard();
-  newHazard:boolean;
+  newRequestedEquipment: boolean;
+  space: Space = new Space();
+  newSpace: boolean;
+  hazard: Hazard = new Hazard();
+  newHazard: boolean;
 
   constructor(private proposalService: ProposalService) {
     this.intakeForm = this.proposalService.getIntakeForm(); // make this into observable
@@ -45,9 +45,9 @@ export class IntakeComponent implements OnInit {
   setProgressBar(percentage) {
     const formattedWidth = percentage + '%';
     return {
-      'height':'10px',
-      'width':formattedWidth,
-      'background-color':'rgb(46, 236, 29)'
+      'height': '10px',
+      'width': formattedWidth,
+      'background-color': 'rgb(46, 236, 29)'
     };
   }
   updateIndex(value) {
@@ -60,31 +60,31 @@ export class IntakeComponent implements OnInit {
   }
   // when add is clicked on any datatable
   showDialogToAdd(type) {
-    if(type === 'personnel') {
+    if (type === 'personnel') {
       this.newPersonnel = true;
       this.personnel = new Personnel();
     }
-    if(type === 'subgrantsubcontract') {
+    if (type === 'subgrantsubcontract') {
       this.newSubgrantSubProject = true;
       this.subgrantSubProject = new SubgrantSubProject();
     }
-    if(type === 'projectlocation') {
+    if (type === 'projectlocation') {
       this.newProjectLocation = true;
       this.projectLocation = new ProjectLocation();
     }
-    if(type === 'additionalparty') {
+    if (type === 'additionalparty') {
       this.newAdditionalParty = true;
       this.additionalParty = new AdditionalParty();
     }
-    if(type === 'space') {
+    if (type === 'space') {
       this.newSpace = true;
       this.space = new Space();
     }
-    if(type === 'requestedequipment') {
+    if (type === 'requestedequipment') {
       this.newRequestedEquipment = true;
       this.requestedEquipment = new RequestedEquipment();
     }
-    if(type === 'hazard') {
+    if (type === 'hazard') {
       this.newHazard = true;
       this.hazard = new Hazard();
     }
@@ -137,15 +137,15 @@ export class IntakeComponent implements OnInit {
       return this.intakeForm.projectLocations.indexOf(this.projectLocation);
     }
     if (type === 'additionalparty') {
-      return this.intakeForm.additionalInvolvedParties.indexOf(this.additionalParty);
+      return this.intakeForm.additionalPartiesInvolved.indexOf(this.additionalParty);
     }
     if (type === 'space') {
-      return this.intakeForm.spaces.indexOf(this.space);
+      return this.intakeForm.space.indexOf(this.space);
     }
     if (type === 'requestedequipment') {
       return this.intakeForm.requestedEquipment.indexOf(this.requestedEquipment);
     }
-    if (type === 'hazard'){
+    if (type === 'hazard') {
       return this.intakeForm.hazardousSubstances.indexOf(this.hazard);
     }
   }
@@ -192,29 +192,29 @@ export class IntakeComponent implements OnInit {
      }
 
     if (type === 'additionalparty') {
-      if (!this.intakeForm.additionalInvolvedParties) {
-        this.intakeForm.additionalInvolvedParties = [];
+      if (!this.intakeForm.additionalPartiesInvolved) {
+        this.intakeForm.additionalPartiesInvolved = [];
       }
-      const additionalPartyList = [... this.intakeForm.additionalInvolvedParties];
+      const additionalPartyList = [... this.intakeForm.additionalPartiesInvolved];
       if (this.newAdditionalParty) {
         additionalPartyList.push(this.additionalParty);
       } else {
         additionalPartyList[this.findIndex()] = this.additionalParty;
       }
-      this.intakeForm.additionalInvolvedParties = additionalPartyList;
+      this.intakeForm.additionalPartiesInvolved = additionalPartyList;
     }
 
     if (type === 'space') {
-      if (!this.intakeForm.spaces) {
-        this.intakeForm.spaces = [];
+      if (!this.intakeForm.space) {
+        this.intakeForm.space = [];
       }
-      const spaceList = [... this.intakeForm.spaces];
+      const spaceList = [... this.intakeForm.space];
       if (this.newSpace) {
         spaceList.push(this.space);
       } else {
         spaceList[this.findIndex()] = this.space;
       }
-      this.intakeForm.spaces = spaceList;
+      this.intakeForm.space = spaceList;
     }
 
     if (type === 'requestedequipment') {
@@ -259,10 +259,10 @@ export class IntakeComponent implements OnInit {
       this.intakeForm.projectLocations = this.intakeForm.projectLocations.filter((val, i) => i !== index);
     }
     if (type === 'additionalparty') {
-      this.intakeForm.additionalInvolvedParties = this.intakeForm.additionalInvolvedParties.filter((val, i) => i !== index);
+      this.intakeForm.additionalPartiesInvolved = this.intakeForm.additionalPartiesInvolved.filter((val, i) => i !== index);
     }
     if (type === 'space') {
-      this.intakeForm.spaces = this.intakeForm.spaces.filter((val, i) => i !== index);
+      this.intakeForm.space = this.intakeForm.space.filter((val, i) => i !== index);
     }
     if (type === 'requestedequipment') {
       this.intakeForm.requestedEquipment = this.intakeForm.requestedEquipment.filter((val, i) => i !== index);

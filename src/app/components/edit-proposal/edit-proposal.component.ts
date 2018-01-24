@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import {Proposal} from '../../models/PreAward/Proposal';
 import {ProposalService} from '../../services/proposal.service';
 import { IntakeForm } from '../../models/PreAward/IntakeForm';
+import { PreawardService } from '../../services/preaward.service';
 // import {MockData} from './mock-data';
 @Component({
   selector: 'app-edit-proposal',
@@ -15,7 +16,10 @@ export class EditProposalComponent implements OnInit {
   menuState: boolean; // determines if menu or form field is shown
   routerState: boolean;
   currentForm: string;
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private proposalService: ProposalService) {
+  constructor(private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private proposalService: ProposalService,
+    private preAwardService: PreawardService) {
     // listens for updates from the children form container
     proposalService.updatedFormtoProposal$.subscribe(form => {
       console.log(form);
@@ -24,6 +28,7 @@ export class EditProposalComponent implements OnInit {
 
   ngOnInit() {
     this.getParams();
+    this.getProposal();
     this.menuState = true;
     this.routerState = false;
     this.currentForm = '';
@@ -34,7 +39,12 @@ export class EditProposalComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
        this.proposalId = params['id'];
     });
-    }
+  }
+  getProposal() {
+    this.preAwardService.getProposal(this.proposalId).subscribe( proposal => {
+      this.proposal = proposal;
+    });
+  }
   setProgressBar(percentage) {
     const formattedWidth = percentage + '%';
     return{

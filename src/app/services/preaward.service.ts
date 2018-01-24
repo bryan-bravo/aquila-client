@@ -20,4 +20,8 @@ user: User;
     const userId = this.user.id;
     return this.http.get<Proposal[]>('api/proposals/' + userId);
   }
+  // get proposal by id
+  getProposal(id): Observable<Proposal> {
+    return this.http.get<Proposal>('api/proposal/' + id);
+  }
 }
