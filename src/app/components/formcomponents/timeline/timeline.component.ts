@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TimeLine} from '../../../models/PreAward/TimeLine';
+import { MockDataService } from '../../../services/mock-data.service';
 
 @Component({
   selector: 'app-timeline',
@@ -8,9 +9,18 @@ import {TimeLine} from '../../../models/PreAward/TimeLine';
 })
 export class TimelineComponent implements OnInit {
   timeline: TimeLine;
-  constructor() { }
+  constructor(private mockService: MockDataService) { }
 
   ngOnInit() {
+    this.populateTimeLine();
   }
+  populateTimeLine() {
+     this.mockService.getTimeLine().subscribe( timeline => {
+      this.timeline = timeline;
+      console.log(this.timeline);
+    }
 
+    );
+
+  }
 }

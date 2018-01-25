@@ -1,3 +1,4 @@
+
 export const Users: any[] = [
   {
     id: 1,
@@ -41,8 +42,62 @@ export const Users: any[] = [
   }
 
 ];
-
-export const Proposals :any[] = [
+export const Timeline: any = {
+   "id":"0",
+   "proposal":"proposal",
+   "fundingAgency": "NASA",
+   "shippingDeadline": new Date(),
+   "uASDate": new Date(),
+   "sponsorDueDate": new Date(),
+   "finalSign": new Date(),
+   "shippingDate": new Date(),
+   "piDueDates": [], // <string,Date>
+   "orspDueDates": [],
+   "piInitial": "initial",
+   "analystInitial": "ainitial",
+   "piSign": new Date(),
+   "analystSign": new Date,
+   "addComments": [],
+   "stages": [
+    {
+      "Id": 0,
+      "name": "bryan",
+      "expectedDate": new Date(),
+      "completedDate": new Date(),
+      "uasReviewRequired":true,
+      "uasReviewed": false,
+      "deadlineType": "OSRP",
+      "requiredForms": [],
+      // forms: any[];
+      "addComments":[]
+    },
+    {
+      "Id": 1,
+      "name": "bryan",
+      "expectedDate": new Date(),
+      "completedDate": new Date(),
+      "uasReviewRequired":true,
+      "uasReviewed": false,
+      "deadlineType": "OSRP",
+      "requiredForms": [],
+      // forms: any[];
+      "addComments":[]
+    },
+    {
+      "Id": 2,
+      "name": "bryan",
+      "expectedDate": new Date(),
+      "completedDate": new Date(),
+      "uasReviewRequired":true,
+      "uasReviewed": false,
+      "deadlineType": "OSRP",
+      "requiredForms": [],
+      // forms: any[];
+      "addComments":[]
+    }
+   ]
+};
+export const Proposals: any[] = [
   {
   "id": 1,
   "proposalName": "proposal 1",

@@ -1,22 +1,33 @@
  export class TimeLine {
-     id: Number;
-     pI: any; // User
-     coPi: any[]; // Users
-     proposal: String;
-     fundingAgency: String;
+     id: number;
+    //  pI: any; // User
+    //  coPi: any[]; // Users
+     proposal: string;
+     fundingAgency: string;
      shippingDeadline: Date;
      uASDate: Date;
      sponsorDueDate: Date;
      finalSign: Date;
      shippingDate: Date;
-     piDueDates: any[]; // <String,Date>
+     piDueDates: any[]; // <string,Date>
      orspDueDates: any[];
-     piInitial: String;
-     analystInitial: String;
+     piInitial: string;
+     analystInitial: string;
      piSign: Date;
      analystSign: Date;
-     addComments: String[];
+     addComments: string[];
+     stages: Stage[];
 }
 export class Stage {
+    Id: number;
+    name: string;
+    expectedDate: Date;
+    completedDate: Date;
+    uasReviewRequired: boolean;
+    uasReviewed: boolean;
+    deadlineType: string;
+    requiredForms: string[];
+    // forms: any[];
+    addComments: string[];
 
 }
