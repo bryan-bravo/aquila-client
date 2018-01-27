@@ -14,13 +14,12 @@ export class TimelineComponent implements OnInit {
   ngOnInit() {
     this.populateTimeLine();
   }
+  // fills the timeline of component timeline
   populateTimeLine() {
      this.mockService.getTimeLine().subscribe( timeline => {
       this.timeline = timeline;
       console.log(this.timeline);
-    }
-
-    );
+    });
 
   }
 }
