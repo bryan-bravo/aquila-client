@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {  HttpHeaders } from '@angular/common/http';
 import { Observable} from 'rxjs/Observable';
-import {Users, Proposals} from './mock-data';
+import {Users, Proposals, Timeline} from './mock-data';
 import { of } from 'rxjs/observable/of';
+import { TimeLine } from '../models/PreAward/TimeLine';
 @Injectable()
 export class MockDataService {
   private idSeed = 100;
@@ -70,13 +71,8 @@ export class MockDataService {
       response.proposal = newProposal;
       return of(response);
       }
-      getProposal(id) {
-
+      getTimeLine(): Observable<TimeLine> {
+        return of<TimeLine>(Timeline);
       }
     }
-// const users = [
-//   { id: 1, username:'Aquaman', password:'bork', firstName: 'Arthur', lastName:'Curry', email:'text@email.com',phone:'22222222'},
-//   { id: 2, username:'Wonderwoman', password:'bork',  firstName: 'Diana',lastName:'Prince',email:'text@email.com',phone:'22222222' },
-//   { id: 3, username:'Batman', password:'bork',  firstName: 'Bruce', lastName:'Wayne',email:'text@email.com',phone:'22222222'},
-//   { id: 4, username:'Superman', password:'bork',  firstName: 'Clark', lastName:'Kent',email:'text@email.com',phone:'22222222'}
-// ];
+

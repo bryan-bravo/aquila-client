@@ -32,20 +32,21 @@ export class LoginComponent implements OnInit {
   submit() {
     if (!this.username) {
       this.usernameFlag = true;
+      return;
     }
 
     if (!this.password) {
       this.passwordFlag = true;
+      return;
     }
-    // now working with response of authentitication
-    this.mockService.login(this.username, this.password).subscribe(response => {
-      // invalid user
-      if (response.user == undefined) {
-        this.failedLoginFlag = true;
-      // new user
-    } else {
-        this.authenticationService.storeUserData(response.user);
+    this.authenticationService.authenticate(this.username, this.password).subscribe(user => {
+      // if user exists
+      if (user.username != null) {
+         this.authenticationService.storeUserData(user);
         this.router.navigate(['/home']);
+      } else {
+        // handle the bug Unexpected end of JSON input at Object.parse
+        this.failedLoginFlag = true;
       }
     });
   }
@@ -55,15 +56,13 @@ export class LoginComponent implements OnInit {
     }
   }
 }
-// this.authenticationService.authenticate(this.username,this.password).subscribe(response=>{
-//   //if user exists
-//   if(response.username!=null){
-//     let user ={};
-//      this.authenticationService.storeUserData(user);
-//     this.router.navigate(['/home']);
-//   }
-//   //if user does not exist
-//   else{
-//     this.failedLoginFlag=true;
-//   }
-// });
+ // // now working with response of authentitication
+    // this.mockService.login(this.username, this.password).subscribe(response => {
+    //   // invalid user
+    //   if (response.user == undefined) {
+    //     this.failedLoginFlag = true;
+    //   // new user
+    // } else {
+    //     this.authenticationService.storeUserData(response.user);
+    //     this.router.navigate(['/home']);
+    //   }

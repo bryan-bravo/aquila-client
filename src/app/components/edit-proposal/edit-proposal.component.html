@@ -2,13 +2,13 @@
 <!--  -->
 <div *ngIf='menuState' id='menu-state'>
   <div id='dashboard'>
-    <label id='name'>{{proposal.proposalName}}</label>
+    <!-- <label id='name'>{{proposal.proposalName}}</label> -->
     <label >Status:</label>
-    <label class='optional-indicator'>Status</label>
-    <button class='optional-indicator' [routerLink]="['/pipreaward']">Pre Award</button>
+    <label >Status</label>
+    <button class='button' [routerLink]="['/pipreaward']">Pre Award</button>
+    <button class='button'> Help</button>
+    <button class='button-blue'>Submit</button>
 
-    <button class='optional-indicator'>Submit</button>
-    <button class='optional-indicator'> Help</button>
   </div>
   <div class='required-forms' id='intake' (click)='setCurrentForm("Intake")'>
     <p class='title'>Intake Form </p>
@@ -27,7 +27,7 @@
     <label class='required-indicator required-form'>Required</label>
 
   </div>
-  <div class='required-forms' id='timeline'>
+  <div class='required-forms' id='timeline' (click)='setCurrentForm("Timeline")'>
     <p class='title'>Timeline</p>
     <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
@@ -90,12 +90,11 @@
 </div>
 
 <div *ngIf='routerState' id='router-container'>
-  <button id='menu-return' class='optional-indicator' (click)='changeState()'>Menu</button>
+  <button id='menu-return' class='button-blue' (click)='changeState()'>Menu</button>
   <app-intake *ngIf='currentForm=="Intake"'></app-intake>
   <app-budget *ngIf='currentForm=="Budget"'></app-budget>
   <app-equipment *ngIf='currentForm=="Equipment"'></app-equipment>
-  <!-- timeline -->
-  <!-- approval -->
+  <app-timeline *ngIf='currentForm=="Timeline"'></app-timeline>
   <app-coi *ngIf='currentForm=="coi-oi-phs"' [type]='"OIPHS"'></app-coi>
   <app-coi *ngIf='currentForm=="coi-oi-nonphs"' [type]='"OINONPHS"'></app-coi>
   <app-coi *ngIf='currentForm=="coi-pi-phs"' [type]='"PIPHS"'></app-coi>

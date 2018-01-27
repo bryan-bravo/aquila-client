@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-
+ // this is the bidirectional data flow service
 @Injectable()
 export class ProposalService {
   proposal: any;

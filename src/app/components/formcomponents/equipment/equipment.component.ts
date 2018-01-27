@@ -27,9 +27,7 @@ export class EquipmentComponent implements OnInit {
       'height':'10px',
       'width':formattedWidth,
       'background-color':'rgb(46, 236, 29)'
-    };   
+    };
   }
-  messWithEquipment() {
-console.log(this.equipmentForm);
-  }
+
 }

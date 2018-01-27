@@ -49,16 +49,16 @@ export class PiHomePageComponent implements OnInit {
   submit() {
     // not first time user
     if (!this.firstTimeUser) {
-      this.mockService.updateUser(this.user).subscribe((response) => {
-        this.user = response.user;
+      this.authService.editUser(this.user).subscribe((user) => {
+        this.user = user;
         this.authService.storeUserData(this.user);
         this.firstTimeUser = false;
         this.userInfoPrompt = false;
       });
     } else {
-    // first time user
-      this.mockService.createUser(this.user).subscribe((response) => {
-        this.user = response.user;
+    // first time user (need saml to implement cause our db only has populated users)
+      this.authService.saveUser(this.user).subscribe((user) => {
+        this.user = user;
         this.authService.storeUserData(this.user);
         this.firstTimeUser = false;
         this.userInfoPrompt = false;
