@@ -44,6 +44,7 @@ import {AuthenticationService} from './services/authentication.service';
 import {PreawardService} from './services/preaward.service';
 import {ProposalService} from './services/proposal.service';
 import { MockDataService } from './services/mock-data.service';
+import { ApprovalComponent } from './components/formcomponents/approval/approval.component';
 
 const AppRoutes: Routes = [
     {path: '', component: LandingPageComponent},
@@ -69,6 +70,7 @@ const AppRoutes: Routes = [
     FormFooterComponent,
     ConflictOfInterestComponent,
     EconomicInterestComponent,
+    ApprovalComponent,
   ],
   imports: [
     BrowserModule,
