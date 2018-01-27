@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {  Router, RouterLink } from '@angular/router';
-import { AuthenticationService } from '../../services/authentication.service';
+import { PreawardService } from '../../services/preaward.service';
 import { User } from '../../models/User';
+import { Proposal } from '../../models/PreAward/Proposal';
+
 import { MockDataService } from '../../services/mock-data.service';
 @Component({
   selector: 'app-pi-pre-award',
@@ -9,34 +11,32 @@ import { MockDataService } from '../../services/mock-data.service';
   styleUrls: ['./pi-pre-award.component.css']
 })
 export class PiPreAwardComponent implements OnInit {
-  user: User;
-  condensedProposals: any[];
+  userName: string;
+  usersProposals: Proposal[];
   displayDialog: boolean;
   newProposalName: string;
   constructor(
     private router: Router,
-    private authService: AuthenticationService,
-    private mockService: MockDataService
+    private preAwardService: PreawardService
   ) { }
   ngOnInit() {
-    this.getUser();
-    this.getCondensedProposals();
+    this.getProposals();
     this.displayDialog = false;
   }
-  getUser() {
-    this.user = this.authService.getUser();
+
+  getProposals() {
+    this.userName = JSON.parse(localStorage.getItem('user')).username;
+    this.preAwardService.getProposals().subscribe(proposals => {
+      this.usersProposals = proposals;
+    });
   }
-  getCondensedProposals() {
-    this.mockService.getCondensedProposals(this.user.id).subscribe((response) => {
-      this.condensedProposals = response.proposals;
+
+  createProposal() {
+    this.preAwardService.newProposal(this.newProposalName).subscribe(proposal => {
+      this.usersProposals.push(proposal);
     });
   }
   showDialog() {
     this.displayDialog = true;
-  }
-  createProposal() {
-    this.mockService.createProposal(this.newProposalName, this.user.id).subscribe( (response) => {
-      this.condensedProposals.push(response.proposal);
-    });
   }
 }

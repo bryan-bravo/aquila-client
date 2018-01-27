@@ -1,7 +1,9 @@
 :host {
     width: 100vw;
-    height: 5vh;
+    height: 1.5em;
+    padding:5px;
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.842);
@@ -9,14 +11,19 @@
     font-size: 18px;
 }
 
-a {
-    text-decoration: none;
+label {
     color: white;
+    height: 1.5em;
+    padding:5px;    
+
 }
 
-a:hover {
+label:hover {
     background-color: gold;
     color: black;
+    height: 1.5em;
+    padding:5px;
+    cursor:pointer;
 }
 
 p {

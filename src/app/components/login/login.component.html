@@ -1,19 +1,17 @@
 <div id='container' class=''>
   <!-- <img id='logo' src='../../../assets/images/logo.jpg' /> -->
   <form id='login' (ngSubmit)="submit()">
-    <img id='logo' src='../../../assets/images/logo.jpg' />
+    <img id='logo' src='../../../assets/images/logo-black-transparent.png' />
     <span class="ui-float-label">
       <input id="username" type="text" size="30" pInputText [(ngModel)]="username" name="username" />
       <label for="username">Username</label>
     </span>
-    <p *ngIf=usernameFlag class='required-warning'>*required</p>
     <span class="ui-float-label">
       <input id="password" type="password" size="30" pInputText [(ngModel)]="password" name="password" />
       <label for="password">Password</label>
     </span>
-    <p *ngIf=passwordFlag class='required-warning'>*required</p>
     <label *ngIf=failedLoginFlag class='required-indicator'>
       Username or password is incorrect. </label>
-    <input pButton type="submit" value="Sign In" />
+    <input class='button-blue' type="submit" value="Sign In" />
   </form>
 </div>

@@ -1,6 +1,8 @@
 <div id='container' class="">
   <div id='dash-bar'>
     <h3>UAS Grants and Contracts Intake Form</h3>
+    <button class='button-blue' (click)='update()'>Update</button>
+
     <app-bread-crumb [index]='index' [pages]='breadCrumbStrings'></app-bread-crumb>
     <div [ngStyle]='setProgressBar(34)'></div>
   </div>
@@ -21,7 +23,6 @@
     <p-calendar [(ngModel)]='intakeForm.startDate'></p-calendar>
     <label> End Date</label>
     <p-calendar [(ngModel)]='intakeForm.endDate'></p-calendar>
-    <label (click)='update()'>Update</label>
     <!-- personnel object -->
     <div id='personnel'>
       <p class='form-title'>Personnel</p>
@@ -44,13 +45,13 @@
     <div id='anticipate-stipend-true' *ngIf='intakeForm.anticipateStipend'>
       <label>Please identify the type of Stipend:Study Participant, Student Tuition, Travel.. etc, and provide your Participation
         Stipend eligibility criteria and selection process below.</label>
-      <input type="text" [(ngModel)]='intakeForm.stipends' pInputText>
+      <input type="text" [(ngModel)]='intakeForm.stipend' pInputText>
       <label>Faculty Student Research/Creative Activities</label>
       <input type='checkbox' [(ngModel)]='intakeForm.facultyStudentResearchCreativeActivities'>
       <label>Will this project actively involve students in Research</label>
-      <input type='checkbox' [(ngModel)]='intakeForm.studentsInResearch'>
+      <input type='checkbox' [(ngModel)]='intakeForm.studentsInvolved'>
       <!-- if rsca is true -->
-      <div class='rsca-actvities' *ngIf='intakeForm.studentsInResearch'>
+      <div class='rsca-actvities' *ngIf='intakeForm.studentsInvolved'>
         <p>Please answer the following</p>
         <label> Number Of Undergrad Students</label>
         <input type="text" [(ngModel)]='intakeForm.noOfUnderGradStudents' pInputText>
@@ -58,7 +59,7 @@
         <input type="text" [(ngModel)]='intakeForm.noOfGradStudents' pInputText>
         <p>What type of RSCA activities will be incorporated? (Check all that apply)</p>
         <label>Laboratory Assistance</label>
-        <input type='checkbox' [(ngModel)]='intakeForm.vlaboratoryAssistance'>
+        <input type='checkbox' [(ngModel)]='intakeForm.laboratoryAssistance'>
         <label>Data Collection</label>
         <input type='checkbox' [(ngModel)]='intakeForm.dataCollection'>
         <label>Report Writing</label>
@@ -68,7 +69,7 @@
         <label>Coding Or Data Entry</label>
         <input type='checkbox' [(ngModel)]='intakeForm.codingOrDataEntry'>
         <label>Presentation</label>
-        <input type='checkbox' [(ngModel)]='intakeForm.presentation'>
+        <input type='checkbox' [(ngModel)]='intakeForm.presentations'>
         <label>Archival Research</label>
         <input type='checkbox' [(ngModel)]='intakeForm.archivalResearch'>
         <label>Data Analysis</label>
@@ -108,7 +109,7 @@
     </p-dataTable>
     <p class='form-title'>ADDITIONAL PARTIES INVOLVED (e.g Prime Sponsor, Third Party, etc.) </p>
 
-    <p-dataTable [value]="intakeForm.additionalInvolvedParties" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'additionalparty')">
+    <p-dataTable [value]="intakeForm.additionalPartiesInvolved" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'additionalparty')">
       <p-column field="partyName" header="Party Name"></p-column>
       <p-column field="supervisor" header="Supervisor"></p-column>
       <p-column field="explanationOfInvolvement" header="Explanation Of Involvement"></p-column>
@@ -133,7 +134,7 @@
       <input type="text" pInputText [(ngModel)]='intakeForm.computersRequested'>
       <label class='form-title'> Equipment to Be Requested?</label>
       <!-- requested equipment -->
-      <p-dataTable [value]="intakeForm.requestedEquipment" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'requestedequipment')">
+      <!-- <p-dataTable [value]="intakeForm.requestedEquipment" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'requestedequipment')">
         <p-column field="name" header="Name"></p-column>
         <p-column field="approximateCost" header="Approximate Cost"></p-column>
         <p-footer>
@@ -142,10 +143,10 @@
               label="Add"></button>
           </div>
         </p-footer>
-      </p-dataTable>
+      </p-dataTable> -->
     </div>
     <p class='form-title'>SPACE(Indicate if any space will be required as part of the proposed work/activity) </p>
-    <p-dataTable [value]="intakeForm.spaces" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'space')">
+    <p-dataTable [value]="intakeForm.space" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'space')">
       <p-column field="item" header="Item (personnel,equipment, storage,. etc)"></p-column>
       <p-column field="newSpace" header="New Space,change of use, renovation?"></p-column>
       <p-column field="sourceOfFunds" header="Source Of Funds"></p-column>
@@ -155,7 +156,7 @@
         </div>
       </p-footer>
     </p-dataTable>
-    <p class='form-title'>HAZARDOUS SUBSTANCES (Consult with EHS to obtain proper clearance or confirmation of approval to work with hazardous
+    <!-- <p class='form-title'>HAZARDOUS SUBSTANCES (Consult with EHS to obtain proper clearance or confirmation of approval to work with hazardous
       agents)</p>
     <p-dataTable [value]="intakeForm.hazardousSubstances" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'hazard')">
       <p-column field="agent" header="Name Of Agent"></p-column>
@@ -165,13 +166,13 @@
           <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd('hazard')" label="Add"></button>
         </div>
       </p-footer>
-    </p-dataTable>
+    </p-dataTable> -->
   </div>
   <!-- other -->
   <div *ngIf='index==3' id='other'>
     <p class='form-title'>OTHER COMPLIANCES</p>
     <label for='hs'>Human Subjects (If yes, consult with IRB Compliance Specialist [Elia Amaro, x3798])</label>
-    <input type='checkbox' id='hs' [(ngModel)]='intakeForm.humanSubject'>
+    <input type='checkbox' id='hs' [(ngModel)]='intakeForm.humanSubjects'>
     <label for='va'>Vertebrate Animals (If yes, consult with IACUC Compliance Specialist [Elia Amaro, x3798])</label>
     <input type='checkbox' id='va' [(ngModel)]='intakeForm.vertebrateAnimals'>
     <!-- <label for='qf'> Questionare Field</label>
@@ -247,7 +248,7 @@
       <label>Source of Funds</label>
       <input pInputText [(ngModel)]="space.sourceOfFunds" />
     </div>
-    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="intakeInnerClass=='requestedequipment'">
+    <!-- <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="intakeInnerClass=='requestedequipment'">
       <label>Name</label>
       <input pInputText [(ngModel)]="requestedEquipment.name" />
       <label>Approximate Cost</label>
@@ -258,7 +259,7 @@
       <input pInputText [(ngModel)]="hazard.agent" />
       <label>Type(biohazard,radiation, recombinant DNA)</label>
       <input pInputText [(ngModel)]="hazard.type" />
-    </div>
+    </div> -->
     <p-footer>
       <div>
         <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
