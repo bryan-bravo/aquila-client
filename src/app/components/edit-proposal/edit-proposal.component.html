@@ -34,7 +34,7 @@
       earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
 
   </div>
-  <div class='required-forms' id='approval'>
+  <div class='required-forms' id='approval' (click)='setCurrentForm("Approval")'>
     <p class='title'>Approval Form</p>
     <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
@@ -94,6 +94,7 @@
   <app-intake *ngIf='currentForm=="Intake"'></app-intake>
   <app-budget *ngIf='currentForm=="Budget"'></app-budget>
   <app-equipment *ngIf='currentForm=="Equipment"'></app-equipment>
+  <app-approval *ngIf='currentForm=="Approval"'></app-approval>
   <app-timeline *ngIf='currentForm=="Timeline"'></app-timeline>
   <app-coi *ngIf='currentForm=="coi-oi-phs"' [type]='"OIPHS"'></app-coi>
   <app-coi *ngIf='currentForm=="coi-oi-nonphs"' [type]='"OINONPHS"'></app-coi>
