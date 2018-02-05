@@ -1,5 +1,48 @@
 <h3>Timeline</h3>
-<div id='timeline-bar'>
-<div *ngFor='let stage of timeline'>
+<ul id='timeline-bar' class='form-flex-start'>
+  <li *ngFor='let stage of timeline.stages; index as i'>
+    <!-- bar -->
+    <div class='bar' *ngIf='i!=0'></div>
+    <div class='icon-name-container' (click)='setCurrentStageId(stage.Id)'>
+      <!-- icon -->
+      <div class='icon'></div>
+      <!-- name -->
+      <label class='name'>{{stage.name}}</label>
     </div>
-</div> 
+
+  </li>
+</ul>
+<p-dialog header="Stage" [(visible)]="displayDialog" [responsive]="true" showEffect="fade">
+  <!-- show a stage -->
+  <div class='form-flex-start' *ngIf='dialogType=="view"'>
+    <label>Name {{stage.name}}</label>
+    <label>Expected Date {{stage.expectedDate}}</label>
+    <label>Completed Date {{stage.completedDate}}</label>
+    <label>Required Forms</label>
+    <label *ngFor='let form of stage.requiredForms'> {{form}}</label>
+    <label>Required Files</label>
+    <div></div>
+    <label>Comments</label> 
+    <label *ngFor='let comment of stage.addComments'> {{comment}}</label>
+    <button class='blue-button' (click)='setDialogType("edit")'>Edit</button>
+  </div>
+  <!-- edit a stage -->
+  <div class='form-flex-start' *ngIf='dialogType=="edit"'>
+      <label>Name</label>
+      <input>
+      <label>Expected Date {{stage.expectedDate}}</label>
+      <p-calendar></p-calendar>
+      <label>Completed Date {{stage.completedDate}}</label>
+      <p-calendar></p-calendar>
+      <label>Required Forms</label>
+      <label *ngFor='let form of stage.requiredForms'> {{form}}</label>
+      
+      <label>Required Files</label>
+      <div></div>
+      <label>Comments</label>
+      <label *ngFor='let comment of stage.addComments'> {{comment}}</label>
+    </div>
+</p-dialog>
+<!-- add a stage -->
+<!-- edit a stage -->
+<!-- delete a stage -->

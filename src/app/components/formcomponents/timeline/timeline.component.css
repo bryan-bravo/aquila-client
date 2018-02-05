@@ -8,3 +8,31 @@ h3 {
     margin-top: 0;
     padding-top: 10px;
 }
+ul{
+    height:100vh;
+}
+li{
+    list-style: none;
+    width:100%;
+}
+.bar{
+height:30px;
+width:2px;
+background-color:black;
+margin: 5px;
+}
+.icon-name-container{
+width:100%;
+display:flex;
+flex-direction: row;
+justify-content:flex-start;
+align-items: center;
+}
+.icon{
+    height:16px;
+width:16px;
+border:1px solid black;
+}
+.name{
+    padding-left:3px;
+}

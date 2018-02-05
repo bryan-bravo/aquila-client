@@ -18,7 +18,8 @@ import {OverlayPanelModule} from 'primeng/primeng';
 import {ProgressBarModule} from 'primeng/primeng';
 import {TriStateCheckboxModule} from 'primeng/primeng';
 import {CalendarModule} from 'primeng/primeng';
-import {DataTableModule, SharedModule} from 'primeng/primeng';
+import {DataTableModule, SharedModule} from 'primeng/primeng'; // deprecated, need to update in intake
+// import {TableModule} from 'primeng/table';
 import {DialogModule} from 'primeng/primeng';
 
 // generated components

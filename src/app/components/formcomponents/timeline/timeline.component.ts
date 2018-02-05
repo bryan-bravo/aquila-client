@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TimeLine} from '../../../models/PreAward/TimeLine';
+import {TimeLine, Stage} from '../../../models/PreAward/TimeLine';
 import { MockDataService } from '../../../services/mock-data.service';
 
 @Component({
@@ -9,6 +9,10 @@ import { MockDataService } from '../../../services/mock-data.service';
 })
 export class TimelineComponent implements OnInit {
   timeline: TimeLine;
+  currentStageId: number;
+  stage: Stage;
+  displayDialog: boolean;
+  dialogType: string;
   constructor(private mockService: MockDataService) { }
 
   ngOnInit() {
@@ -18,8 +22,26 @@ export class TimelineComponent implements OnInit {
   populateTimeLine() {
      this.mockService.getTimeLine().subscribe( timeline => {
       this.timeline = timeline;
-      console.log(this.timeline);
     });
-
+  }
+  // finds stage in list from timeline object
+  getCurrentStage(stageId) {
+    let stages = this.timeline.stages;
+    this.stage = stages.find((element) => {
+      return element.Id === stageId;
+    });
+    this.setDialogType('view');
+    this.setdisplayDialog(true);
+  }
+  // responds to a timeline stage being clicked
+  setCurrentStageId(id) {
+    this.getCurrentStage(id);
+  }
+  setDialogType(type) {
+    this.dialogType = type;
+  }
+  setdisplayDialog(bool) {
+    this.displayDialog = bool;
   }
 }
+
