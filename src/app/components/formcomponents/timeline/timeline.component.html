@@ -27,22 +27,40 @@
     <button class='blue-button' (click)='setDialogType("edit")'>Edit</button>
   </div>
   <!-- edit a stage -->
-  <div class='form-flex-start' *ngIf='dialogType=="edit"'>
+  <div  class='form-flex-start window' *ngIf='dialogType=="edit"'>
       <label>Name</label>
       <input>
-      <label>Expected Date {{stage.expectedDate}}</label>
+      <label>Expected Date</label>
       <p-calendar></p-calendar>
-      <label>Completed Date {{stage.completedDate}}</label>
+      <label>Completed Date</label>
       <p-calendar></p-calendar>
       <label>Required Forms</label>
-      <label *ngFor='let form of stage.requiredForms'> {{form}}</label>
-      
+        <div class='form-flex-start'>
+          <label>Intake</label>
+          <input type='checkbox'>
+          <label>Equipment</label>
+          <input type='checkbox'>
+          <label>Conflict of Interest</label>
+          <input type='checkbox'>
+          <label>Conflict of Interest</label>
+          <input type='checkbox'>
+          <label>Conflict of Interest</label>
+          <input type='checkbox'>
+          <label>Conflict of Interest</label>
+          <input type='checkbox'>
+          <label>Statement of Economic Interest</label>
+          <input type='checkbox'>
+          <label>Approval</label>
+          <input type='checkbox'>
+        </div>
       <label>Required Files</label>
       <div></div>
       <label>Comments</label>
-      <label *ngFor='let comment of stage.addComments'> {{comment}}</label>
+      <p-dataTable [value]="stage.addComments">
+          <p-column field="car"></p-column>
+      </p-dataTable>
+
+
     </div>
 </p-dialog>
-<!-- add a stage -->
-<!-- edit a stage -->
-<!-- delete a stage -->
+
