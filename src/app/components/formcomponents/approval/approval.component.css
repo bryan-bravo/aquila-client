@@ -1,0 +1,23 @@
+.fl
+{
+    float:left;
+    word-break: break-all;
+    width: 30%;
+}
+
+#local-wrap{
+   width:800px;
+   margin:-10;
+   border:0px solid;
+   height:200px;
+   display:block;
+
+}
+#title {
+    width: 40%;
+}
+
+#title label {
+    margin: 5px;
+    float: left;
+}
