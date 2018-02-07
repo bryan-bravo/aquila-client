@@ -1,3 +1,281 @@
-<p>
-  approval works!
-</p>
+<div id='container'>
+    <div id='dash-bar'>
+        <h3>Approval Form for Externally Funded Grants and Contracts</h3>
+        <app-bread-crumb [index]='index' [pages]='breadCrumbStrings'></app-bread-crumb>
+        <div [ngStyle]='setProgressBar(50)'></div>
+        <div id=''></div>
+    </div>
+    <!-- page 1 General Information -->
+    <div *ngIf='index==0' class='form-flex-start'>
+        <p class='form-title'>General Information</p>
+        <label>Project Title</label>
+        <input type="text" pInputText>
+        <label>P.I. Name</label>
+        <input type="text" pInputText>
+        <label>Email</label>
+        <input type="text" pInputText>
+        <label>College</label>
+        <input type="text" pInputText>
+        <label>Department</label>
+        <input type='text' pInputText>
+        <label>Funding Sponsor</label>
+        <input type='text' pInputText>
+        <label>Deadline Date</label>
+        <input type='text' pInputText>
+    </div>
+
+    <!-- page 2 Project Information -->
+    <div *ngIf='index==1' class='form-flex-start'>
+        <p class='form-title'>Project Information</p>
+        <label>UAS Project ID</label>
+        <input type="text" pInputText>
+        <label>Proposal Code</label>
+        <input type="text" pInputText>
+        <label>Co-PI(s)</label>
+        <input type="text" pInputText>
+        <label>Type of Proposal</label>
+        <input type="text" pInputText>
+        <label>Type of Grant or Contacts</label>
+        <input type="text" pInputText>
+        <label>Purpose of Project</label>
+        <input type="text" pInputText>
+        <label>Funding Agency</label>
+        <input type="text" pInputText>
+        <label>CFDA #</label>
+        <input type="text" pInputText>
+        <label>Funded</label>
+        <input type="checkbox">
+        <label>Not Funded</label>
+        <input type="checkbox">
+        <label>Date</label>
+        <input type="text" pInputText>
+        <label>Full Amount Funded</label>
+        <input type="text" pInputText>
+        <label>Yes</label>
+        <input type="checkbox">
+        <label>No</label>
+        <input type="checkbox">
+        <label>If no</label>
+        <input type="text" pInputText>
+        <label>Amount Funded</label>
+        <input type="text" pInputText>
+    </div>
+    <!-- page 3 Terms and Amounts Requested -->
+    <div *ngIf='index==2' class='form-flex-start'>
+        <p class='form-title'>Terms and Amounts Requested</p>
+        <p>Project year one or next period</p>
+        <label>From:</label>
+        <p-calendar></p-calendar>
+        <label>Through</label>
+        <p-calendar></p-calendar>
+        <p>Entire project</p>
+        <label>From:</label>
+        <p-calendar></p-calendar>
+        <label>Through</label>
+        <p-calendar></p-calendar>
+        <label>Total months</label>
+        <input type="text" pInputText>
+        <div id="local-wrap">
+            <div id="title" class="fl">
+                <p>Terms</p>
+                <label>(a)Agency Funds Requested(Direct)</label>
+                <label>(b)Agency Funds Requested(Modified Total Direct)</label>
+                <label>(c)Agency Funds Requested(Indirect)</label>
+                <label><b>(d)Total Agency Funds Requested(a+c)</b></label>
+                <label>(e)Cal State LA/UAS Cost Sharing</label>
+                <label>(f)Cal State LA/UAS Unrecovered F&A</label>
+                <label>(g)External Cost Sharing</label>
+                <label><b>(h)Total Project Cost([d throughg]=h)</b></label>
+                <label>(i)Percent Cal State LA Cost Sharing(e/h)</label>
+                <label>(j)Percent IDC Recovered/DC Base(c/a)</label>
+                <label>(k)Percent IDC Recovered/MTDC Base(c/b)</label>
+            </div>
+            <div class="fl">
+                <p>Year 1</p>
+                <label>(a) $ </label>
+                <input type="text" pInputText>
+                <label>(b) $ </label>
+                <input type="text" pInputText>
+                <label>(c) $ </label>
+                <input type="text" pInputText>
+                <label>(d) $ </label>
+                <input type="text" pInputText>
+                <label>(e) $ </label>
+                <input type="text" pInputText>
+                <label>(f) $ </label>
+                <input type="text" pInputText>
+                <label>(g) $ </label>
+                <input type="text" pInputText>
+                <label>(h) $ </label>
+                <input type="text" pInputText>
+                <label>(i) % </label>
+                <input type="text" pInputText>
+                <label>(j) % </label>
+                <input type="text" pInputText>
+                <label>(k) % </label>
+                <input type="text" pInputText>
+            </div>
+            <div class="fl">
+                <p>Entire Project</p>
+                <label>(a) $ </label>
+                <input type="text" pInputText>
+                <label>(b) $ </label>
+                <input type="text" pInputText>
+                <label>(c) $ </label>
+                <input type="text" pInputText>
+                <label>(d) $ </label>
+                <input type="text" pInputText>
+                <label>(e) $ </label>
+                <input type="text" pInputText>
+                <label>(f) $ </label>
+                <input type="text" pInputText>
+                <label>(g) $ </label>
+                <input type="text" pInputText>
+                <label>(h) $ </label>
+                <input type="text" pInputText>
+                <label>(i) % </label>
+                <input type="text" pInputText>
+                <label>(j) % </label>
+                <input type="text" pInputText>
+                <label>(k) % </label>
+                <input type="text" pInputText>
+            </div>
+        </div>
+    </div>
+    <!-- page 4 Certifications/Special Requirements -->
+    <div *ngIf='index==3' class='form-flex-start'>
+        <p class='form-title'>Certifications/Special Requirements</p>
+        <p>Additional Space</p>
+        <label>No</label>
+        <input type="checkbox">
+        <label>Yes</label>
+        <input type="checkbox">
+        <label>Approved</label>
+        <input type="text" pInputText>
+        <p>Vertebrate Animals</p>
+        <label>No</label>
+        <input type="checkbox">
+        <label>Yes</label>
+        <input type="checkbox">
+        <label>Approved</label>
+        <input type="text" pInputText>
+        <p>Biological Hazards</p>
+        <label>No</label>
+        <input type="checkbox">
+        <label>Yes</label>
+        <input type="checkbox">
+        <label>Approved</label>
+        <input type="text" pInputText>
+        <p>Conflict of Interest Statement</p>
+        <label>No</label>
+        <input type="checkbox">
+        <label>Yes</label>
+        <input type="checkbox">
+        <label>Approved</label>
+        <input type="text" pInputText>
+        <p>Human Subjects</p>
+        <label>No</label>
+        <input type="checkbox">
+        <label>Yes</label>
+        <input type="checkbox">
+        <label>Approved</label>
+        <input type="text" pInputText>
+        <p>Radiological Hazards</p>
+        <label>No</label>
+        <input type="checkbox">
+        <label>Yes</label>
+        <input type="checkbox">
+        <label>Approved</label>
+        <input type="text" pInputText>
+        <p>Computer Equipment</p>
+        <label>No</label>
+        <input type="checkbox">
+        <label>Yes</label>
+        <input type="checkbox">
+        <label>Approved</label>
+        <input type="text" pInputText>
+        <p>Recimbinant DNA</p>
+        <label>No</label>
+        <input type="checkbox">
+        <label>Yes</label>
+        <input type="checkbox">
+        <label>Approved</label>
+        <input type="text" pInputText>
+    </div>
+    <!-- page 5 Required Review and Approvals -->
+    <div *ngIf='index==4' class='form-flex-start'>
+        <p class='form-title'>University Approval (signatures to be secured by PI)</p>
+        <p>My signature below certifies that: 1) I am familiar with all cost-sharing obligations shown in section 9 of this form, and
+        2) I am satisfied with and responsible for all commitments in the as they relate to my are (facilities, personnel/financial/
+        prgrammatic). I will notify ORSCA should a change occur during the funding period that would alter the filed statement option
+        conflict of interest</p>
+        <!-- SIGNATURES -->
+        <p>University Cost Sharing</p>
+        <label>No</label>
+        <input type="checkbox">
+        <label>Yes</label>
+        <input type="checkbox">
+        <!-- SIGNATURES -->
+        <p class='form-title'>Required Review and Approvals</p>
+        <p>Submit form to UAS (GE314) for signatures below</p>
+        <!-- SIGNATURES -->
+    </div>
+    <!-- page 6 Cost Sharing Information -->
+    <div *ngIf='index==5' class='form-flex-start'>
+        <p class='form-title'>Cost Sharing Information (Entire Project)</p>
+        <p>Is Cost Sharing required by the funding agency</p>
+        <label>No</label>
+        <input type="checkbox">
+        <label>Yes</label>
+        <input type="checkbox">
+        <p>(A) Cal State LA Cost Sharing</p>
+        <p>College #1</p>
+        <label>Personnel</label>
+        <input type="text" pInputText>
+        <label>Fringe</label>
+        <input type="text" pInputText>
+        <label>Meeting Expenses</label>
+        <input type="text" pInputText>
+        <label><b>Total</b></label>
+        <input type="text" pInputText>
+        <p>College #2</p>
+        <input type="text" pInputText>
+        <label>Personnel</label>
+        <input type="text" pInputText>
+        <label>Fringe</label>
+        <input type="text" pInputText>
+        <label>Meeting Expenses</label>
+        <input type="text" pInputText>
+        <label><b>Total</b></label>
+        <input type="text" pInputText>
+        <label><b>Total(College #1) and (College #2)</b></label>
+        <input type="text" pInputText>
+        <br><label>(A) Cal State LA Cost Sharing</label>
+        <input type="text" pInputText>
+        <label>(B) Unrecovered F&A on Cost Sharing</label>
+        <input type="text" pInputText>
+        <label>(C) Unrecovered F&A on MTDC</label>
+        <input type="text" pInputText>
+        <label>(D)Third Party Cost Share</label>
+        <input type="text" pInputText>
+        <br><label><b>Total Cal State LA COst Sharing (A+B+C)</b></label>
+        <input type="text" pInputText>
+        <br><label><b>Total Propsal Cost Sharing (A+B+C+D)</b></label>
+        <input type="text" pInputText>
+        <p><b>Cal State LA Internal Notes:</b></p>
+        <p>Per the Federal Rate Agreegment dated 07/03/14, the predetermined Facilitites & Administrative Cost Rate for the period of 7/1/14
+        to 6/30/15 is 45.5%. The predetermined Facilities & Administrative Cost Rate for the period 7/1/15 to 6/30/17 is 46%. The provisional
+        Facilities & Administrative Cost Rate for the periods beginning 7/1/17 and beyonf is 46%. Unrecovered F&A is calculated as follows:</p>
+        <label>$</label>
+        <input type="text" pInputText>
+        <label>x</label>
+        <input type="text" pInputText>
+        <label>%=$</label>
+        <input type="text" pInputText>
+    </div>
+    <!-- page 7 Proposal Workload -->
+    <div *ngIf='index==6' class='form-flex-start'>
+        <p class='form-title'>Proposal Personnel Workload</p>
+    </div>
+    <app-form-footer [index]='index' [length]='breadCrumbStrings.length' (newIndex)='updateIndex($event)'></app-form-footer>
+</div>

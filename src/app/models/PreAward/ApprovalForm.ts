@@ -1,6 +1,6 @@
 export class ApprovalForm {
     //1-4
-    id:string;
+    Id:string;
     projectTitle:string;
     piName:string;
     email:string;
@@ -75,4 +75,7 @@ export class ApprovalForm {
     purposeOfProject:string;
     cfdanumber:number;
     //
+    constructor(id){
+    this.Id=id;
+    }
 }
