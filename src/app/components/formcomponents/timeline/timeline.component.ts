@@ -9,10 +9,19 @@ import { MockDataService } from '../../../services/mock-data.service';
 })
 export class TimelineComponent implements OnInit {
   timeline: TimeLine;
-  currentStageId: number;
-  stage: Stage;
+  currentStageId: number; // for making requests
+  stage: Stage; // stage to be manipulated for edit and new
   displayDialog: boolean;
-  dialogType: string;
+  dialogType: string; // view, edit/add
+  preAwardForms: string[] =
+  ['Intake', 'Equipment', 'Approval',
+  'Conflict Of Interest Other Investigator/Key Personnel PHS',
+  'Conflict Of Interest Other Investigator/Key Personnel NONPHS',
+  'Conflict Of Interest Principal Investigator PHS',
+  'Conflict Of Interest Principal Investigator NONPHS',
+  'Statement Of Economic Interest',
+ ];
+ unSelectedForms: string[];
   constructor(private mockService: MockDataService) { }
 
   ngOnInit() {
@@ -37,8 +46,17 @@ export class TimelineComponent implements OnInit {
   setCurrentStageId(id) {
     this.getCurrentStage(id);
   }
+  // filters the forms in a stage from preAwardForms to selectedForms
+  populateunSelectedForms() {
+    this.unSelectedForms = this.preAwardForms.filter( preAwardForm => {
+      return !this.stage.requiredForms.includes(preAwardForm);
+    });
+  }
   setDialogType(type) {
     this.dialogType = type;
+    if (type == 'edit') {
+      this.populateunSelectedForms();
+    }
   }
   setdisplayDialog(bool) {
     this.displayDialog = bool;

@@ -40,9 +40,10 @@ export class EditProposalComponent implements OnInit {
        this.proposalId = params['id'];
     });
   }
+  // makes the request
   getProposal() {
     this.preAwardService.getProposal(this.proposalId).subscribe( proposal => {
-      this.proposal = proposal;
+      this.proposal = proposal ;
     });
   }
   setProgressBar(percentage) {

@@ -61,40 +61,40 @@ export const Timeline: any = {
    "stages": [
     {
       "Id": 0,
-      "name": "bryan",
+      "name": "Intake and Budget",
       "expectedDate": new Date(),
       "completedDate": new Date(),
       "uasReviewRequired":true,
       "uasReviewed": false,
       "deadlineType": "OSRP",
-      "requiredForms": [],
+      "requiredForms": ['Intake', 'Equipment'],
       // forms: any[];
-      "addComments":['bork','bork','bork','bork','bork']
-    },
-    {
-      "Id": 1,
-      "name": "bryan",
-      "expectedDate": new Date(),
-      "completedDate": new Date(),
-      "uasReviewRequired":true,
-      "uasReviewed": false,
-      "deadlineType": "OSRP",
-      "requiredForms": [],
-      // forms: any[];
-      "addComments":[]
-    },
-    {
-      "Id": 2,
-      "name": "bryan",
-      "expectedDate": new Date(),
-      "completedDate": new Date(),
-      "uasReviewRequired":true,
-      "uasReviewed": false,
-      "deadlineType": "OSRP",
-      "requiredForms": [],
-      // forms: any[];
-      "addComments":[]
+      "additionalNotes":"borrrrrrrrrrrsdf  sdfaf"
     }
+    //, {
+    //   "Id": 1,
+    //   "name": "bryan",
+    //   "expectedDate": new Date(),
+    //   "completedDate": new Date(),
+    //   "uasReviewRequired":true,
+    //   "uasReviewed": false,
+    //   "deadlineType": "OSRP",
+    //   "requiredForms": [],
+    //   // forms: any[];
+    //   "additionalNotes":"bork"
+    // },
+    // {
+    //   "Id": 2,
+    //   "name": "bryan",
+    //   "expectedDate": new Date(),
+    //   "completedDate": new Date(),
+    //   "uasReviewRequired":true,
+    //   "uasReviewed": false,
+    //   "deadlineType": "OSRP",
+    //   "requiredForms": [],
+    //   // forms: any[];
+    //   "additionalNotes":"bork"
+    // }
    ]
 };
 export const Proposals: any[] = [
