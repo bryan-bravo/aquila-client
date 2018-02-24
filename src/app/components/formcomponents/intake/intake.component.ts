@@ -4,6 +4,7 @@ import { AdditionalParty, Space, RequestedEquipment, Hazard} from '../../../mode
 import {MenuItem} from 'primeng/primeng';
 import { Proposal } from '../../../models/PreAward/Proposal';
 import {ProposalService} from '../../../services/proposal.service';
+import {PreawardService} from '../../../services/preaward.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -33,7 +34,7 @@ export class IntakeComponent implements OnInit {
   hazard: Hazard = new Hazard();
   newHazard: boolean;
 
-  constructor(private proposalService: ProposalService) {
+  constructor(private proposalService: ProposalService, private preAwardService: PreawardService ) {
     this.intakeForm = this.proposalService.getIntakeForm(); // make this into observable
    }
 
@@ -55,8 +56,14 @@ export class IntakeComponent implements OnInit {
   }
 
   update() {
-    // make request
-    this.proposalService.updateIntakeForm(this.intakeForm);
+    // make request.
+    this.preAwardService.updateIntake(this.intakeForm).subscribe(newIntake => {
+        //this.intakeForm = newIntake;
+console.log(newIntake)
+        //send local intake back to parent
+        this.proposalService.updateIntakeForm(this.intakeForm);
+    });
+
   }
   // when add is clicked on any datatable
   showDialogToAdd(type) {
@@ -131,7 +138,7 @@ export class IntakeComponent implements OnInit {
       return this.intakeForm.personnel.indexOf(this.personnel);
     }
     if (type === 'subgrantsubcontract') {
-      return this.intakeForm.subGrantsOrSubContracts.indexOf(this.subgrantSubProject);
+      return this.intakeForm.subgrantsOrSubcontracts.indexOf(this.subgrantSubProject);
     }
     if (type === 'projectlocation') {
       return this.intakeForm.projectLocations.indexOf(this.projectLocation);
@@ -166,16 +173,16 @@ export class IntakeComponent implements OnInit {
     }
 
     if (type === 'subgrantsubcontract') {
-      if (!this.intakeForm.subGrantsOrSubContracts) {
-        this.intakeForm.subGrantsOrSubContracts = [];
+      if (!this.intakeForm.subgrantsOrSubcontracts) {
+        this.intakeForm.subgrantsOrSubcontracts = [];
       }
-      const subGrantSubProjectList = [...this.intakeForm.subGrantsOrSubContracts];
+      const subGrantSubProjectList = [...this.intakeForm.subgrantsOrSubcontracts];
       if (this.newSubgrantSubProject) {
         subGrantSubProjectList.push(this.subgrantSubProject);
       } else {
         subGrantSubProjectList[this.findIndex()] = this.subgrantSubProject;
       }
-      this.intakeForm.subGrantsOrSubContracts = subGrantSubProjectList;
+      this.intakeForm.subgrantsOrSubcontracts = subGrantSubProjectList;
      }
 
     if ( type === 'projectlocation') {
@@ -253,7 +260,7 @@ export class IntakeComponent implements OnInit {
       this.intakeForm.personnel = this.intakeForm.personnel.filter((val, i) => i !== index);
     }
     if (type === 'subgrantsubcontract') {
-      this.intakeForm.subGrantsOrSubContracts = this.intakeForm.subGrantsOrSubContracts.filter((val, i) => i !== index);
+      this.intakeForm.subgrantsOrSubcontracts = this.intakeForm.subgrantsOrSubcontracts.filter((val, i) => i !== index);
     }
     if (type === 'projectlocation') {
       this.intakeForm.projectLocations = this.intakeForm.projectLocations.filter((val, i) => i !== index);
@@ -273,4 +280,3 @@ export class IntakeComponent implements OnInit {
     this.displayDialog = false;
   }
 }
-
