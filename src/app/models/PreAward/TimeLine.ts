@@ -28,6 +28,6 @@ export class Stage {
     deadlineType: string;
     requiredForms: string[];
     // forms: any[];
-    addComments: string[];
+    additionalNotes: string;
 
 }

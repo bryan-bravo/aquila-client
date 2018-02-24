@@ -20,6 +20,7 @@ import {TriStateCheckboxModule} from 'primeng/primeng';
 import {CalendarModule} from 'primeng/primeng';
 import {DataTableModule, SharedModule} from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
+import {InputTextareaModule} from 'primeng/components/inputtextarea/inputtextarea';
 
 // generated components
 import { AppComponent } from './app.component';
