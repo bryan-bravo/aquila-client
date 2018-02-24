@@ -10,7 +10,7 @@
   <div *ngIf='index==0' id='general-info'>
     <p class='form-title'>General Information</p>
     <label>Principal Investigator</label>
-    <input type="text" [(ngModel)]='intakeForm.principalInvestigator' pInputText>
+    <input type="text" [(ngModel)]='intakeForm.principleInvestigator' pInputText>
     <label>College</label>
     <input type="text" pInputText>
     <label>Sponsor</label>
@@ -83,7 +83,7 @@
   <!-- second page -->
   <div *ngIf='index==1' id='participation'>
     <p class='form-title'>SUBGRANT(S) OR SUBCONTRACT(S)</p>
-    <p-dataTable [value]="intakeForm.subGrantsOrSubContracts" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'subgrantsubcontract')">
+    <p-dataTable [value]="intakeForm.subgrantsOrSubcontracts" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'subgrantsubcontract')">
       <p-column field="institutionName" header="Institution Name"></p-column>
       <p-column field="proposedFundingAmount" header="Proposed Funding Amount"></p-column>
       <p-column field="contactPerson" header="Contact Person"></p-column>

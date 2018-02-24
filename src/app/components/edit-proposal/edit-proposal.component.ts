@@ -22,13 +22,13 @@ export class EditProposalComponent implements OnInit {
     private preAwardService: PreawardService) {
     // listens for updates from the children form container
     proposalService.updatedFormtoProposal$.subscribe(form => {
-      console.log(form);
+      //console.log(form);
     });
   }
 
   ngOnInit() {
     this.getParams();
-    this.getProposal();
+    this.getProposal();// 1
     this.menuState = true;
     this.routerState = false;
     this.currentForm = '';
@@ -40,9 +40,9 @@ export class EditProposalComponent implements OnInit {
        this.proposalId = params['id'];
     });
   }
-  getProposal() {
+  getProposal() { // 2 service that calls request is called
     this.preAwardService.getProposal(this.proposalId).subscribe( proposal => {
-      this.proposal = proposal;
+      this.proposal = proposal;// setting response proposal equal to local proposal field
     });
   }
   setProgressBar(percentage) {

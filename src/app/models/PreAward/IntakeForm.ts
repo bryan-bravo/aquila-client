@@ -1,8 +1,8 @@
 export class IntakeForm {
 id: string;
-complete: boolean;
+complete: boolean
 // A
-principalInvestigator: string;
+principleInvestigator: string;
 department: string;
 // _college?:string;//can be found from department
 projectTitle: string;
@@ -18,7 +18,7 @@ facultyStudentResearchCreativeActivities: boolean;
 studentsInvolved: boolean;
 noOfUndergradStudents: number;
 noOfGradStudents: number;
-laboratoryAssitance: boolean;
+laboratoryAssistance: boolean;
 dataCollection: boolean;
 reportWriting: boolean;
 literatureReview: boolean;
@@ -29,7 +29,7 @@ dataAnalysis: boolean;
 otherActivities: boolean;
 otherActivitiesList: string[];
 // D
-subGrantsOrSubContracts: SubgrantSubProject[];
+subgrantsOrSubcontracts: SubgrantSubProject[];
 // E
 projectLocations: ProjectLocation[];
 // F
@@ -56,7 +56,7 @@ technicalAssistance: boolean;
 letterOfSupportPresident: boolean;
 letterOfSupportProvost: boolean;
 letterOfSupportAssocVPOfResearch: boolean;
-duplicationfFinalDocumentPackage: boolean;
+duplicationfFinalDocumentPackage: boolean; // fix
 noOfCopies: number;
 // L
 projectSummary: string;
