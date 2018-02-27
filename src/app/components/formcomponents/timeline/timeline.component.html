@@ -12,7 +12,8 @@
 
   </li>
 </ul>
-<p-dialog header="Stage" [(visible)]="displayDialog" [responsive]="true" showEffect="fade">
+<div id='stage-content' *ngIf = "displayDialog" >
+  <button (click)='handleAddStage()'>Add Stage</button>
   <!-- show a stage -->
   <div class='form-flex-start' *ngIf='dialogType=="view"'>
     <label>Name {{stage.name}}</label>
@@ -30,6 +31,14 @@
     <label>Required Files</label>
     <div>
       <ul>
+        <li *ngFor='let file of stage.requiredFiles'>
+          <span>{{file}}</span>
+          <span>
+            <input type='file' label='Upload'>
+          </span>
+          <!-- make request here-->
+          <span>{{file}}</span>
+        </li>
       </ul>
     </div>
     <label>Additional Notes</label>
@@ -49,19 +58,44 @@
     <input type='checkbox'>
     <label>UAS Approved</label>
     <input type='checkbox'>
-    <label>Required Forms</label>
+    <h4>Required Forms</h4>
     <div class='form-flex-start'>
       <ul>
-        <li *ngFor='let form of stage.requiredForms'><label>{{form}}</label> <span><button>Remove</button></span> </li>
+        <li *ngFor='let form of stage.requiredForms'>
+          <label>{{form}}</label>
+          <span>
+            <button (click) = 'handleRemoveForm(form)'>Remove</button>
+          </span>
+        </li>
       </ul>
-      <select>
+      <select #form>
         <option *ngFor='let form of unSelectedForms'>{{form}}</option>
       </select>
-      <button> Add Form</button>
+      <button (click)='handleAddForm(form.value)'> Add Form</button>
     </div>
-    <label>Required Files</label>
-    <div></div>
-    <label>Additional Notes</label>
+    <h4>Required Files</h4>
+    <div>
+      <ul>
+        <li *ngFor='let file of stage.requiredFiles'>
+          <span>{{file}}</span>
+          <span>
+            <input type='file' label='Upload'>
+          </span>
+          <!-- make request here-->
+          <span>{{file}}</span>
+          <span>
+            <button (click) = 'handleRemoveFile(file)' >Remove</button>
+          </span>
+        </li>
+        <li>
+          <span>
+            <input type='text' #addReqFile>
+            <button (click)='handleAddFile(addReqFile.value)'>Add File</button>
+          </span>
+        </li>
+      </ul>
+    </div>
+    <h4>Additional Notes</h4>
     <textarea pInputTextarea [(ngModel)]="stage.additionalNotes" autoResize="autoResize"></textarea>
   </div>
-</p-dialog>
+</div>

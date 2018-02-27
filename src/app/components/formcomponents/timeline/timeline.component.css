@@ -10,6 +10,10 @@ h3 {
 }
 #timeline-bar{
     height:100vh;
+    width:40%;
+    border:1px solid blue;
+    float:left;
+    margin:0;
 }
 li{
     list-style: none;
@@ -38,4 +42,8 @@ border:1px solid black;
 }
 .window{
     width:40vw;
+}
+#stage-content{
+    border:1px solid red;
+    height:100vh;
 }

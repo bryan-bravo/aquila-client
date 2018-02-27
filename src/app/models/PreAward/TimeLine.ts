@@ -27,7 +27,16 @@ export class Stage {
     uasReviewed: boolean;
     deadlineType: string;
     requiredForms: string[];
-    // forms: any[];
+    requiredFiles: string[]; // name, file representation 
     additionalNotes: string;
 
+}
+
+export class FileInfo {
+    id: number;
+    nameOfUploader: string;
+    fileName: string;
+    fileType: string;
+    filePath: string;
+    uploadDate: string;
 }

@@ -68,33 +68,9 @@ export const Timeline: any = {
       "uasReviewed": false,
       "deadlineType": "OSRP",
       "requiredForms": ['Intake', 'Equipment'],
-      // forms: any[];
+      requiredFiles: ['Budget'],
       "additionalNotes":"borrrrrrrrrrrsdf  sdfaf"
     }
-    //, {
-    //   "Id": 1,
-    //   "name": "bryan",
-    //   "expectedDate": new Date(),
-    //   "completedDate": new Date(),
-    //   "uasReviewRequired":true,
-    //   "uasReviewed": false,
-    //   "deadlineType": "OSRP",
-    //   "requiredForms": [],
-    //   // forms: any[];
-    //   "additionalNotes":"bork"
-    // },
-    // {
-    //   "Id": 2,
-    //   "name": "bryan",
-    //   "expectedDate": new Date(),
-    //   "completedDate": new Date(),
-    //   "uasReviewRequired":true,
-    //   "uasReviewed": false,
-    //   "deadlineType": "OSRP",
-    //   "requiredForms": [],
-    //   // forms: any[];
-    //   "additionalNotes":"bork"
-    // }
    ]
 };
 export const Proposals: any[] = [

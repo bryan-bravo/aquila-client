@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TimeLine, Stage} from '../../../models/PreAward/TimeLine';
+import {TimeLine, Stage, FileInfo} from '../../../models/PreAward/TimeLine';
 import { MockDataService } from '../../../services/mock-data.service';
 
 @Component({
@@ -35,7 +35,7 @@ export class TimelineComponent implements OnInit {
   }
   // finds stage in list from timeline object
   getCurrentStage(stageId) {
-    let stages = this.timeline.stages;
+    const stages = this.timeline.stages;
     this.stage = stages.find((element) => {
       return element.Id === stageId;
     });
@@ -52,9 +52,46 @@ export class TimelineComponent implements OnInit {
       return !this.stage.requiredForms.includes(preAwardForm);
     });
   }
+  // when a new form is added to a stage
+  handleAddForm(formName) {
+    this.stage.requiredForms.push(formName);
+    this.populateunSelectedForms();
+  }
+  handleAddFile(fileName) {
+    const duplicate = this.stage.requiredFiles.findIndex((file) => {
+      return file === fileName;
+    });
+    if (duplicate !== -1) {
+      // let the user know that its a duplicate
+    } else {
+      this.stage.requiredFiles.push(fileName);
+    }
+  }
+  handleRemoveForm(formName) {
+    let index = this.stage.requiredForms.findIndex(reqForm => {
+      return reqForm === formName;
+    });
+    this.stage.requiredForms.splice(index, 1);
+    // set unselectedForms
+    this.populateunSelectedForms();
+  }
+  // delete a file
+  handleRemoveFile(fileName) {
+    let index = this.stage.requiredFiles.findIndex(reqFile => {
+      return reqFile === fileName;
+    });
+    this.stage.requiredFiles.splice(index, 1);
+    this.populateunSelectedForms();
+  }
+  // handle adding a stage
+  handleAddStage() {
+    // set stage to empty
+    // display edit stage
+    // show add button in edit div if type = new stage
+  }
   setDialogType(type) {
     this.dialogType = type;
-    if (type == 'edit') {
+    if (type === 'edit') {
       this.populateunSelectedForms();
     }
   }
