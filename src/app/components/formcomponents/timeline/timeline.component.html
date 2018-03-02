@@ -1,8 +1,9 @@
 <h3>Timeline</h3>
+<button (click)='handleAddStage()'>Add Stage</button>
 <ul id='timeline-bar' class='form-flex-start'>
   <li *ngFor='let stage of timeline.stages; index as i'>
     <!-- bar -->
-    <div class='bar' *ngIf='i!=0'></div>
+    <div class='bar' *ngIf='i!=0' (drop)='drop({"event":$event,"index":i})' (dragover) = 'allowDrop($event)'></div>
     <div class='icon-name-container' (click)='setCurrentStageId(stage.Id)'>
       <!-- icon -->
       <div class='icon'></div>
@@ -13,7 +14,6 @@
   </li>
 </ul>
 <div id='stage-content' *ngIf = "displayDialog" >
-  <button (click)='handleAddStage()'>Add Stage</button>
   <!-- show a stage -->
   <div class='form-flex-start' *ngIf='dialogType=="view"'>
     <label>Name {{stage.name}}</label>
@@ -49,7 +49,7 @@
   <!-- edit a stage -->
   <div class='form-flex-start window' *ngIf='dialogType=="edit"'>
     <label>Name</label>
-    <input>
+    <input type='text' [(ngModel)]='stage.name'>
     <label>Expected Date</label>
     <p-calendar></p-calendar>
     <label>Completed Date</label>
@@ -59,7 +59,7 @@
     <label>UAS Approved</label>
     <input type='checkbox'>
     <h4>Required Forms</h4>
-    <div class='form-flex-start'>
+    <div class='form-flex-start'> <!-- make into table -->
       <ul>
         <li *ngFor='let form of stage.requiredForms'>
           <label>{{form}}</label>
@@ -74,7 +74,7 @@
       <button (click)='handleAddForm(form.value)'> Add Form</button>
     </div>
     <h4>Required Files</h4>
-    <div>
+    <div> <!-- make into table -->
       <ul>
         <li *ngFor='let file of stage.requiredFiles'>
           <span>{{file}}</span>
@@ -97,5 +97,9 @@
     </div>
     <h4>Additional Notes</h4>
     <textarea pInputTextarea [(ngModel)]="stage.additionalNotes" autoResize="autoResize"></textarea>
+    <h4>Order in Timeline</h4>
+    <label draggable = 'true'>Drag me to reorder</label>
+    <button (click) = 'saveStage()'> Save </button> 
+    <button> Delete</button>
   </div>
 </div>

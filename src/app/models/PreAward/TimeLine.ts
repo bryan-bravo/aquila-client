@@ -29,9 +29,9 @@ export class Stage {
     requiredForms: string[];
     requiredFiles: string[]; // name, file representation 
     additionalNotes: string;
+    order: number;
 
 }
-
 export class FileInfo {
     id: number;
     nameOfUploader: string;
