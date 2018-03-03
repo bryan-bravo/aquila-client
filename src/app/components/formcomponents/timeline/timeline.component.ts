@@ -100,7 +100,7 @@ export class TimelineComponent implements OnInit {
   }
   // save a stage
   saveStage() {
-
+    // make request to save
   }
   // finding where to insert the stage in the timeline stage array
   sortStageIntoTimeline(indexToPush) {
@@ -110,6 +110,8 @@ export class TimelineComponent implements OnInit {
     });
     // new stage
     if (currentStageIndex === -1) {
+      // make request to create stage and have working id
+      // inside of call back do all the below operations, update the new orders
       this.stage.order = this.timeline.stages[indexToPush].order;
       this.timeline.stages.forEach((stage, index, stages) => {
         if (index >= indexToPush) {
@@ -119,10 +121,9 @@ export class TimelineComponent implements OnInit {
       this.timeline.stages.splice(indexToPush, 0, this.stage);
     // the stage is already in the timeline
     } else {
-      // current stage is dropped in adjacent bar
       if (indexToPush === currentStageIndex || indexToPush === currentStageIndex + 1) {
       } else if (currentStageIndex < indexToPush) {
-        // want to move the stage further up in the timeline
+      // want to move the stage up in the timeline
         this.stage.order = this.timeline.stages[indexToPush].order;
         this.timeline.stages.forEach((stage, index, stages) => {
           if (index < indexToPush && index >= currentStageIndex) {
@@ -131,13 +132,39 @@ export class TimelineComponent implements OnInit {
         });
         this.timeline.stages.splice(indexToPush, 0, this.stage);
         this.timeline.stages.splice(currentStageIndex, 1);
-
+        // make the request here to save stage and all the orders
       } else {
-        // want to move the stage further down the timeline
+      // want to move the stage down the timeline
+        this.stage.order = this.timeline.stages[indexToPush].order;
+        this.timeline.stages.forEach((stage, index, stages) => {
+          if (index >= indexToPush && index < currentStageIndex) {
+            stages[index].order = stages[index].order + 1;
+          }
+        });
+        this.timeline.stages.splice(currentStageIndex, 1);
+        this.timeline.stages.splice(indexToPush, 0, this.stage);
+        // make the request here to save stage and all the orders
       }
 
     }
-    console.log(this.timeline.stages);
+    // console.log(this.timeline.stages);
+  }
+  deleteStage() {
+  // make delete request if successful, sort stage orders, update stage orders
+    if (this.editingNewStage) {
+      // make the request
+      this.displayDialog = false;
+    } else {
+      const currentStageIndex = this.timeline.stages.findIndex( (stage) => {
+        return this.stage == stage;
+      });
+      this.timeline.stages.forEach((stage, index, array) => {
+        if (index > currentStageIndex) {
+          array[index].order = array[index].order - 1;
+        }
+      });
+      this.timeline.stages.splice(currentStageIndex,  1);
+    }
   }
   setDialogType(type) {
     this.dialogType = type;
