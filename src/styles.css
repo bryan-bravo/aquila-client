@@ -13,6 +13,9 @@ body {
     width: 100%;
     min-height: 100%;
     overflow-x: hidden;
+    /* background: linear-gradient(to bottom right, #037ade, #03e5b7); */
+    background: linear-gradient(to bottom right, #5bc0de, #142f94);
+
 }
 /* labels */
 .required-indicator {
@@ -38,6 +41,13 @@ body {
     border: none;
     padding: 5px;
     background-color: #0eb2e2;
+    color: white;
+    border-radius: 4px;
+}
+.button-red {
+    border: none;
+    padding: 5px;
+    background-color:rgb(210, 52, 52);
     color: white;
     border-radius: 4px;
 }
@@ -79,7 +89,7 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
 }
-
-
-
+.form-flex-start > *{
+    margin: 4px 0;
+}
 /* blue    color: #0eb2e2; */

@@ -1,6 +1,5 @@
 <h3>Timeline</h3>
-<button (click)='handleAddStage()'>Add Stage</button>
-<ul id='timeline-bar' class='form-flex-start'>
+<ul id='timeline-bar' >
   <li *ngFor='let stage of timeline.stages; index as i'>
     <!-- bar -->
     <div class='bar' *ngIf='i!=0' (drop)='drop({"event":$event,"index":i})' (dragover) = 'allowDrop($event)'></div>
@@ -12,42 +11,46 @@
     </div>
 
   </li>
+  <button (click)='handleAddStage()'>Add Stage</button>
+
 </ul>
 <div id='stage-content' *ngIf = "displayDialog" >
   <!-- show a stage -->
   <div class='form-flex-start' *ngIf='dialogType=="view"'>
-    <label>Name {{stage.name}}</label>
-    <label>Expected Date {{stage.expectedDate}}</label>
-    <label>Completed Date {{stage.completedDate}}</label>
-    <label>Required Forms</label>
+    <h2>{{stage.name}}</h2>
+    <label>Expected Date</label>
+    <label>{{stage.expectedDate}}</label>
+    <label>Completed Date</label>
+    <label>{{stage.completedDate}}</label>
     <div>
-      <ul>
-        <li *ngFor='let form of stage.requiredForms'>
-          <span>{{form}}</span>
-          <span> | check or x image to show completion</span>
-        </li>
-      </ul>
+    <label class='stage-title'>Required Forms</label>
+      <table>
+        <th>Form</th><th> Status</th>
+        <tr *ngFor='let form of stage.requiredForms'>
+          <td>{{form}}</td>
+          <td>image</td>
+        </tr>
+      </table>
     </div>
-    <label>Required Files</label>
+    <label class='stage-title'>Required Files</label>
     <div>
-      <ul>
-        <li *ngFor='let file of stage.requiredFiles'>
-          <span>{{file}}</span>
-          <span>
-            <input type='file' label='Upload'>
-          </span>
-          <!-- make request here-->
-          <span>{{file}}</span>
-        </li>
-      </ul>
+        <table>
+            <th>File name</th><th>Upload</th><th>File on disk</th>
+            <tr *ngFor='let file of stage.requiredFiles'>
+              <td>{{file}}</td>
+              <td><input type='file'></td>
+              <td>download</td>
+            </tr>
+          </table>
     </div>
-    <label>Additional Notes</label>
+    <label class='stage-title'>Additional Notes</label>
     <p>{{stage.additionalNotes}}</p>
 
-    <button class='blue-button' (click)='setDialogType("edit")'>Edit</button>
+    <button class='button-blue' (click)='setDialogType("edit")'>Edit</button>
   </div>
   <!-- edit a stage -->
   <div class='form-flex-start window' *ngIf='dialogType=="edit"'>
+    <h2>{{stage.name}}</h2>
     <label>Name</label>
     <input type='text' [(ngModel)]='stage.name'>
     <label>Expected Date</label>
@@ -58,48 +61,40 @@
     <input type='checkbox'>
     <label>UAS Approved</label>
     <input type='checkbox'>
-    <h4>Required Forms</h4>
+    <label class='stage-title'>Required Forms</label>
     <div class='form-flex-start'> <!-- make into table -->
-      <ul>
-        <li *ngFor='let form of stage.requiredForms'>
-          <label>{{form}}</label>
-          <span>
-            <button (click) = 'handleRemoveForm(form)'>Remove</button>
-          </span>
-        </li>
-      </ul>
+      <table>
+        <th>Form</th><th>Delete</th>
+        <tr *ngFor='let form of stage.requiredForms'>
+          <td>{{form}}</td>
+          <td><button class = 'button-red' (click) = 'handleRemoveForm(form)'>Remove</button></td>
+        </tr>
+      </table>
       <select #form>
         <option *ngFor='let form of unSelectedForms'>{{form}}</option>
       </select>
-      <button (click)='handleAddForm(form.value)'> Add Form</button>
+      <button class = 'button-blue' (click)='handleAddForm(form.value)'> Add Form</button>
     </div>
-    <h4>Required Files</h4>
-    <div> <!-- make into table -->
-      <ul>
-        <li *ngFor='let file of stage.requiredFiles'>
-          <span>{{file}}</span>
-          <span>
-            <input type='file' label='Upload'>
-          </span>
-          <!-- make request here-->
-          <span>{{file}}</span>
-          <span>
-            <button (click) = 'handleRemoveFile(file)' >Remove</button>
-          </span>
-        </li>
-        <li>
-          <span>
-            <input type='text' #addReqFile>
-            <button (click)='handleAddFile(addReqFile.value)'>Add File</button>
-          </span>
-        </li>
-      </ul>
+    <label class='stage-title'>Required Files</label>
+    <div> 
+      <table>
+        <th>File name</th><th>Upload</th><th>File on disk</th><th>Delete</th>
+        <tr *ngFor='let file of stage.requiredFiles'>
+          <td>{{file}}</td>
+          <td><input type='file'></td>
+          <td>download</td>
+          <td><button class = 'button-red' (click) = 'handleRemoveFile(file)' >Remove</button></td>
+        </tr>
+        <!-- <tr><td></td></tr> -->
+      </table>
+      <input type='text' #addReqFile>
+      <button class = 'button-blue'(click)='handleAddFile(addReqFile.value)'>Add File</button>
     </div>
-    <h4>Additional Notes</h4>
+    <label class='stage-title'>Additional Notes</label>
     <textarea pInputTextarea [(ngModel)]="stage.additionalNotes" autoResize="autoResize"></textarea>
-    <h4>Order in Timeline</h4>
+    <label class='stage-title'>Order in Timeline</label>
     <label draggable = 'true'>Drag me to reorder</label>
-    <button (click) = 'saveStage()'> Save </button> 
-    <button (click) = 'deleteStage()'> Delete</button>
+    <button class = 'button-blue' (click) = 'saveStage()'> Save </button> 
+    <button class = 'button-red' (click) = 'deleteStage()'> Delete</button>
   </div>
 </div>
