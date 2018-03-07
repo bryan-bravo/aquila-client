@@ -52,7 +52,7 @@
   <div class='form-flex-start window' *ngIf='dialogType=="edit"'>
     <h2>{{stage.name}}</h2>
     <label>Name</label>
-    <input type='text' [(ngModel)]='stage.name'>
+    <input type='text' pInputText [(ngModel)]='stage.name'>
     <label>Expected Date</label>
     <p-calendar></p-calendar>
     <label>Completed Date</label>

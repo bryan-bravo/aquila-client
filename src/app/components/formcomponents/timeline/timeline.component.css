@@ -11,7 +11,7 @@ h3 {
 }
 
 #timeline-bar {
-  height: 100vh;
+  height: 100%;
   width: 40%;
   /* border:1px solid blue; */
   float: left;
@@ -41,6 +41,7 @@ li {
   height: 16px;
   width: 16px;
   border: 1px solid black;
+  border-radius: 50%;
 }
 
 .name {
@@ -52,8 +53,7 @@ li {
 }
 
 #stage-content {
-  /* border:1px solid red; */
-  height: 100vh;
+  height: 100%;
 }
 
 .stage-title {
