@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {TimeLine, Stage, FileInfo} from '../../../models/PreAward/TimeLine';
 import { MockDataService } from '../../../services/mock-data.service';
-
+import { PreawardService } from '../../../services/preaward.service';
+import { ProposalService } from '../../../services/proposal.service';
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
@@ -9,10 +10,10 @@ import { MockDataService } from '../../../services/mock-data.service';
 })
 export class TimelineComponent implements OnInit {
   timeline: TimeLine;
+  proposalId: number;
   currentStageId: number; // for making requests
   stage: Stage; // stage to be manipulated for edit and new
   editingNewStage: boolean;
-  displayDialog: boolean;
   dialogType: string; // view, edit/add
   preAwardForms: string[] =
   ['Intake', 'Equipment', 'Approval',
@@ -23,16 +24,21 @@ export class TimelineComponent implements OnInit {
   'Statement Of Economic Interest',
  ];
  unSelectedForms: string[];
-  constructor(private mockService: MockDataService) { }
+  constructor(private mockService: MockDataService,
+              private preAwardService: PreawardService,
+              private proposalService: ProposalService
+    ) { 
+      this.populateTimeLine();
+    }
 
   ngOnInit() {
-    this.populateTimeLine();
+    this.dialogType = 'view-basic-timeline';
   }
   // fills the timeline field
   populateTimeLine() {
-     this.mockService.getTimeLine().subscribe( timeline => {
-      this.timeline = timeline;
-    });
+  const obj = this.proposalService.getTimeline();
+    this.timeline = obj.timeline;
+    this.proposalId = obj.proposalId;
   }
   // finds stage in list from timeline object
   getCurrentStage(stageId) {
@@ -40,8 +46,8 @@ export class TimelineComponent implements OnInit {
     this.stage = stages.find((element) => {
       return element.Id === stageId;
     });
-    this.setDialogType('view');
-    this.setdisplayDialog(true);
+    this.setDialogType('view-stage');
+    // this.setdisplayDialog(true);
   }
   // responds to a timeline stage being clicked
   setCurrentStageId(id) {
@@ -88,15 +94,13 @@ export class TimelineComponent implements OnInit {
   }
   // user wants to create a new stage
   handleAddStage() {
-    // set stage to empty
-    this.stage = new Stage();
-    // display edit stage
-    this.stage.requiredForms = []; // will change
-    this.stage.requiredFiles = []; // will change
-    this.editingNewStage = true;
-    this.setDialogType('edit');
-    this.setdisplayDialog(true);
-    // show add button in edit div if type = new stage
+    this.preAwardService.createStage(this.timeline.id).subscribe( (stage) => {
+      this.stage = stage;
+      this.stage.requiredForms = []; // will change
+      this.stage.requiredFiles = []; // will change
+      this.setDialogType('edit-stage');
+      // this.setdisplayDialog(true);
+    });
   }
   // save a stage
   saveStage() {
@@ -153,7 +157,6 @@ export class TimelineComponent implements OnInit {
   // make delete request if successful, sort stage orders, update stage orders
     if (this.editingNewStage) {
       // make the request
-      this.displayDialog = false;
     } else {
       const currentStageIndex = this.timeline.stages.findIndex( (stage) => {
         return this.stage == stage;
@@ -168,13 +171,11 @@ export class TimelineComponent implements OnInit {
   }
   setDialogType(type) {
     this.dialogType = type;
-    if (type === 'edit') {
+    if (type === 'edit-stage') {
       this.populateunSelectedForms();
     }
   }
-  setdisplayDialog(bool) {
-    this.displayDialog = bool;
-  }
+ 
   // handle drag and drop for stage in a timeline
   drop(obj) {
     obj.event.preventDefault();

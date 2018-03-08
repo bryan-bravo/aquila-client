@@ -4,6 +4,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {Proposal } from '../models/PreAward/Proposal';
 import {IntakeForm} from '../models/PreAward/IntakeForm';
+import {TimeLine, Stage} from '../models/PreAward/TimeLine';
+
 @Injectable()
 export class PreawardService {
 user: User;
@@ -26,8 +28,12 @@ user: User;
     return this.http.get<Proposal>('api/proposal/' + id);// 4, start going back
   }
   updateIntake(intakeForm): Observable<IntakeForm>{
-  console.log(typeof JSON.parse(JSON.stringify(intakeForm)))
-  //console.log(intakeForm)
-  return this.http.put<IntakeForm>('api/intake/'+intakeForm.id, JSON.parse(JSON.stringify(intakeForm)));
+  return this.http.put<IntakeForm>('api/intake/' + intakeForm.id, JSON.parse(JSON.stringify(intakeForm)));
+  }
+  // update Timeline simple types
+  // create stage
+  createStage(timelineId): Observable<Stage> {
+    const stage = JSON.parse(JSON.stringify(new Stage()));
+    return this.http.post<Stage>(`api/proposal/timeline/${timelineId}/stage/`, stage);
   }
 }

@@ -9,4 +9,5 @@ export class Proposal {
    user: User;
    requiredForms: string[];
    intakeForm: any;
+   timeline: any;
 }

@@ -21,6 +21,16 @@ export class ProposalService {
   updateIntakeForm(intakeForm) {
     this.formSource.next(intakeForm);
   }
+  // timeline
+  getTimeline() {
+    return {
+      'proposalId': this.proposal.id,
+      'timeline': this.proposal.timeline
+    };
+  }
+  updateTimeline(timeline) {
+    this.formSource.next.apply(timeline);
+  }
 }
 // user clicks on form
 // edit proposal calls parent Update Proposal
