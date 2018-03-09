@@ -22,7 +22,7 @@ export class EditProposalComponent implements OnInit {
     private preAwardService: PreawardService) {
     // listens for updates from the children form container
     proposalService.updatedFormtoProposal$.subscribe(form => {
-      //console.log(form);
+      //  console.log(form);
     });
   }
 

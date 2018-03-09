@@ -45,8 +45,8 @@ export class TimelineComponent implements OnInit {
   // saves the timeline for basic timline fields
   saveTimeline() {
     this.preAwardService.updateTimeline(this.proposalId, this.timeline).subscribe((timeline) => {
+      this.proposalService.updateTimeline(this.timeline);
       this.timeline = this.parseDates(timeline);
-      console.log(this.timeline)
     });
   }
   // finds stage in list from timeline object

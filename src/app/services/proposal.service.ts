@@ -29,7 +29,7 @@ export class ProposalService {
     };
   }
   updateTimeline(timeline) {
-    this.formSource.next.apply(timeline);
+    this.formSource.next(timeline);
   }
 }
 // user clicks on form
