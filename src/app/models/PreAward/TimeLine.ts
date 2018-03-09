@@ -1,6 +1,6 @@
  export class TimeLine {
      id: number;
-     principleInvestigator: any; // User
+     principalInvestigator: any; // User
      coPi: any[]; // Users
      proposalName: string;
      fundingAgency: string;

@@ -25,12 +25,15 @@ user: User;
   }
   // get proposal by id
   getProposal(id): Observable<Proposal> {// 3
-    return this.http.get<Proposal>('api/proposal/' + id);// 4, start going back
+    return this.http.get<Proposal>('api/proposal/' + id); // 4, start going back
   }
-  updateIntake(intakeForm): Observable<IntakeForm>{
+  updateIntake(intakeForm): Observable<IntakeForm> {
   return this.http.put<IntakeForm>('api/intake/' + intakeForm.id, JSON.parse(JSON.stringify(intakeForm)));
   }
   // update Timeline simple types
+  updateTimeline(proposalId, timeline): Observable<TimeLine> {
+      return this.http.put<TimeLine>(`api//proposal/${proposalId}/timeline/${timeline.id}`, JSON.parse(JSON.stringify(timeline)));
+  }
   // create stage
   createStage(timelineId): Observable<Stage> {
     const stage = JSON.parse(JSON.stringify(new Stage()));

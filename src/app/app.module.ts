@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DatePipe} from '@angular/common';
+
 // ngPrime
 import {ButtonModule, PaginatorModule} from 'primeng/primeng';
 import {InputTextModule} from 'primeng/primeng';
@@ -95,7 +97,7 @@ const AppRoutes: Routes = [
     DataTableModule,
     DialogModule,
   ],
-  providers: [AuthenticationService, PreawardService, ProposalService, MessageService, MockDataService],
+  providers: [AuthenticationService, PreawardService, ProposalService, MessageService, MockDataService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

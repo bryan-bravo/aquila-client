@@ -23,11 +23,11 @@
     <label>Other Investigators</label>
     <p *ngFor='let oi of timeline.coPi'>{{oi}}</p>
     <label>Funding Agency</label>
-    <p>{{timeline.fundingAgency}}</p>
+    <p>{{timeline.fundingAgency }}</p>
     <label>UAS Due Date</label>
-    <p>{{timeline.uasDueDate}}</p>
+    <p>{{timeline.uasDueDate }}</p>
     <label>Sponsor Due Date</label>
-    <p>{{timeline.sponsorDueDate}}</p>
+    <p>{{timeline.sponsorDueDate }}</p>
     <label>Final Signatures Deadline</label>
     <p>{{timeline.finalSign}}</p>
     <button class='button-blue' (click)='setDialogType("edit-basic-timeline")'>Edit</button>
@@ -44,9 +44,9 @@
       <label>UAS Due Date</label>
       <p-calendar [(ngModel)] = 'timeline.uasDueDate'></p-calendar>
       <label>Sponsor Due Date</label>
-      <p-calendar [(ngModel)] = 'timeline.sponsorDueDate'></p-calendar>
+      <p-calendar [(ngModel)] = 'timeline.sponsorDueDate' ></p-calendar>
       <label>Final Signatures Deadline</label>
-      <p-calendar [(ngModel)] = 'timeline.finalSignatures'></p-calendar>
+      <p-calendar [(ngModel)] = 'timeline.finalSign' ></p-calendar>
       <button class='button-blue' (click) = 'saveTimeline()'>Save Timeline</button>
   </div>
   <!-- show a stage -->

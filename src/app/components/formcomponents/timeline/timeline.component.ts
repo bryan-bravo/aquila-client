@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DatePipe} from '@angular/common';
 import {TimeLine, Stage, FileInfo} from '../../../models/PreAward/TimeLine';
 import { MockDataService } from '../../../services/mock-data.service';
 import { PreawardService } from '../../../services/preaward.service';
@@ -26,8 +27,9 @@ export class TimelineComponent implements OnInit {
  unSelectedForms: string[];
   constructor(private mockService: MockDataService,
               private preAwardService: PreawardService,
-              private proposalService: ProposalService
-    ) { 
+              private proposalService: ProposalService,
+              private datePipe: DatePipe
+    ) {
       this.populateTimeLine();
     }
 
@@ -37,8 +39,15 @@ export class TimelineComponent implements OnInit {
   // fills the timeline field
   populateTimeLine() {
   const obj = this.proposalService.getTimeline();
-    this.timeline = obj.timeline;
+    this.timeline = this.parseDates(obj.timeline);
     this.proposalId = obj.proposalId;
+  }
+  // saves the timeline for basic timline fields
+  saveTimeline() {
+    this.preAwardService.updateTimeline(this.proposalId, this.timeline).subscribe((timeline) => {
+      this.timeline = this.parseDates(timeline);
+      console.log(this.timeline)
+    });
   }
   // finds stage in list from timeline object
   getCurrentStage(stageId) {
@@ -47,12 +56,8 @@ export class TimelineComponent implements OnInit {
       return element.Id === stageId;
     });
     this.setDialogType('view-stage');
-    // this.setdisplayDialog(true);
   }
-  // responds to a timeline stage being clicked
-  setCurrentStageId(id) {
-    this.getCurrentStage(id);
-  }
+
   // filters the forms in a stage from preAwardForms to selectedForms
   populateunSelectedForms() {
     this.unSelectedForms = this.preAwardForms.filter( preAwardForm => {
@@ -184,6 +189,24 @@ export class TimelineComponent implements OnInit {
   // hover element over drop zone
   allowDrop(event) {
     event.preventDefault();
+  }
+   // responds to a timeline stage being clicked
+   setCurrentStageId(id) {
+    this.getCurrentStage(id);
+  }
+  // parse Timeline dates
+  parseDates(timeline) {
+    if (timeline.uasDueDate !== null) {
+      timeline.uasDueDate = new Date (timeline.uasDueDate)
+    }
+    if (timeline.sponsorDueDate !== null) {
+      timeline.sponsorDueDate = new Date (timeline.sponsorDueDate)
+    }
+    if (timeline.finalSign !== null) {
+      timeline.finalSign = new Date (timeline.finalSign)
+    }
+    console.log(timeline)
+    return timeline;
   }
 }
 
