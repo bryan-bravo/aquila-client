@@ -30,13 +30,20 @@ user: User;
   updateIntake(intakeForm): Observable<IntakeForm> {
   return this.http.put<IntakeForm>('api/intake/' + intakeForm.id, JSON.parse(JSON.stringify(intakeForm)));
   }
-  // update Timeline simple types
+  // timeline
   updateTimeline(proposalId, timeline): Observable<TimeLine> {
       return this.http.put<TimeLine>(`api//proposal/${proposalId}/timeline/${timeline.id}`, JSON.parse(JSON.stringify(timeline)));
   }
-  // create stage
+  // stage
   createStage(timelineId): Observable<Stage> {
     const stage = JSON.parse(JSON.stringify(new Stage()));
     return this.http.post<Stage>(`api/proposal/timeline/${timelineId}/stage/`, stage);
+  }
+  saveStage(stage): Observable<Stage> {
+     stage = JSON.parse(JSON.stringify(stage));
+    return this.http.put<Stage>(`api/timeline/stage/update/${stage.id}`, stage);
+  }
+  deleteStage(stageId) {
+    return this.http.delete(`api/timeline/stage/${stageId}`);
   }
 }

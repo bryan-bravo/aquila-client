@@ -103,6 +103,8 @@ export class TimelineComponent implements OnInit {
       this.stage = stage;
       this.stage.requiredForms = []; // will change
       this.stage.requiredFiles = []; // will change
+      this.stage.name = 'New Stage';
+      this.timeline.stages.push(stage);
       this.setDialogType('edit-stage');
       // this.setdisplayDialog(true);
     });
