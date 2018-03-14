@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {DatePipe} from '@angular/common';
 import {TimeLine, Stage, FileInfo} from '../../../models/PreAward/TimeLine';
 import { MockDataService } from '../../../services/mock-data.service';
 import { PreawardService } from '../../../services/preaward.service';
 import { ProposalService } from '../../../services/proposal.service';
+import {KeysPipe} from '../../../pipes/keys.pipe';
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
@@ -12,7 +12,6 @@ import { ProposalService } from '../../../services/proposal.service';
 export class TimelineComponent implements OnInit {
   timeline: TimeLine;
   proposalId: number;
-  currentStageId: number; // for making requests
   stage: Stage; // stage to be manipulated for edit and new
   editingNewStage: boolean;
   dialogType: string; // view, edit/add
@@ -28,7 +27,7 @@ export class TimelineComponent implements OnInit {
   constructor(private mockService: MockDataService,
               private preAwardService: PreawardService,
               private proposalService: ProposalService,
-              private datePipe: DatePipe
+              private keysPipe: KeysPipe
     ) {
       this.populateTimeLine();
     }
@@ -36,84 +35,78 @@ export class TimelineComponent implements OnInit {
   ngOnInit() {
     this.dialogType = 'view-basic-timeline';
   }
-  // fills the timeline field
+  // timeline
   populateTimeLine() {
   const obj = this.proposalService.getTimeline();
     this.timeline = this.parseDates(obj.timeline);
+    // parse the object maps into iterables
+    this.timeline.stages.forEach((stage, i, stages) => {
+        stages[i] = this.parseStage(stage);
+    });
+
     this.proposalId = obj.proposalId;
+
   }
-  // saves the timeline for basic timline fields
   saveTimeline() {
     this.preAwardService.updateTimeline(this.proposalId, this.timeline).subscribe((timeline) => {
       this.proposalService.updateTimeline(this.timeline);
       this.timeline = this.parseDates(timeline);
     });
   }
-  // finds stage in list from timeline object
-  getCurrentStage(stageId) {
-    const stages = this.timeline.stages;
-    this.stage = stages.find((element) => {
-      return element.Id === stageId;
-    });
-    this.setDialogType('view-stage');
-  }
 
-  // filters the forms in a stage from preAwardForms to selectedForms
+  // forms
   populateunSelectedForms() {
     this.unSelectedForms = this.preAwardForms.filter( preAwardForm => {
-      return !this.stage.requiredForms.includes(preAwardForm);
+      return this.stage.requiredForms.findIndex(form => {
+        return form.key === preAwardForm;
+      });
     });
   }
-  // edit required forms of a stage
-  handleAddForm(formName) {
-    this.stage.requiredForms.push(formName);
+  handleAddForm(form) {
+     this.stage.requiredForms.push({'key': form, 'value': null});
     this.populateunSelectedForms();
   }
-  // edit required files of a stage
-  handleAddFile(fileName) {
-    const duplicate = this.stage.requiredFiles.findIndex((file) => {
-      return file === fileName;
-    });
-    if (duplicate !== -1) {
-      // let the user know that its a duplicate
-    } else {
-      this.stage.requiredFiles.push(fileName);
-    }
-  }
-  // edit required forms of a stage
-  handleRemoveForm(formName) {
+  handleRemoveForm(form) {
     let index = this.stage.requiredForms.findIndex(reqForm => {
-      return reqForm === formName;
+      return reqForm === form;
     });
     this.stage.requiredForms.splice(index, 1);
     // set unselectedForms
     this.populateunSelectedForms();
   }
-  // edit required forms of a stage
+  // files
+  handleAddFile(fileName) {
+    const duplicate = this.stage.requiredFiles.findIndex((file) => {
+      return file.key === fileName;
+    });
+    if (duplicate !== -1) {
+      // let the user know that its a duplicate
+    } else {
+      this.stage.requiredFiles.push({'key': fileName, 'value': null});
+    }
+  }
   handleRemoveFile(fileName) {
     let index = this.stage.requiredFiles.findIndex(reqFile => {
-      return reqFile === fileName;
+      return reqFile.key === fileName;
     });
     this.stage.requiredFiles.splice(index, 1);
-    this.populateunSelectedForms();
   }
-  // user wants to create a new stage
+  // stage
   handleAddStage() {
     this.preAwardService.createStage(this.timeline.id).subscribe( (stage) => {
-      this.stage = stage;
-      this.stage.requiredForms = []; // will change
-      this.stage.requiredFiles = []; // will change
-      this.stage.name = 'New Stage';
+      this.stage = this.parseStage(stage);
       this.timeline.stages.push(stage);
       this.setDialogType('edit-stage');
-      // this.setdisplayDialog(true);
     });
   }
-  // save a stage
   saveStage() {
-    // make request to save
+    const stage = Object.assign({}, this.stage);
+    stage.requiredForms = this.keysPipe.backToObject(stage.requiredForms);
+    stage.requiredFiles = this.keysPipe.backToObject(stage.requiredFiles);
+    this.preAwardService.saveStage(stage).subscribe( (savedStage) => {
+      this.stage = this.parseStage(savedStage);
+    });
   }
-  // finding where to insert the stage in the timeline stage array
   sortStageIntoTimeline(indexToPush) {
     // find if the stage is already in the index
     const currentStageIndex = this.timeline.stages.findIndex( (stage) => {
@@ -176,13 +169,20 @@ export class TimelineComponent implements OnInit {
       this.timeline.stages.splice(currentStageIndex,  1);
     }
   }
+  // helper functions
+  getCurrentStage(stageId) {
+    const stageIndex = this.timeline.stages.findIndex((stage) => {
+      return stage.id == stageId;
+    });
+    this.stage = this.timeline.stages[stageIndex];
+    this.setDialogType('view-stage');
+  }
   setDialogType(type) {
     this.dialogType = type;
     if (type === 'edit-stage') {
       this.populateunSelectedForms();
     }
   }
- 
   // handle drag and drop for stage in a timeline
   drop(obj) {
     obj.event.preventDefault();
@@ -192,10 +192,7 @@ export class TimelineComponent implements OnInit {
   allowDrop(event) {
     event.preventDefault();
   }
-   // responds to a timeline stage being clicked
-   setCurrentStageId(id) {
-    this.getCurrentStage(id);
-  }
+
   // parse Timeline dates
   parseDates(timeline) {
     if (timeline.uasDueDate !== null) {
@@ -207,8 +204,18 @@ export class TimelineComponent implements OnInit {
     if (timeline.finalSign !== null) {
       timeline.finalSign = new Date (timeline.finalSign)
     }
-    console.log(timeline)
     return timeline;
+  }
+  parseStage(stage) {
+    if (stage.expectedDate !== null) {
+      stage.expectedDate = new Date (stage.expectedDate);
+    }
+    if (stage.completedDate !== null) {
+      stage.completedDate = new Date (stage.completedDate);
+    }
+    stage.requiredForms = this.keysPipe.transform(stage.requiredForms);
+    stage.requiredFiles = this.keysPipe.transform(stage.requiredFiles);
+    return stage;
   }
 }
 

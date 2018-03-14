@@ -10,14 +10,14 @@
      stages: Stage[];
 }
 export class Stage {
-    Id: number;
+    id: number;
     name: string;
     expectedDate: Date;
     completedDate: Date;
     uasReviewRequired: boolean;
     uasReviewed: boolean;
-    requiredForms: string[];
-    requiredFiles: string[]; // name, file representation 
+    requiredForms: any;
+    requiredFiles: any; // name, file representation 
     additionalNotes: string;
     order: number;
 

@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {DatePipe} from '@angular/common';
 
 // ngPrime
 import {ButtonModule, PaginatorModule} from 'primeng/primeng';
@@ -49,6 +48,9 @@ import {ProposalService} from './services/proposal.service';
 import { MockDataService } from './services/mock-data.service';
 import { ApprovalComponent } from './components/formcomponents/approval/approval.component';
 
+// pipes
+import {KeysPipe} from './pipes/keys.pipe';
+
 const AppRoutes: Routes = [
     {path: '', component: LandingPageComponent},
     {path: 'login', component: LoginComponent},
@@ -74,6 +76,8 @@ const AppRoutes: Routes = [
     ConflictOfInterestComponent,
     EconomicInterestComponent,
     ApprovalComponent,
+    KeysPipe,
+
   ],
   imports: [
     BrowserModule,
@@ -97,7 +101,7 @@ const AppRoutes: Routes = [
     DataTableModule,
     DialogModule,
   ],
-  providers: [AuthenticationService, PreawardService, ProposalService, MessageService, MockDataService, DatePipe],
+  providers: [AuthenticationService, PreawardService, ProposalService, MessageService, MockDataService, KeysPipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,7 +3,7 @@
   <li *ngFor='let stage of timeline?.stages; index as i'>
     <!-- bar -->
     <div class='bar' *ngIf='i!=0' (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)'></div>
-    <div class='icon-name-container' (click)='setCurrentStageId(stage.Id)'>
+    <div class='icon-name-container' (click)='getCurrentStage(stage.id)'>
       <!-- icon -->
       <div class='icon'></div>
       <!-- name -->
@@ -62,10 +62,10 @@
         <th>Form</th>
         <th> Status</th>
         <tr *ngFor='let form of stage.requiredForms'>
-          <td>{{form}}</td>
+          <td>{{form.key}}</td>
           <td>image</td>
         </tr>
-      </table>
+      </table> 
     </div>
     <label class='stage-title'>Required Files</label>
     <div>
@@ -74,7 +74,7 @@
         <th>Upload</th>
         <th>File on disk</th>
         <tr *ngFor='let file of stage.requiredFiles'>
-          <td>{{file}}</td>
+          <td>{{file.key}}</td>
           <td>
             <input type='file'>
           </td>
@@ -93,9 +93,9 @@
     <label>Name</label>
     <input type='text' pInputText [(ngModel)]='stage.name'>
     <label>Expected Date</label>
-    <p-calendar></p-calendar>
-    <label>Completed Date</label>
-    <p-calendar></p-calendar>
+    <p-calendar [(ngModel)] = 'stage.expectedDate'></p-calendar>
+    <label >Completed Date</label>
+    <p-calendar [(ngModel)] = 'stage.completedDate'></p-calendar>
     <label>UAS Review Required</label>
     <input type='checkbox'>
     <label>UAS Approved</label>
@@ -107,7 +107,7 @@
         <th>Form</th>
         <th>Delete</th>
         <tr *ngFor='let form of stage.requiredForms'>
-          <td>{{form}}</td>
+          <td>{{form.key}}</td>
           <td>
             <button class='button-red' (click)='handleRemoveForm(form)'>Remove</button>
           </td>
@@ -126,16 +126,16 @@
         <th>File on disk</th>
         <th>Delete</th>
         <tr *ngFor='let file of stage.requiredFiles'>
-          <td>{{file}}</td>
+          <td>{{file.key}}</td>
           <td>
             <input type='file'>
           </td>
           <td>download</td>
           <td>
-            <button class='button-red' (click)='handleRemoveFile(file)'>Remove</button>
+            <button class='button-red' (click)='handleRemoveFile(file.key)'>Remove</button>
           </td>
-        </tr>
-        <!-- <tr><td></td></tr> -->
+        </tr> 
+        <tr><td></td></tr>
       </table>
       <input type='text' #addReqFile>
       <button class='button-blue' (click)='handleAddFile(addReqFile.value)'>Add File</button>

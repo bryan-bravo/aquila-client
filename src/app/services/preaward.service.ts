@@ -40,7 +40,10 @@ user: User;
     return this.http.post<Stage>(`api/proposal/timeline/${timelineId}/stage/`, stage);
   }
   saveStage(stage): Observable<Stage> {
-     stage = JSON.parse(JSON.stringify(stage));
+    // stage.requiredFiles = {};
+    // stage.requiredForms = {};
+    console.log(stage)
+    stage = JSON.parse(JSON.stringify(stage));
     return this.http.put<Stage>(`api/timeline/stage/update/${stage.id}`, stage);
   }
   deleteStage(stageId) {
