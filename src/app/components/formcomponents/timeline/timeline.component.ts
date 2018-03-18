@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+
 import {TimeLine, Stage, FileInfo} from '../../../models/PreAward/TimeLine';
 import { MockDataService } from '../../../services/mock-data.service';
 import { PreawardService } from '../../../services/preaward.service';
 import { ProposalService } from '../../../services/proposal.service';
 import {KeysPipe} from '../../../pipes/keys.pipe';
+
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
@@ -17,10 +19,10 @@ export class TimelineComponent implements OnInit {
   dialogType: string; // view, edit/add
   preAwardForms: string[] =
   ['Intake', 'Equipment', 'Approval',
-  'Conflict Of Interest Other Investigator/Key Personnel PHS',
-  'Conflict Of Interest Other Investigator/Key Personnel NONPHS',
-  'Conflict Of Interest Principal Investigator PHS',
-  'Conflict Of Interest Principal Investigator NONPHS',
+  'COI Other Investigator/Key Personnel PHS',
+  'COI Other Investigator/Key Personnel NONPHS',
+  'COI Principal Investigator PHS',
+  'COI Principal Investigator NONPHS',
   'Statement Of Economic Interest',
  ];
  unSelectedForms: string[];
@@ -101,6 +103,7 @@ export class TimelineComponent implements OnInit {
   }
   saveStage() {
     const stage = Object.assign({}, this.stage);
+    console.log(stage)
     stage.requiredForms = this.keysPipe.backToObject(stage.requiredForms);
     stage.requiredFiles = this.keysPipe.backToObject(stage.requiredFiles);
     this.preAwardService.saveStage(stage).subscribe( (savedStage) => {
@@ -114,12 +117,12 @@ export class TimelineComponent implements OnInit {
     });
     // new stage
     if (currentStageIndex === -1) {
-      // make request to create stage and have working id
+      // make request to create stage and have working  id
       // inside of call back do all the below operations, update the new orders
-      this.stage.order = this.timeline.stages[indexToPush].order;
+      this.stage.stageOrder = this.timeline.stages[indexToPush].stageOrder;
       this.timeline.stages.forEach((stage, index, stages) => {
         if (index >= indexToPush) {
-           stages[index].order = stages[index].order + 1;
+           stages[index].stageOrder = stages[index].stageOrder + 1;
         }
       });
       this.timeline.stages.splice(indexToPush, 0, this.stage);
@@ -128,10 +131,10 @@ export class TimelineComponent implements OnInit {
       if (indexToPush === currentStageIndex || indexToPush === currentStageIndex + 1) {
       } else if (currentStageIndex < indexToPush) {
       // want to move the stage up in the timeline
-        this.stage.order = this.timeline.stages[indexToPush].order;
+        this.stage.stageOrder = this.timeline.stages[indexToPush].stageOrder;
         this.timeline.stages.forEach((stage, index, stages) => {
           if (index < indexToPush && index >= currentStageIndex) {
-            stages[index].order = stages[index].order - 1;
+            stages[index].stageOrder = stages[index].stageOrder - 1;
           }
         });
         this.timeline.stages.splice(indexToPush, 0, this.stage);
@@ -139,10 +142,10 @@ export class TimelineComponent implements OnInit {
         // make the request here to save stage and all the orders
       } else {
       // want to move the stage down the timeline
-        this.stage.order = this.timeline.stages[indexToPush].order;
+        this.stage.stageOrder = this.timeline.stages[indexToPush].stageOrder;
         this.timeline.stages.forEach((stage, index, stages) => {
           if (index >= indexToPush && index < currentStageIndex) {
-            stages[index].order = stages[index].order + 1;
+            stages[index].stageOrder = stages[index].stageOrder + 1;
           }
         });
         this.timeline.stages.splice(currentStageIndex, 1);
@@ -163,7 +166,7 @@ export class TimelineComponent implements OnInit {
       });
       this.timeline.stages.forEach((stage, index, array) => {
         if (index > currentStageIndex) {
-          array[index].order = array[index].order - 1;
+          array[index].stageOrder = array[index].stageOrder - 1;
         }
       });
       this.timeline.stages.splice(currentStageIndex,  1);

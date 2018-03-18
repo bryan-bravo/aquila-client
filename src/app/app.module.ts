@@ -17,12 +17,12 @@ import {MessageService} from 'primeng/components/common/messageservice';
 import {InputSwitchModule} from 'primeng/primeng';
 import {OverlayPanelModule} from 'primeng/primeng';
 import {ProgressBarModule} from 'primeng/primeng';
-import {TriStateCheckboxModule} from 'primeng/primeng';
 import {CalendarModule} from 'primeng/primeng';
 import {DataTableModule, SharedModule} from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
 import {InputTextareaModule} from 'primeng/components/inputtextarea/inputtextarea';
-
+import {DropdownModule} from 'primeng/components/dropdown/dropdown';
+// file info
 // generated components
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -96,10 +96,10 @@ const AppRoutes: Routes = [
     ProgressBarModule,
     PaginatorModule,
     StepsModule,
-    TriStateCheckboxModule,
     CalendarModule,
     DataTableModule,
     DialogModule,
+    DropdownModule
   ],
   providers: [AuthenticationService, PreawardService, ProposalService, MessageService, MockDataService, KeysPipe ],
   bootstrap: [AppComponent]

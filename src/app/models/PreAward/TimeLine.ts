@@ -19,7 +19,7 @@ export class Stage {
     requiredForms: any;
     requiredFiles: any; // name, file representation 
     additionalNotes: string;
-    order: number;
+    stageOrder: number;
 
 }
 export class FileInfo {
