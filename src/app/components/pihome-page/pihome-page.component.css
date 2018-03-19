@@ -4,7 +4,7 @@
   width: 80%;
   background-color: white;
   margin: 0 9.9%;
-  padding: 0 1em;
+  padding: 1em;
 }
 
 #container {
@@ -18,9 +18,7 @@
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-}
-#dash-bar> img{
-    margin-right:1em;
+  
 }
 #home {
   flex: 1;

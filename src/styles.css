@@ -55,7 +55,7 @@ body {
 .main-window {
     color: rgb(36, 36, 36);
     background-color: rgb(241, 241, 241);
-    border: 2px solid rgb(254, 220, 89);
+    border: 1px solid #2790b0;
     box-shadow: 0 0 20px #cecbcb;
     font-size: 1em;
     position: relative;
@@ -63,11 +63,10 @@ body {
 
 .main-window:hover {
     background-color: rgba(221, 221, 221, 0.795);
-    border: 2px solid rgb(241, 199, 45);
+    border: 1px solid #2790b0;
     box-shadow: 0 0 20px rgb(241, 199, 45);
     font-size: 1em;
     position: relative;
-    transform: translate(1px, 1px);
     cursor: pointer;
 }
 
@@ -92,4 +91,3 @@ body {
 .form-flex-start > *{
     margin: 4px 0;
 }
-/* blue    color: #0eb2e2; */
