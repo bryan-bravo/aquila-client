@@ -61,11 +61,11 @@ export class TimelineComponent implements OnInit {
     this.unSelectedForms = this.preAwardForms.filter( preAwardForm => {
       return this.stage.requiredForms.findIndex(form => {
         return form.key === preAwardForm;
-      });
+      }) == -1;
     });
   }
   handleAddForm(form) {
-     this.stage.requiredForms.push({'key': form, 'value': null});
+    this.stage.requiredForms.push({'key': form, 'value': null});
     this.populateunSelectedForms();
   }
   handleRemoveForm(form) {
@@ -103,10 +103,9 @@ export class TimelineComponent implements OnInit {
   }
   saveStage() {
     const stage = Object.assign({}, this.stage);
-    console.log(stage)
     stage.requiredForms = this.keysPipe.backToObject(stage.requiredForms);
     stage.requiredFiles = this.keysPipe.backToObject(stage.requiredFiles);
-    this.preAwardService.saveStage(stage).subscribe( (savedStage) => {
+    this.preAwardService.saveStage(this.timeline.id, stage).subscribe( (savedStage) => {
       this.stage = this.parseStage(savedStage);
     });
   }

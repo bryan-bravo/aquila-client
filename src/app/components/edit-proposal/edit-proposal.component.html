@@ -1,89 +1,93 @@
-<!-- this side task bar will contain all functions to edit, the models themselves will be delegated to inner components -->
-<!--  -->
 <div *ngIf='menuState' id='menu-state'>
   <div id='dashboard'>
     <!-- <label id='name'>{{proposal.proposalName}}</label> -->
-    <label >Status:</label>
-    <label >Status</label>
+    <label>Status:</label>
+    <label>Status</label>
     <button class='button' [routerLink]="['/pipreaward']">Pre Award</button>
     <button class='button'> Help</button>
     <button class='button-blue'>Submit</button>
 
   </div>
-  <div class='required-forms' id='intake' (click)='setCurrentForm("Intake")'>
-    <p class='title'>Intake Form </p>
-    <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
-      earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
-    <label class='required-indicator required-form'>Required</label>
+  <div id = 'form-container'>
+    <div class='required-forms' id='intake' (click)='setCurrentForm("Intake")'>
+      <p class='title'>Intake Form </p>
+      <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
+        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
+      <label class='required-indicator required-form'>Required</label>
 
-  </div>
-  <div class='required-forms' id='budget' (click)='setCurrentForm("Budget")'>
-    <p class='title'>Budget Form</p>
-    <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
     </div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
-      earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
-    <label class='required-indicator required-form'>Required</label>
+    <div class='required-forms' id='budget' (click)='setCurrentForm("Budget")'>
+      <p class='title'>Budget Form</p>
+      <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
+        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
+      <label class='required-indicator required-form'>Required</label>
 
-  </div>
-  <div class='required-forms' id='timeline' (click)='setCurrentForm("Timeline")'>
-    <p class='title'>Timeline</p>
-    <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
-      earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
+    </div>
+    <div class='required-forms' id='timeline' (click)='setCurrentForm("Timeline")'>
+      <p class='title'>Timeline</p>
+      <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
+        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
 
-  </div>
-  <div class='required-forms' id='approval' (click)='setCurrentForm("Approval")'>
-    <p class='title'>Approval Form</p>
-    <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
-      earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
+    </div>
+    <div class='required-forms' id='approval' (click)='setCurrentForm("Approval")'>
+      <p class='title'>Approval Form</p>
+      <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
+        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
 
-    <label class='required-indicator required-form'>Required</label>
+      <label class='required-indicator required-form'>Required</label>
 
-  </div>
-  <div id='optional-forms-container'>
-    <div (click)='setCurrentForm("Equipment")'>
+    </div>
+    <div class='required-forms' (click)='setCurrentForm("Equipment")'>
       <p class='title'>Equipment</p>
       <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
       </div>
-      <p>Lorem ipsum dolor sit amet </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
+        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque. </p>
       <label class='optional-indicator optional-form'>Optional</label>
     </div>
-    <div (click)='setCurrentForm("coi-oi-phs")'>
+    <div class='required-forms' (click)='setCurrentForm("coi-oi-phs")'>
       <p class='title'>COI OI KP PHS </p>
       <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
       </div>
-      <p>Lorem ipsum dolor sit amet</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
+        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
       <label class='optional-indicator optional-form'>Optional</label>
     </div>
-    <div (click)='setCurrentForm("coi-oi-nonphs")'>
+    <div class='required-forms' (click)='setCurrentForm("coi-oi-nonphs")'>
       <p class='title'>COI OI KP NONPHS</p>
       <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
       </div>
-      <p>Lorem ipsum dolor sit amet </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
+        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
       <label class='optional-indicator optional-form'>Optional</label>
     </div>
-    <div (click)='setCurrentForm("coi-pi-phs")'>
+    <div class='required-forms' (click)='setCurrentForm("coi-pi-phs")'>
       <p class='title'>COI PI PHS</p>
       <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
       </div>
-      <p>Lorem ipsum dolor sit amet </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
+        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
       <label class='optional-indicator optional-form'>Optional</label>
     </div>
-    <div (click)='setCurrentForm("coi-pi-nonphs")'>
+    <div class='required-forms' (click)='setCurrentForm("coi-pi-nonphs")'>
       <p class='title'>COI PI NON PHS</p>
       <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
       </div>
-      <p>Lorem ipsum dolor sit amet </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
+        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
       <label class='optional-indicator optional-form'>Optional</label>
     </div>
-    <div (click)='setCurrentForm("economic-interest")'>
+    <div class='required-forms' (click)='setCurrentForm("economic-interest")'>
       <p class='title'>PI Statement Of Economic Interest</p>
       <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
       </div>
-      <p>Lorem ipsum dolor sit amet </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
+        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
       <label class='optional-indicator optional-form'>Optional</label>
     </div>
   </div>

@@ -39,10 +39,10 @@ user: User;
     const stage = JSON.parse(JSON.stringify(new Stage()));
     return this.http.post<Stage>(`api/proposal/timeline/${timelineId}/stage/`, stage);
   }
-  saveStage(stage): Observable<Stage> {
-
+  saveStage(timelineId, stage): Observable<Stage> {
+    // console.log(stage)
     stage = JSON.parse(JSON.stringify(stage));
-    return this.http.put<Stage>(`api/timeline/stage/update/${stage.id}`, stage);
+    return this.http.put<Stage>(`api/timeline/${timelineId}/stage/update/${stage.id}`, stage);
   }
   deleteStage(stageId) {
     return this.http.delete(`api/timeline/stage/${stageId}`);
