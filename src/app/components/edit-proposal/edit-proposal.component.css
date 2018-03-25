@@ -14,15 +14,18 @@
 }
 
 #dashboard {
-  width:100%;
+  width: 100%;
   border-bottom: 1px solid black;
-  padding: 5px;
-  margin-bottom: 1em;
+  margin-bottom:1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-#dashboard>p {
-  padding: 0;
-}
+#name{
+    flex: 1;
+  }
 
 /* grid-area: <name> | <row-start> / <column-start> / <row-end> / <column-end>; */
 #form-container {

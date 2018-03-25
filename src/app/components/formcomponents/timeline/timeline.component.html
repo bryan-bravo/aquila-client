@@ -1,4 +1,9 @@
-<h3>Timeline</h3>
+<div class='dash-bar'>
+  <h3 class='page-title'>Timeline</h3>
+  <button pButton (click)='setDialogType("view-basic-timeline")' label='Timeline Info'></button>
+  <button pButton (click)='handleAddStage()' label='Add Stage' icon='fa-plus' iconPos='right'></button>
+
+</div>
 <ul id='timeline-bar'>
   <li *ngFor='let stage of timeline?.stages; index as i'>
     <!-- bar -->
@@ -9,10 +14,7 @@
       <!-- name -->
       <label class='name'>{{stage.name}}</label>
     </div>
-
   </li>
-  <button (click)='handleAddStage()'>Add Stage</button>
-
 </ul>
 <div id='stage-content'>
   <!-- view basic timeline info -->
@@ -30,7 +32,8 @@
     <p>{{timeline.sponsorDueDate }}</p>
     <label>Final Signatures Deadline</label>
     <p>{{timeline.finalSign}}</p>
-    <button class='button-blue' (click)='setDialogType("edit-basic-timeline")'>Edit</button>
+    <button pButton class='ui-button-warning' (click)='setDialogType("edit-basic-timeline")' label='Edit' icon='fa-edit'
+      iconPos='right'></button>
   </div>
   <!-- edit timeline info -->
   <div class='form-flex-start' *ngIf='dialogType=="edit-basic-timeline"'>
@@ -47,7 +50,8 @@
     <p-calendar [(ngModel)]='timeline.sponsorDueDate'></p-calendar>
     <label>Final Signatures Deadline</label>
     <p-calendar [(ngModel)]='timeline.finalSign'></p-calendar>
-    <button class='button-blue' (click)='saveTimeline()'>Save Timeline</button>
+    <button pButton class='ui-button-success' (click)='saveTimeline()' label='Save Timeline'></button>
+
   </div>
   <!-- show a stage -->
   <div class='form-flex-start' *ngIf='dialogType=="view-stage"'>
@@ -56,88 +60,102 @@
     <label>{{stage.expectedDate}}</label>
     <label>Completed Date</label>
     <label>{{stage.completedDate}}</label>
-      <p-dataTable [value]='stage.requiredForms'>
-        <p-header>Required Forms</p-header>
-        <p-column field='key' header='Form'></p-column>
-        <p-column header='Status'></p-column>
-      </p-dataTable>
-      <p-dataTable [value]='stage.requiredFiles'>
-        <p-header>Required Files</p-header>
-        <p-column field='key' header='File'></p-column>
-        <p-column header='Upload'>
-          <ng-template pTemplate='body'>
-            <input type='file'>
-          </ng-template>
-        </p-column>
-        <p-column field='value' header='Download'>
-          <ng-template pTemplate='body'>
-            Download
-          </ng-template>
-        </p-column>
-      </p-dataTable>
-    <label class='stage-title'>Additional Notes</label>
+    <p-dataTable [value]='stage.requiredForms'>
+      <p-header>Required Forms</p-header>
+      <p-column field='key' header='Form'></p-column>
+      <p-column header='Status'></p-column>
+    </p-dataTable>
+    <p-dataTable [value]='stage.requiredFiles'>
+      <p-header>Required Files</p-header>
+      <p-column field='key' header='File'></p-column>
+      <p-column header='Upload'>
+        <ng-template pTemplate='body'>
+          <input type='file'>
+        </ng-template>
+      </p-column>
+      <p-column field='value' header='Download'>
+        <ng-template pTemplate='body'>
+          Download
+        </ng-template>
+      </p-column>
+    </p-dataTable>
+    <label class='form-title'>Additional Notes</label>
     <p>{{stage.additionalNotes}}</p>
-
-    <button class='button-blue' (click)='setDialogType("edit-stage")'>Edit</button>
+    <button pButton class='ui-button-warning edit ' (click)='setDialogType("edit-stage")' label='Edit' icon='fa-edit' iconPos='right'></button>
   </div>
   <!-- edit a stage -->
   <div class='form-flex-start window' *ngIf='dialogType=="edit-stage"'>
     <h2>{{stage.name}}</h2>
     <input type='text' pInputText [(ngModel)]='stage.name'>
-    <label>Expected Date</label>
-    <p-calendar [(ngModel)]='stage.expectedDate' [showIcon]='true'></p-calendar>
-    <label>Completed Date</label>
-    <p-calendar [(ngModel)]='stage.completedDate' [showIcon]='true'></p-calendar>
-    <label>UAS Review Required</label>
-    <input type='checkbox'>
-    <label>UAS Approved</label>
-    <input type='checkbox'>
+    <div class='stage-general-info'>
+      <div>
+        <label>Expected Date</label>
+        <p-calendar [(ngModel)]='stage.expectedDate' [showIcon]='true'></p-calendar>
+      </div>
+      <div>
+        <label>Completed Date</label>
+        <p-calendar [(ngModel)]='stage.completedDate' [showIcon]='true'></p-calendar>
+      </div>
+      <div>
+        <label>UAS Review Required</label>
+        <input type='checkbox'>
+      </div>
+      <div>
+        <label>UAS Approved</label>
+        <input type='checkbox'>
+      </div>
+    </div>
     <!-- forms -->
-      <p-dataTable [value] = 'stage.requiredForms' [immutable]='false'>
-          <p-header>Required Forms</p-header>
-          <p-column field='key' header='Form'></p-column>
-          <p-column header='Status'></p-column>
-          <p-column header = 'Delete'>
-            <ng-template pTemplate='body'>
-              <button class='button-red' (click) = 'handleRemoveForm(key)'>Remove</button>
-            </ng-template>
-          </p-column>
-          <p-footer>
-              <select #form>
-                  <option *ngFor='let form of unSelectedForms'>{{form}}</option>
-                </select>
-                <button class='button-blue' (click)='handleAddForm(form.value)'> Add Form</button>
-          </p-footer>
-        </p-dataTable>
-        <!-- files -->
-      <p-dataTable [value]='stage.requiredFiles' [immutable]='false'>
-          <p-header>Required Files</p-header>
-          <p-column field='key' header='File'></p-column>
-          <p-column header='Upload'>
-            <ng-template pTemplate='body'>
-              <input type='file'>
-            </ng-template>
-          </p-column>
-          <p-column field='value' header='Download'>
-            <ng-template pTemplate='body'>
-              Download
-            </ng-template>
-          </p-column>
-          <p-column field='key' header='Delete'>
-              <ng-template pTemplate='body'>
-                  <button class='button-red' (click)='handleRemoveFile(key)'>Remove</button>
-                </ng-template>
-            </p-column>
-            <p-footer>            
-                <input type='text' #addReqFile>
-                <button class='button-blue' (click)='handleAddFile(addReqFile.value)'>Add File</button>
-            </p-footer>
-        </p-dataTable>
-    <label class='stage-title'>Additional Notes</label>
+    <p-dataTable [value]='stage.requiredForms' [immutable]='false'>
+      <p-header>Required Forms</p-header>
+      <p-column field='key' header='Form'></p-column>
+      <p-column header='Status'></p-column>
+      <p-column header='Delete'>
+        <ng-template pTemplate='body'>
+          <button pButton class='ui-button-danger' (click)='handleRemoveForm(key)' label='Delete' icon='fa-minus' iconPos='right'></button>
+        </ng-template>
+      </p-column>
+      <p-footer>
+        <select #form>
+          <option *ngFor='let form of unSelectedForms'>{{form}}</option>
+        </select>
+        <button pButton (click)='handleAddForm(form.value)' label='Form' icon='fa-plus' iconPos='right'></button>
+      </p-footer>
+    </p-dataTable>
+    <!-- files -->
+    <p-dataTable [value]='stage.requiredFiles' [immutable]='false'>
+      <p-header>Required Files</p-header>
+      <p-column field='key' header='File'></p-column>
+      <p-column header='Upload'>
+        <ng-template pTemplate='body'>
+          <input type='file'>
+        </ng-template>
+      </p-column>
+      <p-column field='value' header='Download'>
+        <ng-template pTemplate='body'>
+          Download
+        </ng-template>
+      </p-column>
+      <p-column field='key' header='Delete'>
+        <ng-template pTemplate='body'>
+          <button pButton class='ui-button-danger' (click)='handleRemoveFile(key)' label='Delete' icon='fa-minus' iconPos='right'></button>
+        </ng-template>
+      </p-column>
+      <p-footer>
+        <input pInputText type='text' #addReqFile>
+        <button pButton (click)='handleAddFile(addReqFile.value)' label='File' icon='fa-plus' iconPos='right'></button>
+      </p-footer>
+    </p-dataTable>
+    <label class='form-title'>Additional Notes</label>
     <textarea pInputTextarea [(ngModel)]="stage.additionalNotes" autoResize="autoResize"></textarea>
-    <label class='stage-title'>Order in Timeline</label>
-    <label draggable='true'>Drag me to reorder</label>
-    <button class='button-blue' (click)='saveStage()'> Save </button>
-    <button class='button-red' (click)='deleteStage()'> Delete</button>
+    <label class='form-title'>Order in Timeline</label>
+    <div class='drag-reorder' draggable='true'>
+      <div class='icon drag-icon'></div>
+      <label>Drag me to reorder</label>
+    </div>
+    <div class='button-footers'>
+      <button pButton class='ui-button-success' (click)='saveStage()' label='Save'></button>
+      <button pButton class='ui-button-danger' (click)='deleteStage()' label='Delete'></button>
+    </div>
   </div>
 </div>

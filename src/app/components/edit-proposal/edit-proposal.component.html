@@ -1,11 +1,9 @@
 <div *ngIf='menuState' id='menu-state'>
   <div id='dashboard'>
-    <!-- <label id='name'>{{proposal.proposalName}}</label> -->
-    <label>Status:</label>
-    <label>Status</label>
-    <button class='button' [routerLink]="['/pipreaward']">Pre Award</button>
-    <button class='button'> Help</button>
-    <button class='button-blue'>Submit</button>
+    <h3 id='name'>{{proposal?.proposalName}}</h3>
+    <button pButton [routerLink]="['/pipreaward']" label='Pre Award'></button>
+    <button pButton label='Help' icon='fa-question' iconPos='right'></button>
+    <button pButton label='Submit for Review' class="ui-button-success"></button>
 
   </div>
   <div id = 'form-container'>
@@ -17,7 +15,7 @@
       <label class='required-indicator required-form'>Required</label>
 
     </div>
-    <div class='required-forms' id='budget' (click)='setCurrentForm("Budget")'>
+    <!-- <div class='required-forms' id='budget' (click)='setCurrentForm("Budget")'>
       <p class='title'>Budget Form</p>
       <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
       </div>
@@ -25,7 +23,7 @@
         earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
       <label class='required-indicator required-form'>Required</label>
 
-    </div>
+    </div> -->
     <div class='required-forms' id='timeline' (click)='setCurrentForm("Timeline")'>
       <p class='title'>Timeline</p>
       <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
@@ -96,7 +94,7 @@
 <div *ngIf='routerState' id='router-container'>
   <button id='menu-return' class='button-blue' (click)='changeState()'>Menu</button>
   <app-intake *ngIf='currentForm=="Intake"'></app-intake>
-  <app-budget *ngIf='currentForm=="Budget"'></app-budget>
+  <!-- <app-budget *ngIf='currentForm=="Budget"'></app-budget> -->
   <app-equipment *ngIf='currentForm=="Equipment"'></app-equipment>
   <app-approval *ngIf='currentForm=="Approval"'></app-approval>
   <app-timeline *ngIf='currentForm=="Timeline"'></app-timeline>

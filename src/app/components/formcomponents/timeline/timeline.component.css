@@ -4,16 +4,23 @@
   height: 100%;
   background-color: white;
 }
+.dash-bar {
+  width: 100%;
+  border-bottom: 1px solid black;
+  margin-bottom:1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
 
-h3 {
-  margin-top: 0;
-  padding-top: 10px;
+.page-title {
+    flex: 1;
 }
 
 #timeline-bar {
   height: 100%;
   width: 40%;
-  /* border:1px solid blue; */
   float: left;
   margin: 0;
 }
@@ -55,7 +62,14 @@ li {
 #stage-content {
   height: 100%;
 }
-
-.stage-name{
-  
+.stage-general-info {
+  display:grid;
+  grid-template-columns: 1fr 1fr; 
+  grid-gap: .5em;
+}
+.drag-icon {
+  float:left
+}
+.button-footers, .edit {
+  align-self: flex-end;
 }

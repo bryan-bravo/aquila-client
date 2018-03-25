@@ -79,8 +79,9 @@ body {
 /* forms */
 .form-title {
     width: 100%;
-    background-color: rgb(254, 220, 89);
-    border: 2px solid #ffd400;
+    background-color: rgb(39, 144, 176);
+    padding: 5px;
+    color: white;
 }
 .form-flex-start {
     display: flex;
