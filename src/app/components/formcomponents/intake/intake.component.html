@@ -40,16 +40,18 @@
     </div>
     <p class='form-title'>PARTICIPATION SUPPORT</p>
     <label>Do you anticipate any participation stipends as part of your proposal?</label>
-    <input type='checkbox' [(ngModel)]='intakeForm.anticipateStipend'>
+    <p-checkbox  [(ngModel)]="intakeForm.anticipateStipend" binary='true'></p-checkbox>
+
     <!-- if stipend is true -->
     <div id='anticipate-stipend-true' *ngIf='intakeForm.anticipateStipend'>
       <label>Please identify the type of Stipend:Study Participant, Student Tuition, Travel.. etc, and provide your Participation
         Stipend eligibility criteria and selection process below.</label>
       <input type="text" [(ngModel)]='intakeForm.stipend' pInputText>
       <label>Faculty Student Research/Creative Activities</label>
-      <input type='checkbox' [(ngModel)]='intakeForm.facultyStudentResearchCreativeActivities'>
+      <p-checkbox  [(ngModel)]="intakeForm.facultyStudentResearchCreativeActivities" binary='true'></p-checkbox>
       <label>Will this project actively involve students in Research</label>
-      <input type='checkbox' [(ngModel)]='intakeForm.studentsInvolved'>
+      <p-checkbox binary='true' [(ngModel)]="intakeForm.studentsInvolved" ></p-checkbox>
+
       <!-- if rsca is true -->
       <div class='rsca-actvities' *ngIf='intakeForm.studentsInvolved'>
         <p>Please answer the following</p>
@@ -59,23 +61,23 @@
         <input type="text" [(ngModel)]='intakeForm.noOfGradStudents' pInputText>
         <p>What type of RSCA activities will be incorporated? (Check all that apply)</p>
         <label>Laboratory Assistance</label>
-        <input type='checkbox' [(ngModel)]='intakeForm.laboratoryAssistance'>
+         <p-checkbox binary='true' [(ngModel)]='intakeForm.laboratoryAssistance'></p-checkbox>
         <label>Data Collection</label>
-        <input type='checkbox' [(ngModel)]='intakeForm.dataCollection'>
+         <p-checkbox binary='true' [(ngModel)]='intakeForm.dataCollection'></p-checkbox>
         <label>Report Writing</label>
-        <input type='checkbox' [(ngModel)]='intakeForm.reportWriting'>
+         <p-checkbox binary='true' [(ngModel)]='intakeForm.reportWriting'></p-checkbox>
         <label>Literature Review</label>
-        <input type='checkbox' [(ngModel)]='intakeForm.literatureReview'>
+         <p-checkbox binary='true' [(ngModel)]='intakeForm.literatureReview'></p-checkbox>
         <label>Coding Or Data Entry</label>
-        <input type='checkbox' [(ngModel)]='intakeForm.codingOrDataEntry'>
+         <p-checkbox binary='true' [(ngModel)]='intakeForm.codingOrDataEntry'></p-checkbox>
         <label>Presentation</label>
-        <input type='checkbox' [(ngModel)]='intakeForm.presentations'>
+         <p-checkbox binary='true' [(ngModel)]='intakeForm.presentations'></p-checkbox>
         <label>Archival Research</label>
-        <input type='checkbox' [(ngModel)]='intakeForm.archivalResearch'>
+         <p-checkbox binary='true' [(ngModel)]='intakeForm.archivalResearch'></p-checkbox>
         <label>Data Analysis</label>
-        <input type='checkbox' [(ngModel)]='intakeForm.dataAnalysis'>
+         <p-checkbox binary='true' [(ngModel)]='intakeForm.dataAnalysis'></p-checkbox>
         <label>Other Activities</label>
-        <input type='checkbox' [(ngModel)]='intakeForm.otherActvities'>
+         <p-checkbox binary='true' [(ngModel)]='intakeForm.otherActvities'></p-checkbox>
         <!-- otherActivitiesList:String[]; -->
       </div>
     </div>
@@ -126,9 +128,9 @@
       <label> Agency F&A (Indirect) Cost Rate Percentage</label>
       <input type="text" pInputText [(ngModel)]='intakeForm.agencyCostRatePercentage'>
       <label>Is costsharing required by the agency?</label>
-      <input type='checkbox' [(ngModel)]='intakeForm.agencyCostSharing'>
+       <p-checkbox binary='true' [(ngModel)]='intakeForm.agencyCostSharing'></p-checkbox>
       <label>Is costsharing requested by the PI?</label>
-      <input type='checkbox' [(ngModel)]='intakeForm.piCostSharing'>
+       <p-checkbox binary='true' [(ngModel)]='intakeForm.piCostSharing'></p-checkbox>
       <label> Count of computers to be requested?</label>
       <input type="text" pInputText [(ngModel)]='intakeForm.computersRequested'>
       <label class='form-title'> Equipment to Be Requested?</label>
@@ -170,32 +172,32 @@
   <!-- other -->
   <div *ngIf='index==3' id='other'>
     <p class='form-title'>OTHER COMPLIANCES</p>
-    <label for='hs'>Human Subjects (If yes, consult with IRB Compliance Specialist [Elia Amaro, x3798])</label>
-    <input type='checkbox' id='hs' [(ngModel)]='intakeForm.humanSubjects'>
-    <label for='va'>Vertebrate Animals (If yes, consult with IACUC Compliance Specialist [Elia Amaro, x3798])</label>
-    <input type='checkbox' id='va' [(ngModel)]='intakeForm.vertebrateAnimals'>
+    <label>Human Subjects (If yes, consult with IRB Compliance Specialist [Elia Amaro, x3798])</label>
+     <p-checkbox binary='true' [(ngModel)]='intakeForm.humanSubjects'></p-checkbox>
+    <label>Vertebrate Animals (If yes, consult with IACUC Compliance Specialist [Elia Amaro, x3798])</label>
+     <p-checkbox binary='true' [(ngModel)]='intakeForm.vertebrateAnimals'></p-checkbox>
     <!-- <label for='qf'> Questionare Field</label>
         <input id='qf' type="text" pInputText>
         <label for='ct'> Category Title</label>
         <input id='ct' type="text" pInputText> -->
     <p class='form-title'> OTHER SERVICES (indicate which of the following services you will need for this proposal)</p>
-    <label for='awpd'>Assistance With Proposal Development (e.g,conceptualization, writing, editing)</label>
+    <label >Assistance With Proposal Development (e.g,conceptualization, writing, editing)</label>
     <label>If yes, contact UAS Grants & Contracts and/or the Associate Vice President for Research at least one month in advance</label>
-    <input type='checkbox' id='awpd' [(ngModel)]='intakeForm.assistanceWithProposalDevelopment'>
+     <p-checkbox binary='true' [(ngModel)]='intakeForm.assistanceWithProposalDevelopment'></p-checkbox>
     <label for='ta'>Technical Assistance</label>
-    <input type='checkbox' id='ta' [(ngModel)]='intakeForm.technicalAssistance'>
-    <label for='losp'>Letter Of Support President</label>
-    <input type='checkbox' id='losp' [(ngModel)]='intakeForm.letterOfSupportPresident'>
-    <label for='lospr'>Letter Of Support Provost</label>
-    <input type='checkbox' id='lospr' [(ngModel)]='intakeForm.letterOfSupportProvost'>
-    <label for='losavpor'>Letter Of Support Associate VP Of Research</label>
-    <input type='checkbox' id='losavpor' [(ngModel)]='intakeForm.letterOfSupportAssocVPOfResearch'>
-    <label for='dofdp'>Duplication Of Final Document Package</label>
-    <input type='checkbox' id='dofdp' [(ngModel)]='intakeForm._duplicationfFinalDocumentPackage'>
-    <label for='noc'> Number Of Copies</label>
-    <input id='noc' type="text" [(ngModel)]='intakeForm.noOfCopies' pInputText>
+     <p-checkbox binary='true' [(ngModel)]='intakeForm.technicalAssistance'></p-checkbox>
+    <label>Letter Of Support President</label>
+     <p-checkbox binary='true'  [(ngModel)]='intakeForm.letterOfSupportPresident'></p-checkbox>
+    <label>Letter Of Support Provost</label>
+     <p-checkbox binary='true' [(ngModel)]='intakeForm.letterOfSupportProvost'></p-checkbox>
+    <label>Letter Of Support Associate VP Of Research</label>
+     <p-checkbox binary='true' [(ngModel)]='intakeForm.letterOfSupportAssocVPOfResearch'></p-checkbox>
+    <label>Duplication Of Final Document Package</label>
+     <p-checkbox binary='true' [(ngModel)]='intakeForm._duplicationfFinalDocumentPackage'></p-checkbox>
+    <label> Number Of Copies</label>
+    <input type="text" [(ngModel)]='intakeForm.noOfCopies' pInputText>
     <p class='form-title'>PROJECT SUMMARY Please provide a brief project summary, scope of work, or abstract, of your proposal</p>
-    <input id='s' type="text" [(ngModel)]='intakeForm.summary' pInputText>
+    <input type="text" [(ngModel)]='intakeForm.summary' pInputText>
   </div>
   <!-- arrows -->
   <app-form-footer [index]='index' [length]='breadCrumbStrings.length' (newIndex)='updateIndex($event)'></app-form-footer>
@@ -230,7 +232,7 @@
       <label>Projected Percent Of Time At Site</label>
       <input pInputText [(ngModel)]="projectLocation.projectedPercentOfTimeAtState" />
       <label>Will an on campus space or rental agreement need to be arranged?</label>
-      <input type='checkbox' [(ngModel)]='projectLocation.onCampusSpaceOrOnCampusRentalNeeded'>
+       <p-checkbox binary='true' [(ngModel)]='projectLocation.onCampusSpaceOrOnCampusRentalNeeded'></p-checkbox>
     </div>
     <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="intakeInnerClass=='additionalparty'">
       <label>Party Name</label>

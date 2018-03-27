@@ -50,6 +50,11 @@ export class TimelineComponent implements OnInit {
 
   }
   saveTimeline() {
+    // map forms back to objects
+    // map files back to objects
+    
+    // stage.requiredForms = this.keysPipe.backToObject(stage.requiredForms);
+    // stage.requiredFiles = this.keysPipe.backToObject(stage.requiredFiles);
     this.preAwardService.updateTimeline(this.proposalId, this.timeline).subscribe((timeline) => {
       this.proposalService.updateTimeline(this.timeline);
       this.timeline = this.parseDates(timeline);
@@ -156,21 +161,17 @@ export class TimelineComponent implements OnInit {
     // console.log(this.timeline.stages);
   }
   deleteStage() {
-  // make delete request if successful, sort stage orders, update stage orders
-    if (this.editingNewStage) {
-      // make the request
-    } else {
-      const currentStageIndex = this.timeline.stages.findIndex( (stage) => {
-        return this.stage == stage;
+    // make delete request if successful, sort stage orders, update stage orders
+      this.preAwardService.deleteStage(this.stage.id).subscribe( response => {
+        // if successful
+        const currentStageIndex = this.timeline.stages.findIndex( (stage) => {
+          return this.stage == stage;
+        });
+        this.timeline.stages.splice(currentStageIndex,  1);
+        this.setDialogType('view-basic-timeline');  
       });
-      this.timeline.stages.forEach((stage, index, array) => {
-        if (index > currentStageIndex) {
-          array[index].stageOrder = array[index].stageOrder - 1;
-        }
-      });
-      this.timeline.stages.splice(currentStageIndex,  1);
-    }
   }
+
   // helper functions
   getCurrentStage(stageId) {
     const stageIndex = this.timeline.stages.findIndex((stage) => {

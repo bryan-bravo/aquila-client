@@ -32,6 +32,7 @@ user: User;
   }
   // timeline
   updateTimeline(proposalId, timeline): Observable<TimeLine> {
+    // backend ignores stages for update timeline
       return this.http.put<TimeLine>(`api//proposal/${proposalId}/timeline/${timeline.id}`, JSON.parse(JSON.stringify(timeline)));
   }
   // stage

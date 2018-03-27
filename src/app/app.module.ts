@@ -22,6 +22,8 @@ import {DataTableModule, SharedModule} from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
 import {InputTextareaModule} from 'primeng/components/inputtextarea/inputtextarea';
 import {DropdownModule} from 'primeng/components/dropdown/dropdown';
+import {CheckboxModule} from 'primeng/primeng';
+
 // file info
 // generated components
 import { AppComponent } from './app.component';
@@ -99,7 +101,8 @@ const AppRoutes: Routes = [
     CalendarModule,
     DataTableModule,
     DialogModule,
-    DropdownModule
+    DropdownModule,
+    CheckboxModule
   ],
   providers: [AuthenticationService, PreawardService, ProposalService, MessageService, MockDataService, KeysPipe ],
   bootstrap: [AppComponent]
