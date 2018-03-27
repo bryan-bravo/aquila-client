@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgClass} from '@angular/common';
 
 import {TimeLine, Stage, FileInfo} from '../../../models/PreAward/TimeLine';
 import { MockDataService } from '../../../services/mock-data.service';
