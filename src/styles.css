@@ -92,3 +92,9 @@ body {
 .form-flex-start > *{
     margin: 4px 0;
 }
+.indent {
+    padding-left:1em;
+}
+.ui-datatable {
+    margin-top:.5em;
+}

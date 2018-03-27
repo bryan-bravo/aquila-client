@@ -7,7 +7,7 @@
     <div [ngStyle]='setProgressBar(34)'></div>
   </div>
   <!-- first page A,B,C -->
-  <div *ngIf='index==0' id='general-info'>
+  <div *ngIf='index==0' class='form-flex-start'>
     <p class='form-title'>General Information</p>
     <label>Principal Investigator</label>
     <input type="text" [(ngModel)]='intakeForm.principleInvestigator' pInputText>
@@ -43,7 +43,7 @@
     <p-checkbox  [(ngModel)]="intakeForm.anticipateStipend" binary='true'></p-checkbox>
 
     <!-- if stipend is true -->
-    <div id='anticipate-stipend-true' *ngIf='intakeForm.anticipateStipend'>
+    <div class='form-flex-start indent' *ngIf='intakeForm.anticipateStipend'>
       <label>Please identify the type of Stipend:Study Participant, Student Tuition, Travel.. etc, and provide your Participation
         Stipend eligibility criteria and selection process below.</label>
       <input type="text" [(ngModel)]='intakeForm.stipend' pInputText>
@@ -53,7 +53,7 @@
       <p-checkbox binary='true' [(ngModel)]="intakeForm.studentsInvolved" ></p-checkbox>
 
       <!-- if rsca is true -->
-      <div class='rsca-actvities' *ngIf='intakeForm.studentsInvolved'>
+      <div class='form-flex-start indent' *ngIf='intakeForm.studentsInvolved'>
         <p>Please answer the following</p>
         <label> Number Of Undergrad Students</label>
         <input type="text" [(ngModel)]='intakeForm.noOfUnderGradStudents' pInputText>
@@ -124,7 +124,7 @@
   <!-- GHI -->
   <div *ngIf='index==2' id='compliances'>
     <p class='form-title'>BUDGET (if possible, bring a draft and budget justification to the first meeting with UAS Grants and Contracts)</p>
-    <div id='budget'>
+    <div class='form-flex-start'>
       <label> Agency F&A (Indirect) Cost Rate Percentage</label>
       <input type="text" pInputText [(ngModel)]='intakeForm.agencyCostRatePercentage'>
       <label>Is costsharing required by the agency?</label>
@@ -170,7 +170,7 @@
     </p-dataTable> -->
   </div>
   <!-- other -->
-  <div *ngIf='index==3' id='other'>
+  <div *ngIf='index==3' class='form-flex-start'>
     <p class='form-title'>OTHER COMPLIANCES</p>
     <label>Human Subjects (If yes, consult with IRB Compliance Specialist [Elia Amaro, x3798])</label>
      <p-checkbox binary='true' [(ngModel)]='intakeForm.humanSubjects'></p-checkbox>
