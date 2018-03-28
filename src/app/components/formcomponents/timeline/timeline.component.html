@@ -7,11 +7,11 @@
 <ul id='timeline-bar'>
   <!-- add to beginning of timeline -->
   <li *ngIf='dragging'>
-    <div class='bar' [ngClass]='{"bar-drag-over":draggingOverTimeline}' (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)' (dragenter)='setDragOverTimeline(true)'></div>
+    <div class='bar' appTimelineBar (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)'></div>
   </li>
   <li *ngFor='let stage of timeline?.stages; index as i'>
     <!-- bar -->
-    <div class='bar' *ngIf='i!=0' (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)' [ngClass]='{"barCompleted": stage.uasReviewed, "bar-drag-over":draggingOverTimeline}'></div>
+    <div class='bar' appTimelineBar *ngIf='i!=0' (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)' [ngClass]='{"barCompleted": stage.uasReviewed}'></div>
     <div class='icon-name-container' (click)='getCurrentStage(stage.id)' >
       <!-- icon -->
       <div class='icon' [ngClass]="{'iconCompleted': stage.uasReviewed}"></div>
@@ -21,7 +21,7 @@
   </li>
   <!-- add to end of timeline -->
   <li *ngIf='dragging'>
-    <div class='bar' [ngClass]='{"bar-drag-over":draggingOverTimeline}' (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)' (dragenter)='setDragOverTimeline(true)'></div>
+    <div class='bar' appTimelineBar (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)'></div>
   </li>
 </ul>
 <div id='stage-content'>

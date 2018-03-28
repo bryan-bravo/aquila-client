@@ -52,6 +52,7 @@ import { ApprovalComponent } from './components/formcomponents/approval/approval
 
 // pipes
 import {KeysPipe} from './pipes/keys.pipe';
+import { TimelineBarDirective } from './directives/timeline-bar.directive';
 
 const AppRoutes: Routes = [
     {path: '', component: LandingPageComponent},
@@ -79,6 +80,7 @@ const AppRoutes: Routes = [
     EconomicInterestComponent,
     ApprovalComponent,
     KeysPipe,
+    TimelineBarDirective,
 
   ],
   imports: [
@@ -104,7 +106,15 @@ const AppRoutes: Routes = [
     DropdownModule,
     CheckboxModule
   ],
-  providers: [AuthenticationService, PreawardService, ProposalService, MessageService, MockDataService, KeysPipe ],
+  providers: [
+    AuthenticationService,
+    PreawardService,
+    ProposalService,
+    MessageService,
+    MockDataService,
+    KeysPipe,
+    TimelineBarDirective
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
