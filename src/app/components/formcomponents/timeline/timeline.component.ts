@@ -17,6 +17,8 @@ export class TimelineComponent implements OnInit {
   proposalId: number;
   stage: Stage; // stage to be manipulated for edit and new
   editingNewStage: boolean;
+  dragging: boolean;
+  draggingOverTimeline: boolean;
   dialogType: string; // view, edit/add
   preAwardForms: string[] =
   ['Intake', 'Equipment', 'Approval',
@@ -40,25 +42,23 @@ export class TimelineComponent implements OnInit {
   }
   // timeline
   populateTimeLine() {
-  const obj = this.proposalService.getTimeline();
+    const obj = this.proposalService.getTimeline();
     this.timeline = this.parseDates(obj.timeline);
     // parse the object maps into iterables
     this.timeline.stages.forEach((stage, i, stages) => {
         stages[i] = this.parseStage(stage);
     });
-
+    this.dragging = false;
+    this.draggingOverTimeline = false;
     this.proposalId = obj.proposalId;
 
   }
   saveTimeline() {
-    // map forms back to objects
-    // map files back to objects
-    
-    // stage.requiredForms = this.keysPipe.backToObject(stage.requiredForms);
-    // stage.requiredFiles = this.keysPipe.backToObject(stage.requiredFiles);
-    this.preAwardService.updateTimeline(this.proposalId, this.timeline).subscribe((timeline) => {
-      this.proposalService.updateTimeline(this.timeline);
-      this.timeline = this.parseDates(timeline);
+    this.preAwardService.updateTimeline(this.proposalId, this.timeline).subscribe(timeline => {
+      this.timeline.fundingAgency = timeline.fundingAgency;
+      this.timeline.uasDueDate = new Date(timeline.uasDueDate);
+      this.timeline.sponsorDueDate = new Date(timeline.sponsorDueDate);
+      this.timeline.finalSign = new Date (timeline.finalSign);
     });
   }
 
@@ -187,6 +187,14 @@ export class TimelineComponent implements OnInit {
       this.populateunSelectedForms();
     }
   }
+  setDragging(value) {
+    this.dragging = value;
+  }
+  setDragOverTimeline(value) {
+    // to
+    console.log(value)
+    this.draggingOverTimeline = value;
+  }
   // handle drag and drop for stage in a timeline
   drop(obj) {
     obj.event.preventDefault();
@@ -196,7 +204,6 @@ export class TimelineComponent implements OnInit {
   allowDrop(event) {
     event.preventDefault();
   }
-
   // parse Timeline dates
   parseDates(timeline) {
     if (timeline.uasDueDate !== null) {

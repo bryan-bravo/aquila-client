@@ -5,21 +5,29 @@
 
 </div>
 <ul id='timeline-bar'>
+  <!-- add to beginning of timeline -->
+  <li *ngIf='dragging'>
+    <div class='bar' [ngClass]='{"bar-drag-over":draggingOverTimeline}' (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)' (dragenter)='setDragOverTimeline(true)'></div>
+  </li>
   <li *ngFor='let stage of timeline?.stages; index as i'>
     <!-- bar -->
-    <div class='bar' *ngIf='i!=0' (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)' [ngClass]="{'barCompleted': stage.uasReviewed}"></div>
-    <div class='icon-name-container' (click)='getCurrentStage(stage.id)'>
+    <div class='bar' *ngIf='i!=0' (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)' [ngClass]='{"barCompleted": stage.uasReviewed, "bar-drag-over":draggingOverTimeline}'></div>
+    <div class='icon-name-container' (click)='getCurrentStage(stage.id)' >
       <!-- icon -->
       <div class='icon' [ngClass]="{'iconCompleted': stage.uasReviewed}"></div>
       <!-- name -->
       <label class='name'>{{stage.name}}</label>
     </div>
   </li>
+  <!-- add to end of timeline -->
+  <li *ngIf='dragging'>
+    <div class='bar' [ngClass]='{"bar-drag-over":draggingOverTimeline}' (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)' (dragenter)='setDragOverTimeline(true)'></div>
+  </li>
 </ul>
 <div id='stage-content'>
   <!-- view basic timeline info -->
-  <div class='form-flex-start' *ngIf='dialogType=="view-basic-timeline"'>
-    <h2 >{{timeline.proposalName}}</h2>
+  <div class='form-flex-start timeline-info' *ngIf='dialogType=="view-basic-timeline"'>
+    <h2 class='form-title'>{{timeline.proposalName}}</h2>
     <label>Principal Investigator</label>
     <p>{{timeline.principalInvestigator}}</p>
     <label>Other Investigators</label>
@@ -32,12 +40,11 @@
     <p>{{timeline.sponsorDueDate }}</p>
     <label>Final Signatures Deadline</label>
     <p>{{timeline.finalSign}}</p>
-    <button pButton class='ui-button-warning' (click)='setDialogType("edit-basic-timeline")' label='Edit' icon='fa-edit'
-      iconPos='right'></button>
+    <button pButton class='ui-button-warning' (click)='setDialogType("edit-basic-timeline")' label='Edit' icon='fa-edit' iconPos='right'></button>
   </div>
   <!-- edit timeline info -->
-  <div class='form-flex-start' *ngIf='dialogType=="edit-basic-timeline"'>
-    <h2>{{timeline.proposalName}}</h2>
+  <div class='form-flex-start timeline-info' *ngIf='dialogType=="edit-basic-timeline"'>
+    <h2 class='form-title'>{{timeline.proposalName}}</h2>
     <label>Principal Investigator</label>
     <p>{{timeline.principalInvestigator}}</p>
     <label>Other Investigators</label>
@@ -54,7 +61,7 @@
 
   </div>
   <!-- show a stage -->
-  <div class='form-flex-start' *ngIf='dialogType=="view-stage"'>
+  <div class='form-flex-start timeline-info' *ngIf='dialogType=="view-stage"'>
     <h2>{{stage.name}}</h2>
     <label>Expected Date</label>
     <label>{{stage.expectedDate}}</label>
@@ -80,7 +87,7 @@
       </p-column>
     </p-dataTable>
     <label class='form-title'>Additional Notes</label>
-    <p>{{stage.additionalNotes}}</p>
+    <p>{{stage.addComments}}</p>
     <button pButton class='ui-button-warning edit ' (click)='setDialogType("edit-stage")' label='Edit' icon='fa-edit' iconPos='right'></button>
   </div>
   <!-- edit a stage -->
@@ -98,11 +105,11 @@
       </div>
       <div>
         <label>UAS Review Required</label>
-        <input type='checkbox'>
+        <p-checkbox [(ngModel)]='stage.uasReviewRequired' binary='true'></p-checkbox>
       </div>
       <div>
         <label>UAS Approved</label>
-        <input type='checkbox' [(ngModel)]='stage.uasReviewed'>
+        <p-checkbox [(ngModel)]='stage.uasReviewed' binary='true'></p-checkbox>
       </div>
     </div>
     <!-- forms -->
@@ -149,7 +156,7 @@
     <label class='form-title'>Additional Notes</label>
     <textarea pInputTextarea [(ngModel)]="stage.additionalNotes" autoResize="autoResize"></textarea>
     <label class='form-title'>Order in Timeline</label>
-    <div class='drag-reorder' draggable='true'>
+    <div class='drag-reorder' draggable='true' (dragstart)='setDragging(true)' (dragend)='setDragging(false)'>
       <div class='icon drag-icon'></div>
       <label>Drag me to reorder</label>
     </div>

@@ -32,8 +32,14 @@ user: User;
   }
   // timeline
   updateTimeline(proposalId, timeline): Observable<TimeLine> {
-    // backend ignores stages for update timeline
-      return this.http.put<TimeLine>(`api//proposal/${proposalId}/timeline/${timeline.id}`, JSON.parse(JSON.stringify(timeline)));
+    const body = {
+      'fundingAgency': timeline.fundingAgency,
+      'uasDueDate': timeline.uasDueDate,
+      'sponsorDueDate': timeline.sponsorDueDate,
+      'finalSign': timeline.finalSign
+    };
+    console.log(body)
+      return this.http.patch<TimeLine>(`api/proposal/${proposalId}/timeline/${timeline.id}`, body);
   }
   // stage
   createStage(timelineId): Observable<Stage> {
@@ -41,7 +47,6 @@ user: User;
     return this.http.post<Stage>(`api/proposal/timeline/${timelineId}/stage/`, stage);
   }
   saveStage(timelineId, stage): Observable<Stage> {
-    // console.log(stage)
     stage = JSON.parse(JSON.stringify(stage));
     return this.http.put<Stage>(`api/timeline/${timelineId}/stage/update/${stage.id}`, stage);
   }
