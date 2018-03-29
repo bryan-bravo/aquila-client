@@ -107,23 +107,22 @@ export class TimelineComponent implements OnInit {
   }
   sortStageIntoTimeline(indexToPush) {
     const currentStageIndex = this.stageIndex;
-    this.preAwardService.reorderStage(this.stage.id, indexToPush).subscribe( response => {
-      // console.log(response)
-      // select stage_id,name,stage_order from stage;
-      if (indexToPush === 0) {
-        this.timeline.stages.splice(currentStageIndex, 1);
-        this.timeline.stages.unshift(this.stage);
-      } else if (indexToPush == this.timeline.stages.length) {
-        this.timeline.stages.splice(currentStageIndex, 1);
-        this.timeline.stages.unshift(this.stage);
-      } else {
-        this.timeline.stages.splice(currentStageIndex, 1);
-        this.timeline.stages.splice(indexToPush, 0, this.stage);
-      }
-      this.stageIndex = this.getStageIndex(this.stage.id);
-      this.stage.stageOrder = this.stageIndex;
-      console.log(this.timeline.stages)
-    });
+    if (indexToPush !== currentStageIndex || indexToPush !== currentStageIndex + 1){
+      this.preAwardService.reorderStage(this.stage.id, indexToPush).subscribe( response => {
+       if (indexToPush === 0) {
+          this.timeline.stages.splice(currentStageIndex, 1);
+          this.timeline.stages.unshift(this.stage);
+        } else if (indexToPush == this.timeline.stages.length) {
+          this.timeline.stages.splice(currentStageIndex, 1);
+          this.timeline.stages.unshift(this.stage);
+        } else {
+          this.timeline.stages.splice(currentStageIndex, 1);
+          this.timeline.stages.splice(indexToPush, 0, this.stage);
+        }
+        this.stageIndex = this.getStageIndex(this.stage.id);
+        this.stage.stageOrder = this.stageIndex;
+      });
+    }
   }
   deleteStage() {
     // make delete request if successful, sort stage orders, update stage orders
