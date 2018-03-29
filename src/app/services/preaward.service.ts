@@ -31,15 +31,21 @@ user: User;
   return this.http.put<IntakeForm>('api/intake/' + intakeForm.id, JSON.parse(JSON.stringify(intakeForm)));
   }
   // timeline
-  updateTimeline(proposalId, timeline): Observable<TimeLine> {
+  patchTimeline(proposalId, timeline): Observable<TimeLine> {
     const body = {
+      'principalInvestigator': timeline.principalInvestigator,
+      'coPi': timeline.coPi,
+      'proposalName': timeline.proposalName,
       'fundingAgency': timeline.fundingAgency,
       'uasDueDate': timeline.uasDueDate,
       'sponsorDueDate': timeline.sponsorDueDate,
       'finalSign': timeline.finalSign
     };
-    console.log(body)
       return this.http.patch<TimeLine>(`api/proposal/${proposalId}/timeline/${timeline.id}`, body);
+  }
+  putTimeline(proposalId, timeline): Observable<TimeLine> {
+    console.log(timeline)
+    return this.http.put<TimeLine>(`api/proposal/${proposalId}/timeline/${timeline.id}`, JSON.parse(JSON.stringify(timeline)));
   }
   // stage
   createStage(timelineId): Observable<Stage> {

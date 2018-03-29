@@ -7,7 +7,7 @@
 <ul id='timeline-bar'>
   <!-- add to beginning of timeline -->
   <li *ngIf='dragging'>
-    <div class='bar' appTimelineBar (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)'></div>
+    <div class='bar' appTimelineBar (drop)='drop({"event":$event,"index":0})' (dragover)='allowDrop($event)'></div>
   </li>
   <li *ngFor='let stage of timeline?.stages; index as i'>
     <!-- bar -->
@@ -21,7 +21,7 @@
   </li>
   <!-- add to end of timeline -->
   <li *ngIf='dragging'>
-    <div class='bar' appTimelineBar (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)'></div>
+    <div class='bar' appTimelineBar (drop)='drop({"event":$event,"index":timeline.stages.length})' (dragover)='allowDrop($event)'></div>
   </li>
 </ul>
 <div id='stage-content'>
