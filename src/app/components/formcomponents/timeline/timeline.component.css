@@ -17,7 +17,9 @@
 .page-title {
     flex: 1;
 }
-
+ .timeline-info > label {
+  font-weight: bold;
+}
 #timeline-bar {
   height: 100%;
   width: 40%;
@@ -32,10 +34,16 @@ li {
 
 .bar {
   height: 30px;
-  border-left: 2px solid black;
+  border-left: 3px solid #9e9e9e;
   margin-left: 8px;
 }
-
+.barCompleted {
+  border-left: 3px solid rgb(91, 188, 220);
+}
+.bar-drag-over{
+  height: 40px;
+  border-left: 5px solid rgb(241, 199, 45);
+}
 .icon-name-container {
   width: 100%;
   display: flex;
@@ -43,16 +51,33 @@ li {
   justify-content: flex-start;
   align-items: center;
 }
+.icon-name-container:hover .name{
+  color:#2790b0;
 
+}
+.icon-name-container:hover .icon{
+  box-shadow: 0 0 20px rgb(241, 199, 45);
+  border:2px solid rgb(241, 199, 45);
+}
+.selected-icon{
+  box-shadow: 0 0 20px rgb(241, 199, 45);
+  border:2px solid rgb(241, 199, 45) !important;
+}
 .icon {
   height: 16px;
   width: 16px;
-  border: 1px solid black;
+  border: 2px solid #9e9e9e;
   border-radius: 50%;
 }
+.iconCompleted {
+  background-color: rgb(91, 188, 220);
+  border:2px solid rgb(91, 188, 220);
 
+}
 .name {
   padding-left: 3px;
+  font-weight:bold;
+  color:#9e9e9e;
 }
 
 .window {

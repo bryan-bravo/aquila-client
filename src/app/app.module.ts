@@ -22,6 +22,8 @@ import {DataTableModule, SharedModule} from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
 import {InputTextareaModule} from 'primeng/components/inputtextarea/inputtextarea';
 import {DropdownModule} from 'primeng/components/dropdown/dropdown';
+import {CheckboxModule} from 'primeng/primeng';
+
 // file info
 // generated components
 import { AppComponent } from './app.component';
@@ -50,6 +52,7 @@ import { ApprovalComponent } from './components/formcomponents/approval/approval
 
 // pipes
 import {KeysPipe} from './pipes/keys.pipe';
+import { TimelineBarDirective } from './directives/timeline-bar.directive';
 
 const AppRoutes: Routes = [
     {path: '', component: LandingPageComponent},
@@ -77,6 +80,7 @@ const AppRoutes: Routes = [
     EconomicInterestComponent,
     ApprovalComponent,
     KeysPipe,
+    TimelineBarDirective,
 
   ],
   imports: [
@@ -99,9 +103,18 @@ const AppRoutes: Routes = [
     CalendarModule,
     DataTableModule,
     DialogModule,
-    DropdownModule
+    DropdownModule,
+    CheckboxModule
   ],
-  providers: [AuthenticationService, PreawardService, ProposalService, MessageService, MockDataService, KeysPipe ],
+  providers: [
+    AuthenticationService,
+    PreawardService,
+    ProposalService,
+    MessageService,
+    MockDataService,
+    KeysPipe,
+    TimelineBarDirective
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

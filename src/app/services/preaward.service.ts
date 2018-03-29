@@ -29,28 +29,11 @@ user: User;
   getProposal(id): Observable<Proposal> {// 3
     return this.http.get<Proposal>('api/proposal/' + id); // 4, start going back
   }
+  updateIntake(intakeForm): Observable<IntakeForm> {
+    return this.http.put<IntakeForm>('api/intake/' + intakeForm.id, JSON.parse(JSON.stringify(intakeForm)));
+    }
   getEquipment(id): Observable<EquipmentForm> {
     return this.http.get<EquipmentForm>('api/equipment/' + id);
-  }
-  updateIntake(intakeForm): Observable<IntakeForm> {
-  return this.http.put<IntakeForm>('api/intake/' + intakeForm.id, JSON.parse(JSON.stringify(intakeForm)));
-  }
-  // timeline
-  updateTimeline(proposalId, timeline): Observable<TimeLine> {
-      return this.http.put<TimeLine>(`api//proposal/${proposalId}/timeline/${timeline.id}`, JSON.parse(JSON.stringify(timeline)));
-  }
-  // stage
-  createStage(timelineId): Observable<Stage> {
-    const stage = JSON.parse(JSON.stringify(new Stage()));
-    return this.http.post<Stage>(`api/proposal/timeline/${timelineId}/stage/`, stage);
-  }
-  saveStage(timelineId, stage): Observable<Stage> {
-    // console.log(stage)
-    stage = JSON.parse(JSON.stringify(stage));
-    return this.http.put<Stage>(`api/timeline/${timelineId}/stage/update/${stage.id}`, stage);
-  }
-  deleteStage(stageId) {
-    return this.http.delete(`api/timeline/stage/${stageId}`);
   }
   updateEquipment(equipmentForm): Observable<EquipmentForm>{
     console.log(typeof JSON.parse(JSON.stringify(equipmentForm)))
@@ -60,9 +43,35 @@ user: User;
     console.log(typeof JSON.parse(JSON.stringify(economicInterestPI)))
     return this.http.put<EconomicInterestPI>('api/proposal/editeconomicinterest/'+economicInterestPI.id, JSON.parse(JSON.stringify(economicInterestPI)));  
   }
-  saveEquipmentForm(equipmentForm): Observable<EquipmentForm> {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post<EquipmentForm>('api/equipment/',equipmentForm, {headers: headers});
+  // timeline
+  patchTimeline(proposalId, timeline): Observable<TimeLine> {
+    const body = {
+      'principalInvestigator': timeline.principalInvestigator,
+      'coPi': timeline.coPi,
+      'proposalName': timeline.proposalName,
+      'fundingAgency': timeline.fundingAgency,
+      'uasDueDate': timeline.uasDueDate,
+      'sponsorDueDate': timeline.sponsorDueDate,
+      'finalSign': timeline.finalSign
+    };
+      return this.http.patch<TimeLine>(`api/proposal/${proposalId}/timeline/${timeline.id}`, body);
+  }
+  putTimeline(proposalId, timeline): Observable<TimeLine> {
+    return this.http.put<TimeLine>(`api/proposal/${proposalId}/timeline/${timeline.id}`, JSON.parse(JSON.stringify(timeline)));
+  }
+  // stage
+  createStage(timelineId): Observable<Stage> {
+    const stage = JSON.parse(JSON.stringify(new Stage()));
+    return this.http.post<Stage>(`api/proposal/timeline/${timelineId}/stage/`, stage);
+  }
+  saveStage(timelineId, stage): Observable<Stage> {
+    stage = JSON.parse(JSON.stringify(stage));
+    return this.http.put<Stage>(`api/timeline/${timelineId}/stage/update/${stage.id}`, stage);
+  }
+  deleteStage(stageId) {
+    return this.http.delete(`api/timeline/stage/${stageId}`);
+  }
+  reorderStage(stageId, indexToPush) {
+    return this.http.get(`api/timeline/stage/${stageId}/order/${indexToPush}`);
   }
 }
