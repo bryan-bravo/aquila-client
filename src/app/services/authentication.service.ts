@@ -22,7 +22,7 @@ constructor(private http: HttpClient) {
   editUser(user): Observable<User> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.put<User>('api/edituser', user, {headers: headers});
+    return this.http.put<User>(`api/user/${user.id}`, user, {headers: headers});
   }
   storeUserData(user) {
     // localStorage.setItem('id_token', token);

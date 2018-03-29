@@ -13,6 +13,9 @@ body {
     width: 100%;
     min-height: 100%;
     overflow-x: hidden;
+    /* background: linear-gradient(to bottom right, #037ade, #03e5b7); */
+    background: linear-gradient(to bottom right, #5bc0de, #142f94);
+
 }
 /* labels */
 .required-indicator {
@@ -41,11 +44,18 @@ body {
     color: white;
     border-radius: 4px;
 }
+.button-red {
+    border: none;
+    padding: 5px;
+    background-color:rgb(210, 52, 52);
+    color: white;
+    border-radius: 4px;
+}
 /* windows */
 .main-window {
     color: rgb(36, 36, 36);
     background-color: rgb(241, 241, 241);
-    border: 2px solid rgb(254, 220, 89);
+    border: 1px solid #2790b0;
     box-shadow: 0 0 20px #cecbcb;
     font-size: 1em;
     position: relative;
@@ -53,25 +63,25 @@ body {
 
 .main-window:hover {
     background-color: rgba(221, 221, 221, 0.795);
-    border: 2px solid rgb(241, 199, 45);
+    border: 1px solid #2790b0;
     box-shadow: 0 0 20px rgb(241, 199, 45);
     font-size: 1em;
     position: relative;
-    transform: translate(1px, 1px);
     cursor: pointer;
 }
 
 .title {
     margin: 0;
     padding: 2px;
-    background-color: rgb(254, 220, 89);
-    color: rgb(36, 36, 36);
+    background-color: #2790b0;
+    color: white;
 }
 /* forms */
 .form-title {
     width: 100%;
-    background-color: rgb(254, 220, 89);
-    border: 2px solid #ffd400;
+    background-color: rgb(39, 144, 176);
+    padding: 5px;
+    color: white;
 }
 .form-flex-start {
     display: flex;
@@ -79,7 +89,6 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
 }
-
-
-
-/* blue    color: #0eb2e2; */
+.form-flex-start > *{
+    margin: 4px 0;
+}

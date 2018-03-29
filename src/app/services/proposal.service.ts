@@ -36,6 +36,16 @@ export class ProposalService {
   saveEquipmentForm(equipmentForm){
     this.formSource.next(equipmentForm);
   }
+  // timeline
+  getTimeline() {
+    return {
+      'proposalId': this.proposal.id,
+      'timeline': this.proposal.timeline
+    };
+  }
+  updateTimeline(timeline) {
+    this.formSource.next(timeline);
+  }
 }
 // user clicks on form
 // edit proposal calls parent Update Proposal

@@ -68,34 +68,59 @@ export const Timeline: any = {
       "uasReviewed": false,
       "deadlineType": "OSRP",
       "requiredForms": ['Intake', 'Equipment'],
-      // forms: any[];
-      "additionalNotes":"borrrrrrrrrrrsdf  sdfaf"
-    }
-    //, {
-    //   "Id": 1,
-    //   "name": "bryan",
-    //   "expectedDate": new Date(),
-    //   "completedDate": new Date(),
-    //   "uasReviewRequired":true,
-    //   "uasReviewed": false,
-    //   "deadlineType": "OSRP",
-    //   "requiredForms": [],
-    //   // forms: any[];
-    //   "additionalNotes":"bork"
-    // },
-    // {
-    //   "Id": 2,
-    //   "name": "bryan",
-    //   "expectedDate": new Date(),
-    //   "completedDate": new Date(),
-    //   "uasReviewRequired":true,
-    //   "uasReviewed": false,
-    //   "deadlineType": "OSRP",
-    //   "requiredForms": [],
-    //   // forms: any[];
-    //   "additionalNotes":"bork"
-    // }
-   ]
+      "requiredFiles": ['Budget'],
+      "additionalNotes":"borrrrrrrrrrrsdf  sdfaf",
+      "order":0
+    },{ 
+    "Id": 1,
+    "name": "Equipment",
+    "expectedDate": new Date(),
+    "completedDate": new Date(),
+    "uasReviewRequired":true,
+    "uasReviewed": false,
+    "deadlineType": "OSRP",
+    "requiredForms": [],
+    "requiredFiles": ['Budget'],
+    "additionalNotes":"borrrrrrrrrrrsdf  sdfaf",
+    "order":1
+    }, {
+    "Id": 2,
+    "name": "bork",
+    "expectedDate": new Date(),
+    "completedDate": new Date(),
+    "uasReviewRequired":true,
+    "uasReviewed": false,
+    "deadlineType": "OSRP",
+    "requiredForms": [],
+    "requiredFiles": ['Budget'],
+    "additionalNotes":"borrrrrrrrrrrsdf  sdfaf",
+    "order":2
+  }, {
+    "Id": 3,
+    "name": "woof",
+    "expectedDate": new Date(),
+    "completedDate": new Date(),
+    "uasReviewRequired":true,
+    "uasReviewed": false,
+    "deadlineType": "OSRP",
+    "requiredForms": [],
+    "requiredFiles": ['Budget'],
+    "additionalNotes":"borrrrrrrrrrrsdf  sdfaf",
+    "order":3
+  },  {
+    "Id": 4,
+    "name": "boof",
+    "expectedDate": new Date(),
+    "completedDate": new Date(),
+    "uasReviewRequired":true,
+    "uasReviewed": false,
+    "deadlineType": "OSRP",
+    "requiredForms": [],
+    "requiredFiles": ['Budget'],
+    "additionalNotes":"borrrrrrrrrrrsdf  sdfaf",
+    "order":4
+  }
+]
 };
 export const Proposals: any[] = [
   {

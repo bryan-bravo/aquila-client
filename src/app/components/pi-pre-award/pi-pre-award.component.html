@@ -1,19 +1,15 @@
 <div id='dash-bar'>
-  <label>{{userName}}'s Proposal's</label>
-  <button class='button' [routerLink]="['/home']">Home</button>
-  <button class='button-blue' (click)="op.toggle($event)" >New Proposal</button>
+  <h3 class = 'page-title'>{{userName}}'s Proposal's</h3>
+  <button pButton label='Home' [routerLink]="['/home']" icon='fa-home' iconPos='right'></button>
+  <button  pButton label='New Proposal'(click)="op.toggle($event)" icon='fa-plus' iconPos='right'></button>
 </div>
 <div id='proposals'>
-  <div class='dash-bar-header title'>
-    <p>Name</p>
-    <p>Date</p>
-    <p>Status</p>
-  </div>
-  <div *ngFor='let proposal of usersProposals' class='proposal'>
-    <label [routerLink]="['/editproposal', proposal.id]">{{proposal.proposalName}}</label>
-    <label>{{proposal.dateCreated}}</label>
-    <label>{{proposal.status}}</label>
-  </div>
+  <p-dataTable [value]='usersProposals' (onRowSelect)='navigate($event.data.id)' selectionMode='single' [immutable]='false'>
+    <p-header>Proposals</p-header>
+    <p-column field='proposalName' header='Name'></p-column>
+    <p-column field='dateCreated' header='Date Created'></p-column>
+    <p-column field='status' header='Status'></p-column>
+  </p-dataTable>
   <p-overlayPanel header="New Proposal" showEffect="fade" #op>
     <label>Proposal Name</label>
     <input type='input' pInputText [(ngModel)]='newProposalName'>

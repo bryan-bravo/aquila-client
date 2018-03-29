@@ -11,6 +11,8 @@ export class Proposal {
    requiredForms: string[];
    intakeForm: IntakeForm;
    timeline: TimeLine;
-   equipementForm: any;
+   equipmentForm: any;
    economicInterestPI: any;
+//    intakeForm: any;
+//    timeline: any;
 }
