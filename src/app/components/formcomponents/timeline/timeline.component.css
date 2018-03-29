@@ -59,6 +59,10 @@ li {
   box-shadow: 0 0 20px rgb(241, 199, 45);
   border:2px solid rgb(241, 199, 45);
 }
+.selected-icon{
+  box-shadow: 0 0 20px rgb(241, 199, 45);
+  border:2px solid rgb(241, 199, 45) !important;
+}
 .icon {
   height: 16px;
   width: 16px;

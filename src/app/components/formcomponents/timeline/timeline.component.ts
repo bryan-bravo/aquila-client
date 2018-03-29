@@ -16,6 +16,7 @@ export class TimelineComponent implements OnInit {
   timeline: TimeLine;
   proposalId: number;
   stage: Stage; // stage to be manipulated for edit and new
+  stageIndex: number;
   editingNewStage: boolean;
   dragging: boolean;
   draggingOverTimeline: boolean;
@@ -107,9 +108,7 @@ export class TimelineComponent implements OnInit {
 
     this.preAwardService.reorderStage(this.stage.id,indexToPush).subscribe( response => {
       console.log(response)
-      const currentStageIndex = this.timeline.stages.findIndex( (stage) => {
-        return this.stage == stage;
-      });
+      const currentStageIndex = this.stageIndex;
       // add to start
       if (indexToPush === 0) {
         this.timeline.stages.splice(currentStageIndex, 1);
@@ -182,12 +181,15 @@ export class TimelineComponent implements OnInit {
       return stage.id == stageId;
     });
     this.stage = this.timeline.stages[stageIndex];
+    this.stageIndex = stageIndex;
     this.setDialogType('view-stage');
   }
   setDialogType(type) {
     this.dialogType = type;
     if (type === 'edit-stage') {
       this.populateunSelectedForms();
+    } else if (type === 'view-basic-timeline') {
+      this.stageIndex = null;
     }
   }
   setDragging(value) {
