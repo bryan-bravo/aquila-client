@@ -6,9 +6,9 @@
 </div>
 <ul id='timeline-bar'>
   <!-- add to beginning of timeline -->
-  <li *ngIf='dragging'>
+  <!-- <li *ngIf='dragging'>
     <div class='bar' appTimelineBar (drop)='drop({"event":$event,"index":0})' (dragover)='allowDrop($event)'></div>
-  </li>
+  </li> -->
   <li *ngFor='let stage of timeline?.stages; index as i'>
     <!-- bar -->
     <div class='bar' appTimelineBar *ngIf='i!=0' (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)' [ngClass]='{"barCompleted": stage.uasReviewed}'></div>
@@ -57,16 +57,16 @@
     <p-calendar [(ngModel)]='timeline.sponsorDueDate'></p-calendar>
     <label>Final Signatures Deadline</label>
     <p-calendar [(ngModel)]='timeline.finalSign'></p-calendar>
-    <button pButton class='ui-button-success' (click)='saveTimeline()' label='Save Timeline'></button>
+    <button pButton class='ui-button-success' (click)='saveTimeline()' label='Save Timeline' [disabled]='timeline.uasDueDate==null'></button>
 
   </div>
   <!-- show a stage -->
   <div class='form-flex-start timeline-info' *ngIf='dialogType=="view-stage"'>
     <h2>{{stage.name}}</h2>
     <label>Expected Date</label>
-    <label>{{stage.expectedDate}}</label>
+    <p>{{stage.expectedDate}}</p>
     <label>Completed Date</label>
-    <label>{{stage.completedDate}}</label>
+    <p>{{stage.completedDate}}</p>
     <p-dataTable [value]='stage.requiredForms'>
       <p-header>Required Forms</p-header>
       <p-column field='key' header='Form'></p-column>

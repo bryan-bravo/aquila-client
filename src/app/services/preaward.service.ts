@@ -44,7 +44,6 @@ user: User;
       return this.http.patch<TimeLine>(`api/proposal/${proposalId}/timeline/${timeline.id}`, body);
   }
   putTimeline(proposalId, timeline): Observable<TimeLine> {
-    console.log(timeline)
     return this.http.put<TimeLine>(`api/proposal/${proposalId}/timeline/${timeline.id}`, JSON.parse(JSON.stringify(timeline)));
   }
   // stage
@@ -58,5 +57,8 @@ user: User;
   }
   deleteStage(stageId) {
     return this.http.delete(`api/timeline/stage/${stageId}`);
+  }
+  reorderStage(stageId, indexToPush) {
+    return this.http.get(`timeline/stage/${stageId}/order/${indexToPush}`);
   }
 }

@@ -105,26 +105,27 @@ export class TimelineComponent implements OnInit {
   }
   sortStageIntoTimeline(indexToPush) {
 
-    // find if the stage is already in the index
-    const currentStageIndex = this.timeline.stages.findIndex( (stage) => {
-      return this.stage == stage;
+    this.preAwardService.reorderStage(this.stage.id,indexToPush).subscribe( response => {
+      console.log(response)
+      const currentStageIndex = this.timeline.stages.findIndex( (stage) => {
+        return this.stage == stage;
+      });
+      // add to start
+      if (indexToPush === 0) {
+        this.timeline.stages.splice(currentStageIndex, 1);
+        this.timeline.stages.unshift(this.stage);
+      // add to end
+      } else if (indexToPush == this.timeline.stages.length) {
+        this.timeline.stages.splice(currentStageIndex, 1);
+        this.timeline.stages.unshift(this.stage);
+      // somewhere in middle
+      } else {
+        // remove stage
+        this.timeline.stages.splice(currentStageIndex, 1);
+        // add stage
+        this.timeline.stages.splice(indexToPush, 0, this.stage);
+      }
     });
-    
-    // add to start
-    if (indexToPush === 0) {
-      this.timeline.stages.splice(currentStageIndex, 1);
-      this.timeline.stages.unshift(this.stage);
-    // add to end
-    } else if (indexToPush == this.timeline.stages.length) {
-      this.timeline.stages.splice(currentStageIndex, 1);
-      this.timeline.stages.unshift(this.stage);
-    // somewhere in middle
-    } else {
-      // remove stage
-      this.timeline.stages.splice(currentStageIndex, 1);
-      // add stage
-      this.timeline.stages.splice(indexToPush, 0, this.stage);
-    }
   }
   deleteStage() {
     // make delete request if successful, sort stage orders, update stage orders
