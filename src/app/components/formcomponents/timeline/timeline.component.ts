@@ -100,30 +100,29 @@ export class TimelineComponent implements OnInit {
     const stage = Object.assign({}, this.stage);
     stage.requiredForms = this.keysPipe.backToObject(stage.requiredForms);
     stage.requiredFiles = this.keysPipe.backToObject(stage.requiredFiles);
+    stage.stageOrder = this.getStageIndex(this.stage.id);
     this.preAwardService.saveStage(this.timeline.id, stage).subscribe( (savedStage) => {
       this.stage = this.parseStage(savedStage);
     });
   }
   sortStageIntoTimeline(indexToPush) {
-
-    this.preAwardService.reorderStage(this.stage.id,indexToPush).subscribe( response => {
-      console.log(response)
-      const currentStageIndex = this.stageIndex;
-      // add to start
+    const currentStageIndex = this.stageIndex;
+    this.preAwardService.reorderStage(this.stage.id, indexToPush).subscribe( response => {
+      // console.log(response)
+      // select stage_id,name,stage_order from stage;
       if (indexToPush === 0) {
         this.timeline.stages.splice(currentStageIndex, 1);
         this.timeline.stages.unshift(this.stage);
-      // add to end
       } else if (indexToPush == this.timeline.stages.length) {
         this.timeline.stages.splice(currentStageIndex, 1);
         this.timeline.stages.unshift(this.stage);
-      // somewhere in middle
       } else {
-        // remove stage
         this.timeline.stages.splice(currentStageIndex, 1);
-        // add stage
         this.timeline.stages.splice(indexToPush, 0, this.stage);
       }
+      this.stageIndex = this.getStageIndex(this.stage.id);
+      this.stage.stageOrder = this.stageIndex;
+      console.log(this.timeline.stages)
     });
   }
   deleteStage() {
@@ -177,12 +176,16 @@ export class TimelineComponent implements OnInit {
 
   // helper functions
   getCurrentStage(stageId) {
-    const stageIndex = this.timeline.stages.findIndex((stage) => {
-      return stage.id == stageId;
-    });
+    const stageIndex = this.getStageIndex(stageId);
     this.stage = this.timeline.stages[stageIndex];
     this.stageIndex = stageIndex;
     this.setDialogType('view-stage');
+  }
+  getStageIndex(stageId) {
+    const stageIndex = this.timeline.stages.findIndex((stage) => {
+      return stage.id == stageId;
+    });
+    return stageIndex;
   }
   setDialogType(type) {
     this.dialogType = type;

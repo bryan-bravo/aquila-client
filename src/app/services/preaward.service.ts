@@ -59,6 +59,6 @@ user: User;
     return this.http.delete(`api/timeline/stage/${stageId}`);
   }
   reorderStage(stageId, indexToPush) {
-    return this.http.get(`timeline/stage/${stageId}/order/${indexToPush}`);
+    return this.http.get(`api/timeline/stage/${stageId}/order/${indexToPush}`);
   }
 }
