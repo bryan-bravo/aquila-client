@@ -18,7 +18,7 @@ export class Stage {
     uasReviewed: boolean;
     requiredForms: any;
     requiredFiles: any; // name, file representation 
-    additionalNotes: string;
+    addComments: string;
     stageOrder: number;
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgClass, NgStyle} from '@angular/common';
 
 import {TimeLine, Stage, FileInfo} from '../../../models/PreAward/TimeLine';
 import { MockDataService } from '../../../services/mock-data.service';
@@ -15,7 +16,10 @@ export class TimelineComponent implements OnInit {
   timeline: TimeLine;
   proposalId: number;
   stage: Stage; // stage to be manipulated for edit and new
+  stageIndex: number;
   editingNewStage: boolean;
+  dragging: boolean;
+  draggingOverTimeline: boolean;
   dialogType: string; // view, edit/add
   preAwardForms: string[] =
   ['Intake', 'Equipment', 'Approval',
@@ -39,23 +43,99 @@ export class TimelineComponent implements OnInit {
   }
   // timeline
   populateTimeLine() {
-  const obj = this.proposalService.getTimeline();
+    const obj = this.proposalService.getTimeline();
     this.timeline = this.parseDates(obj.timeline);
     // parse the object maps into iterables
     this.timeline.stages.forEach((stage, i, stages) => {
         stages[i] = this.parseStage(stage);
     });
-
+    this.dragging = false;
+    this.draggingOverTimeline = false;
     this.proposalId = obj.proposalId;
 
   }
   saveTimeline() {
-    this.preAwardService.updateTimeline(this.proposalId, this.timeline).subscribe((timeline) => {
-      this.proposalService.updateTimeline(this.timeline);
-      this.timeline = this.parseDates(timeline);
+    if (this.timeline.stages.length === 1) {
+      // have to parse the pre meeting stages, req forms and files
+      const timelineCopy = Object.assign({}, this.timeline);
+        timelineCopy.stages[0].requiredForms = this.keysPipe.backToObject(timelineCopy.stages[0].requiredForms);
+        timelineCopy.stages[0].requiredFiles = this.keysPipe.backToObject(timelineCopy.stages[0].requiredFiles)
+      this.preAwardService.putTimeline(this.proposalId, timelineCopy).subscribe( timeline => {
+        timeline = this.parseDates(timeline);
+        timeline.stages.forEach((stage, i, stages) => {
+            stages[i] = this.parseStage(stage);
+        });
+        this.timeline = timeline;
+      });
+    } else {
+      // making patch request
+      this.preAwardService.patchTimeline(this.proposalId, this.timeline).subscribe(timeline => {
+        this.timeline.fundingAgency = timeline.fundingAgency;
+        if (timeline.uasDueDate) {
+          this.timeline.uasDueDate = new Date(timeline.uasDueDate);
+        } else {
+          this.timeline.uasDueDate = timeline.uasDueDate;
+        }        if (timeline.sponsorDueDate) {
+          this.timeline.sponsorDueDate = new Date(timeline.sponsorDueDate);
+        } else {
+          this.timeline.sponsorDueDate = timeline.sponsorDueDate;
+        }
+        if (timeline.finalSign) {
+          this.timeline.finalSign = new Date(timeline.finalSign);
+        } else {
+          this.timeline.finalSign = timeline.finalSign;
+        }
+      });
+    }
+  }
+  // stage
+  handleAddStage() {
+    this.preAwardService.createStage(this.timeline.id).subscribe( (stage) => {
+      this.stage = this.parseStage(stage);
+      this.timeline.stages.push(stage);
+      this.setDialogType('edit-stage');
     });
   }
-
+  saveStage() {
+    const stage = Object.assign({}, this.stage);
+    stage.requiredForms = this.keysPipe.backToObject(stage.requiredForms);
+    stage.requiredFiles = this.keysPipe.backToObject(stage.requiredFiles);
+    stage.stageOrder = this.getStageIndex(this.stage.id);
+    this.preAwardService.saveStage(this.timeline.id, stage).subscribe( (savedStage) => {
+      this.stage = this.parseStage(savedStage);
+    });
+  }
+  sortStageIntoTimeline(indexToPush) {
+    const currentStageIndex = this.stageIndex;
+    this.preAwardService.reorderStage(this.stage.id, indexToPush).subscribe( response => {
+      // console.log(response)
+      // select stage_id,name,stage_order from stage;
+      if (indexToPush === 0) {
+        this.timeline.stages.splice(currentStageIndex, 1);
+        this.timeline.stages.unshift(this.stage);
+      } else if (indexToPush == this.timeline.stages.length) {
+        this.timeline.stages.splice(currentStageIndex, 1);
+        this.timeline.stages.unshift(this.stage);
+      } else {
+        this.timeline.stages.splice(currentStageIndex, 1);
+        this.timeline.stages.splice(indexToPush, 0, this.stage);
+      }
+      this.stageIndex = this.getStageIndex(this.stage.id);
+      this.stage.stageOrder = this.stageIndex;
+      console.log(this.timeline.stages)
+    });
+  }
+  deleteStage() {
+    // make delete request if successful, sort stage orders, update stage orders
+      this.preAwardService.deleteStage(this.stage.id).subscribe( response => {
+        // if successful
+        const currentStageIndex = this.timeline.stages.findIndex( (stage) => {
+          return this.stage == stage;
+        });
+        this.timeline.stages.splice(currentStageIndex,  1);
+        this.setDialogType('view-basic-timeline');  
+      });
+  }
   // forms
   populateunSelectedForms() {
     this.unSelectedForms = this.preAwardForms.filter( preAwardForm => {
@@ -93,97 +173,35 @@ export class TimelineComponent implements OnInit {
     });
     this.stage.requiredFiles.splice(index, 1);
   }
-  // stage
-  handleAddStage() {
-    this.preAwardService.createStage(this.timeline.id).subscribe( (stage) => {
-      this.stage = this.parseStage(stage);
-      this.timeline.stages.push(stage);
-      this.setDialogType('edit-stage');
-    });
-  }
-  saveStage() {
-    const stage = Object.assign({}, this.stage);
-    stage.requiredForms = this.keysPipe.backToObject(stage.requiredForms);
-    stage.requiredFiles = this.keysPipe.backToObject(stage.requiredFiles);
-    this.preAwardService.saveStage(this.timeline.id, stage).subscribe( (savedStage) => {
-      this.stage = this.parseStage(savedStage);
-    });
-  }
-  sortStageIntoTimeline(indexToPush) {
-    // find if the stage is already in the index
-    const currentStageIndex = this.timeline.stages.findIndex( (stage) => {
-      return this.stage == stage;
-    });
-    // new stage
-    if (currentStageIndex === -1) {
-      // make request to create stage and have working  id
-      // inside of call back do all the below operations, update the new orders
-      this.stage.stageOrder = this.timeline.stages[indexToPush].stageOrder;
-      this.timeline.stages.forEach((stage, index, stages) => {
-        if (index >= indexToPush) {
-           stages[index].stageOrder = stages[index].stageOrder + 1;
-        }
-      });
-      this.timeline.stages.splice(indexToPush, 0, this.stage);
-    // the stage is already in the timeline
-    } else {
-      if (indexToPush === currentStageIndex || indexToPush === currentStageIndex + 1) {
-      } else if (currentStageIndex < indexToPush) {
-      // want to move the stage up in the timeline
-        this.stage.stageOrder = this.timeline.stages[indexToPush].stageOrder;
-        this.timeline.stages.forEach((stage, index, stages) => {
-          if (index < indexToPush && index >= currentStageIndex) {
-            stages[index].stageOrder = stages[index].stageOrder - 1;
-          }
-        });
-        this.timeline.stages.splice(indexToPush, 0, this.stage);
-        this.timeline.stages.splice(currentStageIndex, 1);
-        // make the request here to save stage and all the orders
-      } else {
-      // want to move the stage down the timeline
-        this.stage.stageOrder = this.timeline.stages[indexToPush].stageOrder;
-        this.timeline.stages.forEach((stage, index, stages) => {
-          if (index >= indexToPush && index < currentStageIndex) {
-            stages[index].stageOrder = stages[index].stageOrder + 1;
-          }
-        });
-        this.timeline.stages.splice(currentStageIndex, 1);
-        this.timeline.stages.splice(indexToPush, 0, this.stage);
-        // make the request here to save stage and all the orders
-      }
 
-    }
-    // console.log(this.timeline.stages);
-  }
-  deleteStage() {
-  // make delete request if successful, sort stage orders, update stage orders
-    if (this.editingNewStage) {
-      // make the request
-    } else {
-      const currentStageIndex = this.timeline.stages.findIndex( (stage) => {
-        return this.stage == stage;
-      });
-      this.timeline.stages.forEach((stage, index, array) => {
-        if (index > currentStageIndex) {
-          array[index].stageOrder = array[index].stageOrder - 1;
-        }
-      });
-      this.timeline.stages.splice(currentStageIndex,  1);
-    }
-  }
   // helper functions
   getCurrentStage(stageId) {
+    const stageIndex = this.getStageIndex(stageId);
+    this.stage = this.timeline.stages[stageIndex];
+    this.stageIndex = stageIndex;
+    this.setDialogType('view-stage');
+  }
+  getStageIndex(stageId) {
     const stageIndex = this.timeline.stages.findIndex((stage) => {
       return stage.id == stageId;
     });
-    this.stage = this.timeline.stages[stageIndex];
-    this.setDialogType('view-stage');
+    return stageIndex;
   }
   setDialogType(type) {
     this.dialogType = type;
     if (type === 'edit-stage') {
       this.populateunSelectedForms();
+    } else if (type === 'view-basic-timeline') {
+      this.stageIndex = null;
     }
+  }
+  setDragging(value) {
+    this.dragging = value;
+  }
+  setDragOverTimeline(value) {
+    // to
+    console.log(value)
+    this.draggingOverTimeline = value;
   }
   // handle drag and drop for stage in a timeline
   drop(obj) {
@@ -194,7 +212,6 @@ export class TimelineComponent implements OnInit {
   allowDrop(event) {
     event.preventDefault();
   }
-
   // parse Timeline dates
   parseDates(timeline) {
     if (timeline.uasDueDate !== null) {
