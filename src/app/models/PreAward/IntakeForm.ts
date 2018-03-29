@@ -1,10 +1,11 @@
+import { Proposal } from './Proposal';
 export class IntakeForm {
 id: string;
 complete: boolean
 // A
 principleInvestigator: string;
 department: string;
-// _college?:string;//can be found from department
+college:string;//can be found from department
 projectTitle: string;
 proposedFundingAmount: string;
 startDate: Date;
@@ -39,11 +40,11 @@ agencyCostRatePercentage: number;
 agencyCostSharing: boolean;
 piCostSharing: boolean;
 computersRequested: number;
-requestedEquipment: RequestedEquipment[]; // map<string:name,double:cost>
+requestedEquipment: any[]; // Map<string,number>;
 // H
 space: Space[]; // spaces
 // I
-hazardousSubstances: Hazard[]; // <string:agent,string:type>
+hazardousSubstances: any[]; //Map<string,string>;
 // J
 humanSubjects: boolean;
 vertebrateAnimals: boolean;
@@ -60,6 +61,7 @@ duplicationfFinalDocumentPackage: boolean; // fix
 noOfCopies: number;
 // L
 projectSummary: string;
+proposal: Proposal;
 }
  export class Personnel {
     name: string;

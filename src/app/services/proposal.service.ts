@@ -18,8 +18,23 @@ export class ProposalService {
   getIntakeForm() {
     return this.proposal.intakeForm;
   }
+  getEquipmentForm() {
+    return {'equipmentForm': this.proposal.equipmentForm, 'proposalId': this.proposal.id};
+  }
+  getEconomicInterestPI() { 
+    return this.proposal.economicInterestPI;
+  }
   updateIntakeForm(intakeForm) {
     this.formSource.next(intakeForm);
+  }
+  updateEquipmentForm(equipmentForm) {
+    this.formSource.next(equipmentForm);
+  }
+  updateEconomicInterestPI(economicInterestPI) {
+    this.formSource.next(economicInterestPI);
+  }
+  saveEquipmentForm(equipmentForm){
+    this.formSource.next(equipmentForm);
   }
 }
 // user clicks on form

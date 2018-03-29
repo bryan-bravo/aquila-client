@@ -1,14 +1,12 @@
  export class TimeLine {
      id: number;
-    //  pI: any; // User
-    //  coPi: any[]; // Users
+     pI: string; // User
+     coPi: any[]; // Users
      proposal: string;
      fundingAgency: string;
-     shippingDeadline: Date;
-     uASDate: Date;
+     uasDueDate: Date;
      sponsorDueDate: Date;
      finalSign: Date;
-     shippingDate: Date;
      piDueDates: any[]; // <string,Date>
      orspDueDates: any[];
      piInitial: string;
