@@ -19,47 +19,49 @@
     <label>Expected Date {{stage.expectedDate}}</label>
     <label>Completed Date {{stage.completedDate}}</label>
     <label>Required Forms</label>
-    <label *ngFor='let form of stage.requiredForms'> {{form}}</label>
+    <div>
+      <ul>
+        <li *ngFor='let form of stage.requiredForms'>
+          <span>{{form}}</span>
+          <span> | check or x image to show completion</span>
+        </li>
+      </ul>
+    </div>
     <label>Required Files</label>
-    <div></div>
-    <label>Comments</label> 
-    <label *ngFor='let comment of stage.addComments'> {{comment}}</label>
+    <div>
+      <ul>
+      </ul>
+    </div>
+    <label>Additional Notes</label>
+    <p>{{stage.additionalNotes}}</p>
+
     <button class='blue-button' (click)='setDialogType("edit")'>Edit</button>
   </div>
   <!-- edit a stage -->
-  <div  class='form-flex-start window' *ngIf='dialogType=="edit"'>
-      <label>Name</label>
-      <input>
-      <label>Expected Date</label>
-      <p-calendar></p-calendar>
-      <label>Completed Date</label>
-      <p-calendar></p-calendar>
-      <label>Required Forms</label>
-        <div class='form-flex-start'>
-          <label>Intake</label>
-          <input type='checkbox'>
-          <label>Equipment</label>
-          <input type='checkbox'>
-          <label>Conflict of Interest</label>
-          <input type='checkbox'>
-          <label>Conflict of Interest</label>
-          <input type='checkbox'>
-          <label>Conflict of Interest</label>
-          <input type='checkbox'>
-          <label>Conflict of Interest</label>
-          <input type='checkbox'>
-          <label>Statement of Economic Interest</label>
-          <input type='checkbox'>
-          <label>Approval</label>
-          <input type='checkbox'>
-        </div>
-      <label>Required Files</label>
-      <div></div>
-      <label>Comments</label>
-      <p-dataTable [value]="stage.addComments">
-      </p-dataTable>
-
-
+  <div class='form-flex-start window' *ngIf='dialogType=="edit"'>
+    <label>Name</label>
+    <input>
+    <label>Expected Date</label>
+    <p-calendar></p-calendar>
+    <label>Completed Date</label>
+    <p-calendar></p-calendar>
+    <label>UAS Review Required</label>
+    <input type='checkbox'>
+    <label>UAS Approved</label>
+    <input type='checkbox'>
+    <label>Required Forms</label>
+    <div class='form-flex-start'>
+      <ul>
+        <li *ngFor='let form of stage.requiredForms'><label>{{form}}</label> <span><button>Remove</button></span> </li>
+      </ul>
+      <select>
+        <option *ngFor='let form of unSelectedForms'>{{form}}</option>
+      </select>
+      <button> Add Form</button>
     </div>
+    <label>Required Files</label>
+    <div></div>
+    <label>Additional Notes</label>
+    <textarea pInputTextarea [(ngModel)]="stage.additionalNotes" autoResize="autoResize"></textarea>
+  </div>
 </p-dialog>
-
