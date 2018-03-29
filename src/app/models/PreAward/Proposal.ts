@@ -8,5 +8,6 @@ export class Proposal {
    status: string;
    user: User;
    requiredForms: string[];
-   intakeForm:any;
+   intakeForm: any;
+   timeline: any;
 }

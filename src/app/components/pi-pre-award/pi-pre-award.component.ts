@@ -39,4 +39,8 @@ export class PiPreAwardComponent implements OnInit {
   showDialog() {
     this.displayDialog = true;
   }
+
+  navigate(proposalId){
+    this.router.navigate(['/editproposal', proposalId]);
+  }
 }

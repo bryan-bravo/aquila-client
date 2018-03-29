@@ -25,8 +25,8 @@
     <p-calendar [(ngModel)]='intakeForm.endDate'></p-calendar>
     <!-- personnel object -->
     <div id='personnel'>
-      <p class='form-title'>Personnel</p>
       <p-dataTable [value]="intakeForm.personnel" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'personnel')">
+        <p-header>PERSONNEL</p-header>
         <p-column field="name" header="Name"></p-column>
         <p-column field="employer" header="Employer"></p-column>
         <p-column field="positionTitleOnGrant" header="Position Title On Grant"></p-column>
@@ -82,8 +82,8 @@
   </div>
   <!-- second page -->
   <div *ngIf='index==1' id='participation'>
-    <p class='form-title'>SUBGRANT(S) OR SUBCONTRACT(S)</p>
     <p-dataTable [value]="intakeForm.subgrantsOrSubcontracts" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'subgrantsubcontract')">
+      <p-header>SubGrant(s) or SubContract(s)</p-header>
       <p-column field="institutionName" header="Institution Name"></p-column>
       <p-column field="proposedFundingAmount" header="Proposed Funding Amount"></p-column>
       <p-column field="contactPerson" header="Contact Person"></p-column>
@@ -95,8 +95,8 @@
         </div>
       </p-footer>
     </p-dataTable>
-    <p class='form-title'>PROJECT LOCATIONS</p>
     <p-dataTable [value]="intakeForm.projectLocations" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'projectlocation')">
+      <p-header>PROJECT LOCATIONS</p-header>
       <p-column field="siteName" header="Site Name"></p-column>
       <p-column field="siteAddress" header="Site Address"></p-column>
       <p-column field="projectedPercentOfTimeAtState" header="Projected Percent Of Time At State"></p-column>
@@ -107,9 +107,8 @@
         </div>
       </p-footer>
     </p-dataTable>
-    <p class='form-title'>ADDITIONAL PARTIES INVOLVED (e.g Prime Sponsor, Third Party, etc.) </p>
-
     <p-dataTable [value]="intakeForm.additionalPartiesInvolved" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'additionalparty')">
+      <p-header>ADDITIONAL PARTIES INVOLVED (e.g Prime Sponsor, Third Party, etc.)</p-header>
       <p-column field="partyName" header="Party Name"></p-column>
       <p-column field="supervisor" header="Supervisor"></p-column>
       <p-column field="explanationOfInvolvement" header="Explanation Of Involvement"></p-column>
@@ -145,8 +144,8 @@
         </p-footer>
       </p-dataTable> -->
     </div>
-    <p class='form-title'>SPACE(Indicate if any space will be required as part of the proposed work/activity) </p>
     <p-dataTable [value]="intakeForm.space" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'space')">
+      <p-header>SPACE(Indicate if any space will be required as part of the proposed work/activity)</p-header>
       <p-column field="item" header="Item (personnel,equipment, storage,. etc)"></p-column>
       <p-column field="newSpace" header="New Space,change of use, renovation?"></p-column>
       <p-column field="sourceOfFunds" header="Source Of Funds"></p-column>
@@ -198,9 +197,10 @@
     <p class='form-title'>PROJECT SUMMARY Please provide a brief project summary, scope of work, or abstract, of your proposal</p>
     <input id='s' type="text" [(ngModel)]='intakeForm.summary' pInputText>
   </div>
+  <!-- arrows -->
   <app-form-footer [index]='index' [length]='breadCrumbStrings.length' (newIndex)='updateIndex($event)'></app-form-footer>
   <!-- dialog for crud stuff -->
-  <p-dialog header="intakeInnerClass" [(visible)]="displayDialog" [responsive]="true" showEffect="fade">
+  <p-dialog header="{{intakeInnerClass}}" [(visible)]="displayDialog" [responsive]="true" showEffect="fade">
     <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="intakeInnerClass=='personnel'">
       <label>Name</label>
       <input pInputText [(ngModel)]="personnel.name" />

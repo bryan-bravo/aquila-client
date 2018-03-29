@@ -1,67 +1,161 @@
-<h3>Timeline</h3>
-<ul id='timeline-bar' class='form-flex-start'>
-  <li *ngFor='let stage of timeline.stages; index as i'>
+<div class='dash-bar'>
+  <h3 class='page-title'>Timeline</h3>
+  <button pButton (click)='setDialogType("view-basic-timeline")' label='Timeline Info'></button>
+  <button pButton (click)='handleAddStage()' label='Add Stage' icon='fa-plus' iconPos='right'></button>
+
+</div>
+<ul id='timeline-bar'>
+  <li *ngFor='let stage of timeline?.stages; index as i'>
     <!-- bar -->
-    <div class='bar' *ngIf='i!=0'></div>
-    <div class='icon-name-container' (click)='setCurrentStageId(stage.Id)'>
+    <div class='bar' *ngIf='i!=0' (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)'></div>
+    <div class='icon-name-container' (click)='getCurrentStage(stage.id)'>
       <!-- icon -->
       <div class='icon'></div>
       <!-- name -->
       <label class='name'>{{stage.name}}</label>
     </div>
-
   </li>
 </ul>
-<p-dialog header="Stage" [(visible)]="displayDialog" [responsive]="true" showEffect="fade">
-  <!-- show a stage -->
-  <div class='form-flex-start' *ngIf='dialogType=="view"'>
-    <label>Name {{stage.name}}</label>
-    <label>Expected Date {{stage.expectedDate}}</label>
-    <label>Completed Date {{stage.completedDate}}</label>
-    <label>Required Forms</label>
-    <div>
-      <ul>
-        <li *ngFor='let form of stage.requiredForms'>
-          <span>{{form}}</span>
-          <span> | check or x image to show completion</span>
-        </li>
-      </ul>
-    </div>
-    <label>Required Files</label>
-    <div>
-      <ul>
-      </ul>
-    </div>
-    <label>Additional Notes</label>
-    <p>{{stage.additionalNotes}}</p>
+<div id='stage-content'>
+  <!-- view basic timeline info -->
+  <div class='form-flex-start' *ngIf='dialogType=="view-basic-timeline"'>
+    <h3>{{timeline.proposalName}}</h3>
+    <label>Principal Investigator</label>
+    <p>{{timeline.principalInvestigator}}</p>
+    <label>Other Investigators</label>
+    <p *ngFor='let oi of timeline.coPi'>{{oi}}</p>
+    <label>Funding Agency</label>
+    <p>{{timeline.fundingAgency }}</p>
+    <label>UAS Due Date</label>
+    <p>{{timeline.uasDueDate }}</p>
+    <label>Sponsor Due Date</label>
+    <p>{{timeline.sponsorDueDate }}</p>
+    <label>Final Signatures Deadline</label>
+    <p>{{timeline.finalSign}}</p>
+    <button pButton class='ui-button-warning' (click)='setDialogType("edit-basic-timeline")' label='Edit' icon='fa-edit'
+      iconPos='right'></button>
+  </div>
+  <!-- edit timeline info -->
+  <div class='form-flex-start' *ngIf='dialogType=="edit-basic-timeline"'>
+    <h3>{{timeline.proposalName}}</h3>
+    <label>Principal Investigator</label>
+    <p>{{timeline.principalInvestigator}}</p>
+    <label>Other Investigators</label>
+    <p *ngFor='let oi of timeline.coPi'>{{oi}}</p>
+    <label>Funding Agency</label>
+    <input type='text' pInputText [(ngModel)]='timeline.fundingAgency'>
+    <label>UAS Due Date</label>
+    <p-calendar [(ngModel)]='timeline.uasDueDate'></p-calendar>
+    <label>Sponsor Due Date</label>
+    <p-calendar [(ngModel)]='timeline.sponsorDueDate'></p-calendar>
+    <label>Final Signatures Deadline</label>
+    <p-calendar [(ngModel)]='timeline.finalSign'></p-calendar>
+    <button pButton class='ui-button-success' (click)='saveTimeline()' label='Save Timeline'></button>
 
-    <button class='blue-button' (click)='setDialogType("edit")'>Edit</button>
+  </div>
+  <!-- show a stage -->
+  <div class='form-flex-start' *ngIf='dialogType=="view-stage"'>
+    <h2>{{stage.name}}</h2>
+    <label>Expected Date</label>
+    <label>{{stage.expectedDate}}</label>
+    <label>Completed Date</label>
+    <label>{{stage.completedDate}}</label>
+    <p-dataTable [value]='stage.requiredForms'>
+      <p-header>Required Forms</p-header>
+      <p-column field='key' header='Form'></p-column>
+      <p-column header='Status'></p-column>
+    </p-dataTable>
+    <p-dataTable [value]='stage.requiredFiles'>
+      <p-header>Required Files</p-header>
+      <p-column field='key' header='File'></p-column>
+      <p-column header='Upload'>
+        <ng-template pTemplate='body'>
+          <input type='file'>
+        </ng-template>
+      </p-column>
+      <p-column field='value' header='Download'>
+        <ng-template pTemplate='body'>
+          Download
+        </ng-template>
+      </p-column>
+    </p-dataTable>
+    <label class='form-title'>Additional Notes</label>
+    <p>{{stage.additionalNotes}}</p>
+    <button pButton class='ui-button-warning edit ' (click)='setDialogType("edit-stage")' label='Edit' icon='fa-edit' iconPos='right'></button>
   </div>
   <!-- edit a stage -->
-  <div class='form-flex-start window' *ngIf='dialogType=="edit"'>
-    <label>Name</label>
-    <input>
-    <label>Expected Date</label>
-    <p-calendar></p-calendar>
-    <label>Completed Date</label>
-    <p-calendar></p-calendar>
-    <label>UAS Review Required</label>
-    <input type='checkbox'>
-    <label>UAS Approved</label>
-    <input type='checkbox'>
-    <label>Required Forms</label>
-    <div class='form-flex-start'>
-      <ul>
-        <li *ngFor='let form of stage.requiredForms'><label>{{form}}</label> <span><button>Remove</button></span> </li>
-      </ul>
-      <select>
-        <option *ngFor='let form of unSelectedForms'>{{form}}</option>
-      </select>
-      <button> Add Form</button>
+  <div class='form-flex-start window' *ngIf='dialogType=="edit-stage"'>
+    <h2>{{stage.name}}</h2>
+    <input type='text' pInputText [(ngModel)]='stage.name'>
+    <div class='stage-general-info'>
+      <div>
+        <label>Expected Date</label>
+        <p-calendar [(ngModel)]='stage.expectedDate' [showIcon]='true'></p-calendar>
+      </div>
+      <div>
+        <label>Completed Date</label>
+        <p-calendar [(ngModel)]='stage.completedDate' [showIcon]='true'></p-calendar>
+      </div>
+      <div>
+        <label>UAS Review Required</label>
+        <input type='checkbox'>
+      </div>
+      <div>
+        <label>UAS Approved</label>
+        <input type='checkbox'>
+      </div>
     </div>
-    <label>Required Files</label>
-    <div></div>
-    <label>Additional Notes</label>
+    <!-- forms -->
+    <p-dataTable [value]='stage.requiredForms' [immutable]='false'>
+      <p-header>Required Forms</p-header>
+      <p-column field='key' header='Form'></p-column>
+      <p-column header='Status'></p-column>
+      <p-column header='Delete'>
+        <ng-template pTemplate='body'>
+          <button pButton class='ui-button-danger' (click)='handleRemoveForm(key)' label='Delete' icon='fa-minus' iconPos='right'></button>
+        </ng-template>
+      </p-column>
+      <p-footer>
+        <select #form>
+          <option *ngFor='let form of unSelectedForms'>{{form}}</option>
+        </select>
+        <button pButton (click)='handleAddForm(form.value)' label='Form' icon='fa-plus' iconPos='right'></button>
+      </p-footer>
+    </p-dataTable>
+    <!-- files -->
+    <p-dataTable [value]='stage.requiredFiles' [immutable]='false'>
+      <p-header>Required Files</p-header>
+      <p-column field='key' header='File'></p-column>
+      <p-column header='Upload'>
+        <ng-template pTemplate='body'>
+          <input type='file'>
+        </ng-template>
+      </p-column>
+      <p-column field='value' header='Download'>
+        <ng-template pTemplate='body'>
+          Download
+        </ng-template>
+      </p-column>
+      <p-column field='key' header='Delete'>
+        <ng-template pTemplate='body'>
+          <button pButton class='ui-button-danger' (click)='handleRemoveFile(key)' label='Delete' icon='fa-minus' iconPos='right'></button>
+        </ng-template>
+      </p-column>
+      <p-footer>
+        <input pInputText type='text' #addReqFile>
+        <button pButton (click)='handleAddFile(addReqFile.value)' label='File' icon='fa-plus' iconPos='right'></button>
+      </p-footer>
+    </p-dataTable>
+    <label class='form-title'>Additional Notes</label>
     <textarea pInputTextarea [(ngModel)]="stage.additionalNotes" autoResize="autoResize"></textarea>
+    <label class='form-title'>Order in Timeline</label>
+    <div class='drag-reorder' draggable='true'>
+      <div class='icon drag-icon'></div>
+      <label>Drag me to reorder</label>
+    </div>
+    <div class='button-footers'>
+      <button pButton class='ui-button-success' (click)='saveStage()' label='Save'></button>
+      <button pButton class='ui-button-danger' (click)='deleteStage()' label='Delete'></button>
+    </div>
   </div>
-</p-dialog>
+</div>

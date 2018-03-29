@@ -4,6 +4,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {Proposal } from '../models/PreAward/Proposal';
 import {IntakeForm} from '../models/PreAward/IntakeForm';
+import {TimeLine, Stage} from '../models/PreAward/TimeLine';
+
 @Injectable()
 export class PreawardService {
 user: User;
@@ -23,11 +25,26 @@ user: User;
   }
   // get proposal by id
   getProposal(id): Observable<Proposal> {// 3
-    return this.http.get<Proposal>('api/proposal/' + id);// 4, start going back
+    return this.http.get<Proposal>('api/proposal/' + id); // 4, start going back
   }
-  updateIntake(intakeForm): Observable<IntakeForm>{
-  console.log(typeof JSON.parse(JSON.stringify(intakeForm)))
-  //console.log(intakeForm)
-  return this.http.put<IntakeForm>('api/intake/'+intakeForm.id, JSON.parse(JSON.stringify(intakeForm)));
+  updateIntake(intakeForm): Observable<IntakeForm> {
+  return this.http.put<IntakeForm>('api/intake/' + intakeForm.id, JSON.parse(JSON.stringify(intakeForm)));
+  }
+  // timeline
+  updateTimeline(proposalId, timeline): Observable<TimeLine> {
+      return this.http.put<TimeLine>(`api//proposal/${proposalId}/timeline/${timeline.id}`, JSON.parse(JSON.stringify(timeline)));
+  }
+  // stage
+  createStage(timelineId): Observable<Stage> {
+    const stage = JSON.parse(JSON.stringify(new Stage()));
+    return this.http.post<Stage>(`api/proposal/timeline/${timelineId}/stage/`, stage);
+  }
+  saveStage(timelineId, stage): Observable<Stage> {
+    // console.log(stage)
+    stage = JSON.parse(JSON.stringify(stage));
+    return this.http.put<Stage>(`api/timeline/${timelineId}/stage/update/${stage.id}`, stage);
+  }
+  deleteStage(stageId) {
+    return this.http.delete(`api/timeline/stage/${stageId}`);
   }
 }
