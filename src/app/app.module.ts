@@ -23,8 +23,8 @@ import {DialogModule} from 'primeng/primeng';
 import {InputTextareaModule} from 'primeng/components/inputtextarea/inputtextarea';
 import {DropdownModule} from 'primeng/components/dropdown/dropdown';
 import {CheckboxModule} from 'primeng/primeng';
+import {FileUploadModule} from 'primeng/primeng';
 
-// file info
 // generated components
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -52,6 +52,8 @@ import { ApprovalComponent } from './components/formcomponents/approval/approval
 
 // pipes
 import {KeysPipe} from './pipes/keys.pipe';
+
+// directives
 import { TimelineBarDirective } from './directives/timeline-bar.directive';
 
 const AppRoutes: Routes = [
@@ -104,7 +106,8 @@ const AppRoutes: Routes = [
     DataTableModule,
     DialogModule,
     DropdownModule,
-    CheckboxModule
+    CheckboxModule,
+    FileUploadModule
   ],
   providers: [
     AuthenticationService,

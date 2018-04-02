@@ -67,17 +67,19 @@
     <p>{{stage.expectedDate}}</p>
     <label>Completed Date</label>
     <p>{{stage.completedDate}}</p>
+    <!-- forms -->
     <p-dataTable [value]='stage.requiredForms'>
       <p-header>Required Forms</p-header>
       <p-column field='key' header='Form'></p-column>
       <p-column header='Status'></p-column>
     </p-dataTable>
+    <!-- files -->
     <p-dataTable [value]='stage.requiredFiles'>
       <p-header>Required Files</p-header>
       <p-column field='key' header='File'></p-column>
       <p-column header='Upload'>
-        <ng-template pTemplate='body'>
-          <input type='file'>
+        <ng-template pTemplate='body' let-file='rowData'>
+          <p-fileUpload mode="basic" customUpload="true" auto='auto' (uploadHandler)='myUploader($event,file)' chooseLabel="Browse"></p-fileUpload>
         </ng-template>
       </p-column>
       <p-column field='value' header='Download'>
@@ -112,6 +114,11 @@
         <p-checkbox [(ngModel)]='stage.uasReviewed' binary='true'></p-checkbox>
       </div>
     </div>
+    <label class='form-title'>Order in Timeline</label>
+    <div class='drag-reorder' draggable='true' (dragstart)='setDragging(true)' (dragend)='setDragging(false)'>
+      <div class='icon drag-icon'></div>
+      <label>Drag me to reorder</label>
+    </div>
     <!-- forms -->
     <p-dataTable [value]='stage.requiredForms' [immutable]='false'>
       <p-header>Required Forms</p-header>
@@ -134,8 +141,8 @@
       <p-header>Required Files</p-header>
       <p-column field='key' header='File'></p-column>
       <p-column header='Upload'>
-        <ng-template pTemplate='body'>
-          <input type='file'>
+        <ng-template pTemplate='body' let-file='rowData'>
+          <p-fileUpload mode="basic" customUpload="true" auto='auto' (uploadHandler)='myUploader($event,file)' chooseLabel="Browse"></p-fileUpload>
         </ng-template>
       </p-column>
       <p-column field='value' header='Download'>
@@ -143,9 +150,9 @@
           Download
         </ng-template>
       </p-column>
-      <p-column field='key' header='Delete'>
-        <ng-template pTemplate='body'>
-          <button pButton class='ui-button-danger' (click)='handleRemoveFile(key)' label='Delete' icon='fa-minus' iconPos='right'></button>
+      <p-column header='Delete'>
+        <ng-template pTemplate='body' let-file='rowData'>
+          <button pButton class='ui-button-danger' (click)='handleRemoveFile(file)' label='Delete' icon='fa-minus' iconPos='right'></button>
         </ng-template>
       </p-column>
       <p-footer>
@@ -155,11 +162,6 @@
     </p-dataTable>
     <label class='form-title'>Additional Notes</label>
     <textarea pInputTextarea [(ngModel)]="stage.additionalNotes" autoResize="autoResize"></textarea>
-    <label class='form-title'>Order in Timeline</label>
-    <div class='drag-reorder' draggable='true' (dragstart)='setDragging(true)' (dragend)='setDragging(false)'>
-      <div class='icon drag-icon'></div>
-      <label>Drag me to reorder</label>
-    </div>
     <div class='button-footers'>
       <button pButton class='ui-button-success' (click)='saveStage()' label='Save'></button>
       <button pButton class='ui-button-danger' (click)='deleteStage()' label='Delete'></button>

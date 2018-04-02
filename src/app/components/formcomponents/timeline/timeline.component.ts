@@ -46,13 +46,15 @@ export class TimelineComponent implements OnInit {
     const obj = this.proposalService.getTimeline();
     this.timeline = this.parseDates(obj.timeline);
     // parse the object maps into iterables
-    this.timeline.stages.forEach((stage, i, stages) => {
-        stages[i] = this.parseStage(stage);
-    });
+    if (obj.timeline.stages[0].requiredForms.length == undefined) {
+      this.timeline.stages.forEach((stage, i, stages) => {
+          stages[i] = this.parseStage(stage);
+      });
+    }
     this.dragging = false;
     this.draggingOverTimeline = false;
     this.proposalId = obj.proposalId;
-
+    console.log(this.timeline)
   }
   saveTimeline() {
     if (this.timeline.stages.length === 1) {
@@ -106,7 +108,8 @@ export class TimelineComponent implements OnInit {
     });
   }
   sortStageIntoTimeline(indexToPush) {
-    const currentStageIndex = this.stageIndex;
+    const currentStageIndex = this.getStageIndex(this.stage.id);
+    console.log(`stage index ${currentStageIndex} index to pushh ${indexToPush}`)
     if (indexToPush !== currentStageIndex || indexToPush !== currentStageIndex + 1){
       this.preAwardService.reorderStage(this.stage.id, indexToPush).subscribe( response => {
        if (indexToPush === 0) {
@@ -120,8 +123,10 @@ export class TimelineComponent implements OnInit {
           this.timeline.stages.splice(indexToPush, 0, this.stage);
         }
         this.stageIndex = this.getStageIndex(this.stage.id);
-        this.stage.stageOrder = this.stageIndex;
+        // this.stage.stageOrder = this.stageIndex;
       });
+    } else {
+      console.log("nope")
     }
   }
   deleteStage() {
@@ -132,7 +137,7 @@ export class TimelineComponent implements OnInit {
           return this.stage == stage;
         });
         this.timeline.stages.splice(currentStageIndex,  1);
-        this.setDialogType('view-basic-timeline');  
+        this.setDialogType('view-basic-timeline');
       });
   }
   // forms
@@ -166,19 +171,32 @@ export class TimelineComponent implements OnInit {
       this.stage.requiredFiles.push({'key': fileName, 'value': null});
     }
   }
-  handleRemoveFile(fileName) {
-    let index = this.stage.requiredFiles.findIndex(reqFile => {
-      return reqFile.key === fileName;
-    });
-    this.stage.requiredFiles.splice(index, 1);
-  }
+  handleRemoveFile(fileEntry) {
 
+    let fileIndex = this.stage.requiredFiles.findIndex(reqFile => {
+      return reqFile.key === fileEntry.key;
+    });
+    console.log(fileIndex)
+    // // if the req file is local, remove from map
+    // // if req file is in db make request
+    this.preAwardService.deleteFile(this.timeline.id, this.stage.id, this.stage.requiredFiles[fileIndex].value.id)
+    .subscribe(response => {
+      this.stage.requiredFiles.splice(fileIndex, 1);
+    });
+  }
+  myUploader(event, file) {
+    // event.files == files to upload
+    this.preAwardService.uploadFile(this.proposalId, this.stage.id, file.key, event.files[0])
+    .subscribe(response => {
+    });
+  }
   // helper functions
   getCurrentStage(stageId) {
     const stageIndex = this.getStageIndex(stageId);
     this.stage = this.timeline.stages[stageIndex];
     this.stageIndex = stageIndex;
     this.setDialogType('view-stage');
+    // console.log(this.stage)
   }
   getStageIndex(stageId) {
     const stageIndex = this.timeline.stages.findIndex((stage) => {
@@ -211,7 +229,7 @@ export class TimelineComponent implements OnInit {
   allowDrop(event) {
     event.preventDefault();
   }
-  // parse Timeline dates
+  // format data
   parseDates(timeline) {
     if (timeline.uasDueDate !== null) {
       timeline.uasDueDate = new Date (timeline.uasDueDate)

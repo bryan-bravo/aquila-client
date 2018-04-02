@@ -61,4 +61,13 @@ user: User;
   reorderStage(stageId, indexToPush) {
     return this.http.get(`api/timeline/stage/${stageId}/order/${indexToPush}`);
   }
+  uploadFile(proposalId, stageId, fileName, file ) {
+    let formData = new FormData();
+    formData.append('file', file);
+    return this.http.put(`api/proposal/${proposalId}/stage/${stageId}/fileupload/${fileName}`, formData);
+  }
+  deleteFile(timelineId, stageId, fileId) {
+    // `/timeline/{timelineId}/stage/{stageId}/deletefile/{fileId}`
+    return this.http.delete(`api/timeline/${timelineId}/stage/${stageId}/deletefile/${fileId}`);
+  }
 }
