@@ -4,7 +4,7 @@ import {Proposal} from '../../models/PreAward/Proposal';
 import {ProposalService} from '../../services/proposal.service';
 import { IntakeForm } from '../../models/PreAward/IntakeForm';
 import { PreawardService } from '../../services/preaward.service';
-// import {MockData} from './mock-data';
+import {GrowlModule} from 'primeng/primeng';
 @Component({
   selector: 'app-edit-proposal',
   templateUrl: './edit-proposal.component.html',

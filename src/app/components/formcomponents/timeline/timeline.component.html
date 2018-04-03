@@ -2,13 +2,8 @@
   <h3 class='page-title'>Timeline</h3>
   <button pButton (click)='setDialogType("view-basic-timeline")' label='Timeline Info'></button>
   <button pButton (click)='handleAddStage()' label='Add Stage' icon='fa-plus' iconPos='right'></button>
-
 </div>
 <ul id='timeline-bar'>
-  <!-- add to beginning of timeline -->
-  <!-- <li *ngIf='dragging'>
-    <div class='bar' appTimelineBar (drop)='drop({"event":$event,"index":0})' (dragover)='allowDrop($event)'></div>
-  </li> -->
   <li *ngFor='let stage of timeline?.stages; index as i'>
     <!-- bar -->
     <div class='bar' appTimelineBar *ngIf='i!=0' (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)' [ngClass]='{"barCompleted": stage.uasReviewed}'></div>

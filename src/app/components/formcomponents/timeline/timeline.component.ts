@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {NgClass, NgStyle} from '@angular/common';
+import {MessageService} from 'primeng/components/common/messageservice';
+// import {GrowlModule} from 'primeng/primeng';
 
 import {TimeLine, Stage, FileInfo} from '../../../models/PreAward/TimeLine';
-import { MockDataService } from '../../../services/mock-data.service';
 import { PreawardService } from '../../../services/preaward.service';
 import { ProposalService } from '../../../services/proposal.service';
 import {KeysPipe} from '../../../pipes/keys.pipe';
@@ -30,7 +31,7 @@ export class TimelineComponent implements OnInit {
   'Statement Of Economic Interest',
  ];
  unSelectedForms: string[];
-  constructor(private mockService: MockDataService,
+  constructor(private messageService: MessageService,
               private preAwardService: PreawardService,
               private proposalService: ProposalService,
               private keysPipe: KeysPipe
@@ -54,7 +55,6 @@ export class TimelineComponent implements OnInit {
     this.dragging = false;
     this.draggingOverTimeline = false;
     this.proposalId = obj.proposalId;
-    console.log(this.timeline)
   }
   saveTimeline() {
     if (this.timeline.stages.length === 1) {
@@ -68,6 +68,7 @@ export class TimelineComponent implements OnInit {
             stages[i] = this.parseStage(stage);
         });
         this.timeline = timeline;
+        this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
       });
     } else {
       // making patch request
@@ -87,6 +88,7 @@ export class TimelineComponent implements OnInit {
         } else {
           this.timeline.finalSign = timeline.finalSign;
         }
+        this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
       });
     }
   }
@@ -105,6 +107,8 @@ export class TimelineComponent implements OnInit {
     stage.stageOrder = this.getStageIndex(this.stage.id);
     this.preAwardService.saveStage(this.timeline.id, stage).subscribe( (savedStage) => {
       this.stage = this.parseStage(savedStage);
+      this.messageService.add({severity:'success', summary:'Stage Saved', detail:'Via MessageService'});
+
     });
   }
   sortStageIntoTimeline(indexToPush) {
@@ -123,7 +127,7 @@ export class TimelineComponent implements OnInit {
           this.timeline.stages.splice(indexToPush, 0, this.stage);
         }
         this.stageIndex = this.getStageIndex(this.stage.id);
-        // this.stage.stageOrder = this.stageIndex;
+        this.messageService.add({severity:'success', summary:'Stage Reordered', detail:'Via MessageService'});
       });
     } else {
       console.log("nope")
@@ -138,6 +142,7 @@ export class TimelineComponent implements OnInit {
         });
         this.timeline.stages.splice(currentStageIndex,  1);
         this.setDialogType('view-basic-timeline');
+        this.messageService.add({severity:'success', summary:'Stage Deleted', detail:'Via MessageService'});
       });
   }
   // forms
@@ -188,6 +193,8 @@ export class TimelineComponent implements OnInit {
     // event.files == files to upload
     this.preAwardService.uploadFile(this.proposalId, this.stage.id, file.key, event.files[0])
     .subscribe(response => {
+      this.messageService.add({severity:'success', summary:'File Uploaded', detail:'Via MessageService'});
+
     });
   }
   // helper functions

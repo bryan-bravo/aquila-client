@@ -9,22 +9,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ButtonModule, PaginatorModule} from 'primeng/primeng';
 import {InputTextModule} from 'primeng/primeng';
 import {StepsModule, MenubarModule, MenuItem} from 'primeng/primeng';
-import {DataListModule} from 'primeng/primeng';
 import {Header} from 'primeng/primeng';
 import {MessagesModule} from 'primeng/primeng';
 import {MessageModule} from 'primeng/primeng';
 import {MessageService} from 'primeng/components/common/messageservice';
-import {InputSwitchModule} from 'primeng/primeng';
 import {OverlayPanelModule} from 'primeng/primeng';
 import {ProgressBarModule} from 'primeng/primeng';
 import {CalendarModule} from 'primeng/primeng';
 import {DataTableModule, SharedModule} from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
 import {InputTextareaModule} from 'primeng/components/inputtextarea/inputtextarea';
-import {DropdownModule} from 'primeng/components/dropdown/dropdown';
 import {CheckboxModule} from 'primeng/primeng';
 import {FileUploadModule} from 'primeng/primeng';
-
+import {GrowlModule} from 'primeng/primeng';
 // generated components
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -94,20 +91,15 @@ const AppRoutes: Routes = [
     ButtonModule,
     InputTextModule,
     MenubarModule,
-    DataListModule,
-    MessagesModule,
-    MessageModule,
-    InputSwitchModule,
     OverlayPanelModule,
-    ProgressBarModule,
-    PaginatorModule,
-    StepsModule,
     CalendarModule,
     DataTableModule,
     DialogModule,
-    DropdownModule,
     CheckboxModule,
-    FileUploadModule
+    FileUploadModule,
+    MessagesModule,
+    MessageModule,
+    GrowlModule
   ],
   providers: [
     AuthenticationService,
