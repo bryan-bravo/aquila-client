@@ -182,6 +182,7 @@ export class TimelineComponent implements OnInit {
     const fileIndex = this.stage.requiredFiles.findIndex(reqFile => {
       return reqFile.key === fileEntry.key;
     });
+    // the file info is already in the database
     if (fileEntry.value != null) {
       this.preAwardService.deleteFile(this.timeline.id, this.stage.id, this.stage.requiredFiles[fileIndex].value.id)
       .subscribe(response => {

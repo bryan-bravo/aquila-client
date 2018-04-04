@@ -1,7 +1,7 @@
 <div class='dash-bar'>
   <h3 class='page-title'>Timeline</h3>
   <button pButton (click)='setDialogType("view-basic-timeline")' label='Timeline Info'></button>
-  <button pButton (click)='handleAddStage()' label='Add Stage' icon='fa-plus' iconPos='right'></button>
+  <button pButton (click)='handleAddStage()' label='Add Stage' icon='fa-plus'  ></button>
 </div>
 <ul id='timeline-bar'>
   <li *ngFor='let stage of timeline?.stages; index as i'>
@@ -35,7 +35,7 @@
     <p>{{timeline.sponsorDueDate }}</p>
     <label>Final Signatures Deadline</label>
     <p>{{timeline.finalSign}}</p>
-    <button pButton class='ui-button-warning' (click)='setDialogType("edit-basic-timeline")' label='Edit' icon='fa-edit' iconPos='right'></button>
+    <button pButton class='ui-button-warning' (click)='setDialogType("edit-basic-timeline")' label='Edit' icon='fa-edit'  ></button>
   </div>
   <!-- edit timeline info -->
   <div class='form-flex-start timeline-info' *ngIf='dialogType=="edit-basic-timeline"'>
@@ -85,7 +85,7 @@
     </p-dataTable>
     <label class='form-title'>Additional Notes</label>
     <p>{{stage.addComments}}</p>
-    <button pButton class='ui-button-warning edit ' (click)='setDialogType("edit-stage")' label='Edit' icon='fa-edit' iconPos='right'></button>
+    <button pButton class='ui-button-warning edit ' (click)='setDialogType("edit-stage")' label='Edit' icon='fa-edit'  ></button>
   </div>
   <!-- edit a stage -->
   <div class='form-flex-start window' *ngIf='dialogType=="edit-stage"'>
@@ -121,14 +121,14 @@
       <p-column header='Status'></p-column>
       <p-column header='Delete'>
         <ng-template pTemplate='body'>
-          <button pButton class='ui-button-danger' (click)='handleRemoveForm(key)' label='Delete' icon='fa-minus' iconPos='right'></button>
+          <button pButton class='ui-button-danger' (click)='handleRemoveForm(key)' label='Delete' icon='fa-minus'  ></button>
         </ng-template>
       </p-column>
       <p-footer>
         <select #form>
           <option *ngFor='let form of unSelectedForms'>{{form}}</option>
         </select>
-        <button pButton (click)='handleAddForm(form.value)' label='Form' icon='fa-plus' iconPos='right'></button>
+        <button pButton (click)='handleAddForm(form.value)' label='Form' icon='fa-plus'  ></button>
       </p-footer>
     </p-dataTable>
     <!-- files -->
@@ -147,12 +147,12 @@
       </p-column>
       <p-column header='Delete'>
         <ng-template pTemplate='body' let-file='rowData'>
-          <button pButton class='ui-button-danger' (click)='handleRemoveFile(file)' label='Delete' icon='fa-minus' iconPos='right'></button>
+          <button pButton class='ui-button-danger' (click)='handleRemoveFile(file)' label='Delete' icon='fa-minus'  ></button>
         </ng-template>
       </p-column>
       <p-footer>
         <input pInputText type='text' #addReqFile>
-        <button pButton (click)='handleAddFile(addReqFile.value)' label='File' icon='fa-plus' iconPos='right'></button>
+        <button pButton (click)='handleAddFile(addReqFile.value)' label='File' icon='fa-plus'  ></button>
       </p-footer>
     </p-dataTable>
     <label class='form-title'>Additional Notes</label>
