@@ -179,17 +179,17 @@ export class TimelineComponent implements OnInit {
     }
   }
   handleRemoveFile(fileEntry) {
-
-    let fileIndex = this.stage.requiredFiles.findIndex(reqFile => {
+    const fileIndex = this.stage.requiredFiles.findIndex(reqFile => {
       return reqFile.key === fileEntry.key;
     });
-    console.log(fileIndex)
-    // // if the req file is local, remove from map
-    // // if req file is in db make request
-    this.preAwardService.deleteFile(this.timeline.id, this.stage.id, this.stage.requiredFiles[fileIndex].value.id)
-    .subscribe(response => {
+    if (fileEntry.value != null) {
+      this.preAwardService.deleteFile(this.timeline.id, this.stage.id, this.stage.requiredFiles[fileIndex].value.id)
+      .subscribe(response => {
+        this.stage.requiredFiles.splice(fileIndex, 1);
+      });
+    } else {
       this.stage.requiredFiles.splice(fileIndex, 1);
-    });
+    }
   }
   myUploader(event, file) {
     if (file.value != null) {
