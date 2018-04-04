@@ -34,7 +34,7 @@ export class PiPreAwardComponent implements OnInit {
   createProposal() {
     this.preAwardService.newProposal(this.newProposalName).subscribe(proposal => {
       this.usersProposals.push(proposal);
-    });
+    }); //creates the proposal
   }
   showDialog() {
     this.displayDialog = true;

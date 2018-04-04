@@ -9,19 +9,19 @@
     <div *ngIf='index==0' class='form-flex-start'>
         <p class='form-title'>General Information</p>
         <label>Project Title</label>
-        <input type="text" pInputText>
+        <input type="text" [(ngModel)]='approvalForm.projectTitle' pInputText>
         <label>P.I. Name</label>
-        <input type="text" pInputText>
+        <input type="text" [(ngModel)]='approvalForm.pIName'pInputText>
         <label>Email</label>
-        <input type="text" pInputText>
+        <input type="text" [(ngModel)]='approvalForm.email' pInputText>
         <label>College</label>
-        <input type="text" pInputText>
+        <input type="text" [(ngModel)]='approvalForm.college' pInputText>
         <label>Department</label>
-        <input type='text' pInputText>
+        <input type='text' [(ngModel)]='approvalForm.department' pInputText>
         <label>Funding Sponsor</label>
         <input type='text' pInputText>
         <label>Deadline Date</label>
-        <input type='text' pInputText>
+        <input type='text' [(ngModel)]='approvalForm.deadlineDate' pInputText>
     </div>
 
     <!-- page 2 Project Information -->
@@ -44,17 +44,17 @@
         <label>CFDA #</label>
         <input type="text" pInputText>
         <label>Funded</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Not Funded</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Date</label>
         <input type="text" pInputText>
         <label>Full Amount Funded</label>
         <input type="text" pInputText>
         <label>Yes</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>No</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>If no</label>
         <input type="text" pInputText>
         <label>Amount Funded</label>
@@ -147,58 +147,58 @@
         <p class='form-title'>Certifications/Special Requirements</p>
         <p>Additional Space</p>
         <label>No</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Yes</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Approved</label>
         <input type="text" pInputText>
         <p>Vertebrate Animals</p>
         <label>No</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Yes</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Approved</label>
         <input type="text" pInputText>
         <p>Biological Hazards</p>
         <label>No</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Yes</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Approved</label>
         <input type="text" pInputText>
         <p>Conflict of Interest Statement</p>
         <label>No</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Yes</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Approved</label>
         <input type="text" pInputText>
         <p>Human Subjects</p>
         <label>No</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Yes</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Approved</label>
         <input type="text" pInputText>
         <p>Radiological Hazards</p>
         <label>No</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Yes</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Approved</label>
         <input type="text" pInputText>
         <p>Computer Equipment</p>
         <label>No</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Yes</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Approved</label>
         <input type="text" pInputText>
         <p>Recimbinant DNA</p>
         <label>No</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Yes</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Approved</label>
         <input type="text" pInputText>
     </div>
@@ -212,9 +212,9 @@
         <!-- SIGNATURES -->
         <p>University Cost Sharing</p>
         <label>No</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Yes</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <!-- SIGNATURES -->
         <p class='form-title'>Required Review and Approvals</p>
         <p>Submit form to UAS (GE314) for signatures below</p>
@@ -225,9 +225,9 @@
         <p class='form-title'>Cost Sharing Information (Entire Project)</p>
         <p>Is Cost Sharing required by the funding agency</p>
         <label>No</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <label>Yes</label>
-        <input type="checkbox">
+        <p-checkbox binary='true'></p-checkbox>
         <p>(A) Cal State LA Cost Sharing</p>
         <p>College #1</p>
         <label>Personnel</label>

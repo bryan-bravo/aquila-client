@@ -70,6 +70,7 @@ export class EditProposalComponent implements OnInit {
   }
   // when child component is instantied, update proposal in service
   sendForm() {
+    // console.log(this.proposal)
     this.proposalService.parentUpdatesProposal(this.proposal);
   }
 }

@@ -4,6 +4,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {Proposal } from '../models/PreAward/Proposal';
 import {IntakeForm} from '../models/PreAward/IntakeForm';
+import { EquipmentForm } from '../models/PreAward/EquipmentForm';
+import { EconomicInterestPI } from '../models/PreAward/EconomicInterestPI';
 import {TimeLine, Stage} from '../models/PreAward/TimeLine';
 
 @Injectable()
@@ -28,7 +30,22 @@ user: User;
     return this.http.get<Proposal>('api/proposal/' + id); // 4, start going back
   }
   updateIntake(intakeForm): Observable<IntakeForm> {
-  return this.http.put<IntakeForm>('api/intake/' + intakeForm.id, JSON.parse(JSON.stringify(intakeForm)));
+    return this.http.put<IntakeForm>('api/intake/' + intakeForm.id, JSON.parse(JSON.stringify(intakeForm)));
+    }
+  getEquipment(id): Observable<EquipmentForm> {
+    return this.http.get<EquipmentForm>('api/equipment/' + id);
+  }
+  updateEquipment(equipmentForm): Observable<EquipmentForm>{
+    console.log(typeof JSON.parse(JSON.stringify(equipmentForm)))
+    return this.http.put<EquipmentForm>('api/equipment/'+equipmentForm.id, JSON.parse(JSON.stringify(equipmentForm)));
+  }
+  getEconomicInterestPI(id): Observable<EconomicInterestPI> {
+    return this.http.get<EconomicInterestPI>('api/proposal/economicinterest' + id);
+  }
+ 
+  updateEconomicInterestPI(economicInterestPI): Observable<EconomicInterestPI>{
+    console.log(typeof JSON.parse(JSON.stringify(economicInterestPI)))
+    return this.http.put<EconomicInterestPI>('api/proposal/editeconomicinterest/'+economicInterestPI.id, JSON.parse(JSON.stringify(economicInterestPI)));  
   }
   // timeline
   patchTimeline(proposalId, timeline): Observable<TimeLine> {

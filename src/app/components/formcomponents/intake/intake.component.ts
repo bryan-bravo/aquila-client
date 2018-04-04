@@ -35,7 +35,8 @@ export class IntakeComponent implements OnInit {
   newHazard: boolean;
 
   constructor(private proposalService: ProposalService, private preAwardService: PreawardService ) {
-    this.intakeForm = this.proposalService.getIntakeForm(); // make this into observable
+    this.intakeForm = this.proposalService.getIntakeForm(); // ignore this at the moment make this into observable
+    //If equipment is null create one and if not you're fine
    }
 
   ngOnInit() {
@@ -58,7 +59,7 @@ export class IntakeComponent implements OnInit {
   update() {
     // make request.
     this.preAwardService.updateIntake(this.intakeForm).subscribe(newIntake => {
-        //this.intakeForm = newIntake;
+        this.intakeForm = newIntake;
 console.log(newIntake)
         //send local intake back to parent
         this.proposalService.updateIntakeForm(this.intakeForm);

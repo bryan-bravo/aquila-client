@@ -1,5 +1,6 @@
 import { IntakeForm } from './IntakeForm';
 import { User } from '../User';
+import { TimeLine } from './TimeLine';
 
 export class Proposal {
    id: number;
@@ -8,6 +9,10 @@ export class Proposal {
    status: string;
    user: User;
    requiredForms: string[];
-   intakeForm: any;
-   timeline: any;
+   intakeForm: IntakeForm;
+   timeline: TimeLine;
+   equipmentForm: any;
+   economicInterestPI: any;
+//    intakeForm: any;
+//    timeline: any;
 }
