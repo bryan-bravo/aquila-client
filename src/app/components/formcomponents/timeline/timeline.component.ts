@@ -98,6 +98,8 @@ export class TimelineComponent implements OnInit {
       this.stage = this.parseStage(stage);
       this.timeline.stages.push(stage);
       this.setDialogType('edit-stage');
+      this.messageService.add({severity:'success', summary:'Stage Added', detail:'Via MessageService'});
+
     });
   }
   saveStage() {
@@ -190,12 +192,14 @@ export class TimelineComponent implements OnInit {
     });
   }
   myUploader(event, file) {
-    // event.files == files to upload
-    this.preAwardService.uploadFile(this.proposalId, this.stage.id, file.key, event.files[0])
-    .subscribe(response => {
-      this.messageService.add({severity:'success', summary:'File Uploaded', detail:'Via MessageService'});
-
-    });
+    if (file.value != null) {
+      this.preAwardService.uploadFile(this.proposalId, this.stage.id, file.key, event.files[0])
+      .subscribe(response => {
+        this.messageService.add({severity:'success', summary:'File Uploaded', detail:'Via MessageService'});
+      });
+    } else {
+      this.messageService.add({severity:'error', summary:'Cannot Upload', detail:'Please save stage prior to upload'});
+    }
   }
   // helper functions
   getCurrentStage(stageId) {
