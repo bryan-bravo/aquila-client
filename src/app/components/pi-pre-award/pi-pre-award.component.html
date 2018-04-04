@@ -11,8 +11,10 @@
     <p-column field='status' header='Status'></p-column>
   </p-dataTable>
   <p-overlayPanel header="New Proposal" showEffect="fade" #op>
-    <label>Proposal Name</label>
-    <input type='input' pInputText [(ngModel)]='newProposalName'>
-    <button class='button-blue' (click)='createProposal()'>Submit</button>
+    <form (ngSubmit)='createProposal()'>
+      <label>Proposal Name</label>
+      <input type='input' pInputText [(ngModel)]='newProposalName' name='newProposalName'>
+      <button pButton class='ui-button-success' type='submit' label='New Proposal'></button>
+    </form>
   </p-overlayPanel>
 </div>
