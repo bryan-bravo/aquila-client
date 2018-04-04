@@ -13,24 +13,25 @@ export class EquipmentComponent implements OnInit {
   index: number;
   breadCrumbStrings: string[] = ['General Info', 'Equipment', 'Requirements'];
 
-  constructor(private proposalServivce: ProposalService, private preAwardService: PreawardService) { 
+  constructor(private proposalService: ProposalService, private preAwardService: PreawardService) { 
     //this.equipmentForm = this.proposalServivce.getEquipmentForm();
     // console.log( this.equipmentForm)
   }
 
   ngOnInit() {
     this.index = 0;  
-    
-    //this.equipmentForm = new EquipmentForm('1'); /// need to change this
-    let equipmentObject = this.proposalServivce.getEquipmentForm();
+    let equipmentObject = this.proposalService.getEquipmentForm();
     console.log(equipmentObject)
-   if(this.equipmentForm == undefined) {
-    this.preAwardService.saveEquipmentForm(this.equipmentForm).subscribe(newEquipmentForm => {
-    this.equipmentForm = newEquipmentForm;
-    });
+   if(equipmentObject.equipmentForm.id == null) {
+     this.preAwardService.getEquipment(equipmentObject.proposalId).subscribe(newEquipmentForm => {
+      this.equipmentForm == newEquipmentForm;
+     });
+     } else {
+       this.equipmentForm = equipmentObject.equipmentForm;
+     }
      //make post request, set the response = this.equipmentForm, 
 
-    }
+    
   }
   // listens for index updates from form footer
   updateIndex(value) {
@@ -40,7 +41,7 @@ export class EquipmentComponent implements OnInit {
    update() {
      this.preAwardService.updateEquipment(this.equipmentForm).subscribe(newEquipment => {
        console.log(newEquipment)
-       this.proposalServivce.updateEquipmentForm(this.equipmentForm);
+       this.proposalService.updateEquipmentForm(this.equipmentForm);
      });
    }
   setProgressBar(percentage) {

@@ -21,6 +21,8 @@ export class EconomicInterestComponent implements OnInit {
     this.index = 0;
     this.economicInterestPI = new EconomicInterestPI();
     this.breadCrumbStrings = ['Instructions for Completing Form 700-U','General Information', 'Funding Entity', 'Filer Information', 'Verification'];//page title 
+  
+  
   }
   // listens for index updates from form footer
   updateIndex(value){
