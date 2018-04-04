@@ -1,7 +1,7 @@
 <div id='dash-bar'>
   <h3 class = 'page-title'>{{userName}}'s Proposal's</h3>
-  <button pButton label='Home' [routerLink]="['/home']" icon='fa-home' iconPos='right'></button>
-  <button  pButton label='New Proposal'(click)="op.toggle($event)" icon='fa-plus' iconPos='right'></button>
+  <button pButton label='Home' [routerLink]="['/home']" icon='fa-home'></button>
+  <button  pButton label='New Proposal'(click)="op.toggle($event)" icon='fa-plus'></button>
 </div>
 <div id='proposals'>
   <p-dataTable [value]='usersProposals' (onRowSelect)='navigate($event.data.id)' selectionMode='single' [immutable]='false'>
@@ -11,8 +11,10 @@
     <p-column field='status' header='Status'></p-column>
   </p-dataTable>
   <p-overlayPanel header="New Proposal" showEffect="fade" #op>
-    <label>Proposal Name</label>
-    <input type='input' pInputText [(ngModel)]='newProposalName'>
-    <button class='button-blue' (click)='createProposal()'>Submit</button>
+    <form (ngSubmit)='createProposal()'>
+      <label>Proposal Name</label>
+      <input type='input' pInputText [(ngModel)]='newProposalName' name='newProposalName'>
+      <button pButton class='ui-button-success' type='submit' label='New Proposal'></button>
+    </form>
   </p-overlayPanel>
 </div>

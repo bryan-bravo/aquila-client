@@ -2,9 +2,7 @@
   <div id='dashboard'>
     <h3 id='name'>{{proposal?.proposalName}}</h3>
     <button pButton [routerLink]="['/pipreaward']" label='Pre Award'></button>
-    <button pButton label='Help' icon='fa-question' iconPos='right'></button>
-    <button pButton label='Submit for Review' class="ui-button-success"></button>
-
+    <button pButton label='Help' icon='fa-question'></button>
   </div>
   <div id = 'form-container'>
     <div class='required-forms' id='intake' (click)='setCurrentForm("Intake")'>
@@ -15,15 +13,6 @@
       <label class='required-indicator required-form'>Required</label>
 
     </div>
-    <!-- <div class='required-forms' id='budget' (click)='setCurrentForm("Budget")'>
-      <p class='title'>Budget Form</p>
-      <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
-      </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
-        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
-      <label class='required-indicator required-form'>Required</label>
-
-    </div> -->
     <div class='required-forms' id='timeline' (click)='setCurrentForm("Timeline")'>
       <p class='title'>Timeline</p>
       <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
@@ -92,7 +81,7 @@
 </div>
 
 <div *ngIf='routerState' id='router-container'>
-  <button id='menu-return' class='button-blue' (click)='changeState()'>Menu</button>
+  <button pButton id='menu-return' (click)='changeState()' label='Forms' icon='fa-arrow-up'></button>
   <app-intake *ngIf='currentForm=="Intake"'></app-intake>
   <!-- <app-budget *ngIf='currentForm=="Budget"'></app-budget> -->
   <app-equipment *ngIf='currentForm=="Equipment"'></app-equipment>
