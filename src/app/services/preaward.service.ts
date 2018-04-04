@@ -62,7 +62,7 @@ user: User;
     return this.http.get(`api/timeline/stage/${stageId}/order/${indexToPush}`);
   }
   uploadFile(proposalId, stageId, fileName, file ) {
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('file', file);
     return this.http.put(`api/proposal/${proposalId}/stage/${stageId}/fileupload/${fileName}`, formData);
   }
