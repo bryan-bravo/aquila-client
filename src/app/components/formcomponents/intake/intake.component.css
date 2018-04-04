@@ -3,28 +3,6 @@
     height: 100%;
     display: block;
 }
-
-#container {
-
-}
-
-#general-info,
-.rsca-actvities,
-#budget,
-#other,
-#anticipate-stipend-true {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-.title {
-    width: 100%;
-    background-color: #fff3b5;
-    border: 2px solid #ffd400;
-}
-
 h3 {
     margin-top: 0;
     padding-top: 10px;

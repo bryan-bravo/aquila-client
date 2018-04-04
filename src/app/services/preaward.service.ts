@@ -31,8 +31,20 @@ user: User;
   return this.http.put<IntakeForm>('api/intake/' + intakeForm.id, JSON.parse(JSON.stringify(intakeForm)));
   }
   // timeline
-  updateTimeline(proposalId, timeline): Observable<TimeLine> {
-      return this.http.put<TimeLine>(`api//proposal/${proposalId}/timeline/${timeline.id}`, JSON.parse(JSON.stringify(timeline)));
+  patchTimeline(proposalId, timeline): Observable<TimeLine> {
+    const body = {
+      'principalInvestigator': timeline.principalInvestigator,
+      'coPi': timeline.coPi,
+      'proposalName': timeline.proposalName,
+      'fundingAgency': timeline.fundingAgency,
+      'uasDueDate': timeline.uasDueDate,
+      'sponsorDueDate': timeline.sponsorDueDate,
+      'finalSign': timeline.finalSign
+    };
+      return this.http.patch<TimeLine>(`api/proposal/${proposalId}/timeline/${timeline.id}`, body);
+  }
+  putTimeline(proposalId, timeline): Observable<TimeLine> {
+    return this.http.put<TimeLine>(`api/proposal/${proposalId}/timeline/${timeline.id}`, JSON.parse(JSON.stringify(timeline)));
   }
   // stage
   createStage(timelineId): Observable<Stage> {
@@ -40,11 +52,22 @@ user: User;
     return this.http.post<Stage>(`api/proposal/timeline/${timelineId}/stage/`, stage);
   }
   saveStage(timelineId, stage): Observable<Stage> {
-    // console.log(stage)
     stage = JSON.parse(JSON.stringify(stage));
     return this.http.put<Stage>(`api/timeline/${timelineId}/stage/update/${stage.id}`, stage);
   }
   deleteStage(stageId) {
     return this.http.delete(`api/timeline/stage/${stageId}`);
+  }
+  reorderStage(stageId, indexToPush) {
+    return this.http.get(`api/timeline/stage/${stageId}/order/${indexToPush}`);
+  }
+  uploadFile(proposalId, stageId, fileName, file ) {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.put(`api/proposal/${proposalId}/stage/${stageId}/fileupload/${fileName}`, formData);
+  }
+  deleteFile(timelineId, stageId, fileId) {
+    // `/timeline/{timelineId}/stage/{stageId}/deletefile/{fileId}`
+    return this.http.delete(`api/timeline/${timelineId}/stage/${stageId}/deletefile/${fileId}`);
   }
 }

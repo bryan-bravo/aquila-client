@@ -1,25 +1,28 @@
 <div class='dash-bar'>
   <h3 class='page-title'>Timeline</h3>
   <button pButton (click)='setDialogType("view-basic-timeline")' label='Timeline Info'></button>
-  <button pButton (click)='handleAddStage()' label='Add Stage' icon='fa-plus' iconPos='right'></button>
-
+  <button pButton (click)='handleAddStage()' label='Add Stage' icon='fa-plus'  ></button>
 </div>
 <ul id='timeline-bar'>
   <li *ngFor='let stage of timeline?.stages; index as i'>
     <!-- bar -->
-    <div class='bar' *ngIf='i!=0' (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)'></div>
-    <div class='icon-name-container' (click)='getCurrentStage(stage.id)'>
+    <div class='bar' appTimelineBar *ngIf='i!=0' (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)' [ngClass]='{"barCompleted": stage.uasReviewed}'></div>
+    <div class='icon-name-container' (click)='getCurrentStage(stage.id)' >
       <!-- icon -->
-      <div class='icon'></div>
+      <div class='icon' [ngClass]="{'iconCompleted': stage.uasReviewed, 'selected-icon':stageIndex==i}"></div>
       <!-- name -->
       <label class='name'>{{stage.name}}</label>
     </div>
   </li>
+  <!-- add to end of timeline -->
+  <li *ngIf='dragging'>
+    <div class='bar' appTimelineBar (drop)='drop({"event":$event,"index":timeline.stages.length-1})' (dragover)='allowDrop($event)'></div>
+  </li>
 </ul>
 <div id='stage-content'>
   <!-- view basic timeline info -->
-  <div class='form-flex-start' *ngIf='dialogType=="view-basic-timeline"'>
-    <h3>{{timeline.proposalName}}</h3>
+  <div class='form-flex-start timeline-info' *ngIf='dialogType=="view-basic-timeline"'>
+    <h2 class='form-title'>{{timeline.proposalName}}</h2>
     <label>Principal Investigator</label>
     <p>{{timeline.principalInvestigator}}</p>
     <label>Other Investigators</label>
@@ -32,12 +35,11 @@
     <p>{{timeline.sponsorDueDate }}</p>
     <label>Final Signatures Deadline</label>
     <p>{{timeline.finalSign}}</p>
-    <button pButton class='ui-button-warning' (click)='setDialogType("edit-basic-timeline")' label='Edit' icon='fa-edit'
-      iconPos='right'></button>
+    <button pButton class='ui-button-warning' (click)='setDialogType("edit-basic-timeline")' label='Edit' icon='fa-edit'  ></button>
   </div>
   <!-- edit timeline info -->
-  <div class='form-flex-start' *ngIf='dialogType=="edit-basic-timeline"'>
-    <h3>{{timeline.proposalName}}</h3>
+  <div class='form-flex-start timeline-info' *ngIf='dialogType=="edit-basic-timeline"'>
+    <h2 class='form-title'>{{timeline.proposalName}}</h2>
     <label>Principal Investigator</label>
     <p>{{timeline.principalInvestigator}}</p>
     <label>Other Investigators</label>
@@ -50,27 +52,29 @@
     <p-calendar [(ngModel)]='timeline.sponsorDueDate'></p-calendar>
     <label>Final Signatures Deadline</label>
     <p-calendar [(ngModel)]='timeline.finalSign'></p-calendar>
-    <button pButton class='ui-button-success' (click)='saveTimeline()' label='Save Timeline'></button>
+    <button pButton class='ui-button-success' (click)='saveTimeline()' label='Save Timeline' [disabled]='timeline.uasDueDate==null'></button>
 
   </div>
   <!-- show a stage -->
-  <div class='form-flex-start' *ngIf='dialogType=="view-stage"'>
+  <div class='form-flex-start timeline-info' *ngIf='dialogType=="view-stage"'>
     <h2>{{stage.name}}</h2>
     <label>Expected Date</label>
-    <label>{{stage.expectedDate}}</label>
+    <p>{{stage.expectedDate}}</p>
     <label>Completed Date</label>
-    <label>{{stage.completedDate}}</label>
+    <p>{{stage.completedDate}}</p>
+    <!-- forms -->
     <p-dataTable [value]='stage.requiredForms'>
       <p-header>Required Forms</p-header>
       <p-column field='key' header='Form'></p-column>
       <p-column header='Status'></p-column>
     </p-dataTable>
+    <!-- files -->
     <p-dataTable [value]='stage.requiredFiles'>
       <p-header>Required Files</p-header>
       <p-column field='key' header='File'></p-column>
       <p-column header='Upload'>
-        <ng-template pTemplate='body'>
-          <input type='file'>
+        <ng-template pTemplate='body' let-file='rowData'>
+          <p-fileUpload mode="basic" customUpload="true" auto='auto' (uploadHandler)='myUploader($event,file)' chooseLabel="Browse"></p-fileUpload>
         </ng-template>
       </p-column>
       <p-column field='value' header='Download'>
@@ -80,8 +84,8 @@
       </p-column>
     </p-dataTable>
     <label class='form-title'>Additional Notes</label>
-    <p>{{stage.additionalNotes}}</p>
-    <button pButton class='ui-button-warning edit ' (click)='setDialogType("edit-stage")' label='Edit' icon='fa-edit' iconPos='right'></button>
+    <p>{{stage.addComments}}</p>
+    <button pButton class='ui-button-warning edit ' (click)='setDialogType("edit-stage")' label='Edit' icon='fa-edit'  ></button>
   </div>
   <!-- edit a stage -->
   <div class='form-flex-start window' *ngIf='dialogType=="edit-stage"'>
@@ -98,12 +102,17 @@
       </div>
       <div>
         <label>UAS Review Required</label>
-        <input type='checkbox'>
+        <p-checkbox [(ngModel)]='stage.uasReviewRequired' binary='true'></p-checkbox>
       </div>
       <div>
         <label>UAS Approved</label>
-        <input type='checkbox'>
+        <p-checkbox [(ngModel)]='stage.uasReviewed' binary='true'></p-checkbox>
       </div>
+    </div>
+    <label class='form-title'>Order in Timeline</label>
+    <div class='drag-reorder' draggable='true' (dragstart)='setDragging(true)' (dragend)='setDragging(false)'>
+      <div class='icon drag-icon'></div>
+      <label>Drag me to reorder</label>
     </div>
     <!-- forms -->
     <p-dataTable [value]='stage.requiredForms' [immutable]='false'>
@@ -112,14 +121,14 @@
       <p-column header='Status'></p-column>
       <p-column header='Delete'>
         <ng-template pTemplate='body'>
-          <button pButton class='ui-button-danger' (click)='handleRemoveForm(key)' label='Delete' icon='fa-minus' iconPos='right'></button>
+          <button pButton class='ui-button-danger' (click)='handleRemoveForm(key)' label='Delete' icon='fa-minus'  ></button>
         </ng-template>
       </p-column>
       <p-footer>
         <select #form>
           <option *ngFor='let form of unSelectedForms'>{{form}}</option>
         </select>
-        <button pButton (click)='handleAddForm(form.value)' label='Form' icon='fa-plus' iconPos='right'></button>
+        <button pButton (click)='handleAddForm(form.value)' label='Form' icon='fa-plus'  ></button>
       </p-footer>
     </p-dataTable>
     <!-- files -->
@@ -127,8 +136,8 @@
       <p-header>Required Files</p-header>
       <p-column field='key' header='File'></p-column>
       <p-column header='Upload'>
-        <ng-template pTemplate='body'>
-          <input type='file'>
+        <ng-template pTemplate='body' let-file='rowData'>
+          <p-fileUpload mode="basic" customUpload="true" auto='auto' (uploadHandler)='myUploader($event,file)' chooseLabel="Browse"></p-fileUpload>
         </ng-template>
       </p-column>
       <p-column field='value' header='Download'>
@@ -136,23 +145,18 @@
           Download
         </ng-template>
       </p-column>
-      <p-column field='key' header='Delete'>
-        <ng-template pTemplate='body'>
-          <button pButton class='ui-button-danger' (click)='handleRemoveFile(key)' label='Delete' icon='fa-minus' iconPos='right'></button>
+      <p-column header='Delete'>
+        <ng-template pTemplate='body' let-file='rowData'>
+          <button pButton class='ui-button-danger' (click)='handleRemoveFile(file)' label='Delete' icon='fa-minus'  ></button>
         </ng-template>
       </p-column>
       <p-footer>
         <input pInputText type='text' #addReqFile>
-        <button pButton (click)='handleAddFile(addReqFile.value)' label='File' icon='fa-plus' iconPos='right'></button>
+        <button pButton (click)='handleAddFile(addReqFile.value)' label='File' icon='fa-plus'  ></button>
       </p-footer>
     </p-dataTable>
     <label class='form-title'>Additional Notes</label>
     <textarea pInputTextarea [(ngModel)]="stage.additionalNotes" autoResize="autoResize"></textarea>
-    <label class='form-title'>Order in Timeline</label>
-    <div class='drag-reorder' draggable='true'>
-      <div class='icon drag-icon'></div>
-      <label>Drag me to reorder</label>
-    </div>
     <div class='button-footers'>
       <button pButton class='ui-button-success' (click)='saveStage()' label='Save'></button>
       <button pButton class='ui-button-danger' (click)='deleteStage()' label='Delete'></button>
