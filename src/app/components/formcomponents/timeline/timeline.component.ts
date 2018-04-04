@@ -99,7 +99,7 @@ export class TimelineComponent implements OnInit {
       this.timeline.stages.push(stage);
       this.setDialogType('edit-stage');
       this.messageService.add({severity:'success', summary:'Stage Added', detail:'Via MessageService'});
-
+      this.stageIndex = this.timeline.stages.length - 1;
     });
   }
   saveStage() {
