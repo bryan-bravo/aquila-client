@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgClass, NgStyle} from '@angular/common';
 import {MessageService} from 'primeng/components/common/messageservice';
 // import {GrowlModule} from 'primeng/primeng';
+import { saveAs } from 'file-saver/FileSaver';
 
 import {TimeLine, Stage, FileInfo} from '../../../models/PreAward/TimeLine';
 import { PreawardService } from '../../../services/preaward.service';
@@ -195,16 +196,19 @@ export class TimelineComponent implements OnInit {
   myUploader(event, file) {
       this.preAwardService.uploadFile(this.proposalId, this.stage.id, file.key, event.files[0])
       .subscribe(response => {
-        console.log(response)// now updates file info
+        console.log(response) // now updates file info
         this.messageService.add({severity: 'success', summary: 'File Uploaded', detail: 'Via MessageService'});
       });
   }
   downloadFile(file) {
-    this.preAwardService.downloadFile(file.value.id).subscribe( fileinfo => {
-      file.value = fileinfo;
+    this.preAwardService.downloadFile(file.value.id).subscribe( data => {
+      const contentDisposition = data.headers.get('content-disposition');
+      const contentType = data.headers.get('content-type');
+      const fileName = contentDisposition.split('=')[1];
+      saveAs(new Blob([data.body], { type: contentType }), fileName);
     });
   }
-  // helper functions
+  // helper functionss
   getCurrentStage(stageId) {
     const stageIndex = this.getStageIndex(stageId);
     this.stage = this.timeline.stages[stageIndex];

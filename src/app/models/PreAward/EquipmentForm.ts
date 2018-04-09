@@ -1,23 +1,19 @@
 export class EquipmentForm {
-    id:string;
-    //1
+    id: string;
     facultyName: string;
-    department: string;//might handle
-    // grantAgency: string;
+    department: string;
     proposalTitle: string;
     extension: boolean;
     extensionValue: string;
     costShare: boolean;
     donation: boolean;
     newEquipment: boolean;
-    //2
     typeOfEquipment: any;
     buildingLocation: string;
     roomLocation: string;
     companyDonating: string;
     previousUse: string;
-    //3
-    spaceModificationRequirement: boolean; 
+    spaceModificationRequirement: boolean;
     electricalModification: boolean;
     volts: boolean;
     amps: boolean;
@@ -50,8 +46,8 @@ export class EquipmentForm {
     chemicals: Map<number, string>;
     radiationUse: string;
     maintenanceRequirement: boolean;
-    listOfRequirements: string[];
-    sizeOfEquipment: any;
+    maintenanceRequirements: string; // list of strings
+    sizeOfEquipment: boolean; // list of size requirements
     height: number;
     width: number;
     length: number;
@@ -67,9 +63,3 @@ export class TypeOfEquipment {
     url: string;
 }
 
-export class SizeOfEquipment {
-    id: number;
-    height: number;
-    width: number;
-    depth: number;
-}

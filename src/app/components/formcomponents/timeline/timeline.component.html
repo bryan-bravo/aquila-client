@@ -141,8 +141,8 @@
         </ng-template>
       </p-column>
       <p-column field='value' header='Download'>
-        <ng-template pTemplate='body'>
-          Download
+        <ng-template pTemplate='body' let-file='rowData'>
+          <button pButton (click)='downloadFile(file)' label='Download' [disabled]='file.value==null'></button>
         </ng-template>
       </p-column>
       <p-column header='Delete'>
