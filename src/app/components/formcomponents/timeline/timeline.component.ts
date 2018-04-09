@@ -193,14 +193,16 @@ export class TimelineComponent implements OnInit {
     }
   }
   myUploader(event, file) {
-    if (file.value != null) {
       this.preAwardService.uploadFile(this.proposalId, this.stage.id, file.key, event.files[0])
       .subscribe(response => {
-        this.messageService.add({severity:'success', summary:'File Uploaded', detail:'Via MessageService'});
+        console.log(response)// now updates file info
+        this.messageService.add({severity: 'success', summary: 'File Uploaded', detail: 'Via MessageService'});
       });
-    } else {
-      this.messageService.add({severity:'error', summary:'Cannot Upload', detail:'Please save stage prior to upload'});
-    }
+  }
+  downloadFile(file) {
+    this.preAwardService.downloadFile(file.value.id).subscribe( fileinfo => {
+      file.value = fileinfo;
+    });
   }
   // helper functions
   getCurrentStage(stageId) {

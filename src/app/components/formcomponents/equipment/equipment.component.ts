@@ -13,13 +13,11 @@ export class EquipmentComponent implements OnInit {
   index: number;
   breadCrumbStrings: string[] = ['General Info', 'Equipment', 'Requirements'];
 
-  constructor(private proposalService: ProposalService, private preAwardService: PreawardService) { 
-    //this.equipmentForm = this.proposalServivce.getEquipmentForm();
-    // console.log( this.equipmentForm)
+  constructor(private proposalService: ProposalService, private preAwardService: PreawardService) {
   }
 
   ngOnInit() {
-    this.index = 0;  
+    this.index = 0;
     let equipmentObject = this.proposalService.getEquipmentForm();
     console.log(equipmentObject)
    if(equipmentObject.equipmentForm.id == null) {

@@ -45,7 +45,8 @@ user: User;
  
   updateEconomicInterestPI(economicInterestPI): Observable<EconomicInterestPI>{
     console.log(typeof JSON.parse(JSON.stringify(economicInterestPI)))
-    return this.http.put<EconomicInterestPI>('api/proposal/editeconomicinterest/'+economicInterestPI.id, JSON.parse(JSON.stringify(economicInterestPI)));  
+    return this.http.
+    put<EconomicInterestPI>('api/proposal/editeconomicinterest/'+economicInterestPI.id, JSON.parse(JSON.stringify(economicInterestPI)));  
   }
   // timeline
   patchTimeline(proposalId, timeline): Observable<TimeLine> {
@@ -82,6 +83,9 @@ user: User;
     const formData = new FormData();
     formData.append('file', file);
     return this.http.put(`api/proposal/${proposalId}/stage/${stageId}/fileupload/${fileName}`, formData);
+  }
+  downloadFile(fileId) {
+    return this.http.get(`api/downloadfile/${fileId}`);
   }
   deleteFile(timelineId, stageId, fileId) {
     // `/timeline/{timelineId}/stage/{stageId}/deletefile/{fileId}`

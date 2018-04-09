@@ -3,7 +3,7 @@ export class EquipmentForm {
     //1
     facultyName: string;
     department: string;//might handle
-    grantAgency: string;
+    // grantAgency: string;
     proposalTitle: string;
     extension: boolean;
     extensionValue: string;
@@ -11,7 +11,7 @@ export class EquipmentForm {
     donation: boolean;
     newEquipment: boolean;
     //2
-    typeOfEquipment: string[];//might become an class
+    typeOfEquipment: any;
     buildingLocation: string;
     roomLocation: string;
     companyDonating: string;
@@ -43,24 +43,33 @@ export class EquipmentForm {
     pressure: boolean;
     fluidTemperature: boolean;
     pumpCompressorMotor: boolean;
-    //network:boolean;
     maintenance: boolean;
     licenseRequirements: boolean;
     hardware: boolean;
     hazardousMaterial: boolean;
-    chemicals: Map<number,string>;
+    chemicals: Map<number, string>;
     radiationUse: string;
     maintenanceRequirement: boolean;
-    listOfRequirements:string[];
-    sizeOfEquipment: boolean;
+    listOfRequirements: string[];
+    sizeOfEquipment: any;
     height: number;
     width: number;
     length: number;
-    directorOfResearchDevelopmentSignature:any;//Signature
-    directorOfResearchDevelopmentSignatureDate:Date;
-    directorOfFacilitiesServicesSignature:any;//Signature
-    directorOfFacilitiesServicesSignatureDate:Date;
-	constructor(id){
-		this.id=id;
-	}
+    directorOfResearchDevelopmentSignature: any; //Signature
+    directorOfResearchDevelopmentSignatureDate: Date;
+    directorOfFacilitiesServicesSignature: any; //Signature
+    directorOfFacilitiesServicesSignatureDate: Date;
+}
+export class TypeOfEquipment {
+    id: number;
+    name: string;
+    specification: string;
+    url: string;
+}
+
+export class SizeOfEquipment {
+    id: number;
+    height: number;
+    width: number;
+    depth: number;
 }
