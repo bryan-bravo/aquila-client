@@ -31,8 +31,25 @@
   </div>
   <!-- page 2 Equipment -->
   <div *ngIf='index==1' class='form-flex-start'>
+    <!-- table -->
+    <p-dataTable [value]="equipmentForm.typeOfEquipment" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'typeOfEquipment')">
+      <p-header>Type of Equipment</p-header>
+      <p-column  field='name' header='Name'>
+      </p-column>
+      <p-column field='specification' header='Specification'>
+      </p-column>
+      <p-column field='url' header='URL'>
+      </p-column>
+      <p-footer>
+        <div class="ui-helper-clearfix" style="width:100%">
+          <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd('typeOfEquipment')" label="Add"></button>
+        </div>
+      </p-footer>
+    </p-dataTable>
+
+
+    <!-- table -->
     <p class='form-title'>Type Of Equipment (List each equipment item and attach specifications/quote nad url/website if available)</p>
-    <label>Equipment Location</label>
     <label>Building</label>
     <input type="text" [(ngModel)]='equipmentForm.buildingLocation' pInputText>
     <label>Room</label>
@@ -41,6 +58,17 @@
     <input type="text" [(ngModel)]='equipmentForm.companyDonating' pInputText>
     <label>Previous Use</label>
     <input type="text" [(ngModel)]='equipmentForm.previousUse' pInputText>
+    
+    <p class='form-flex-start'>Size Of Equipment</p>
+    <p-checkbox binary='true'   [(ngModel)]='equipmentForm.sizeOfEquipment'></p-checkbox>
+    <div *ngIf='equipmentForm.sizeOfEquipment' class='form-flex-start indent'>
+      <label>Height ft</label>
+      <input type="text" [(ngModel)]='equipmentForm.height' pInputText>
+      <label>Width ft</label>
+      <input type="text" [(ngModel)]='equipmentForm.width' pInputText>
+      <label>Length ft</label>
+      <input type="text" [(ngModel)]='equipmentForm.length' pInputText>
+    </div>
   </div>
   <!-- page 3 check all that apply  -->
   <div *ngIf='index==2' class='form-flex-start'>
@@ -126,18 +154,24 @@
     </div>
     <label>Maintenance Requirement</label>
      <p-checkbox binary='true' [(ngModel)]='equipmentForm.maintenanceRequirement'></p-checkbox>
-    <!-- LIST OF REQUIREMENTS -->
-    <label>Size Of Equipment</label>
-     <p-checkbox binary='true'   [(ngModel)]='equipmentForm.sizeOfEquipment'></p-checkbox>
-    <div class='form-flex-start indent'>
-      <label>Height ft</label>
-      <input type="text" [(ngModel)]='equipmentForm.height' pInputText>
-      <label>Width ft</label>
-      <input type="text" [(ngModel)]='equipmentForm.width' pInputText>
-      <label>Length ft</label>
-      <input type="text" [(ngModel)]='equipmentForm.length' pInputText>
+     <textarea pInputTextarea [(ngModel)]="equipmentForm.maintenanceRequirements" autoResize="autoResize"></textarea>
     </div>
-  </div>
   <app-form-footer [index]='index' [length]='breadCrumbStrings.length' (newIndex)='updateIndex($event)'></app-form-footer>
-  <!-- signatures   -->
+  <!-- dialog   -->
+  <p-dialog header="bork" [(visible)]="displayDialog" [responsive]="true" showEffect="fade">
+    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="displayType=='typeOfEquipment'">
+      <label>Name</label>
+      <input pInputText [(ngModel)]="typeOfEquipment.name" />
+      <label>Specification</label>
+      <input pInputText [(ngModel)]="typeOfEquipment.specification" />
+      <label>URL</label>
+      <input pInputText [(ngModel)]="typeOfEquipment.url" />
+    </div>
+    <p-footer>
+      <div>
+        <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
+        <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+      </div>
+    </p-footer>
+  </p-dialog>
 </div>

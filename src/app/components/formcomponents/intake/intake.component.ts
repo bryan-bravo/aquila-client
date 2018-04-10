@@ -60,7 +60,6 @@ export class IntakeComponent implements OnInit {
     // make request.
     this.preAwardService.updateIntake(this.intakeForm).subscribe(newIntake => {
         this.intakeForm = newIntake;
-console.log(newIntake)
         //send local intake back to parent
         this.proposalService.updateIntakeForm(this.intakeForm);
     });
