@@ -43,8 +43,8 @@ export class EquipmentForm {
     licenseRequirements: boolean;
     hardware: boolean;
     hazardousMaterial: boolean;
-    chemicals: Map<number, string>;
-    radiationUse: string;
+    chemicals: any;
+    radiation: any;
     maintenanceRequirement: boolean;
     maintenanceRequirements: string; // list of strings
     sizeOfEquipment: boolean; // list of size requirements
@@ -61,5 +61,9 @@ export class TypeOfEquipment {
     name: string;
     specification: string;
     url: string;
+}
+export class MapEntry {
+    key: string;
+    value: string;
 }
 
