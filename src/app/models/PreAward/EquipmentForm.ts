@@ -8,7 +8,7 @@ export class EquipmentForm {
     costShare: boolean;
     donation: boolean;
     newEquipment: boolean;
-    typeOfEquipment: any;
+    typeOfEquipment: TypeOfEquipment[];
     buildingLocation: string;
     roomLocation: string;
     companyDonating: string;

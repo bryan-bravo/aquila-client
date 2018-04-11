@@ -33,7 +33,11 @@ export class EquipmentComponent implements OnInit {
       this.equipmentForm = newEquipmentForm;
      });
      } else {
-       this.equipmentForm = this.parseEquipmentForm(equipmentObject.equipmentForm);
+       if (equipmentObject.equipmentForm.chemicals.length == undefined) {
+        this.equipmentForm = this.parseEquipmentForm(equipmentObject.equipmentForm);
+      } else {
+        this.equipmentForm = equipmentObject.equipmentForm;
+       }
      }
      // make post request, set the response = this.equipmentForm,
   }
@@ -41,14 +45,14 @@ export class EquipmentComponent implements OnInit {
   updateIndex(value) {
     this.index = value;
   }
- 
   update() {
-    // make copy of equipment form
-    // change maps
-     this.preAwardService.updateEquipment(this.equipmentForm).subscribe(newEquipment => {
-      //  parse maps
+    const equipmentFormCopy = Object.assign({}, this.equipmentForm);
+    equipmentFormCopy.chemicals = this.keysPipe.backToObject(equipmentFormCopy.chemicals);
+    equipmentFormCopy.radiation = this.keysPipe.backToObject(equipmentFormCopy.radiation);
+    this.preAwardService.updateEquipment(equipmentFormCopy).subscribe(newEquipment => {
+      newEquipment = this.parseEquipmentForm(newEquipment);
       this.proposalService.updateEquipmentForm(this.equipmentForm);
-     });
+    });
   }
   onRowSelect(event, type) {
     if (type === 'typeOfEquipment') {

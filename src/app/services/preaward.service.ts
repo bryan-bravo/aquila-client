@@ -35,16 +35,14 @@ user: User;
   getEquipment(id): Observable<EquipmentForm> {
     return this.http.get<EquipmentForm>('api/equipment/' + id);
   }
-  updateEquipment(equipmentForm): Observable<EquipmentForm>{
-    console.log(typeof JSON.parse(JSON.stringify(equipmentForm)))
-    return this.http.put<EquipmentForm>('api/equipment/'+equipmentForm.id, JSON.parse(JSON.stringify(equipmentForm)));
+  updateEquipment(equipmentForm): Observable<EquipmentForm> {
+    return this.http.put<EquipmentForm>('api/equipment/' + equipmentForm.id, JSON.parse(JSON.stringify(equipmentForm)));
   }
   getEconomicInterestPI(id): Observable<EconomicInterestPI> {
     return this.http.get<EconomicInterestPI>('api/proposal/economicinterest' + id);
   }
  
-  updateEconomicInterestPI(economicInterestPI): Observable<EconomicInterestPI>{
-    console.log(typeof JSON.parse(JSON.stringify(economicInterestPI)))
+  updateEconomicInterestPI(economicInterestPI): Observable<EconomicInterestPI> {
     return this.http.
     put<EconomicInterestPI>('api/proposal/editeconomicinterest/'+economicInterestPI.id, JSON.parse(JSON.stringify(economicInterestPI)));
   }

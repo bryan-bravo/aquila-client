@@ -74,12 +74,12 @@
       <p-column field='key' header='File'></p-column>
       <p-column header='Upload'>
         <ng-template pTemplate='body' let-file='rowData'>
-          <p-fileUpload mode="basic" customUpload="true" auto='auto' (uploadHandler)='myUploader($event,file)' chooseLabel="Browse"></p-fileUpload>
+          <p-fileUpload mode="basic" customUpload="true" auto='true' (uploadHandler)='myUploader($event,file)' chooseLabel="Browse"></p-fileUpload>
         </ng-template>
       </p-column>
       <p-column field='value' header='Download'>
         <ng-template pTemplate='body' let-file='rowData'>
-          <button pButton (click)='downloadFile(file)' label='Download' [disabled]='file.value==null'></button>
+          <button pButton (click)='downloadFile(file)' label='Download' [disabled]='file.value?.filePath==null'></button>
         </ng-template>
       </p-column>
     </p-dataTable>
@@ -137,12 +137,12 @@
       <p-column field='key' header='File'></p-column>
       <p-column header='Upload'>
         <ng-template pTemplate='body' let-file='rowData'>
-          <p-fileUpload mode="basic" customUpload="true" auto='auto' (uploadHandler)='myUploader($event,file)' chooseLabel="Browse"></p-fileUpload>
+          <p-fileUpload mode="basic" customUpload="true" auto='true' (uploadHandler)='myUploader($event,file)' chooseLabel="Browse"></p-fileUpload>
         </ng-template>
       </p-column>
       <p-column field='value' header='Download'>
         <ng-template pTemplate='body' let-file='rowData'>
-          <button pButton (click)='downloadFile(file)' label='Download' [disabled]='file.value==null'></button>
+          <button pButton (click)='downloadFile(file)' label='Download' [disabled]='file.value?.filePath==null'></button>
         </ng-template>
       </p-column>
       <p-column header='Delete'>

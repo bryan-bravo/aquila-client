@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {NgClass, NgStyle} from '@angular/common';
 import {MessageService} from 'primeng/components/common/messageservice';
+import {FileUpload} from 'primeng/primeng';
 // import {GrowlModule} from 'primeng/primeng';
 import { saveAs } from 'file-saver/FileSaver';
 
@@ -194,9 +195,10 @@ export class TimelineComponent implements OnInit {
     }
   }
   myUploader(event, file) {
-      this.preAwardService.uploadFile(this.proposalId, this.stage.id, file.key, event.files[0])
+    // @ViewChild(file.key) fileInput: FileUpload;
+    this.preAwardService.uploadFile(this.proposalId, this.stage.id, file.key, event.files[0])
       .subscribe(response => {
-        console.log(response) // now updates file info
+        file.value = response;
         this.messageService.add({severity: 'success', summary: 'File Uploaded', detail: 'Via MessageService'});
       });
   }
@@ -214,7 +216,6 @@ export class TimelineComponent implements OnInit {
     this.stage = this.timeline.stages[stageIndex];
     this.stageIndex = stageIndex;
     this.setDialogType('view-stage');
-    // console.log(this.stage)
   }
   getStageIndex(stageId) {
     const stageIndex = this.timeline.stages.findIndex((stage) => {
