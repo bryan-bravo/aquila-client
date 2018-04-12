@@ -8,12 +8,16 @@ import {MessageService} from 'primeng/components/common/messageservice';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit {
-  @ViewChild('upload') fileInput: FileUpload;
+  @ViewChild('name') fileInput: FileUpload;
   constructor(private messageService: MessageService) { }
 
   ngOnInit() {
+
   }
-  myUploader(event, file) {
+  select() {
+    console.log('selected')
+  }
+  myUploader(event) {
         this.messageService.add({severity: 'success', summary: 'File Uploaded', detail: 'Via MessageService'});
         this.fileInput.clear();
 

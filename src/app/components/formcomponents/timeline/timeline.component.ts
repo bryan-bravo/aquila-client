@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Directive, QueryList, ViewChildren} from '@angular/core';
 import {NgClass, NgStyle} from '@angular/common';
 import {MessageService} from 'primeng/components/common/messageservice';
 import {FileUpload} from 'primeng/primeng';
@@ -16,6 +16,7 @@ import {KeysPipe} from '../../../pipes/keys.pipe';
   styleUrls: ['./timeline.component.css']
 })
 export class TimelineComponent implements OnInit {
+  @ViewChildren(FileUpload) fileUploads: QueryList<FileUpload>;
   timeline: TimeLine;
   proposalId: number;
   stage: Stage; // stage to be manipulated for edit and new
@@ -57,6 +58,7 @@ export class TimelineComponent implements OnInit {
     this.dragging = false;
     this.draggingOverTimeline = false;
     this.proposalId = obj.proposalId;
+    console.log(this.fileUploads)
   }
   saveTimeline() {
     if (this.timeline.stages.length === 1) {
@@ -198,8 +200,12 @@ export class TimelineComponent implements OnInit {
     // @ViewChild(file.key) fileInput: FileUpload;
     this.preAwardService.uploadFile(this.proposalId, this.stage.id, file.key, event.files[0])
       .subscribe(response => {
+        // have to clear the files on upload element
         file.value = response;
         this.messageService.add({severity: 'success', summary: 'File Uploaded', detail: 'Via MessageService'});
+        this.fileUploads.forEach(fileUpload => {
+          fileUpload.clear();
+        });
       });
   }
   downloadFile(file) {
@@ -207,6 +213,8 @@ export class TimelineComponent implements OnInit {
       const contentDisposition = data.headers.get('content-disposition');
       const contentType = data.headers.get('content-type');
       const fileName = contentDisposition.split('=')[1];
+      console.log(contentDisposition)
+
       saveAs(new Blob([data.body], { type: contentType }), fileName);
     });
   }
@@ -216,6 +224,8 @@ export class TimelineComponent implements OnInit {
     this.stage = this.timeline.stages[stageIndex];
     this.stageIndex = stageIndex;
     this.setDialogType('view-stage');
+    // console.log(this.fileUploads)
+
   }
   getStageIndex(stageId) {
     const stageIndex = this.timeline.stages.findIndex((stage) => {

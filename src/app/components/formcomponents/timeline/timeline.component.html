@@ -74,7 +74,7 @@
       <p-column field='key' header='File'></p-column>
       <p-column header='Upload'>
         <ng-template pTemplate='body' let-file='rowData'>
-          <p-fileUpload mode="basic" customUpload="true" auto='true' (uploadHandler)='myUploader($event,file)' chooseLabel="Browse"></p-fileUpload>
+          <p-fileUpload mode="basic" auto='true' customUpload='true' (uploadHandler)='myUploader($event,file)' chooseLabel="Browse"></p-fileUpload>
         </ng-template>
       </p-column>
       <p-column field='value' header='Download'>

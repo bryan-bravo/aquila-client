@@ -1,2 +1,2 @@
-<p-fileUpload mode="basic" #upload customUpload="true" auto='false' (uploadHandler)='myUploader($event,file)' chooseLabel="Browse"></p-fileUpload>
+<p-fileUpload mode='basic' auto='true' customUpload='true' #name (onSelect)='select()' (uploadHandler)='myUploader($event)' chooseLabel="Browse"></p-fileUpload>
 
