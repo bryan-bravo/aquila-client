@@ -40,11 +40,11 @@ agencyCostRatePercentage: number;
 agencyCostSharing: boolean;
 piCostSharing: boolean;
 computersRequested: number;
-requestedEquipment: any[]; // Map<string,number>;
+requestedEquipment: any; // Map<string,number>;
 // H
 space: Space[]; // spaces
 // I
-hazardousSubstances: any[]; // Map<string,string>;
+hazardousSubstances: any; // Map<string,string>;
 // J
 humanSubjects: boolean;
 vertebrateAnimals: boolean;
@@ -92,11 +92,7 @@ export class Space {
     typeOfUse: string;
     sourceOfFunds: string;
 }
-export class Hazard {
-  agent: string;
-  type: string;
-}
-export class RequestedEquipment {
-    namestring;
-    approximateCostnumber;
+export class MapEntry {
+    key: string;
+    value: any;
 }

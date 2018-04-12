@@ -135,16 +135,16 @@
       <input type="text" pInputText [(ngModel)]='intakeForm.computersRequested'>
       <label class='form-title'> Equipment to Be Requested?</label>
       <!-- requested equipment -->
-      <!-- <p-dataTable [value]="intakeForm.requestedEquipment" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'requestedequipment')">
-        <p-column field="name" header="Name"></p-column>
-        <p-column field="approximateCost" header="Approximate Cost"></p-column>
+      <p-dataTable [value]="intakeForm.requestedEquipment" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'requestedequipment')">
+        <p-column field="key" header="Name"></p-column>
+        <p-column field="value" header="Approximate Cost"></p-column>
         <p-footer>
           <div class="ui-helper-clearfix" style="width:100%">
             <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd('requestedequipment')"
               label="Add"></button>
           </div>
         </p-footer>
-      </p-dataTable> -->
+      </p-dataTable>
     </div>
     <p-dataTable [value]="intakeForm.space" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'space')">
       <p-header>SPACE(Indicate if any space will be required as part of the proposed work/activity)</p-header>
@@ -157,17 +157,17 @@
         </div>
       </p-footer>
     </p-dataTable>
-    <!-- <p class='form-title'>HAZARDOUS SUBSTANCES (Consult with EHS to obtain proper clearance or confirmation of approval to work with hazardous
+    <p class='form-title'>HAZARDOUS SUBSTANCES (Consult with EHS to obtain proper clearance or confirmation of approval to work with hazardous
       agents)</p>
     <p-dataTable [value]="intakeForm.hazardousSubstances" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'hazard')">
-      <p-column field="agent" header="Name Of Agent"></p-column>
-      <p-column field="type" header="Type(biohazard, radiation, recombinant DNA..)"></p-column>
+      <p-column field="key" header="Name Of Agent"></p-column>
+      <p-column field="value" header="Type(biohazard, radiation, recombinant DNA..)"></p-column>
       <p-footer>
         <div class="ui-helper-clearfix" style="width:100%">
           <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd('hazard')" label="Add"></button>
         </div>
       </p-footer>
-    </p-dataTable> -->
+    </p-dataTable>
   </div>
   <!-- other -->
   <div *ngIf='index==3' class='form-flex-start'>
@@ -250,18 +250,18 @@
       <label>Source of Funds</label>
       <input pInputText [(ngModel)]="space.sourceOfFunds" />
     </div>
-    <!-- <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="intakeInnerClass=='requestedequipment'">
+    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="intakeInnerClass=='requestedequipment'">
       <label>Name</label>
-      <input pInputText [(ngModel)]="requestedEquipment.name" />
+      <input pInputText [(ngModel)]="mapEntry.key" />
       <label>Approximate Cost</label>
-      <input pInputText [(ngModel)]="requestedEquipment.approximateCost" />
+      <input pInputText [(ngModel)]="mapEntry.value" />
     </div>
     <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="intakeInnerClass=='hazard'">
       <label>Name Of Agent</label>
-      <input pInputText [(ngModel)]="hazard.agent" />
+      <input pInputText [(ngModel)]="mapEntry.key" />
       <label>Type(biohazard,radiation, recombinant DNA)</label>
-      <input pInputText [(ngModel)]="hazard.type" />
-    </div> -->
+      <input pInputText [(ngModel)]="mapEntry.value" />
+    </div>
     <p-footer>
       <div>
         <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>

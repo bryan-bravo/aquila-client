@@ -1,11 +1,12 @@
 import { Component, OnInit} from '@angular/core';
 import {IntakeForm, Personnel, SubgrantSubProject, ProjectLocation} from '../../../models/PreAward/IntakeForm';
-import { AdditionalPartiesInvolved, Space, RequestedEquipment, Hazard} from '../../../models/PreAward/IntakeForm';
+import { AdditionalPartiesInvolved, Space, MapEntry} from '../../../models/PreAward/IntakeForm';
 import {MenuItem} from 'primeng/primeng';
 import { Proposal } from '../../../models/PreAward/Proposal';
 import {ProposalService} from '../../../services/proposal.service';
 import {PreawardService} from '../../../services/preaward.service';
 import { Subscription } from 'rxjs/Subscription';
+import {KeysPipe} from '../../../pipes/keys.pipe';
 
 @Component({
   selector: 'app-intake',
@@ -27,16 +28,17 @@ export class IntakeComponent implements OnInit {
   newProjectLocation: boolean;
   additionalParty: AdditionalPartiesInvolved = new AdditionalPartiesInvolved();
   newAdditionalParty: boolean;
-  requestedEquipment: RequestedEquipment = new RequestedEquipment();
-  newRequestedEquipment: boolean;
+  mapEntry: MapEntry = new MapEntry();
+  newMapEntry: boolean;
   space: Space = new Space();
   newSpace: boolean;
-  hazard: Hazard = new Hazard();
-  newHazard: boolean;
-
-  constructor(private proposalService: ProposalService, private preAwardService: PreawardService ) {
-    this.intakeForm = this.proposalService.getIntakeForm(); // ignore this at the moment make this into observable
-   }
+  constructor(
+    private proposalService: ProposalService,
+    private preAwardService: PreawardService,
+    private keysPipe: KeysPipe
+  ) {
+    this.intakeForm = this.parseIntake(this.proposalService.getIntakeForm()); // ignore this at the moment make this into observable
+    }
 
   ngOnInit() {
   this.index = 0;
@@ -56,9 +58,11 @@ export class IntakeComponent implements OnInit {
   }
 
   update() {
-    // make request.
-    this.preAwardService.updateIntake(this.intakeForm).subscribe(newIntake => {
-        this.intakeForm = newIntake;
+    const intakeFormCopy = Object.assign({}, this.intakeForm);
+    intakeFormCopy.requestedEquipment = this.keysPipe.backToObject(intakeFormCopy.requestedEquipment);
+    intakeFormCopy.hazardousSubstances = this.keysPipe.backToObject(intakeFormCopy.hazardousSubstances);
+    this.preAwardService.updateIntake(intakeFormCopy).subscribe(newIntake => {
+        this.intakeForm = this.parseIntake(newIntake);
         this.proposalService.updateIntakeForm(this.intakeForm);
     });
 
@@ -85,14 +89,11 @@ export class IntakeComponent implements OnInit {
       this.newSpace = true;
       this.space = new Space();
     }
-    if (type === 'requestedequipment') {
-      this.newRequestedEquipment = true;
-      this.requestedEquipment = new RequestedEquipment();
+    if (type === 'requestedequipment' || type === 'hazard') {
+      this.newMapEntry = true;
+      this.mapEntry = new MapEntry();
     }
-    if (type === 'hazard') {
-      this.newHazard = true;
-      this.hazard = new Hazard();
-    }
+
     this.intakeInnerClass = type;
     this.displayDialog = true;
   }
@@ -118,13 +119,9 @@ export class IntakeComponent implements OnInit {
       this.newSpace = false;
       this.space = event.data;
     }
-    if (type === 'requestedequipment') {
-      this.newRequestedEquipment = false;
-      this.requestedEquipment = event.data;
-    }
-    if (type === 'hazard') {
-      this.newHazard = false;
-      this.hazard = event.data;
+    if (type === 'requestedequipment' || type === 'hazard') {
+      this.newMapEntry = false;
+      this.mapEntry = event.data;
     }
       this.intakeInnerClass = type;
       this.displayDialog = true;
@@ -148,10 +145,10 @@ export class IntakeComponent implements OnInit {
       return this.intakeForm.space.indexOf(this.space);
     }
     if (type === 'requestedequipment') {
-      return this.intakeForm.requestedEquipment.indexOf(this.requestedEquipment);
+      return this.intakeForm.requestedEquipment.indexOf(this.mapEntry);
     }
     if (type === 'hazard') {
-      return this.intakeForm.hazardousSubstances.indexOf(this.hazard);
+      return this.intakeForm.hazardousSubstances.indexOf(this.mapEntry);
     }
   }
  // save new CRUD element
@@ -227,10 +224,10 @@ export class IntakeComponent implements OnInit {
         this.intakeForm.requestedEquipment = [];
       }
       const equipmentList = [... this.intakeForm.requestedEquipment];
-      if (this.newRequestedEquipment) {
-        equipmentList.push(this.requestedEquipment);
+      if (this.newMapEntry) {
+        equipmentList.push(this.mapEntry);
       } else {
-        equipmentList[this.findIndex()] = this.requestedEquipment;
+        equipmentList[this.findIndex()] = this.mapEntry;
       }
         this.intakeForm.requestedEquipment = equipmentList;
     }
@@ -240,10 +237,10 @@ export class IntakeComponent implements OnInit {
         this.intakeForm.hazardousSubstances = [];
       }
       const hazardList = [... this.intakeForm.hazardousSubstances];
-      if (this.newHazard) {
-        hazardList.push(this.hazard);
+      if (this.newMapEntry) {
+        hazardList.push(this.mapEntry);
       } else {
-        hazardList[this.findIndex()] = this.hazard;
+        hazardList[this.findIndex()] = this.mapEntry;
       }
       this.intakeForm.hazardousSubstances = hazardList;
     }
@@ -276,5 +273,16 @@ export class IntakeComponent implements OnInit {
       this.intakeForm.hazardousSubstances = this.intakeForm.hazardousSubstances.filter((val, i) => i !== index);
     }
     this.displayDialog = false;
+  }
+  // convert requiestedEwuipment and hazardous substances maps to arrays, ceck if has already been converted
+  parseIntake(intakeForm) {
+    if (intakeForm.requestedEquipment.length == undefined) {
+      intakeForm.requestedEquipment = this.keysPipe.transform(intakeForm.requestedEquipment);
+      intakeForm.hazardousSubstances = this.keysPipe.transform(intakeForm.hazardousSubstances);
+     } else {
+      this.intakeForm = intakeForm;
+     }
+
+    return intakeForm;
   }
 }
