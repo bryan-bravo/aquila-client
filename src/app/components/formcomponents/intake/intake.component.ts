@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import {IntakeForm, Personnel, SubgrantSubProject, ProjectLocation} from '../../../models/PreAward/IntakeForm';
-import { AdditionalParty, Space, RequestedEquipment, Hazard} from '../../../models/PreAward/IntakeForm';
+import { AdditionalPartiesInvolved, Space, RequestedEquipment, Hazard} from '../../../models/PreAward/IntakeForm';
 import {MenuItem} from 'primeng/primeng';
 import { Proposal } from '../../../models/PreAward/Proposal';
 import {ProposalService} from '../../../services/proposal.service';
@@ -25,7 +25,7 @@ export class IntakeComponent implements OnInit {
   newSubgrantSubProject: boolean;
   projectLocation: ProjectLocation = new ProjectLocation();
   newProjectLocation: boolean;
-  additionalParty: AdditionalParty = new AdditionalParty();
+  additionalParty: AdditionalPartiesInvolved = new AdditionalPartiesInvolved();
   newAdditionalParty: boolean;
   requestedEquipment: RequestedEquipment = new RequestedEquipment();
   newRequestedEquipment: boolean;
@@ -36,7 +36,6 @@ export class IntakeComponent implements OnInit {
 
   constructor(private proposalService: ProposalService, private preAwardService: PreawardService ) {
     this.intakeForm = this.proposalService.getIntakeForm(); // ignore this at the moment make this into observable
-    //If equipment is null create one and if not you're fine
    }
 
   ngOnInit() {
@@ -60,7 +59,6 @@ export class IntakeComponent implements OnInit {
     // make request.
     this.preAwardService.updateIntake(this.intakeForm).subscribe(newIntake => {
         this.intakeForm = newIntake;
-        //send local intake back to parent
         this.proposalService.updateIntakeForm(this.intakeForm);
     });
 
@@ -81,7 +79,7 @@ export class IntakeComponent implements OnInit {
     }
     if (type === 'additionalparty') {
       this.newAdditionalParty = true;
-      this.additionalParty = new AdditionalParty();
+      this.additionalParty = new AdditionalPartiesInvolved();
     }
     if (type === 'space') {
       this.newSpace = true;
