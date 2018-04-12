@@ -1,11 +1,11 @@
 import { Proposal } from './Proposal';
 export class IntakeForm {
 id: string;
-complete: boolean
+complete: boolean;
 // A
 principleInvestigator: string;
 department: string;
-college:string;//can be found from department
+college: string;//can be found from department
 projectTitle: string;
 proposedFundingAmount: string;
 startDate: Date;
@@ -34,17 +34,17 @@ subgrantsOrSubcontracts: SubgrantSubProject[];
 // E
 projectLocations: ProjectLocation[];
 // F
-additionalPartiesInvolved: AdditionalParty[];
+additionalPartiesInvolved: AdditionalPartiesInvolved[];
 // G
 agencyCostRatePercentage: number;
 agencyCostSharing: boolean;
 piCostSharing: boolean;
 computersRequested: number;
-requestedEquipment: any[]; // Map<string,number>;
+requestedEquipment: any; // Map<string,number>;
 // H
 space: Space[]; // spaces
 // I
-hazardousSubstances: any[]; //Map<string,string>;
+hazardousSubstances: any; // Map<string,string>;
 // J
 humanSubjects: boolean;
 vertebrateAnimals: boolean;
@@ -68,36 +68,31 @@ proposal: Proposal;
     employer: string;
     positionTitleOnGrant: string;
     units: string;
-
 }
 
 export class SubgrantSubProject {
-    institutionName: string;
+    institution: string;
     proposedFundingAmount: number;
-    contactPerson: string;
+    contactPersonName: string;
     contactInfo: string;
 }
 export class ProjectLocation {
     siteName: string;
     siteAddress: string;
-    projectedPercentOfTimeAtState: string;
-    onCampusSpaceOrOnCampusRentalNeeded: boolean;
+    projectedPercentOfTimeAtSite: string;
+    agreementArranged: boolean;
 }
-export class AdditionalParty {
+export class AdditionalPartiesInvolved {
     partyName: string;
     supervisor: string;
     explanationOfInvolvement: string;
 }
 export class Space {
     item: string;
-    newSpace: string;
+    typeOfUse: string;
     sourceOfFunds: string;
 }
-export class Hazard {
-  agent: string;
-  type: string;
-}
-export class RequestedEquipment {
-    namestring;
-    approximateCostnumber;
+export class MapEntry {
+    key: string;
+    value: any;
 }

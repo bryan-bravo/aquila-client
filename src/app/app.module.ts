@@ -52,13 +52,15 @@ import {KeysPipe} from './pipes/keys.pipe';
 
 // directives
 import { TimelineBarDirective } from './directives/timeline-bar.directive';
+import { TestComponent } from './components/test/test.component';
 
 const AppRoutes: Routes = [
     {path: '', component: LandingPageComponent},
     {path: 'login', component: LoginComponent},
     {path: 'home', component: PiHomePageComponent}, // will have can activate thing
     {path: 'pipreaward', component: PiPreAwardComponent} ,
-    {path: 'editproposal/:id', component: EditProposalComponent}
+    {path: 'editproposal/:id', component: EditProposalComponent},
+    {path: 'test', component: TestComponent}
 ];
 @NgModule({
   declarations: [
@@ -80,6 +82,7 @@ const AppRoutes: Routes = [
     ApprovalComponent,
     KeysPipe,
     TimelineBarDirective,
+    TestComponent,
 
   ],
   imports: [

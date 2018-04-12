@@ -86,9 +86,9 @@
   <div *ngIf='index==1' id='participation'>
     <p-dataTable [value]="intakeForm.subgrantsOrSubcontracts" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'subgrantsubcontract')">
       <p-header>SubGrant(s) or SubContract(s)</p-header>
-      <p-column field="institutionName" header="Institution Name"></p-column>
+      <p-column field="institution" header="Institution Name"></p-column>
       <p-column field="proposedFundingAmount" header="Proposed Funding Amount"></p-column>
-      <p-column field="contactPerson" header="Contact Person"></p-column>
+      <p-column field="contactPersonName" header="Contact Person"></p-column>
       <p-column field="contactInfo" header="Contact Info"></p-column>
       <p-footer>
         <div class="ui-helper-clearfix" style="width:100%">
@@ -101,8 +101,8 @@
       <p-header>PROJECT LOCATIONS</p-header>
       <p-column field="siteName" header="Site Name"></p-column>
       <p-column field="siteAddress" header="Site Address"></p-column>
-      <p-column field="projectedPercentOfTimeAtState" header="Projected Percent Of Time At State"></p-column>
-      <p-column field="onCampusSpaceOrOnCampusRentalNeeded" header="On Campus Space Or On Campus Rental Needed"></p-column>
+      <p-column field="projectedPercentOfTimeAtSite" header="Projected Percent Of Time At State"></p-column>
+      <p-column field="agreementArranged" header="On Campus Space Or On Campus Rental Needed"></p-column>
       <p-footer>
         <div class="ui-helper-clearfix" style="width:100%">
           <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd('projectlocation')" label="Add"></button>
@@ -135,21 +135,21 @@
       <input type="text" pInputText [(ngModel)]='intakeForm.computersRequested'>
       <label class='form-title'> Equipment to Be Requested?</label>
       <!-- requested equipment -->
-      <!-- <p-dataTable [value]="intakeForm.requestedEquipment" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'requestedequipment')">
-        <p-column field="name" header="Name"></p-column>
-        <p-column field="approximateCost" header="Approximate Cost"></p-column>
+      <p-dataTable [value]="intakeForm.requestedEquipment" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'requestedequipment')">
+        <p-column field="key" header="Name"></p-column>
+        <p-column field="value" header="Approximate Cost"></p-column>
         <p-footer>
           <div class="ui-helper-clearfix" style="width:100%">
             <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd('requestedequipment')"
               label="Add"></button>
           </div>
         </p-footer>
-      </p-dataTable> -->
+      </p-dataTable>
     </div>
     <p-dataTable [value]="intakeForm.space" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'space')">
       <p-header>SPACE(Indicate if any space will be required as part of the proposed work/activity)</p-header>
       <p-column field="item" header="Item (personnel,equipment, storage,. etc)"></p-column>
-      <p-column field="newSpace" header="New Space,change of use, renovation?"></p-column>
+      <p-column field="typeOfUse" header="New Space,change of use, renovation?"></p-column>
       <p-column field="sourceOfFunds" header="Source Of Funds"></p-column>
       <p-footer>
         <div class="ui-helper-clearfix" style="width:100%">
@@ -157,17 +157,17 @@
         </div>
       </p-footer>
     </p-dataTable>
-    <!-- <p class='form-title'>HAZARDOUS SUBSTANCES (Consult with EHS to obtain proper clearance or confirmation of approval to work with hazardous
+    <p class='form-title'>HAZARDOUS SUBSTANCES (Consult with EHS to obtain proper clearance or confirmation of approval to work with hazardous
       agents)</p>
     <p-dataTable [value]="intakeForm.hazardousSubstances" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'hazard')">
-      <p-column field="agent" header="Name Of Agent"></p-column>
-      <p-column field="type" header="Type(biohazard, radiation, recombinant DNA..)"></p-column>
+      <p-column field="key" header="Name Of Agent"></p-column>
+      <p-column field="value" header="Type(biohazard, radiation, recombinant DNA..)"></p-column>
       <p-footer>
         <div class="ui-helper-clearfix" style="width:100%">
           <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd('hazard')" label="Add"></button>
         </div>
       </p-footer>
-    </p-dataTable> -->
+    </p-dataTable>
   </div>
   <!-- other -->
   <div *ngIf='index==3' class='form-flex-start'>
@@ -215,12 +215,12 @@
     </div>
     <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="intakeInnerClass=='subgrantsubcontract'">
       <label>Institution Name</label>
-      <input pInputText [(ngModel)]="subgrantSubProject.institutionName" />
+      <input pInputText [(ngModel)]="subgrantSubProject.institution" />
       <label>Proposed Funding Amount</label>
       <!--number-->
       <input pInputText [(ngModel)]="subgrantSubProject.proposedFundingAmount" />
       <label>Contact Person</label>
-      <input pInputText [(ngModel)]="subgrantSubProject.contactPerson" />
+      <input pInputText [(ngModel)]="subgrantSubProject.contactPersonName" />
       <label>Contact Info</label>
       <input pInputText [(ngModel)]="subgrantSubProject.contactInfo" />
     </div>
@@ -230,9 +230,9 @@
       <label>Site Address</label>
       <input pInputText [(ngModel)]="projectLocation.siteAddress" />
       <label>Projected Percent Of Time At Site</label>
-      <input pInputText [(ngModel)]="projectLocation.projectedPercentOfTimeAtState" />
+      <input pInputText [(ngModel)]="projectLocation.projectedPercentOfTimeAtSite" />
       <label>Will an on campus space or rental agreement need to be arranged?</label>
-       <p-checkbox binary='true' [(ngModel)]='projectLocation.onCampusSpaceOrOnCampusRentalNeeded'></p-checkbox>
+       <p-checkbox binary='true' [(ngModel)]='projectLocation.agreementArranged'></p-checkbox>
     </div>
     <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="intakeInnerClass=='additionalparty'">
       <label>Party Name</label>
@@ -246,22 +246,22 @@
       <label>Item(personnel,equipment, storage ...etc)</label>
       <input pInputText [(ngModel)]="space.item" />
       <label>New Space, change of use or renovation?</label>
-      <input pInputText [(ngModel)]="space.newSpace" />
+      <input pInputText [(ngModel)]="space.typeOfUse" />
       <label>Source of Funds</label>
       <input pInputText [(ngModel)]="space.sourceOfFunds" />
     </div>
-    <!-- <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="intakeInnerClass=='requestedequipment'">
+    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="intakeInnerClass=='requestedequipment'">
       <label>Name</label>
-      <input pInputText [(ngModel)]="requestedEquipment.name" />
+      <input pInputText [(ngModel)]="mapEntry.key" />
       <label>Approximate Cost</label>
-      <input pInputText [(ngModel)]="requestedEquipment.approximateCost" />
+      <input pInputText [(ngModel)]="mapEntry.value" />
     </div>
     <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="intakeInnerClass=='hazard'">
       <label>Name Of Agent</label>
-      <input pInputText [(ngModel)]="hazard.agent" />
+      <input pInputText [(ngModel)]="mapEntry.key" />
       <label>Type(biohazard,radiation, recombinant DNA)</label>
-      <input pInputText [(ngModel)]="hazard.type" />
-    </div> -->
+      <input pInputText [(ngModel)]="mapEntry.value" />
+    </div>
     <p-footer>
       <div>
         <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>

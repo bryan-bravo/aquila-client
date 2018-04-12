@@ -35,17 +35,16 @@ user: User;
   getEquipment(id): Observable<EquipmentForm> {
     return this.http.get<EquipmentForm>('api/equipment/' + id);
   }
-  updateEquipment(equipmentForm): Observable<EquipmentForm>{
-    console.log(typeof JSON.parse(JSON.stringify(equipmentForm)))
-    return this.http.put<EquipmentForm>('api/equipment/'+equipmentForm.id, JSON.parse(JSON.stringify(equipmentForm)));
+  updateEquipment(equipmentForm): Observable<EquipmentForm> {
+    return this.http.put<EquipmentForm>('api/equipment/' + equipmentForm.id, JSON.parse(JSON.stringify(equipmentForm)));
   }
   getEconomicInterestPI(id): Observable<EconomicInterestPI> {
     return this.http.get<EconomicInterestPI>('api/proposal/economicinterest' + id);
   }
  
-  updateEconomicInterestPI(economicInterestPI): Observable<EconomicInterestPI>{
-    console.log(typeof JSON.parse(JSON.stringify(economicInterestPI)))
-    return this.http.put<EconomicInterestPI>('api/proposal/editeconomicinterest/'+economicInterestPI.id, JSON.parse(JSON.stringify(economicInterestPI)));  
+  updateEconomicInterestPI(economicInterestPI): Observable<EconomicInterestPI> {
+    return this.http.
+    put<EconomicInterestPI>('api/proposal/editeconomicinterest/'+economicInterestPI.id, JSON.parse(JSON.stringify(economicInterestPI)));
   }
   // timeline
   patchTimeline(proposalId, timeline): Observable<TimeLine> {
@@ -82,6 +81,10 @@ user: User;
     const formData = new FormData();
     formData.append('file', file);
     return this.http.put(`api/proposal/${proposalId}/stage/${stageId}/fileupload/${fileName}`, formData);
+  }
+  downloadFile(fileId) {
+    return this.http.get(`api/downloadfile/${fileId}`,
+    {responseType: 'blob', observe: 'response'});
   }
   deleteFile(timelineId, stageId, fileId) {
     // `/timeline/{timelineId}/stage/{stageId}/deletefile/{fileId}`

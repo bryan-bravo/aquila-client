@@ -1,23 +1,19 @@
 export class EquipmentForm {
-    id:string;
-    //1
+    id: string;
     facultyName: string;
-    department: string;//might handle
-    grantAgency: string;
+    department: string;
     proposalTitle: string;
     extension: boolean;
     extensionValue: string;
     costShare: boolean;
     donation: boolean;
     newEquipment: boolean;
-    //2
-    typeOfEquipment: string[];//might become an class
+    typeOfEquipment: TypeOfEquipment[];
     buildingLocation: string;
     roomLocation: string;
     companyDonating: string;
     previousUse: string;
-    //3
-    spaceModificationRequirement: boolean; 
+    spaceModificationRequirement: boolean;
     electricalModification: boolean;
     volts: boolean;
     amps: boolean;
@@ -43,24 +39,31 @@ export class EquipmentForm {
     pressure: boolean;
     fluidTemperature: boolean;
     pumpCompressorMotor: boolean;
-    //network:boolean;
     maintenance: boolean;
     licenseRequirements: boolean;
     hardware: boolean;
     hazardousMaterial: boolean;
-    chemicals: Map<number,string>;
-    radiationUse: string;
+    chemicals: any;
+    radiation: any;
     maintenanceRequirement: boolean;
-    listOfRequirements:string[];
-    sizeOfEquipment: boolean;
+    maintenanceRequirements: string; // list of strings
+    sizeOfEquipment: boolean; // list of size requirements
     height: number;
     width: number;
     length: number;
-    directorOfResearchDevelopmentSignature:any;//Signature
-    directorOfResearchDevelopmentSignatureDate:Date;
-    directorOfFacilitiesServicesSignature:any;//Signature
-    directorOfFacilitiesServicesSignatureDate:Date;
-	constructor(id){
-		this.id=id;
-	}
+    directorOfResearchDevelopmentSignature: any; //Signature
+    directorOfResearchDevelopmentSignatureDate: Date;
+    directorOfFacilitiesServicesSignature: any; //Signature
+    directorOfFacilitiesServicesSignatureDate: Date;
 }
+export class TypeOfEquipment {
+    id: number;
+    name: string;
+    specification: string;
+    url: string;
+}
+export class MapEntry {
+    key: string;
+    value: string;
+}
+
