@@ -14,7 +14,7 @@ export class EconomicInterestComponent implements OnInit {
   breadCrumbStrings: string[];
 
   constructor(private proposalService: ProposalService, private preAwardService: PreawardService) {
-    this.economicInterestPI = this.proposalService.getEconomicInterestPI();
+    this.economicInterestPI = this.parseEconomicInterestPi(this.proposalService.getEconomicInterestPI());
   }
 
   ngOnInit() {
@@ -32,5 +32,32 @@ export class EconomicInterestComponent implements OnInit {
        console.log(newEconomicInterest);
       //  this.proposalService.updateEconomicInterestPI(this.economicInterestPI);
      });
+   }
+   parseEconomicInterestPi(economicInterestPI) {
+    if (economicInterestPI.fundDate !== null) {
+      economicInterestPI.fundDate = new Date(economicInterestPI.fundDate);
+    }
+    if (economicInterestPI.interimDate !== null) {
+      economicInterestPI.interimDate = new Date(economicInterestPI.interimDate);
+    }
+    if (economicInterestPI.dateDisposed !== null) {
+      economicInterestPI.dateDisposed = new Date(economicInterestPI.dateDisposed);
+    }
+    if (economicInterestPI.dateSigned !== null) {
+      economicInterestPI.dateSigned = new Date(economicInterestPI.dateSigned);
+    }
+    if (economicInterestPI.giftsReceivedDate !== null) {
+      economicInterestPI.giftsReceivedDate = new Date(economicInterestPI.giftsReceivedDate);
+    }
+    if (economicInterestPI.travelStartDate !== null) {
+      economicInterestPI.travelStartDate = new Date(economicInterestPI.travelStartDate);
+    }
+    if (economicInterestPI.travelEndDate !== null) {
+      economicInterestPI.travelEndDate = new Date(economicInterestPI.travelEndDate);
+    }
+    if (economicInterestPI.dateSigned !== null) {
+      economicInterestPI.dateSigned = new Date(economicInterestPI.dateSigned);
+    }
+    return economicInterestPI;
    }
 }
