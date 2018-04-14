@@ -188,14 +188,15 @@
       the entity listed in Part 1 above?</p>
     <p-checkbox binary='true' [(ngModel)]='economicInterestPI.investmentGreaterThan'></p-checkbox>
     <div class='amount-list' *ngIf='economicInterestPI.investmentGreaterThan' class='form-flex-start indent'>
-      <label>Amount</label>
+      <label>Amount $</label>
       <input type='text' [(ngModel)]='economicInterestPI.investAmount' pInputText>
       <label>Date Disposed: (if applicable)</label>
       <p-calendar [(ngModel)]='economicInterestPI.dateDisposed'></p-calendar>
     </div>
     <p><strong>C.</strong>Have you received income of $500 or more from the entity listed in Part 1 during the reporting period?</p>
-    <p-checkbox binary='true' [(ngModel)]='economicInterestPI.receivedAmount'></p-checkbox>
-    <div class='amount-list' *ngIf='economicInterestPI.receivedAmount' class='form-flex-start indent'>
+    <p-checkbox binary='true' [(ngModel)]='economicInterestPI.receivedIncome'></p-checkbox>
+    <div class='amount-list' *ngIf='economicInterestPI.receivedIncome' class='form-flex-start indent'>
+      <label>Amount $</label>
       <input type='text' [(ngModel)]='economicInterestPI.receivedAmount' pInputText>
       <p>Was this income received through you spouse or registered domestic partner?</p>
       <p-checkbox binary='true' [(ngModel)]='economicInterestPI.receivedThroughSpouse'></p-checkbox>
@@ -204,10 +205,10 @@
     <p><strong>D.</strong>Have you received loans from the entity in Part 1 for which the balance exceeded $500 during the reporting period?</p>
     <p-checkbox binary='true' [(ngModel)]='economicInterestPI.receivedThroughEntity'></p-checkbox>
     <div class='loan-information' *ngIf='economicInterestPI.receivedThroughEntity' class='form-flex-start indent'>
-      <label>Loan Amount</label>
+      <label>Loan Amount $</label>
       <input type='text' [(ngModel)]='economicInterestPI.loanAmount' pInputText>
       <p>Was the loan: Secured</p>
-      <p-checkbox binary='true' [(ngModel)]='economicInterestPI.Secured'></p-checkbox> 
+      <p-checkbox binary='true' [(ngModel)]='economicInterestPI.loanSecured'></p-checkbox> 
       <label>Interest rate: %</label>
       <input type='text' [(ngModel)]='economicInterestPI.loanInterest' pInputText>
       <p>Was the loan entirely repaid within the last 12 months?</p>
