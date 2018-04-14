@@ -107,7 +107,8 @@
     <p class='form-title'>Violations</p>
     <p>Failure to file the required Statement of Economic Interests or failure to report a financial interest may subject a
       principal investigator to civil liability, including fines, as well as University discipline. (See Gov. Code Sections
-      81000-91014)</p>
+      81000-91014)
+    </p>
     <p class='form-title'>Privacy Information Notice</p>
     <p>Information requested on all FPPC forms is used by the FPPC to administer and enforce the Political Reform Act (Gov.
       Code Sections 81000-91014 and Regulations 18110-18997). All information required by these forms is mandated by the
@@ -127,10 +128,8 @@
   <!-- page 2 General Information -->
   <div *ngIf='index==1' class='form-flex-start'>
     <p class='form-title'>General Information</p>
-    <label>Campus</label>    
+    <label>Campus</label>
     <input type='text' [(ngModel)]='economicInterestPI.campus' pInputText>
-    <label>ID No.</label>
-    <input type="text" [(ngModel)]='economicInterestPI.id' pInputText>
     <label>Last Name</label>
     <input type='text' [(ngModel)]='economicInterestPI.lastName' pInputText>
     <label>First Name</label>
@@ -138,24 +137,24 @@
     <label>Middle Name</label>
     <input type='text' [(ngModel)]='economicInterestPI.middleInitial' pInputText>
     <label>Telephone Number</label>
-    <input type='text' [(ngModel)]='economicInterestPI.phoneNumber'pInputText>
+    <input type='text' [(ngModel)]='economicInterestPI.phoneNumber' pInputText>
     <label>Academic Unit or Department</label>
     <input type='text' [(ngModel)]='economicInterestPI.department' pInputText>
     <label>Mail Code</label>
     <input type='text' [(ngModel)]='economicInterestPI.mailCode' pInputText>
     <label>Email Address</label>
-    <input type='text' [(ngModel)]='economicInterestPI.email'pInputText>
+    <input type='text' [(ngModel)]='economicInterestPI.email' pInputText>
     <label>Title of Research Project</label>
     <input type='text' [(ngModel)]='economicInterestPI.projectTitle' pInputText>
   </div>
-  <!-- page 3 Funding Entity -->
+  <!-- page 3 Funding Entity and Type of Statement -->
   <div *ngIf='index==2' class='form-flex-start'>
     <p class='form-title'>Information Regarding Funding Entity</p>
     <p>(Use a separate Form 700-U for each funding entity.)</p>
     <label>Name of Entity:</label>
     <input type='text' [(ngModel)]='economicInterestPI.entityName' pInputText>
-    <label>Amount of Entity:</label>
-    <input type='text' [(ngModel)]='economicInterestPI.entityAmount' pInputText>
+    <label>Address of Entity:</label>
+    <input type='text' [(ngModel)]='economicInterestPI.entityAddress' pInputText>
     <label>Principal Business of Entity:</label>
     <input type='text' [(ngModel)]='economicInterestPI.principalBusiness' pInputText>
     <label>Amount of Funding: $</label>
@@ -164,114 +163,88 @@
     <p-checkbox binary='true' [(ngModel)]='economicInterestPI.estimateAmount'></p-checkbox>
     <label>Actual</label>
     <p-checkbox binary='true' [(ngModel)]='economicInterestPI.actualAmount'></p-checkbox>
-    <p class='form-title'>Information Regarding Funding Entity</p>
+    <!-- 2 -->
+    <p class='form-title'>Type of Statement (Check at least one box)</p>
     <label>Initial (for new funding)</label>
-    <p-checkbox binary='true' [(ngModel)]='economicInterestPI.initalFunding'></p-checkbox>
+    <p-checkbox binary='true' [(ngModel)]='economicInterestPI.initialFunding'></p-checkbox>
     <label>Date of initial funding:</label>
-    <input type='text' [(ngModel)]='economicInterestPI.fundDate' pInputText>
+    <p-calendar [(ngModel)]='economicInterestPI.fundDate'></p-calendar>
     <label>Interim (for renewed funding)</label>
     <p-checkbox binary='true' [(ngModel)]='economicInterestPI.interimFund'></p-checkbox>
     <label>Funding was renewed on:</label>
-    <input type='text'[(ngModel)]='economicInterestPI.interimDate' pInputText>
+    <p-calendar [(ngModel)]='economicInterestPI.interimDate'></p-calendar>
   </div>
   <!-- page 4 Filer Information -->
   <div *ngIf='index==3' class='form-flex-start'>
     <p class='form-title'>Filer Information</p>
-    <p>Are you a director, officer, partner, trustee, consultant, employee, or do you hold a position of management in the entity
+    <p><strong>A.</strong> Are you a director, officer, partner, trustee, consultant, employee, or do you hold a position of management in the entity
       listed in Part 1?</p>
-    <!-- <label>No</label>
-    <input type='checkbox'> -->
-    <label>Yes</label>
-    <p-checkbox binary='true' [(ngModel)]='economicInterestPI.positionsHeld'></p-checkbox>
-    <label>Title:</label>
-    <input type='text' [(ngModel)]='economicInterestPI.positionTitle' pInputText>
-    <p>Do you, your spouse or registered domestic partner, or your dependent children have an investment of $2,000 or more in
+    <p-checkbox binary='true' [(ngModel)]='economicInterestPI.positionHeld'></p-checkbox>
+    <div *ngIf='economicInterestPI.positionHeld' class='form-flex-start indent'>  
+      <label>Title:</label>
+      <input type='text' [(ngModel)]='economicInterestPI.positionTitle' pInputText>
+    </div>
+    <p><strong>B.</strong>Do you, your spouse or registered domestic partner, or your dependent children have an investment of $2,000 or more in
       the entity listed in Part 1 above?</p>
-    <label>Yes - value is: </label>
     <p-checkbox binary='true' [(ngModel)]='economicInterestPI.investmentGreaterThan'></p-checkbox>
-  <div class='amount-list' *ngIf='economicInterestPI.investmentGreaterThan' class='form-flex-start indent'>
-    <label>$2,000 - $10,000</label>
-    <p-checkbox binary='true' (ngModel)]='economicInterestPI.investmentGreaterThan'></p-checkbox>
-    <label>$10,0001 - $100,000</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.investmentGreaterThan'></p-checkbox>
-    <label>$100,001 - $1,000,000</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.investmentGreaterThan'></p-checkbox>
-    <label>Exceeds $1,000,000</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.investmentGreaterThan'></p-checkbox>
-    <label>Date Disposed: (if applicable)</label>
-    <input type='text' pInputText>
-  </div>
-    <p>Have you received income of $500 or more from the entity listed in Part 1 during the reporting period?</p>
-    <label>Yes - amount is: </label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.receivedAmount'></p-checkbox>
-  <div class='amount-list' *ngIf='economicInterestPI.receivedAmount' class='form-flex-start indent'>
-    <label>  $500 - $1,000</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.receivedAmount'></p-checkbox>
-    <label>$1,001 - $10,000</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.receivedAmount'></p-checkbox>
-    <label>$10,001 - $100,000</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.receivedAmount'></p-checkbox>
-    <label>Exceeds $100,000</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.receivedAmount'></p-checkbox>
-  </div>
-    <p>Was this income received through you spouse or registered domestic partner?</p>
-    <label>Yes</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.receiedThroughSpouse'></p-checkbox>
-    <p>Have you received loans from the entity in Part 1 for which the balance exceeded $500 during the reporting period?</p>
-    <label>Yes - highest balance: </label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.receivedThroughEntity'></p-checkbox>
-  <div class='loan-information' *ngIf='economicInterestPI.receivedThroughEntity' class='form-flex-start indent'>
-    <label>$500 - $1,000</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.loanAmount'></p-checkbox>
-    <label>$1,001 - $10,000</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.loanAmount'></p-checkbox>
-    <label>$10,001 - $100,000</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.loanAmount'></p-checkbox>
-    <label>Exceeds $100,000</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.loanAmount'></p-checkbox>
-    <p>Was the loan:</p>
-    <label>Secured</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.loanType'></p-checkbox>
-    <label>Unsecured</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.loanType'></p-checkbox>
-    <label>Interest rate: %</label>
-    <input type='text' [(ngModel)]='economicInterestPI.loanInterest' pInputText>
-    <p>Was the loan entirely repaid within the last 12 months?</p>
-    <label>Yes</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.loanPaidoff'></p-checkbox>
-  </div>
-    <p>Have you received gifts from the entity listed in Part 1 within the last 12 months valued at $50 or more?</p>
-    <label>Yes - describe below:</label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.giftsReceived'></p-checkbox>
-  <div class='gift-received' *ngIf='economicInterestPI.giftsReceived' class='form-flex-start indent'>
-    <label>Description:</label>
-    <input type="text" [(ngModel)]='economicInterestPI.giftsDescription' pInputText>
-    <label>Value: $</label>
-    <input type="text" [(ngModel)]='economicInterestPI.giftsValue' pInputText>
-    <label>Date Receieved:</label>
-    <input type="text" [(ngModel)]='economicInterestPI.giftsReceivedDate' pInputText>
-  </div>
-    <p>Has the entity in Part 1 paid for your travel during the reporting period?</p>
-    <label>Yes - describe below: </label>
-    <p-checkbox binary='true'  [(ngModel)]='economicInterestPI.travelThroughEntity'></p-checkbox>
+    <div class='amount-list' *ngIf='economicInterestPI.investmentGreaterThan' class='form-flex-start indent'>
+      <label>Amount</label>
+      <input type='text' [(ngModel)]='economicInterestPI.investAmount' pInputText>
+      <label>Date Disposed: (if applicable)</label>
+      <p-calendar [(ngModel)]='economicInterestPI.dateDisposed'></p-calendar>
+    </div>
+    <p><strong>C.</strong>Have you received income of $500 or more from the entity listed in Part 1 during the reporting period?</p>
+    <p-checkbox binary='true' [(ngModel)]='economicInterestPI.receivedAmount'></p-checkbox>
+    <div class='amount-list' *ngIf='economicInterestPI.receivedAmount' class='form-flex-start indent'>
+      <input type='text' [(ngModel)]='economicInterestPI.receivedAmount' pInputText>
+      <p>Was this income received through you spouse or registered domestic partner?</p>
+      <p-checkbox binary='true' [(ngModel)]='economicInterestPI.receivedThroughSpouse'></p-checkbox>
+    </div>
+    
+    <p><strong>D.</strong>Have you received loans from the entity in Part 1 for which the balance exceeded $500 during the reporting period?</p>
+    <p-checkbox binary='true' [(ngModel)]='economicInterestPI.receivedThroughEntity'></p-checkbox>
+    <div class='loan-information' *ngIf='economicInterestPI.receivedThroughEntity' class='form-flex-start indent'>
+      <label>Loan Amount</label>
+      <input type='text' [(ngModel)]='economicInterestPI.loanAmount' pInputText>
+      <p>Was the loan: Secured</p>
+      <p-checkbox binary='true' [(ngModel)]='economicInterestPI.Secured'></p-checkbox> 
+      <label>Interest rate: %</label>
+      <input type='text' [(ngModel)]='economicInterestPI.loanInterest' pInputText>
+      <p>Was the loan entirely repaid within the last 12 months?</p>
+      <p-checkbox binary='true' [(ngModel)]='economicInterestPI.loanPaidoff'></p-checkbox>
+    </div>
+    <p><strong>E.</strong>Have you received gifts from the entity listed in Part 1 within the last 12 months valued at $50 or more?</p>
+    <p-checkbox binary='true' [(ngModel)]='economicInterestPI.giftsReceived'></p-checkbox>
+    <div class='gift-received' *ngIf='economicInterestPI.giftsReceived' class='form-flex-start indent'>
+      <label>Description:</label>
+      <textarea pInputTextarea [(ngModel)]='economicInterestPI.giftsDescription' autoResize="autoResize"></textarea>
+      <label>Value: $</label>
+      <input type="text" [(ngModel)]='economicInterestPI.giftsValue' pInputText>
+      <label>Date Received:</label>
+      <p-calendar [(ngModel)]='economicInterestPI.giftsReceivedDate'></p-calendar>
+    </div>
+    <p><strong>F.</strong>Has the entity in Part 1 paid for your travel during the reporting period?</p>
+    <p-checkbox binary='true' [(ngModel)]='economicInterestPI.travelThroughEntity'></p-checkbox>
     <div class='travel-enetity' *ngIf='economicInterestPI.travelThroughEntity' class='form-flex-start indent'>
-    <p>Type of Payment: (check one)</p>
-    <label>Gift</label>
-    <p-checkbox binary='true' [(ngModel)]='economicInterestPI.travelPaymentType'></p-checkbox>
-    <label>Income</label>
-    <p-checkbox binary='true' [(ngModel)]='economicInterestPI.atravelPaymentType'></p-checkbox>
-    <label>Amount: $</label>
-    <input type="text" [(ngModel)]='economicInterestPI.travelAmount' pInputText>
-    <label>date(s)</label>
-    <input type="text" [(ngModel)]='economicInterestPI.travelPaymentDates' pInputText>
-    <input type="text" [(ngModel)]='economicInterestPI.travelPaymentDates' pInputText>
-    <label>Description and, if Gift, Travel Destination:</label>
-    <input type="text" [(ngModel)]='economicInterestPI.travelDescription' pInputText>
-  </div>
+      <p>Type of Payment: (check one)</p>
+      <div>
+        <label>Gift</label>
+        <p-checkbox binary='true' [(ngModel)]='economicInterestPI.travelPaymentTypeGift'></p-checkbox>
+        <label>Income</label>
+        <p-checkbox binary='true' [(ngModel)]='economicInterestPI.atravelPaymentTypeIncome'></p-checkbox>
+      </div>
+      <label>Amount: $</label>
+      <input type="text" [(ngModel)]='economicInterestPI.travelAmount' pInputText>
+      <label>dates (if applicable)</label>
+      <p-calendar [(ngModel)]='economicInterestPI.travelStartDate'></p-calendar>
+      <p-calendar [(ngModel)]='economicInterestPI.travelEndDate'></p-calendar>
+      <label>Description</label>
+      <textarea pInputTextarea [(ngModel)]='economicInterestPI.travelDescription' autoResize="autoResize"></textarea>
+    </div>
   </div>
   <!-- page 4 Verification -->
   <div *ngIf='index==4' class='form-flex-start'>
-        <p class='form-title'>Verification</p>
+    <p class='form-title'>Verification</p>
     <p>I have used all reasonable diligence in preparing this statement. I have reviewed this statement and to the best of my
       knowledge the information contained herein and in any attached schedules is true and complete. I certifu under plenalty
       or perjury under the laws of the State of California that the foregoing is true and correct.</p>

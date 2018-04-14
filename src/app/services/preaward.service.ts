@@ -41,10 +41,9 @@ user: User;
   getEconomicInterestPI(id): Observable<EconomicInterestPI> {
     return this.http.get<EconomicInterestPI>('api/proposal/economicinterest' + id);
   }
- 
   updateEconomicInterestPI(economicInterestPI): Observable<EconomicInterestPI> {
     return this.http.
-    put<EconomicInterestPI>('api/proposal/editeconomicinterest/'+economicInterestPI.id, JSON.parse(JSON.stringify(economicInterestPI)));
+    put<EconomicInterestPI>('api/proposal/editeconomicinterest/' + economicInterestPI.id, JSON.parse(JSON.stringify(economicInterestPI)));
   }
   // timeline
   patchTimeline(proposalId, timeline): Observable<TimeLine> {

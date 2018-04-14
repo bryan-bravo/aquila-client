@@ -21,8 +21,8 @@ export class ProposalService {
   getEquipmentForm() {
     return {'equipmentForm': this.proposal.equipmentForm, 'proposalId': this.proposal.id};
   }
-  getEconomicInterestPI() { 
-    return this.proposal.economicInterestPI;
+  getEconomicInterestPI() {
+    return this.proposal.economicInterestPi;
   }
   updateIntakeForm(intakeForm) {
     this.formSource.next(intakeForm);

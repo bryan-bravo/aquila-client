@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import{EconomicInterestPI} from '../../../models/PreAward/EconomicInterestPI';
+import {EconomicInterestPI} from '../../../models/PreAward/EconomicInterestPI';
 import { PreawardService } from '../../../services/preaward.service';
 import {ProposalService} from '../../../services/proposal.service';
 import { Proposal } from '../../../models/PreAward/Proposal';
@@ -10,7 +10,7 @@ import { Proposal } from '../../../models/PreAward/Proposal';
 })
 export class EconomicInterestComponent implements OnInit {
   economicInterestPI: EconomicInterestPI;
-  index:number;//which page you are on
+  index: number;
   breadCrumbStrings: string[];
 
   constructor(private proposalService: ProposalService, private preAwardService: PreawardService) {
@@ -19,20 +19,18 @@ export class EconomicInterestComponent implements OnInit {
 
   ngOnInit() {
     this.index = 0;
-    this.economicInterestPI = new EconomicInterestPI();
-    this.breadCrumbStrings = ['Instructions for Completing Form 700-U','General Information', 'Funding Entity', 'Filer Information', 'Verification'];//page title 
-  
-  
+    this.breadCrumbStrings =
+    ['Instructions for Completing Form 700-U', 'General Information', 'Funding Entity', 'Filer Information', 'Verification']; // page title
   }
   // listens for index updates from form footer
-  updateIndex(value){
-    this.index=value;
+  updateIndex(value) {
+    this.index = value;
    }
 
   update() {
      this.preAwardService.updateEconomicInterestPI(this.economicInterestPI).subscribe(newEconomicInterest => {
-       console.log(newEconomicInterest)
-       this.proposalService.updateEconomicInterestPI(this.economicInterestPI);
+       console.log(newEconomicInterest);
+      //  this.proposalService.updateEconomicInterestPI(this.economicInterestPI);
      });
    }
-  }
+}
