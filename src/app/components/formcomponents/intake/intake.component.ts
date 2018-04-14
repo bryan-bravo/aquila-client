@@ -279,8 +279,12 @@ export class IntakeComponent implements OnInit {
     if (intakeForm.requestedEquipment.length == undefined) {
       intakeForm.requestedEquipment = this.keysPipe.transform(intakeForm.requestedEquipment);
       intakeForm.hazardousSubstances = this.keysPipe.transform(intakeForm.hazardousSubstances);
-      // need to parse dates
-      
+      if (intakeForm.startDate !== null) {
+        intakeForm.startDate = new Date(intakeForm.startDate);
+      }
+      if (intakeForm.endDate !== null) {
+        intakeForm.endDate = new Date(intakeForm.endDate);
+      }
     } else {
       this.intakeForm = intakeForm;
      }
