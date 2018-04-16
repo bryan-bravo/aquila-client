@@ -16,6 +16,7 @@ export class EditProposalComponent implements OnInit {
   menuState: boolean; // determines if menu or form field is shown
   routerState: boolean;
   currentForm: string;
+  showSpinner = true;
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private proposalService: ProposalService,
@@ -28,11 +29,11 @@ export class EditProposalComponent implements OnInit {
 
   ngOnInit() {
     this.getParams();
-    this.getProposal(); // 1
+    this.getProposal();
+    // setTimeout(() => {this.getProposal()} , 4000);
     this.menuState = true;
     this.routerState = false;
     this.currentForm = '';
-
   }
   // get id from pi preaward component
   getParams() {
@@ -43,6 +44,7 @@ export class EditProposalComponent implements OnInit {
   getProposal() { // 2 service that calls request is called
     this.preAwardService.getProposal(this.proposalId).subscribe( proposal => {
       this.proposal = proposal; // setting response proposal equal to local proposal field
+      this.showSpinner = false;
     });
   }
   setProgressBar(percentage) {

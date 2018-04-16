@@ -79,3 +79,27 @@ p {
   width: 100%;
   background-color: white;
 }
+.spinner-container {
+  height:90vh;
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}	
+
+@keyframes ui-progress-spinner-color {
+  100%,
+  0% {
+      stroke: #55b8da;
+  }
+  40% {
+      stroke: #3570b5;
+  }
+  66% {
+      stroke: #1a3999;
+  }
+  80%,
+  90% {
+      stroke: #3570b5;
+  }
+}

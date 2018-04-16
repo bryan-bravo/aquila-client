@@ -1,4 +1,7 @@
-<div *ngIf='menuState' id='menu-state'>
+<div *ngIf='showSpinner' class='spinner' class='spinner-container'>
+<p-progressSpinner  animationDuration='.75s'></p-progressSpinner>
+</div>
+<div *ngIf='menuState && !showSpinner' id='menu-state'>
   <div id='dashboard'>
     <h3 id='name'>{{proposal?.proposalName}}</h3>
     <button pButton [routerLink]="['/pipreaward']" label='Pre Award'></button>

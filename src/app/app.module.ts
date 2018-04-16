@@ -22,6 +22,7 @@ import {InputTextareaModule} from 'primeng/components/inputtextarea/inputtextare
 import {CheckboxModule} from 'primeng/primeng';
 import {FileUploadModule} from 'primeng/primeng';
 import {GrowlModule} from 'primeng/primeng';
+import {ProgressSpinnerModule} from 'primeng/primeng';
 // generated components
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -102,7 +103,8 @@ const AppRoutes: Routes = [
     FileUploadModule,
     MessagesModule,
     MessageModule,
-    GrowlModule
+    GrowlModule,
+    ProgressSpinnerModule
   ],
   providers: [
     AuthenticationService,

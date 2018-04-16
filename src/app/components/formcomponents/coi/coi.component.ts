@@ -16,7 +16,7 @@ export class ConflictOfInterestComponent implements OnInit {
   ngOnInit() {
     this.index = 0;
     this.breadCrumbStrings = ['General Info', 'Disclosure and Certification', 'Significant Financial Interest'];
-    this.coiForm = new ConflictOfInterest(1, this.type);
+    this.coiForm = new ConflictOfInterest();
     // this.coiForm.sponsorPHS = new Map([[true,'']]);
   }
   updateIndex(value) {
