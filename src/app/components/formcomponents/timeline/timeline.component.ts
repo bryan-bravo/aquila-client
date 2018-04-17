@@ -56,7 +56,7 @@ export class TimelineComponent implements OnInit {
   dialogType: string; // view, edit/add
   showProgressBar: boolean;
   preAwardForms: string[] =
-  ['Intake', 'Equipment Form', 'Approval',
+  ['Intake Form', 'Equipment form', 'Approval Form',
   'COI Other Investigator/Key Personnel PHS',
   'COI Other Investigator/Key Personnel NONPHS',
   'COI Principal Investigator PHS',
@@ -88,7 +88,10 @@ export class TimelineComponent implements OnInit {
     this.dragging = false;
     this.draggingOverTimeline = false;
     this.proposalId = obj.proposalId;
+<<<<<<< HEAD
     this.showProgressBar = false;
+=======
+>>>>>>> changed form values in edit stage form dropdown
   }
   saveTimeline() {
     if (this.timeline.stages.length === 1) {
