@@ -43,8 +43,8 @@ export class EditProposalComponent implements OnInit {
 
   ngOnInit() {
     this.getParams();
-    // this.getProposal();
-    setTimeout(() => {this.getProposal()} , 2000);
+    this.getProposal();
+    // setTimeout(() => {this.getProposal()} , 2000);
     this.menuState = true;
     this.routerState = false;
     this.currentForm = '';

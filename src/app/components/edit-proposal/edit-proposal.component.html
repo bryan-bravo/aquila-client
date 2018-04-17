@@ -76,7 +76,6 @@
 <div @fade *ngIf='routerState' id='router-container'>
   <button pButton id='menu-return' (click)='changeState()' label='Forms' icon='fa-arrow-up'></button>
   <app-intake *ngIf='currentForm=="Intake"'></app-intake>
-  <!-- <app-budget *ngIf='currentForm=="Budget"'></app-budget> -->
   <app-equipment *ngIf='currentForm=="Equipment"'></app-equipment>
   <app-approval *ngIf='currentForm=="Approval"'></app-approval>
   <app-timeline *ngIf='currentForm=="Timeline"'></app-timeline>
