@@ -1,7 +1,8 @@
 <div *ngIf='showSpinner' class='spinner' class='spinner-container'>
-<p-progressSpinner  animationDuration='.75s'></p-progressSpinner>
+  <p-progressSpinner  animationDuration='.75s'></p-progressSpinner>
 </div>
-<div *ngIf='menuState && !showSpinner' id='menu-state'>
+
+<div @fade *ngIf='menuState && !showSpinner' id='menu-state'>
   <div id='dashboard'>
     <h3 id='name'>{{proposal?.proposalName}}</h3>
     <button pButton [routerLink]="['/pipreaward']" label='Pre Award'></button>
@@ -72,7 +73,7 @@
   </div>
 </div>
 
-<div *ngIf='routerState' id='router-container'>
+<div @fade *ngIf='routerState' id='router-container'>
   <button pButton id='menu-return' (click)='changeState()' label='Forms' icon='fa-arrow-up'></button>
   <app-intake *ngIf='currentForm=="Intake"'></app-intake>
   <!-- <app-budget *ngIf='currentForm=="Budget"'></app-budget> -->

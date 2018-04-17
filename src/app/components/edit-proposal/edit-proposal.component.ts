@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import {trigger, state, transition, style, animate} from '@angular/animations';
 import {Proposal} from '../../models/PreAward/Proposal';
 import {ProposalService} from '../../services/proposal.service';
 import { IntakeForm } from '../../models/PreAward/IntakeForm';
@@ -8,7 +9,20 @@ import {GrowlModule} from 'primeng/primeng';
 @Component({
   selector: 'app-edit-proposal',
   templateUrl: './edit-proposal.component.html',
-  styleUrls: ['./edit-proposal.component.css']
+  styleUrls: ['./edit-proposal.component.css'],
+  animations: [
+    trigger('fade', [
+    // state(),
+      transition('void => *', [
+        style({opacity: 0}),
+        animate(500, style({opacity: 1}))
+      ]),
+      transition('* => void', [
+        animate(500, style({opacity: 0}))
+      ])
+    ])
+  ]
+
 })
 export class EditProposalComponent implements OnInit {
   proposalId: string; // current proposal request being modified
@@ -29,8 +43,8 @@ export class EditProposalComponent implements OnInit {
 
   ngOnInit() {
     this.getParams();
-    this.getProposal();
-    // setTimeout(() => {this.getProposal()} , 4000);
+    // this.getProposal();
+    setTimeout(() => {this.getProposal()} , 2000);
     this.menuState = true;
     this.routerState = false;
     this.currentForm = '';
@@ -61,8 +75,18 @@ export class EditProposalComponent implements OnInit {
   }
   // toggle between form and menu
   changeState() {
-    this.menuState = !this.menuState;
-    this.routerState = !this.routerState;
+    if (this.menuState) {
+      this.menuState = false;
+      setTimeout(() => {
+        this.routerState = true;
+      }, 500);
+    } else {
+      this.routerState = false;
+      setTimeout(() => {
+        this.menuState = true;
+      }, 500);
+    }
+
   }
   // set which form to display
   setCurrentForm(form) {
