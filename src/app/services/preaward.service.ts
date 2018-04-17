@@ -29,21 +29,28 @@ user: User;
   getProposal(id): Observable<Proposal> {// 3
     return this.http.get<Proposal>('api/proposal/' + id); // 4, start going back
   }
+  // intake
   updateIntake(intakeForm): Observable<IntakeForm> {
     return this.http.put<IntakeForm>('api/intake/' + intakeForm.id, JSON.parse(JSON.stringify(intakeForm)));
     }
+  // equipment
   getEquipment(id): Observable<EquipmentForm> {
     return this.http.get<EquipmentForm>('api/equipment/' + id);
   }
   updateEquipment(equipmentForm): Observable<EquipmentForm> {
     return this.http.put<EquipmentForm>('api/equipment/' + equipmentForm.id, JSON.parse(JSON.stringify(equipmentForm)));
   }
+  // economic interest
   getEconomicInterestPI(id): Observable<EconomicInterestPI> {
     return this.http.get<EconomicInterestPI>('api/proposal/economicinterest' + id);
   }
   updateEconomicInterestPI(economicInterestPI): Observable<EconomicInterestPI> {
     return this.http.
     put<EconomicInterestPI>('api/proposal/editeconomicinterest/' + economicInterestPI.id, JSON.parse(JSON.stringify(economicInterestPI)));
+  }
+  // conflict of interest
+  updateConflictOfInterest(coiForm) {
+    
   }
   // timeline
   patchTimeline(proposalId, timeline): Observable<TimeLine> {

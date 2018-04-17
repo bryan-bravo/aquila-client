@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {ConflictOfInterest} from '../../../models/PreAward/ConflictOfInterest';
+import { ProposalService } from '../../../services/proposal.service';
 @Component({
   selector: 'app-coi',
   templateUrl: './coi.component.html',
@@ -10,14 +11,13 @@ export class ConflictOfInterestComponent implements OnInit {
   coiForm: ConflictOfInterest;
   index: number;
   breadCrumbStrings: string[];
-  constructor() {
+  constructor(proposalService: ProposalService) {
+    this.coiForm = proposalService.getConflictOfInterestForm().coiForm;
    }
 
   ngOnInit() {
     this.index = 0;
     this.breadCrumbStrings = ['General Info', 'Disclosure and Certification', 'Significant Financial Interest'];
-    this.coiForm = new ConflictOfInterest();
-    // this.coiForm.sponsorPHS = new Map([[true,'']]);
   }
   updateIndex(value) {
     this.index = value;

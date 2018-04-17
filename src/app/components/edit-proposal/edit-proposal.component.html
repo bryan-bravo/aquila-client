@@ -8,67 +8,38 @@
     <button pButton [routerLink]="['/pipreaward']" label='Pre Award'></button>
     <button pButton label='Help' icon='fa-question'></button>
   </div>
-  <div id = 'form-container'>
-    <div class='required-forms' id='intake' (click)='setCurrentForm("Intake")'>
-      <p class='title'>Intake Form </p>
-      <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
-        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
-    </div>
-    <div class='required-forms' id='timeline' (click)='setCurrentForm("Timeline")'>
+  <div id='menu-container'>
+    <!-- timeline -->
+    <div id='timeline' (click)='setCurrentForm("Timeline")'>
       <p class='title'>Timeline</p>
-      <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
         earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
+    </div>
+    <!-- forms -->
+     <div id='forms'>
+      <div class='required-forms' (click)='setCurrentForm("Intake")'>
+        <p class='title'>Intake Form </p>
+      </div>
+      <div class='required-forms' (click)='setCurrentForm("Approval")'>
+        <p class='title'>Approval Form</p>
 
-    </div>
-    <div class='required-forms' id='approval' (click)='setCurrentForm("Approval")'>
-      <p class='title'>Approval Form</p>
-      <div class='progress-bar' [ngStyle]='setProgressBar(50)'></div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
-        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
-    </div>
-    <div class='required-forms' (click)='setCurrentForm("Equipment")'>
-      <p class='title'>Equipment</p>
-      <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
       </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
-        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque. </p>
-    </div>
-    <div class='required-forms' (click)='setCurrentForm("coi-oi-phs")'>
-      <p class='title'>COI OI KP PHS </p>
-      <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
+      <div class='required-forms' (click)='setCurrentForm("Equipment")'>
+        <p class='title'>Equipment Form</p>
       </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
-        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
-    </div>
-    <div class='required-forms' (click)='setCurrentForm("coi-oi-nonphs")'>
-      <p class='title'>COI OI KP NONPHS</p>
-      <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
+      <div class='required-forms' (click)='setCurrentForm("economic-interest")'>
+        <p class='title'>PI Statement Of Economic Interest</p>
+       
       </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
-        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
     </div>
-    <div class='required-forms' (click)='setCurrentForm("coi-pi-phs")'>
-      <p class='title'>COI PI PHS</p>
-      <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
-      </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
-        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
-    </div>
-    <div class='required-forms' (click)='setCurrentForm("coi-pi-nonphs")'>
-      <p class='title'>COI PI NON PHS</p>
-      <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
-      </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
-        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
-    </div>
-    <div class='required-forms' (click)='setCurrentForm("economic-interest")'>
-      <p class='title'>PI Statement Of Economic Interest</p>
-      <div class='progress-bar' [ngStyle]='setProgressBar(50)'>
-      </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
-        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
+    <!-- tables -->
+    <div id='tables'>
+      <!-- <div class='required-forms' (click)='setCurrentForm("coi")'></div> -->
+      <p-dataTable [value]='proposal?.conflictOfInterestForms' selectionMode='single' (onRowSelect)='coiSelect($event)'>
+          <p-header>Conflict Of Interest Forms</p-header>
+          <p-column field='type' header='Type'></p-column>
+          <p-column field='progress' header='Progress'></p-column>
+        </p-dataTable>
     </div>
   </div>
 </div>

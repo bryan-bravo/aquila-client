@@ -97,6 +97,11 @@ export class EditProposalComponent implements OnInit {
     this.sendForm();
     this.changeState();
   }
+  // conflict Of interest form is selected
+  coiSelect(event) {
+    this.proposal.selectedCoiFormId = event.data.id;
+    this.setCurrentForm('coi');
+  }
   // when child component is instantied, update proposal in service
   sendForm() {
     // console.log(this.proposal)

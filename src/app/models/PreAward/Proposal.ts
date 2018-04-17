@@ -13,6 +13,7 @@ export class Proposal {
    timeline: TimeLine;
    equipmentForm: any;
    economicInterestPI: any;
+   selectedCoiFormId: number;
 //    intakeForm: any;
 //    timeline: any;
 }

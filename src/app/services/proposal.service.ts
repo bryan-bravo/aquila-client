@@ -18,25 +18,24 @@ export class ProposalService {
   getIntakeForm() {
     return this.proposal.intakeForm;
   }
-  getEquipmentForm() {
-    return {'equipmentForm': this.proposal.equipmentForm, 'proposalId': this.proposal.id};
-  }
-  getEconomicInterestPI() {
-    return this.proposal.economicInterestPi;
-  }
   updateIntakeForm(intakeForm) {
     this.formSource.next(intakeForm);
   }
-  updateEquipmentForm(equipmentForm) {
-    this.formSource.next(equipmentForm);
-  }
-  updateEconomicInterestPI(economicInterestPI) {
-    this.formSource.next(economicInterestPI);
+  getEquipmentForm() {
+    return {'equipmentForm': this.proposal.equipmentForm, 'proposalId': this.proposal.id};
   }
   saveEquipmentForm(equipmentForm){
     this.formSource.next(equipmentForm);
   }
-  // timeline
+  updateEquipmentForm(equipmentForm) {
+    this.formSource.next(equipmentForm);
+  }
+  getEconomicInterestPI() {
+    return this.proposal.economicInterestPi;
+  }
+  updateEconomicInterestPI(economicInterestPI) {
+    this.formSource.next(economicInterestPI);
+  }
   getTimeline() {
     return {
       'proposalId': this.proposal.id,
@@ -45,6 +44,16 @@ export class ProposalService {
   }
   updateTimeline(timeline) {
     this.formSource.next(timeline);
+  }
+  getConflictOfInterestForm() {
+    // with given id find where to put it
+    const coiForm = this.proposal.conflictOfInterestForms.find( coi => {
+      return coi.id === this.proposal.selectedCoiFormId;
+    });
+    return {
+      'proposalId': this.proposal.id,
+      'coiForm': coiForm
+    };
   }
 }
 // user clicks on form
