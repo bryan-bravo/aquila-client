@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {trigger, state, transition, style, animate} from '@angular/animations';
 import {EquipmentForm, TypeOfEquipment, MapEntry} from '../../../models/PreAward/EquipmentForm';
 import { PreawardService } from '../../../services/preaward.service';
 import {ProposalService} from '../../../services/proposal.service';
@@ -7,12 +8,37 @@ import {KeysPipe} from '../../../pipes/keys.pipe';
 @Component({
   selector: 'app-equipment',
   templateUrl: './equipment.component.html',
-  styleUrls: ['./equipment.component.css']
+  styleUrls: ['./equipment.component.css'],
+  animations: [
+    trigger('slide', [
+      transition(':enter', [
+        style({
+          transform: 'translateX(100%)'
+        }),
+        animate(400,
+          style({
+            transform: 'translateX(0)'
+          })
+        )
+      ]),
+      transition(':leave', [
+        style({
+          float: 'right'
+        }),
+        animate(200,
+          style({
+            transform: 'translateX(-100%)',
+          })
+        )
+      ])
+    ])
+  ]
 })
 export class EquipmentComponent implements OnInit {
   equipmentForm: EquipmentForm;
   index: number;
   breadCrumbStrings: string[] = ['General Info', 'Equipment', 'Requirements'];
+  direction: string;
   typeOfEquipment: TypeOfEquipment = new TypeOfEquipment();
   newTypeOfEquipment: boolean;
   mapEntry: MapEntry = new MapEntry();

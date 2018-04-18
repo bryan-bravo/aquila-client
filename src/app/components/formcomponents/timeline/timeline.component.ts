@@ -26,7 +26,7 @@ export class TimelineComponent implements OnInit {
   draggingOverTimeline: boolean;
   dialogType: string; // view, edit/add
   preAwardForms: string[] =
-  ['Intake', 'Equipment', 'Approval',
+  ['Intake', 'Equipment Form', 'Approval',
   'COI Other Investigator/Key Personnel PHS',
   'COI Other Investigator/Key Personnel NONPHS',
   'COI Principal Investigator PHS',

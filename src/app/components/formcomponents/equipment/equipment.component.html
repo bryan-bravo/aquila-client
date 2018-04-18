@@ -6,175 +6,177 @@
     <div [ngStyle]='setProgressBar(50)'></div>
     <div id=''></div>
   </div>
-  <!-- page 1 General Information -->
-  <div *ngIf='index==0' class='form-flex-start'>
-    <p class='form-title'>General Information</p>
-    <label>Faculty Name</label>
-    <input type="text" [(ngModel)]='equipmentForm.facultyName' pInputText>
-    <label>Department</label>
-    <input type="text" [(ngModel)]='equipmentForm.department' pInputText>
-    <label>Grant-Agency</label>
-    <input type="text" [(ngModel)]='equipmentForm.grantAgency' pInputText>
-    <label>Proposal Title</label>
-    <input type="text" [(ngModel)]='equipmentForm.proposalTitle' pInputText>
-    <label>Extension</label>
-    <p-checkbox binary='true' [(ngModel)]='equipmentForm.extension'></p-checkbox>
-    <label>Extension Amount</label>
-    <input type="text" [(ngModel)]='equipmentForm.extensionValue' pInputText>
-    <label>Cost Share</label>
-    <p-checkbox binary='true' [(ngModel)]='equipmentForm.costShare'></p-checkbox>
-    <label>Donation</label>
-    <p-checkbox binary='true' [(ngModel)]='equipmentForm.donation'></p-checkbox>
-    <label>New Equipment</label>
-    <p-checkbox binary='true' [(ngModel)]='equipmentForm.newEquipment'></p-checkbox>
+  <div class='pages'>
+    <!-- page 1 General Information -->
+    <div @slide *ngIf='index==0' class='form-flex-start test1'>
+      <p class='form-title'>General Information</p>
+      <label>Faculty Name</label>
+      <input type="text" [(ngModel)]='equipmentForm.facultyName' pInputText>
+      <label>Department</label>
+      <input type="text" [(ngModel)]='equipmentForm.department' pInputText>
+      <label>Grant-Agency</label>
+      <input type="text" [(ngModel)]='equipmentForm.grantAgency' pInputText>
+      <label>Proposal Title</label>
+      <input type="text" [(ngModel)]='equipmentForm.proposalTitle' pInputText>
+      <label>Extension</label>
+      <p-checkbox binary='true' [(ngModel)]='equipmentForm.extension'></p-checkbox>
+      <label>Extension Amount</label>
+      <input type="text" [(ngModel)]='equipmentForm.extensionValue' pInputText>
+      <label>Cost Share</label>
+      <p-checkbox binary='true' [(ngModel)]='equipmentForm.costShare'></p-checkbox>
+      <label>Donation</label>
+      <p-checkbox binary='true' [(ngModel)]='equipmentForm.donation'></p-checkbox>
+      <label>New Equipment</label>
+      <p-checkbox binary='true' [(ngModel)]='equipmentForm.newEquipment'></p-checkbox>
 
-  </div>
-  <!-- page 2 Equipment -->
-  <div *ngIf='index==1' class='form-flex-start'>
-    <!-- table -->
-    <p-dataTable [value]="equipmentForm.typeOfEquipment" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'typeOfEquipment')">
-      <p-header>Type of Equipment</p-header>
-      <p-column field='name' header='Name'>
-      </p-column>
-      <p-column field='specification' header='Specification'>
-      </p-column>
-      <p-column field='url' header='URL'>
-      </p-column>
-      <p-footer>
-        <div class="ui-helper-clearfix" style="width:100%">
-          <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd('typeOfEquipment')" label="Add"></button>
-        </div>
-      </p-footer>
-    </p-dataTable>
-    <p class='form-title'>Type Of Equipment (List each equipment item and attach specifications/quote nad url/website if available)</p>
-    <label>Building</label>
-    <input type="text" [(ngModel)]='equipmentForm.buildingLocation' pInputText>
-    <label>Room</label>
-    <input type="text" [(ngModel)]='equipmentForm.roomLocation' pInputText>
-    <label>Company Donating</label>
-    <input type="text" [(ngModel)]='equipmentForm.companyDonating' pInputText>
-    <label>Previous Use</label>
-    <input type="text" [(ngModel)]='equipmentForm.previousUse' pInputText>
-
-    <p class='form-flex-start'>Size Of Equipment</p>
-    <p-checkbox binary='true' [(ngModel)]='equipmentForm.sizeOfEquipment'></p-checkbox>
-    <div *ngIf='equipmentForm.sizeOfEquipment' class='form-flex-start indent'>
-      <label>Height ft</label>
-      <input type="text" [(ngModel)]='equipmentForm.height' pInputText>
-      <label>Width ft</label>
-      <input type="text" [(ngModel)]='equipmentForm.width' pInputText>
-      <label>Length ft</label>
-      <input type="text" [(ngModel)]='equipmentForm.length' pInputText>
     </div>
-  </div>
-  <!-- page 3 check all that apply  -->
-  <div *ngIf='index==2' class='form-flex-start'>
-    <p class='form-title'>Please Check all that apply</p>
-    <label>Space Modification Requirement (e.g Removal of walls or bench)</label>
-    <p-checkbox binary='true' [(ngModel)]='equipmentForm.spaceModificationRequirement'></p-checkbox>
-    <!--  electrical changes-->
-    <label>Electrical Modification(s)</label>
-    <p-checkbox binary='true' [(ngModel)]='equipmentForm.electricalModification'></p-checkbox>
-    <div class='requirement-list' *ngIf='equipmentForm.electricalModification' class='form-flex-start indent'>
-      <label>Volts</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.volts'></p-checkbox>
-      <label>Amps</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.amp'></p-checkbox>
-      <label>Phase</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.phase'></p-checkbox>
-      <label>Dedicated Power</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.dedicatedPower'></p-checkbox>
-      <label>Circuit Breaker Specification</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.circuitBreakerSpecification'></p-checkbox>
-      <label>Motor/Compressor (if applied) specification </label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.motorCompressorSpecification'></p-checkbox>
-      <label>Special Conduit Requirements</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.specialNeeds'></p-checkbox>
-      <label>Special Conduit Requirements</label>
-      <input type="text" [(ngModel)]='equipmentForm.specialNeedsString' pInputText>
-      <label>FWR Paid For</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.fwr'></p-checkbox>
-      <label>FWR Paid For By</label>
-      <input type="text" [(ngModel)]='equipmentForm.fwrPaidBy' pInputText>
-    </div>
-    <!-- HVAC -->
-    <label>Heating,Ventilation, Air Conditioning Requirements (HVAC)</label>
-    <p-checkbox binary='true' [(ngModel)]='equipmentForm.hvac'></p-checkbox>
-    <div class='form-flex-start indent' *ngIf='equipmentForm.hvac'>
-      <label>Air/chilled water flow(s) requirement</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.airChilledWaterFlow'></p-checkbox>
-      <label>Temperature(s) setting/control requirement</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.temperature'></p-checkbox>
-      <label>Humidity control/requirement</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.humidityControl'></p-checkbox>
-      <label>Supply pressure (static operating) at user's end</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.supplyPressure'></p-checkbox>
-      <label>Central package unit selection/specification</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.centralPackageUnit'></p-checkbox>
-      <label>Special duct work/AHU/damper/valving/motor (w/specifications as applied)</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.specialWork'></p-checkbox>
-      <label>Noise Requirement (if applied)</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.noiseRequirement'></p-checkbox>
-    </div>
-    <!-- plumbing -->
-    <label>Plumbing Modification(s)</label>
-    <p-checkbox binary='true' [(ngModel)]='equipmentForm.plumbing'></p-checkbox>
-    <div class='form-flex-start indent' *ngIf='equipmentForm.plumbing'>
-      <label>Fluid (water,natural gas, air, others)</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.fluid'></p-checkbox>
-      <label>Flow Rate (gpm,cfm)</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.flowRate'></p-checkbox>
-      <label>Pressure (static/operating) requirement (at user's end)</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.pressure'></p-checkbox>
-      <label>Fluid temperature requirement</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.fluidTemperature'></p-checkbox>
-      <label>Pump/compressor/motor specifications</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.pumpCompressorMotor'></p-checkbox>
-    </div>
-    <!-- network -->
-    <label>Network Requirement(s)</label>
-    <p-checkbox binary='true' [(ngModel)]='equipmentForm.network'></p-checkbox>
-    <div class='form-flex-start indent' *ngIf='equipmentForm.network'>
-      <label>Maintenance</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.maintenance'></p-checkbox>
-      <label>License Requirements</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.licenseRequirements'></p-checkbox>
-      <label>Hardware</label>
-      <p-checkbox binary='true' [(ngModel)]='equipmentForm.hardware'></p-checkbox>
-    </div>
-    <!-- hazardous material-->
-    <label>Hazardous Material</label>
-    <p-checkbox binary='true' [(ngModel)]='equipmentForm.hazardousMaterial'></p-checkbox>
-    <div class='form-flex-start' *ngIf='equipmentForm.hazardousMaterial'>
-      <!-- chemicals -->
-      <p-dataTable [value]="equipmentForm.chemicals" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'chemical')">
-        <p-header>Chemicals</p-header>
-        <p-column field='key' header='Chemical'>
+    <!-- page 2 Equipment -->
+    <div @slide *ngIf='index==1' class='form-flex-start test2'>
+      <!-- table -->
+      <p-dataTable [value]="equipmentForm.typeOfEquipment" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'typeOfEquipment')">
+        <p-header>Type of Equipment</p-header>
+        <p-column field='name' header='Name'>
         </p-column>
-        <p-column field='value' header='Quantity'>
+        <p-column field='specification' header='Specification'>
+        </p-column>
+        <p-column field='url' header='URL'>
         </p-column>
         <p-footer>
           <div class="ui-helper-clearfix" style="width:100%">
-            <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd('chemical')" label="Add"></button>
+            <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd('typeOfEquipment')" label="Add"></button>
           </div>
         </p-footer>
       </p-dataTable>
-      <!-- radiaton -->
-      <p-dataTable [value]="equipmentForm.radiation" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'radiation')">
-        <p-header>Radiation Use</p-header>
-        <p-column field='key' header='Name'></p-column>
-        <p-column field='value' header='Specification'></p-column>
-        <p-footer>
-          <div class="ui-helper-clearfix" style="width:100%">
-            <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd('radiation')" label="Add"></button>
-          </div>
-        </p-footer>
-      </p-dataTable>
+      <p class='form-title'>Type Of Equipment (List each equipment item and attach specifications/quote nad url/website if available)</p>
+      <label>Building</label>
+      <input type="text" [(ngModel)]='equipmentForm.buildingLocation' pInputText>
+      <label>Room</label>
+      <input type="text" [(ngModel)]='equipmentForm.roomLocation' pInputText>
+      <label>Company Donating</label>
+      <input type="text" [(ngModel)]='equipmentForm.companyDonating' pInputText>
+      <label>Previous Use</label>
+      <input type="text" [(ngModel)]='equipmentForm.previousUse' pInputText>
+
+      <p class='form-flex-start'>Size Of Equipment</p>
+      <p-checkbox binary='true' [(ngModel)]='equipmentForm.sizeOfEquipment'></p-checkbox>
+      <div *ngIf='equipmentForm.sizeOfEquipment' class='form-flex-start indent'>
+        <label>Height ft</label>
+        <input type="text" [(ngModel)]='equipmentForm.height' pInputText>
+        <label>Width ft</label>
+        <input type="text" [(ngModel)]='equipmentForm.width' pInputText>
+        <label>Length ft</label>
+        <input type="text" [(ngModel)]='equipmentForm.length' pInputText>
+      </div>
     </div>
-    <label>Maintenance Requirement</label>
-    <p-checkbox binary='true' [(ngModel)]='equipmentForm.maintenanceRequirement'></p-checkbox>
-    <textarea pInputTextarea *ngIf='equipmentForm.maintenanceRequirement' [(ngModel)]="equipmentForm.maintenanceRequirements"
-      autoResize="autoResize"></textarea>
+    <!-- page 3 check all that apply  -->
+    <div @slide *ngIf='index==2' class='form-flex-start'>
+      <p class='form-title'>Please Check all that apply</p>
+      <label>Space Modification Requirement (e.g Removal of walls or bench)</label>
+      <p-checkbox binary='true' [(ngModel)]='equipmentForm.spaceModificationRequirement'></p-checkbox>
+      <!--  electrical changes-->
+      <label>Electrical Modification(s)</label>
+      <p-checkbox binary='true' [(ngModel)]='equipmentForm.electricalModification'></p-checkbox>
+      <div class='requirement-list' *ngIf='equipmentForm.electricalModification' class='form-flex-start indent'>
+        <label>Volts</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.volts'></p-checkbox>
+        <label>Amps</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.amp'></p-checkbox>
+        <label>Phase</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.phase'></p-checkbox>
+        <label>Dedicated Power</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.dedicatedPower'></p-checkbox>
+        <label>Circuit Breaker Specification</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.circuitBreakerSpecification'></p-checkbox>
+        <label>Motor/Compressor (if applied) specification </label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.motorCompressorSpecification'></p-checkbox>
+        <label>Special Conduit Requirements</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.specialNeeds'></p-checkbox>
+        <label>Special Conduit Requirements</label>
+        <input type="text" [(ngModel)]='equipmentForm.specialNeedsString' pInputText>
+        <label>FWR Paid For</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.fwr'></p-checkbox>
+        <label>FWR Paid For By</label>
+        <input type="text" [(ngModel)]='equipmentForm.fwrPaidBy' pInputText>
+      </div>
+      <!-- HVAC -->
+      <label>Heating,Ventilation, Air Conditioning Requirements (HVAC)</label>
+      <p-checkbox binary='true' [(ngModel)]='equipmentForm.hvac'></p-checkbox>
+      <div class='form-flex-start indent' *ngIf='equipmentForm.hvac'>
+        <label>Air/chilled water flow(s) requirement</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.airChilledWaterFlow'></p-checkbox>
+        <label>Temperature(s) setting/control requirement</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.temperature'></p-checkbox>
+        <label>Humidity control/requirement</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.humidityControl'></p-checkbox>
+        <label>Supply pressure (static operating) at user's end</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.supplyPressure'></p-checkbox>
+        <label>Central package unit selection/specification</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.centralPackageUnit'></p-checkbox>
+        <label>Special duct work/AHU/damper/valving/motor (w/specifications as applied)</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.specialWork'></p-checkbox>
+        <label>Noise Requirement (if applied)</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.noiseRequirement'></p-checkbox>
+      </div>
+      <!-- plumbing -->
+      <label>Plumbing Modification(s)</label>
+      <p-checkbox binary='true' [(ngModel)]='equipmentForm.plumbing'></p-checkbox>
+      <div class='form-flex-start indent' *ngIf='equipmentForm.plumbing'>
+        <label>Fluid (water,natural gas, air, others)</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.fluid'></p-checkbox>
+        <label>Flow Rate (gpm,cfm)</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.flowRate'></p-checkbox>
+        <label>Pressure (static/operating) requirement (at user's end)</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.pressure'></p-checkbox>
+        <label>Fluid temperature requirement</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.fluidTemperature'></p-checkbox>
+        <label>Pump/compressor/motor specifications</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.pumpCompressorMotor'></p-checkbox>
+      </div>
+      <!-- network -->
+      <label>Network Requirement(s)</label>
+      <p-checkbox binary='true' [(ngModel)]='equipmentForm.network'></p-checkbox>
+      <div class='form-flex-start indent' *ngIf='equipmentForm.network'>
+        <label>Maintenance</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.maintenance'></p-checkbox>
+        <label>License Requirements</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.licenseRequirements'></p-checkbox>
+        <label>Hardware</label>
+        <p-checkbox binary='true' [(ngModel)]='equipmentForm.hardware'></p-checkbox>
+      </div>
+      <!-- hazardous material-->
+      <label>Hazardous Material</label>
+      <p-checkbox binary='true' [(ngModel)]='equipmentForm.hazardousMaterial'></p-checkbox>
+      <div class='form-flex-start' *ngIf='equipmentForm.hazardousMaterial'>
+        <!-- chemicals -->
+        <p-dataTable [value]="equipmentForm.chemicals" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'chemical')">
+          <p-header>Chemicals</p-header>
+          <p-column field='key' header='Chemical'>
+          </p-column>
+          <p-column field='value' header='Quantity'>
+          </p-column>
+          <p-footer>
+            <div class="ui-helper-clearfix" style="width:100%">
+              <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd('chemical')" label="Add"></button>
+            </div>
+          </p-footer>
+        </p-dataTable>
+        <!-- radiaton -->
+        <p-dataTable [value]="equipmentForm.radiation" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'radiation')">
+          <p-header>Radiation Use</p-header>
+          <p-column field='key' header='Name'></p-column>
+          <p-column field='value' header='Specification'></p-column>
+          <p-footer>
+            <div class="ui-helper-clearfix" style="width:100%">
+              <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd('radiation')" label="Add"></button>
+            </div>
+          </p-footer>
+        </p-dataTable>
+      </div>
+      <label>Maintenance Requirement</label>
+      <p-checkbox binary='true' [(ngModel)]='equipmentForm.maintenanceRequirement'></p-checkbox>
+      <textarea pInputTextarea *ngIf='equipmentForm.maintenanceRequirement' [(ngModel)]="equipmentForm.maintenanceRequirements"
+        autoResize="autoResize"></textarea>
+    </div>
   </div>
   <app-form-footer [index]='index' [length]='breadCrumbStrings.length' (newIndex)='updateIndex($event)'></app-form-footer>
   <!-- dialog   -->
