@@ -8,7 +8,7 @@
   </div>
   <div class='pages'>
     <!-- page 1 General Information -->
-    <div @slide *ngIf='index==0' class='form-flex-start test1'>
+    <div [@slide]='direction'  *ngIf='index==0' class='form-flex-start test1'>
       <p class='form-title'>General Information</p>
       <label>Faculty Name</label>
       <input type="text" [(ngModel)]='equipmentForm.facultyName' pInputText>
@@ -31,7 +31,7 @@
 
     </div>
     <!-- page 2 Equipment -->
-    <div @slide *ngIf='index==1' class='form-flex-start test2'>
+    <div [@slide]='direction' *ngIf='index==1' class='form-flex-start test2'>
       <!-- table -->
       <p-dataTable [value]="equipmentForm.typeOfEquipment" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'typeOfEquipment')">
         <p-header>Type of Equipment</p-header>
@@ -69,7 +69,7 @@
       </div>
     </div>
     <!-- page 3 check all that apply  -->
-    <div @slide *ngIf='index==2' class='form-flex-start'>
+    <div [@slide]='direction' *ngIf='index==2' class='form-flex-start'>
       <p class='form-title'>Please Check all that apply</p>
       <label>Space Modification Requirement (e.g Removal of walls or bench)</label>
       <p-checkbox binary='true' [(ngModel)]='equipmentForm.spaceModificationRequirement'></p-checkbox>

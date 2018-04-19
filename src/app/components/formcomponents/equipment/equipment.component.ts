@@ -11,23 +11,47 @@ import {KeysPipe} from '../../../pipes/keys.pipe';
   styleUrls: ['./equipment.component.css'],
   animations: [
     trigger('slide', [
-      transition(':enter', [
+      // right arrow clicked entering
+      transition('void => left', [
         style({
           transform: 'translateX(100%)'
         }),
-        animate(400,
+        animate(1000,
           style({
-            transform: 'translateX(0)'
+            transform: 'translateX(0)',
+            border: '3px solid blue'
+
           })
         )
       ]),
-      transition(':leave', [
-        style({
-          float: 'right'
-        }),
-        animate(200,
+      // right arrow clicked leaving
+      transition('left => void', [
+        animate(1000,
           style({
             transform: 'translateX(-100%)',
+            border: '3px solid blue'
+
+          })
+        )
+      ]),
+      // left arrow clicked entering
+      transition('void => right', [
+        style({
+          transform: 'translateX(-100%)'
+        }),
+        animate(1000,
+          style({
+            transform: 'translateX(100%)',
+            border: '3px solid red'
+          })
+        )
+      ]),
+      // left arrow clicked leaving
+      transition('right => void', [
+        animate(1000,
+          style({
+            transform: 'translateX(100%)',
+            border: '3px solid red'
           })
         )
       ])
@@ -53,6 +77,7 @@ export class EquipmentComponent implements OnInit {
 
   ngOnInit() {
     this.index = 0;
+    this.direction = 'left';
     const equipmentObject = this.proposalService.getEquipmentForm();
    if (equipmentObject.equipmentForm.id == null) {
      this.preAwardService.getEquipment(equipmentObject.proposalId).subscribe(newEquipmentForm => {
@@ -69,6 +94,14 @@ export class EquipmentComponent implements OnInit {
   }
   // listens for index updates from form footer
   updateIndex(value) {
+    // console.log(`value: ${value} this.index: ${this.index}`);
+    // right arrow
+    if (value > this.index) {
+      this.direction = 'left';
+    // left arrow
+    } else {
+      this.direction = 'right';
+    }
     this.index = value;
   }
   update() {
@@ -184,5 +217,14 @@ export class EquipmentComponent implements OnInit {
     equipmentForm.chemicals = this.keysPipe.transform(equipmentForm.chemicals);
     equipmentForm.radiation = this.keysPipe.transform(equipmentForm.radiation);
     return equipmentForm;
+  }
+  animationStarted(event) {
+    console.log(event)
+    // if (this.direction === 'left') {
+    //   this.direction = 'right';
+    // }
+    // if (this.direction === 'right') {
+    //   this.direction = 'left';
+    // }
   }
 }
