@@ -3,8 +3,8 @@
   <button pButton (click)='setDialogType("view-basic-timeline")' label='Timeline Info'></button>
   <button pButton (click)='handleAddStage()' label='Add Stage' icon='fa-plus'  ></button>
 </div>
-<ul id='timeline-bar'>
-  <li *ngFor='let stage of timeline?.stages; index as i'>
+<ul  [@stageAnimation]='timeline.stages.length' id='timeline-bar'>
+  <li  *ngFor='let stage of timeline?.stages; index as i'>
     <!-- bar -->
     <div class='bar' appTimelineBar *ngIf='i!=0' (drop)='drop({"event":$event,"index":i})' (dragover)='allowDrop($event)' [ngClass]='{"barCompleted": stage.uasReviewed}'></div>
     <div class='icon-name-container' (click)='getCurrentStage(stage.id)' >

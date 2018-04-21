@@ -8,7 +8,7 @@
   </div>
   <div class='pages'>
     <!-- page 1 General Information -->
-    <div [@slide]='direction'  *ngIf='index==0' class='form-flex-start test1'>
+    <div  *ngIf='index==0' class='form-flex-start'>
       <p class='form-title'>General Information</p>
       <label>Faculty Name</label>
       <input type="text" [(ngModel)]='equipmentForm.facultyName' pInputText>
@@ -31,7 +31,7 @@
 
     </div>
     <!-- page 2 Equipment -->
-    <div [@slide]='direction' *ngIf='index==1' class='form-flex-start test2'>
+    <div *ngIf='index==1' class='form-flex-start'>
       <!-- table -->
       <p-dataTable [value]="equipmentForm.typeOfEquipment" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'typeOfEquipment')">
         <p-header>Type of Equipment</p-header>
@@ -57,9 +57,9 @@
       <label>Previous Use</label>
       <input type="text" [(ngModel)]='equipmentForm.previousUse' pInputText>
 
-      <p class='form-flex-start'>Size Of Equipment</p>
+      <p class='form-flex-start '>Size Of Equipment</p>
       <p-checkbox binary='true' [(ngModel)]='equipmentForm.sizeOfEquipment'></p-checkbox>
-      <div *ngIf='equipmentForm.sizeOfEquipment' class='form-flex-start indent'>
+      <div @slideVertical *ngIf='equipmentForm.sizeOfEquipment' class='form-flex-start indent'>
         <label>Height ft</label>
         <input type="text" [(ngModel)]='equipmentForm.height' pInputText>
         <label>Width ft</label>
@@ -69,14 +69,14 @@
       </div>
     </div>
     <!-- page 3 check all that apply  -->
-    <div [@slide]='direction' *ngIf='index==2' class='form-flex-start'>
+    <div  *ngIf='index==2' class='form-flex-start'>
       <p class='form-title'>Please Check all that apply</p>
       <label>Space Modification Requirement (e.g Removal of walls or bench)</label>
       <p-checkbox binary='true' [(ngModel)]='equipmentForm.spaceModificationRequirement'></p-checkbox>
       <!--  electrical changes-->
       <label>Electrical Modification(s)</label>
       <p-checkbox binary='true' [(ngModel)]='equipmentForm.electricalModification'></p-checkbox>
-      <div class='requirement-list' *ngIf='equipmentForm.electricalModification' class='form-flex-start indent'>
+      <div @slideVertical class='requirement-list' *ngIf='equipmentForm.electricalModification' class='form-flex-start indent'>
         <label>Volts</label>
         <p-checkbox binary='true' [(ngModel)]='equipmentForm.volts'></p-checkbox>
         <label>Amps</label>
@@ -101,7 +101,7 @@
       <!-- HVAC -->
       <label>Heating,Ventilation, Air Conditioning Requirements (HVAC)</label>
       <p-checkbox binary='true' [(ngModel)]='equipmentForm.hvac'></p-checkbox>
-      <div class='form-flex-start indent' *ngIf='equipmentForm.hvac'>
+      <div @slideVertical class='form-flex-start indent' *ngIf='equipmentForm.hvac'>
         <label>Air/chilled water flow(s) requirement</label>
         <p-checkbox binary='true' [(ngModel)]='equipmentForm.airChilledWaterFlow'></p-checkbox>
         <label>Temperature(s) setting/control requirement</label>
@@ -120,7 +120,7 @@
       <!-- plumbing -->
       <label>Plumbing Modification(s)</label>
       <p-checkbox binary='true' [(ngModel)]='equipmentForm.plumbing'></p-checkbox>
-      <div class='form-flex-start indent' *ngIf='equipmentForm.plumbing'>
+      <div @slideVertical class='form-flex-start indent' *ngIf='equipmentForm.plumbing'>
         <label>Fluid (water,natural gas, air, others)</label>
         <p-checkbox binary='true' [(ngModel)]='equipmentForm.fluid'></p-checkbox>
         <label>Flow Rate (gpm,cfm)</label>
@@ -135,7 +135,7 @@
       <!-- network -->
       <label>Network Requirement(s)</label>
       <p-checkbox binary='true' [(ngModel)]='equipmentForm.network'></p-checkbox>
-      <div class='form-flex-start indent' *ngIf='equipmentForm.network'>
+      <div @slideVertical class='form-flex-start indent' *ngIf='equipmentForm.network'>
         <label>Maintenance</label>
         <p-checkbox binary='true' [(ngModel)]='equipmentForm.maintenance'></p-checkbox>
         <label>License Requirements</label>
@@ -146,7 +146,7 @@
       <!-- hazardous material-->
       <label>Hazardous Material</label>
       <p-checkbox binary='true' [(ngModel)]='equipmentForm.hazardousMaterial'></p-checkbox>
-      <div class='form-flex-start' *ngIf='equipmentForm.hazardousMaterial'>
+      <div @slideVertical class='form-flex-start' *ngIf='equipmentForm.hazardousMaterial'>
         <!-- chemicals -->
         <p-dataTable [value]="equipmentForm.chemicals" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'chemical')">
           <p-header>Chemicals</p-header>

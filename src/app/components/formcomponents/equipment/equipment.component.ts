@@ -10,48 +10,23 @@ import {KeysPipe} from '../../../pipes/keys.pipe';
   templateUrl: './equipment.component.html',
   styleUrls: ['./equipment.component.css'],
   animations: [
-    trigger('slide', [
+    trigger('slideVertical', [
       // right arrow clicked entering
-      transition('void => left', [
+      transition(':enter', [
         style({
-          transform: 'translateX(100%)'
+          transform: 'translateX(-100%)'
         }),
-        animate(1000,
+        animate(500,
           style({
-            transform: 'translateX(0)',
-            border: '3px solid blue'
-
+            transform: 'translateX(0)'
           })
         )
       ]),
       // right arrow clicked leaving
-      transition('left => void', [
-        animate(1000,
+      transition(':leave', [
+        animate(500,
           style({
-            transform: 'translateX(-100%)',
-            border: '3px solid blue'
-
-          })
-        )
-      ]),
-      // left arrow clicked entering
-      transition('void => right', [
-        style({
-          transform: 'translateX(-100%)'
-        }),
-        animate(1000,
-          style({
-            transform: 'translateX(100%)',
-            border: '3px solid red'
-          })
-        )
-      ]),
-      // left arrow clicked leaving
-      transition('right => void', [
-        animate(1000,
-          style({
-            transform: 'translateX(100%)',
-            border: '3px solid red'
+            transform: 'translateX(-100%)'
           })
         )
       ])

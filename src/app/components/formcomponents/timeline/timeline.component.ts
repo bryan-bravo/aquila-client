@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, Directive, QueryList, ViewChildren} from '@angular/core';
+import {trigger, transition, style, animate, query, stagger, keyframes} from '@angular/animations';
 import {NgClass, NgStyle} from '@angular/common';
 import {MessageService} from 'primeng/components/common/messageservice';
 import {FileUpload} from 'primeng/primeng';
@@ -13,7 +14,18 @@ import {KeysPipe} from '../../../pipes/keys.pipe';
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
-  styleUrls: ['./timeline.component.css']
+  styleUrls: ['./timeline.component.css'],
+  animations: [
+    trigger('stageAnimation', [
+      transition('* => *', [
+        query('li', style({ transform: 'translateY(-100%)', opacity: '0'})),
+        query('li',
+          stagger('200ms', [
+            animate('300ms', style({ transform: 'translateY(0)', opacity: '1'}))
+        ]))
+      ])
+    ])
+  ]
 })
 export class TimelineComponent implements OnInit {
   @ViewChildren(FileUpload) fileUploads: QueryList<FileUpload>;
@@ -58,7 +70,6 @@ export class TimelineComponent implements OnInit {
     this.dragging = false;
     this.draggingOverTimeline = false;
     this.proposalId = obj.proposalId;
-    console.log(this.fileUploads)
   }
   saveTimeline() {
     if (this.timeline.stages.length === 1) {

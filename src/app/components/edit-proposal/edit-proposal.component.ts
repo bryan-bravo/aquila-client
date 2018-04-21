@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import {trigger, state, transition, style, animate} from '@angular/animations';
+import {trigger, state, transition, style, animate, query, animateChild} from '@angular/animations';
 import {Proposal} from '../../models/PreAward/Proposal';
 import {ProposalService} from '../../services/proposal.service';
 import { IntakeForm } from '../../models/PreAward/IntakeForm';
@@ -15,7 +15,10 @@ import {GrowlModule} from 'primeng/primeng';
     // state(),
       transition('void => *', [
         style({opacity: 0}),
-        animate(500, style({opacity: 1}))
+        animate(500, style({opacity: 1})),
+        query('@stageAnimation', [
+          animateChild()
+        ])
       ]),
       transition('* => void', [
         animate(500, style({opacity: 0}))
