@@ -18,7 +18,7 @@ import {GrowlModule} from 'primeng/primeng';
         animate(500, style({opacity: 1})),
         query('@stageAnimation', [
           animateChild()
-        ])
+        ], { optional: true})
       ]),
       transition('* => void', [
         animate(500, style({opacity: 0}))

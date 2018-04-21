@@ -23,6 +23,7 @@ import {CheckboxModule} from 'primeng/primeng';
 import {FileUploadModule} from 'primeng/primeng';
 import {GrowlModule} from 'primeng/primeng';
 import {ProgressSpinnerModule} from 'primeng/primeng';
+
 // generated components
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';

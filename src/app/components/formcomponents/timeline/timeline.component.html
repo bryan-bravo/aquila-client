@@ -162,4 +162,6 @@
       <button pButton class='ui-button-danger' (click)='deleteStage()' label='Delete'></button>
     </div>
   </div>
+  <p-progressBar mode="indeterminate" *ngIf='showProgressBar' [style]="{'height': '6px'}"></p-progressBar>
+
 </div>

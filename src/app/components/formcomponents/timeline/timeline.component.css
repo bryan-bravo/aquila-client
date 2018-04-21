@@ -84,6 +84,7 @@ li {
 
 #stage-content {
   height: 100%;
+  overflow:hidden;
 }
 .stage-general-info {
   display:grid;

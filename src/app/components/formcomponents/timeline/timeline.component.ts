@@ -24,7 +24,24 @@ import {KeysPipe} from '../../../pipes/keys.pipe';
             animate('300ms', style({ transform: 'translateY(0)', opacity: '1'}))
         ]))
       ])
-    ])
+    ]),
+    trigger('view-stage', [
+      // state(),
+        transition('void => *', [
+          style({transform: 'translateX(-100%)'}),
+          animate(500, style({transform: 'translateX(0)'}))
+        ]),
+        transition('* => void', [
+          animate(500, style({opacity: '0'}))
+        ])
+      ]),
+    trigger('edit-stage', [
+      // state(),
+        transition('void => *', [
+          style({opacity: '1'}),
+          animate(500, style({opacity: '0'}))
+        ])
+      ])
   ]
 })
 export class TimelineComponent implements OnInit {
@@ -37,6 +54,7 @@ export class TimelineComponent implements OnInit {
   dragging: boolean;
   draggingOverTimeline: boolean;
   dialogType: string; // view, edit/add
+  showProgressBar: boolean;
   preAwardForms: string[] =
   ['Intake', 'Equipment Form', 'Approval',
   'COI Other Investigator/Key Personnel PHS',
@@ -70,6 +88,7 @@ export class TimelineComponent implements OnInit {
     this.dragging = false;
     this.draggingOverTimeline = false;
     this.proposalId = obj.proposalId;
+    this.showProgressBar = false;
   }
   saveTimeline() {
     if (this.timeline.stages.length === 1) {
@@ -77,12 +96,14 @@ export class TimelineComponent implements OnInit {
       const timelineCopy = Object.assign({}, this.timeline);
         timelineCopy.stages[0].requiredForms = this.keysPipe.backToObject(timelineCopy.stages[0].requiredForms);
         timelineCopy.stages[0].requiredFiles = this.keysPipe.backToObject(timelineCopy.stages[0].requiredFiles)
-      this.preAwardService.putTimeline(this.proposalId, timelineCopy).subscribe( timeline => {
+        this.showProgressBar = true;
+        this.preAwardService.putTimeline(this.proposalId, timelineCopy).subscribe( timeline => {
         timeline = this.parseDates(timeline);
         timeline.stages.forEach((stage, i, stages) => {
             stages[i] = this.parseStage(stage);
         });
         this.timeline = timeline;
+        this.showProgressBar = false;
         this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
       });
     } else {
@@ -109,10 +130,12 @@ export class TimelineComponent implements OnInit {
   }
   // stage
   handleAddStage() {
+    this.showProgressBar = true;
     this.preAwardService.createStage(this.timeline.id).subscribe( (stage) => {
       this.stage = this.parseStage(stage);
       this.timeline.stages.push(stage);
       this.setDialogType('edit-stage');
+      this.showProgressBar = false;
       this.messageService.add({severity:'success', summary:'Stage Added', detail:'Via MessageService'});
       this.stageIndex = this.timeline.stages.length - 1;
     });
@@ -122,8 +145,10 @@ export class TimelineComponent implements OnInit {
     stage.requiredForms = this.keysPipe.backToObject(stage.requiredForms);
     stage.requiredFiles = this.keysPipe.backToObject(stage.requiredFiles);
     stage.stageOrder = this.getStageIndex(this.stage.id);
+    this.showProgressBar = true;
     this.preAwardService.saveStage(this.timeline.id, stage).subscribe( (savedStage) => {
       this.stage = this.parseStage(savedStage);
+      this.showProgressBar = false;
       this.messageService.add({severity:'success', summary:'Stage Saved', detail:'Via MessageService'});
 
     });
@@ -132,6 +157,7 @@ export class TimelineComponent implements OnInit {
     const currentStageIndex = this.getStageIndex(this.stage.id);
     console.log(`stage index ${currentStageIndex} index to pushh ${indexToPush}`)
     if (indexToPush !== currentStageIndex || indexToPush !== currentStageIndex + 1){
+      this.showProgressBar = true;
       this.preAwardService.reorderStage(this.stage.id, indexToPush).subscribe( response => {
        if (indexToPush === 0) {
           this.timeline.stages.splice(currentStageIndex, 1);
@@ -144,6 +170,7 @@ export class TimelineComponent implements OnInit {
           this.timeline.stages.splice(indexToPush, 0, this.stage);
         }
         this.stageIndex = this.getStageIndex(this.stage.id);
+        this.showProgressBar = false;
         this.messageService.add({severity:'success', summary:'Stage Reordered', detail:'Via MessageService'});
       });
     } else {
@@ -152,15 +179,17 @@ export class TimelineComponent implements OnInit {
   }
   deleteStage() {
     // make delete request if successful, sort stage orders, update stage orders
-      this.preAwardService.deleteStage(this.stage.id).subscribe( response => {
-        // if successful
-        const currentStageIndex = this.timeline.stages.findIndex( (stage) => {
-          return this.stage == stage;
-        });
-        this.timeline.stages.splice(currentStageIndex,  1);
-        this.setDialogType('view-basic-timeline');
-        this.messageService.add({severity:'success', summary:'Stage Deleted', detail:'Via MessageService'});
+    this.showProgressBar = true;
+    this.preAwardService.deleteStage(this.stage.id).subscribe( response => {
+      // if successful
+      const currentStageIndex = this.timeline.stages.findIndex( (stage) => {
+        return this.stage == stage;
       });
+      this.timeline.stages.splice(currentStageIndex,  1);
+      this.setDialogType('view-basic-timeline');
+      this.showProgressBar = false;
+      this.messageService.add({severity:'success', summary:'Stage Deleted', detail:'Via MessageService'});
+    });
   }
   // forms
   populateunSelectedForms() {
@@ -199,8 +228,10 @@ export class TimelineComponent implements OnInit {
     });
     // the file info is already in the database
     if (fileEntry.value != null) {
+      this.showProgressBar = true;
       this.preAwardService.deleteFile(this.timeline.id, this.stage.id, this.stage.requiredFiles[fileIndex].value.id)
       .subscribe(response => {
+        this.showProgressBar = false;
         this.stage.requiredFiles.splice(fileIndex, 1);
       });
     } else {
@@ -208,11 +239,12 @@ export class TimelineComponent implements OnInit {
     }
   }
   myUploader(event, file) {
-    // @ViewChild(file.key) fileInput: FileUpload;
+    this.showProgressBar = true;
     this.preAwardService.uploadFile(this.proposalId, this.stage.id, file.key, event.files[0])
       .subscribe(response => {
         // have to clear the files on upload element
         file.value = response;
+        this.showProgressBar = false;
         this.messageService.add({severity: 'success', summary: 'File Uploaded', detail: 'Via MessageService'});
         this.fileUploads.forEach(fileUpload => {
           fileUpload.clear();
@@ -220,13 +252,14 @@ export class TimelineComponent implements OnInit {
       });
   }
   downloadFile(file) {
+    this.showProgressBar = true;
     this.preAwardService.downloadFile(file.value.id).subscribe( data => {
       const contentDisposition = data.headers.get('content-disposition');
       const contentType = data.headers.get('content-type');
       const fileName = contentDisposition.split('=')[1];
-      console.log(contentDisposition)
-
       saveAs(new Blob([data.body], { type: contentType }), fileName);
+      this.showProgressBar = false;
+
     });
   }
   // helper functionss
@@ -234,6 +267,8 @@ export class TimelineComponent implements OnInit {
     const stageIndex = this.getStageIndex(stageId);
     this.stage = this.timeline.stages[stageIndex];
     this.stageIndex = stageIndex;
+    this.setDialogType('');
+
     this.setDialogType('view-stage');
     // console.log(this.fileUploads)
 
