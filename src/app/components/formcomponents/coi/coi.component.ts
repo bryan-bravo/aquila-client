@@ -12,7 +12,7 @@ export class ConflictOfInterestComponent implements OnInit {
   index: number;
   breadCrumbStrings: string[];
   constructor(proposalService: ProposalService) {
-    this.coiForm = proposalService.getConflictOfInterestForm().coiForm;
+    this.coiForm = this.parseCoiForm(proposalService.getConflictOfInterestForm().coiForm);
    }
 
   ngOnInit() {
@@ -22,8 +22,31 @@ export class ConflictOfInterestComponent implements OnInit {
   updateIndex(value) {
     this.index = value;
    }
+   parseCoiForm(coiForm) {
+    if (coiForm.budgetPeriodStart !== null) {
+      coiForm.budgetPeriodStart = new Date (coiForm.budgetPeriodStart);
+    }
+    if (coiForm.budgetPeriodEnd !== null) {
+      coiForm.budgetPeriodEnd = new Date (coiForm.budgetPeriodEnd);
+    }
+    if (coiForm.projectPeriodStart !== null) {
+      coiForm.projectPeriodStart = new Date (coiForm.projectPeriodStart);
+    }
+    if (coiForm.projectPeriodEnd !== null) {
+      coiForm.projectPeriodEnd = new Date (coiForm.projectPeriodEnd);
+    }
+    if (coiForm.piDate !== null) {
+      coiForm.piDate = new Date (coiForm.piDate);
+    }
+    if (coiForm.keyPersonnelDate !== null) {
+      coiForm.keyPersonnelDate = new Date (coiForm.keyPersonnelDate);
+    }
+    if (coiForm.aRIDate !== null) {
+      coiForm.aRIDate = new Date (coiForm.aRIDate);
+    }
+    return coiForm;
+   }
 }
 // parse the dates
-// model rewrite
 // save
 // add the reason
