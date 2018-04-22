@@ -39,10 +39,11 @@ export class LoginComponent implements OnInit {
       this.passwordFlag = true;
       return;
     }
-    this.authenticationService.authenticate(this.username, this.password).subscribe(user => {
+    this.authenticationService.authenticate(this.username, this.password).subscribe(response => {
       // if user exists
-      if (user.username != null) {
-         this.authenticationService.storeUserData(user);
+      if (response.user.username != null) {
+         this.authenticationService.storeUserData(response.user);
+         this.authenticationService.storeJWT(response.jwt);
         this.router.navigate(['/home']);
       } else {
         // handle the bug Unexpected end of JSON input at Object.parse
