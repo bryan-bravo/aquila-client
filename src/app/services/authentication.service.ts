@@ -17,11 +17,11 @@ constructor(private http: HttpClient) {
   saveUser(user): Observable<User> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer ${this.getJWT()}`);
     return this.http.post<User>('api/saveuser', user, {headers: headers});
   }
   editUser(user): Observable<User> {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
+    const headers = new HttpHeaders({'Authorization': this.getJWT()});
     return this.http.put<User>(`api/user/${user.id}`, user, {headers: headers});
   }
   storeUserData(user) {

@@ -7,46 +7,49 @@ import {IntakeForm} from '../models/PreAward/IntakeForm';
 import { EquipmentForm } from '../models/PreAward/EquipmentForm';
 import { EconomicInterestPI } from '../models/PreAward/EconomicInterestPI';
 import {TimeLine, Stage} from '../models/PreAward/TimeLine';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class PreawardService {
 user: User;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthenticationService) {
     this.user = JSON.parse(localStorage.getItem('user'));
   }
   newProposal(proposalName): Observable<Proposal> {
     const userId = this.user.id;
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post<Proposal>('api/proposal/', {"proposalName": proposalName, "userId": userId}, {headers: headers});
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
+    return this.http.post<Proposal>(`api/proposal/`, {"proposalName": proposalName, "userId": userId}, {headers: headers});
   }
   // returns the proposals of a user
   getProposals(): Observable<Proposal[]> {
     const userId = this.user.id;
-    return this.http.get<Proposal[]>('api/proposals/' + userId);
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
+    return this.http.get<Proposal[]>(`api/proposals/${userId}`, {headers: headers});
   }
   // get proposal by id
-  getProposal(id): Observable<Proposal> {// 3
-    return this.http.get<Proposal>('api/proposal/' + id); // 4, start going back
+  getProposal(id): Observable<Proposal> {
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
+    return this.http.get<Proposal>(`api/proposal/${id}`, {headers: headers});
   }
   // intake
   updateIntake(intakeForm): Observable<IntakeForm> {
-    return this.http.put<IntakeForm>('api/intake/' + intakeForm.id, JSON.parse(JSON.stringify(intakeForm)));
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
+    return this.http.put<IntakeForm>(`api/intake/${intakeForm.id}`, JSON.parse(JSON.stringify(intakeForm)));
     }
   // equipment
   getEquipment(id): Observable<EquipmentForm> {
-    return this.http.get<EquipmentForm>('api/equipment/' + id);
+    return this.http.get<EquipmentForm>(`api/equipment/${id}`);
   }
   updateEquipment(equipmentForm): Observable<EquipmentForm> {
-    return this.http.put<EquipmentForm>('api/equipment/' + equipmentForm.id, JSON.parse(JSON.stringify(equipmentForm)));
+    return this.http.put<EquipmentForm>(`api/equipment/${equipmentForm.id}`, JSON.parse(JSON.stringify(equipmentForm)));
   }
   // economic interest
   getEconomicInterestPI(id): Observable<EconomicInterestPI> {
-    return this.http.get<EconomicInterestPI>('api/proposal/economicinterest' + id);
+    return this.http.get<EconomicInterestPI>(`api/proposal/economicinterest/${id}`);
   }
   updateEconomicInterestPI(economicInterestPI): Observable<EconomicInterestPI> {
     return this.http.
-    put<EconomicInterestPI>('api/proposal/editeconomicinterest/' + economicInterestPI.id, JSON.parse(JSON.stringify(economicInterestPI)));
+    put<EconomicInterestPI>(`api/proposal/editeconomicinterest/${economicInterestPI.id}`, JSON.parse(JSON.stringify(economicInterestPI)));
   }
   // conflict of interest
   updateConflictOfInterest(coiForm) {
