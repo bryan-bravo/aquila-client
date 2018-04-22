@@ -34,7 +34,7 @@ export class ConflictOfInterest {
     // PI: listing other key personnel
     anyOtherInvestigators: boolean;
     otherInvestigatorsValue: string;
-    // all: signatures
+    // all: signatures DO THESE
     piSignature: string;
     piDate: Date;
     keyPersonnelSign: string;

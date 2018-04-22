@@ -24,5 +24,6 @@ export class ConflictOfInterestComponent implements OnInit {
    }
 }
 // parse the dates
-// model binding
-//
+// model rewrite
+// save
+// add the reason

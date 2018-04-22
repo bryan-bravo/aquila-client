@@ -23,72 +23,75 @@
   <p *ngIf='coiForm.type=="OIPHS"||coiForm.type=="OINONPHS"'>
     You have been named as an investigator/key personnel meeting the above criteria on the following grant.
   </p>
+  <!-- proposal information -->
   <p class='form-title'>Proposal Information</p>
-  <!-- display proposal information -->
-  <!-- PHS sponsor -->
+  <div *ngIf='coiForm.type=="OIPHS"||coiForm.type=="OINONPHS"'>
+    <label>Proposal #: {{coiForm.proposalNumber}}</label>
+    <label>Proposal Title: {{coiForm.proposalTitle}}</label>
+  </div>
+  <!-- sponsor -->
   <p class='form-title'>Sponsor</p>
-  <div *ngIf='coiForm.type=="OIPHS"||coiForm.type=="PIPHS"' class='form-flex-start'>
-    <select>
-      <option>Federal Agency</option>
-      <option>Sub Award with Federal Agency pass through</option>
-      <option>Other</option>
+  <div class='form-flex-start'>
+    <label>Sponsor</label>
+    <input type='text' [(ngModel)]='coiForm.sponsor' pInputText>
+    <label>Sponsor Type</label>
+    <select [(ngModel)]='coiForm.sponsorType'>
+      <option *ngIf='coiForm.type=="PIPHS"||coiForm.type=="OIPHS"'>Federal Agency</option>
+      <option>Sub Award with Federal Agency Pass Through</option>
+      <option *ngIf='coiForm.type=="PIPHS"||coiForm.type=="OIPHS"'>Other</option>
     </select>
-    <div class='form-flex-start'>
-      <label>specify</label>
-      <input type='text' pInputText>
-    </div>
-    <div class='form-flex-start'>
-      <label>Specify Sponsor</label>
-      <input type='text' pInputText>
-      <label>Specify Pass Through Agency </label>
-      <input type='text' pInputText>
-    </div>
-    <div class='form-flex-start'>
-      <label>specify</label>
-      
-      <input type='text' pInputText>
-    </div>
+    <label *ngIf='coiForm.sponsorType!="Sub Award with Federal Agency Pass Through"'> Specify </label>
+    <label *ngIf='coiForm.sponsorType=="Sub Award with Federal Agency Pass Through"'>Specify sponsor and pass through agency</label>
+    <input type='text' [(ngModel)]='coiForm.sponsorSpecification' pInputText>
   </div>
-  <!-- NONPHS sponsor  -->
-  <div *ngIf='coiForm.type=="OINONPHS"||coiForm.type=="PINONPHS"' class='form-flex-start'>
-    <label>Subaward with Federal Agency pass through</label>
-    <p-checkbox binary='true'></p-checkbox>
-    <label>Specify Sponsor</label>
-    <input type='text' pInputText>
-    <label>Specify Pass Through Agency </label>
-    <input type='text' pInputText>
-  </div>
+  <!-- reason for disclosure -->
   <p class='form-title'>Reason for disclosure</p>
   <label>New Proposal</label>
-  <p-checkbox binary='true'></p-checkbox>
+  <p-checkbox [(ngModel)]='coiForm.newProposal' binary='true'></p-checkbox>
   <label>Continuation/Additional Funding</label>
-  <p-checkbox binary='true'></p-checkbox>
+  <p-checkbox [(ngModel)]='coiForm.contAddFunding' binary='true'></p-checkbox>
   <label>New/Change Investigator</label>
-  <p-checkbox binary='true'></p-checkbox>
-  <label>New Interest Obtained (Previous proposal/award # if applicable)</label>
-  <p-checkbox binary='true'></p-checkbox>
-  <input type='text' pInputText>
+  <p-checkbox [(ngModel)]='coiForm.newChangeInvestigator' binary='true'></p-checkbox>
+  <label>New Interest Obtained</label>
+  <p-checkbox [(ngModel)]='coiForm.newInterestObtained' binary='true'></p-checkbox>
+  <div *ngIf='coiForm.newInterestObtained' class='form-flex-start indent'>
+    <label> Previous proposal/award # if applicable</label>
+    <input [(ngModel)]='coiForm.previousProposalNumber' type='text' pInputText>
+  </div>
   <label>New Sponsor on Existing Project (Previous sponsor name)</label>
-  <p-checkbox binary='true'></p-checkbox>
-  <input type='text' pInputText>
+  <p-checkbox [(ngModel)]='coiForm.newSponsor' binary='true'></p-checkbox>
+  <div *ngIf='coiForm.newSponsor' class='form-flex-start indent'>
+    <label>Previous Sponsor Name</label>
+    <input [(ngModel)]='coiForm.previousSponsorName' type='text' pInputText>
+  </div>
   <label>Request from IRB</label>
-  <p-checkbox binary='true'></p-checkbox>
+  <p-checkbox [(ngModel)]='coiForm.requestFromIrb' binary='true'></p-checkbox>
   <label>No Cost Time Extension</label>
-  <p-checkbox binary='true'></p-checkbox>
+  <p-checkbox [(ngModel)]='coiForm.noCostTimeExtension' binary='true'></p-checkbox>
   <label>Other</label>
-  <p-checkbox binary='true'></p-checkbox>
-  <label>Budget Period From:</label>
-  <p-calendar></p-calendar>
-  <label>Through</label>
-  <p-calendar></p-calendar>
-  <label>Project Period From:</label>
-  <p-calendar></p-calendar>
-  <label>Through:</label>
-  <p-calendar></p-calendar>
+  <p-checkbox [(ngModel)]='coiForm.other' binary='true'></p-checkbox>
+  <div *ngIf='coiForm.other' class='form-flex-start indent'>
+    <label>Specify</label>
+    <input type='text' [(ngModel)]='coiForm.otherSpecification' pInputText>
+  </div>
+  <label>Budget Period</label>
+  <div>
+    <label>From:</label>
+    <p-calendar [(ngModel)]='coiForm.budgetPeriodStart'></p-calendar>
+    <label>Through:</label>
+    <p-calendar [(ngModel)]='coiForm.budgetPeriodEnd'></p-calendar>
+  </div>
+  <label>Project Period</label>
+  <div>
+    <label>From:</label>
+    <p-calendar [(ngModel)]='coiForm.projectPeriodStart'></p-calendar>
+    <label>Through:</label>
+    <p-calendar [(ngModel)]='coiForm.projectPeriodEnd'></p-calendar>
+  </div>
   <label>Amount Requested (estimated) for Budget Period $</label>
-  <input type='text' pInputText>
+  <input  [(ngModel)]='coiForm.amountRequested'type='text' pInputText>
   <label>IRB/IACUC/IBC No(s) if applicable</label>
-  <input type='text' pInputText>
+  <input [(ngModel)]='coiForm.iRBACUCIBCNo' type='text' pInputText>
 </div>
 <!-- page 2 -->
 <div *ngIf='index=="1"' class='form-flex-start'>
@@ -120,27 +123,27 @@
     or (ii) in entities whose financial interests would reasonably appear to be affected by such actvities. See next page
     for definitions of Significant Financial Interests
   </label>
-  <p-checkbox binary='true'></p-checkbox>
+  <p-checkbox [(ngModel)]='coiForm.significantFinInterest' binary='true'></p-checkbox>
   <label>Attach Addendum</label>
   <!-- content for naming OI   -->
   <div *ngIf='coiForm.type=="PIPHS"||coiForm.type=="PINONPHS"' class='form-flex-start'>
     <label>Are there other Investigators/ Key Personnel who share responsibility for the design, conduct, or reporting of research?</label>
-    <input type='checkbox'>
-    <div>
+    <p-checkbox [(ngModel)]='coiForm.anyOtherInvestigators' binary='true'></p-checkbox>
+    <div *ngIf='coiForm.anyOtherInvestigators' class='form-flex-start indent'>
       <p>You should direct all Other Investigators/ Key Personnel to the Other Investigators/ Key Personnel Statement Of Financial
         Interests/ PHS form to complete their disclosure</p>
-      <label>Please List Other Investigator(s)/Key Personnel (thiw would include coPIS, consultants, sub-recipients or any others
+      <label>Please List Other Investigator(s)/Key Personnel (this would include coPIS, consultants, sub-recipients or any others
         who have, or share, responsibility for the design, conduct, or reporting of this PHS sponsored projects). IT IS THE
         RESPONSIBILITY OF THE PI TO PROVIDE THESE NAMES.</label>
-      <textarea rows="4" cols="50"> temporary</textarea>
+      <textarea pInputTextarea [(ngModel)]='coiForm.otherInvestigatorsValue' rows="4" cols="50"></textarea>
     </div>
   </div>
   <!-- signature and date of person filling out this form -->
-  <label>Name of Investigator/ Key Personnel</label>
+  <!-- <label>Name of Investigator/ Key Personnel</label>
   <input type='text' pInputText>
   <label>Administrative Review Institutional Official</label>
   <p-checkbox binary='true'></p-checkbox>
-  <input type='text' pInputText>
+  <input type='text' pInputText> -->
   <!-- other ARI stuff -->
 </div>
 <!-- last page -->
@@ -156,36 +159,51 @@
     </p>
 
     <p class='form-title'>Significant Financial Interest(s): Significant Financial Interests include but are not limited to:</p>
-        <p><br>1. For publicly traded entity: Income or other payments for services including salary, and any payment for services not
-        otherwise identified as salary, including but not limited to, consulting payments, honoraria, paid authorship, or any
-        payments or consieration of value, including payments made to a health sciences compensation plan, received during the
-        prior 12 months and the value of any equity interest(including stock, stock options or other ownership interests, as
-        determined by public prices or other reasonable measure of fair market value) in the entity as of the date of disclosure,
-        when aggregated, exceeds $5,000.<br>
-        <br>[Investigators are not required disclose SFI in mutual funds or other investment vehicles such as retirement funds as long
-        as the Investigator does not directly control decisions made for these investments vehicles]<br>
-        <br>2. For a non-publicly traded entity: Income or other payment for services including salary, and any payment for services note
-        not otherwise identified as salary, including but not limited to, consulting payments, honoraria, paid authorship, any other
-        payments or consideration of value, including payments made to a health sciences compensation plan, received during the prior
-        12 months that exceeds $5,000, or equity interest of any amount, including, but not limited to stock, stock options, or
-        ownership interest in the entity.<br>
-        <br>[Invesigators are not required to diclose (a) payments made by Cal State LA or UAS, including salary, stipends, royalty payments,
-        honararia, reimbursement of expenses or any other remuneration from Cal State LA or UASl or (b) income for seminars, lectures,
-        teaching engagements, or service on advisory committees or review panels sponsored by federal, state or local governments, a US
-        institution of higher education, or a research institute, academic medical center or hospital that is affiliated with an institution of
-        higher education so long as they do not involve contractual obligations that would conflict with the researcher's obligations as a Cal
-        State LA employee under the terms of the California State University's patent, copyright or other intellectual property policies.]<br>
-        <br>3. Intellectual property right and interests: Income received during the previous 12 months that exceeds $5,000 for such rights and
-        interests.<br>
-        <br>[SFIs do not include royalties received from Cal State LA or UAS related patents or copyrights]<br>
-        <br>4. Travel: The occurrence of any sponsored or reimbursed travel (for the Investigator only) must be disclosed whether payment is
-        made to the Investigator directly, or expenses are paid on behalf of the Investigator by a for-profit or non-profit organization:<br>
-        <br>a. Either prospectively, by listing all travel that the Investigator anticipated will be sponsored or reimbursed during next 12 months, or<br>
-        <br>b. Within 30 days of the occurrence if the trip wasn't reported prospectively.<br>
-        <br>[Investigators are not required to disclose travel that is reimbursed or sponsored by federal, state or local governments, a US institution of
-        higher education, or research institute, academic medical center or hospital that is affiliated with an institution of higher education]<br>
-        <br>Under the California Public Records Act, this infomation may be made available to the public upon request.
-        </p>
+    <p>
+      <br>1. For publicly traded entity: Income or other payments for services including salary, and any payment for services
+      not otherwise identified as salary, including but not limited to, consulting payments, honoraria, paid authorship,
+      or any payments or consieration of value, including payments made to a health sciences compensation plan, received
+      during the prior 12 months and the value of any equity interest(including stock, stock options or other ownership interests,
+      as determined by public prices or other reasonable measure of fair market value) in the entity as of the date of disclosure,
+      when aggregated, exceeds $5,000.
+      <br>
+      <br>[Investigators are not required disclose SFI in mutual funds or other investment vehicles such as retirement funds
+      as long as the Investigator does not directly control decisions made for these investments vehicles]
+      <br>
+      <br>2. For a non-publicly traded entity: Income or other payment for services including salary, and any payment for services
+      note not otherwise identified as salary, including but not limited to, consulting payments, honoraria, paid authorship,
+      any other payments or consideration of value, including payments made to a health sciences compensation plan, received
+      during the prior 12 months that exceeds $5,000, or equity interest of any amount, including, but not limited to stock,
+      stock options, or ownership interest in the entity.
+      <br>
+      <br>[Invesigators are not required to diclose (a) payments made by Cal State LA or UAS, including salary, stipends, royalty
+      payments, honararia, reimbursement of expenses or any other remuneration from Cal State LA or UASl or (b) income for
+      seminars, lectures, teaching engagements, or service on advisory committees or review panels sponsored by federal,
+      state or local governments, a US institution of higher education, or a research institute, academic medical center
+      or hospital that is affiliated with an institution of higher education so long as they do not involve contractual obligations
+      that would conflict with the researcher's obligations as a Cal State LA employee under the terms of the California
+      State University's patent, copyright or other intellectual property policies.]
+      <br>
+      <br>3. Intellectual property right and interests: Income received during the previous 12 months that exceeds $5,000 for
+      such rights and interests.
+      <br>
+      <br>[SFIs do not include royalties received from Cal State LA or UAS related patents or copyrights]
+      <br>
+      <br>4. Travel: The occurrence of any sponsored or reimbursed travel (for the Investigator only) must be disclosed whether
+      payment is made to the Investigator directly, or expenses are paid on behalf of the Investigator by a for-profit or
+      non-profit organization:
+      <br>
+      <br>a. Either prospectively, by listing all travel that the Investigator anticipated will be sponsored or reimbursed during
+      next 12 months, or
+      <br>
+      <br>b. Within 30 days of the occurrence if the trip wasn't reported prospectively.
+      <br>
+      <br>[Investigators are not required to disclose travel that is reimbursed or sponsored by federal, state or local governments,
+      a US institution of higher education, or research institute, academic medical center or hospital that is affiliated
+      with an institution of higher education]
+      <br>
+      <br>Under the California Public Records Act, this infomation may be made available to the public upon request.
+    </p>
 
   </div>
   <!-- NONPHS -->
@@ -198,32 +216,51 @@
     </p>
     <p-checkbox binary='true'></p-checkbox>
     <label>
-        <p>A significant financial interest exists if an equity interest that, when aggregated for the investigator and
-        investigator's spouse/domestic partner and dependent children, exceeds $10,000 in value as determined through reference to public
-        prices or other reasonable measures of matket value, and represent more than a 5% ownership interest in any single entity
-        </p>
+      <p>A significant financial interest exists if an equity interest that, when aggregated for the investigator and investigator's
+        spouse/domestic partner and dependent children, exceeds $10,000 in value as determined through reference to public
+        prices or other reasonable measures of matket value, and represent more than a 5% ownership interest in any single
+        entity
+      </p>
     </label>
     <p-checkbox binary='true'></p-checkbox>
     <label>
-        <p> A significant financial interest exists when salary, royalties or other payments that, when aggregated for the investigator
-            and the investigator's spouse/domestic partner of dependent children, have exceeded or are expected to exceed $10,000 during any
-            immediately preceding or following 12 month period.
-        </p>
+      <p> A significant financial interest exists when salary, royalties or other payments that, when aggregated for the investigator
+        and the investigator's spouse/domestic partner of dependent children, have exceeded or are expected to exceed $10,000
+        during any immediately preceding or following 12 month period.
+      </p>
     </label>
-    <p>For National Science Foundation (NSF), significant financial interest<b> does not </b>include:</p>
+    <p>For National Science Foundation (NSF), significant financial interest
+      <b> does not </b>include:</p>
     <p-checkbox binary='true'></p-checkbox>
-    <label><br>Salary, royalties or other remuneration from the applicant Institution<br></label>
+    <label>
+      <br>Salary, royalties or other remuneration from the applicant Institution
+      <br>
+    </label>
     <p-checkbox binary='true'></p-checkbox>
-    <label><br>Any ownership interest in the Institution, if the Institution is an applicant under Small Business
-    Innocation Program or Small Business Technology Transfer Program<br></label>
+    <label>
+      <br>Any ownership interest in the Institution, if the Institution is an applicant under Small Business Innocation Program
+      or Small Business Technology Transfer Program
+      <br>
+    </label>
     <p-checkbox binary='true'></p-checkbox>
-    <label><br>Income from seminars, lectures, or teaching engagements sponsored by public or nonprofit entities<br></label>
+    <label>
+      <br>Income from seminars, lectures, or teaching engagements sponsored by public or nonprofit entities
+      <br>
+    </label>
     <p-checkbox binary='true'></p-checkbox>
-    <label><br>Income from service on advisory committees or review panels for public or nonprofit entities<br></label>
+    <label>
+      <br>Income from service on advisory committees or review panels for public or nonprofit entities
+      <br>
+    </label>
     <p-checkbox binary='true'></p-checkbox>
-    <label><br>Equity interest and/or salary, royalty and other payments do not exceed the thresholds in the section regarding NSF
-    immediately above<br></label>
-    <p><br>Under the California Public Records Act, this infomation may be made available to the public upon request.<br>
+    <label>
+      <br>Equity interest and/or salary, royalty and other payments do not exceed the thresholds in the section regarding NSF
+      immediately above
+      <br>
+    </label>
+    <p>
+      <br>Under the California Public Records Act, this infomation may be made available to the public upon request.
+      <br>
     </p>
   </div>
 </div>
