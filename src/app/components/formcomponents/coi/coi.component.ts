@@ -47,6 +47,5 @@ export class ConflictOfInterestComponent implements OnInit {
     return coiForm;
    }
 }
-// parse the dates
 // save
 // add the reason
