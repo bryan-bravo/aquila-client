@@ -23,8 +23,6 @@ export class ConflictOfInterestComponent implements OnInit {
     this.index = value;
    }
 }
-// types
-// PIPHS
-// PINONPHS
-// OIPHS
-// OINONPHS
+// parse the dates
+// model binding
+//

@@ -8,26 +8,26 @@
 <app-bread-crumb [index]='index' [pages]='breadCrumbStrings'></app-bread-crumb>
 <!-- page 1 -->
 <div *ngIf='index=="0"' class='form-flex-start'>
-  <p *ngIf='type=="OIPHS"||type=="PIPHS"'> Under Cal State La's Conflict of Interest policy, the Principal Investigator and all other investigators/key personnel
+  <p *ngIf='coiForm.type=="OIPHS"||coiForm.type=="PIPHS"'> Under Cal State La's Conflict of Interest policy, the Principal Investigator and all other investigators/key personnel
     who have or share responsibilty for the design, conduct, or reporting of PHS sponsored projects must report their personal
     financial interests in any organization(s) that, to the best of the investigator's knowledge, may have a significant
     impact on their institutional responsibilities.
   </p>
-  <p *ngIf='type=="OINONPHS"||type=="PINONPHS"'>Under Cal State La's Conflict of Interest policy, the Principal Investigator and all other investigators/personnel who
+  <p *ngIf='coiForm.type=="OINONPHS"||coiForm.type=="PINONPHS"'>Under Cal State La's Conflict of Interest policy, the Principal Investigator and all other investigators/personnel who
     have or share responsibility for the design, conduct, or reporting of NSF sponsored projects must disclose all significant
     financial interests of the investigator (including those of the investigator's spouse/registered domestic partner and
     dependent children) (i) that would reasonably appear to be affected by the research or educational activities funded
     or proposed for funding by NSF; or (ii) in entities whose financial interests would reasonably appear to be affected
     by such actvities.
   </p>
-  <p *ngIf='type=="OIPHS"||type=="OINONPHS"'>
+  <p *ngIf='coiForm.type=="OIPHS"||coiForm.type=="OINONPHS"'>
     You have been named as an investigator/key personnel meeting the above criteria on the following grant.
   </p>
   <p class='form-title'>Proposal Information</p>
   <!-- display proposal information -->
   <!-- PHS sponsor -->
   <p class='form-title'>Sponsor</p>
-  <div *ngIf='type=="OIPHS"||type=="PIPHS"' class='form-flex-start'>
+  <div *ngIf='coiForm.type=="OIPHS"||coiForm.type=="PIPHS"' class='form-flex-start'>
     <select>
       <option>Federal Agency</option>
       <option>Sub Award with Federal Agency pass through</option>
@@ -50,7 +50,7 @@
     </div>
   </div>
   <!-- NONPHS sponsor  -->
-  <div *ngIf='type=="OINONPHS"||type=="PINONPHS"' class='form-flex-start'>
+  <div *ngIf='coiForm.type=="OINONPHS"||coiForm.type=="PINONPHS"' class='form-flex-start'>
     <label>Subaward with Federal Agency pass through</label>
     <p-checkbox binary='true'></p-checkbox>
     <label>Specify Sponsor</label>
@@ -64,7 +64,7 @@
   <label>Continuation/Additional Funding</label>
   <p-checkbox binary='true'></p-checkbox>
   <label>New/Change Investigator</label>
-  <<p-checkbox binary='true'></p-checkbox>
+  <p-checkbox binary='true'></p-checkbox>
   <label>New Interest Obtained (Previous proposal/award # if applicable)</label>
   <p-checkbox binary='true'></p-checkbox>
   <input type='text' pInputText>
@@ -94,27 +94,27 @@
 <div *ngIf='index=="1"' class='form-flex-start'>
   <p class='form-title'>Disclosure and Certification</p>
   <!-- first part -->
-  <p *ngIf='type=="PIPHS"'>The Principal Investigator's signature acknowledges having read Cal State La's Investigator's Disclosure of Financial Interest
+  <p *ngIf='coiForm.type=="PIPHS"'>The Principal Investigator's signature acknowledges having read Cal State La's Investigator's Disclosure of Financial Interest
     for Projects Funded by the Public Health Service (PHS) and certifies that all individuals required to make disclosures
     of Significant Financial Interests have been listed on this form, or that no other individuals working on the research
     are required to make decisions.
   </p>
-  <p *ngIf='type=="OIPHS"'>The Investigator's/Key Personnel's signature acknowledges having read Cal State La's Investigator's Disclosure of Financial
+  <p *ngIf='coiForm.type=="OIPHS"'>The Investigator's/Key Personnel's signature acknowledges having read Cal State La's Investigator's Disclosure of Financial
     Interest for Projects Funded by the Public Health Service (PHS) and certifies that all individuals required to make disclosures
     of Significant Financial Interests have been listed on this form, or that no other individuals working on the research
     are required to make decisions.
   </p>
-  <p *ngIf='type=="OINONPHS"||type=="PINONPHS"'>ThePrincipal Investigator's signature acknowledges having read Cal State La's Financial Conflict of Interest Policy for
+  <p *ngIf='coiForm.type=="OINONPHS"||coiForm.type=="PINONPHS"'>ThePrincipal Investigator's signature acknowledges having read Cal State La's Financial Conflict of Interest Policy for
     Investigators Sponsored by the National Science Foundation (NFS) and certifies that all individuals required to make
     disclosures of Significant Financial Interests have been listed on this form, or that no other individuals working on
     the research are required to make decisions.
   </p>
   <!-- second part -->
-  <label *ngIf='type=="PIPHS"||type=="OIPHS"||type=="OINONPHS"'>
+  <label *ngIf='coiForm.type=="PIPHS"||coiForm.type=="OIPHS"||coiForm.type=="OINONPHS"'>
     Do you, your spouse or registered domestic partner, or dependent children have a Significant Financial Interest related to
     your institutional responsibilities? (See Next Page for definitions of Significant Financial Interests)
   </label>
-  <label *ngIf='type=="PINONPHS"'>
+  <label *ngIf='coiForm.type=="PINONPHS"'>
     Do you, your spouse or registered domestic partner, or dependent children have a Significant Financiala Interest (i) that
     would reasonably appear to be affected by the research or educational activities funded or proposed for funding by NSF;
     or (ii) in entities whose financial interests would reasonably appear to be affected by such actvities. See next page
@@ -123,7 +123,7 @@
   <p-checkbox binary='true'></p-checkbox>
   <label>Attach Addendum</label>
   <!-- content for naming OI   -->
-  <div *ngIf='type=="PIPHS"||type=="PINONPHS"' class='form-flex-start'>
+  <div *ngIf='coiForm.type=="PIPHS"||coiForm.type=="PINONPHS"' class='form-flex-start'>
     <label>Are there other Investigators/ Key Personnel who share responsibility for the design, conduct, or reporting of research?</label>
     <input type='checkbox'>
     <div>
@@ -146,7 +146,7 @@
 <!-- last page -->
 <div *ngIf='index=="2"'>
   <!-- PHS -->
-  <div *ngIf='type=="OIPHS"||type=="PIPHS"'>
+  <div *ngIf='coiForm.type=="OIPHS"||coiForm.type=="PIPHS"'>
     <p class='form-title'>Institutional Responsibilities</p>
     <p>
       Institutional responsibility refers to an Investigator's professional responsibilities on behalf of the institution, and
@@ -189,7 +189,7 @@
 
   </div>
   <!-- NONPHS -->
-  <div *ngIf='type=="OINONPHS"||type=="PINONPHS"'>
+  <div *ngIf='coiForm.type=="OINONPHS"||coiForm.type=="PINONPHS"'>
     <p class='form-title'>Significant Financial Interests</p>
     <p>
       Significant financial interests are involved and must be disclosed where one or more of the following financial interests

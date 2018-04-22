@@ -88,10 +88,7 @@ export class TimelineComponent implements OnInit {
     this.dragging = false;
     this.draggingOverTimeline = false;
     this.proposalId = obj.proposalId;
-<<<<<<< HEAD
     this.showProgressBar = false;
-=======
->>>>>>> changed form values in edit stage form dropdown
   }
   saveTimeline() {
     if (this.timeline.stages.length === 1) {
