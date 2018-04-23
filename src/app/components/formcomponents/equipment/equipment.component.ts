@@ -10,7 +10,7 @@ import {KeysPipe} from '../../../pipes/keys.pipe';
   templateUrl: './equipment.component.html',
   styleUrls: ['./equipment.component.css'],
   animations: [
-    trigger('slideVertical', [
+    trigger('slideHorizontal', [
       // right arrow clicked entering
       transition(':enter', [
         style({
@@ -53,18 +53,19 @@ export class EquipmentComponent implements OnInit {
   ngOnInit() {
     this.index = 0;
     this.direction = 'left';
-    const equipmentObject = this.proposalService.getEquipmentForm();
-   if (equipmentObject.equipmentForm.id == null) {
-     this.preAwardService.getEquipment(equipmentObject.proposalId).subscribe(newEquipmentForm => {
-      this.equipmentForm = newEquipmentForm;
-     });
-     } else {
-       if (equipmentObject.equipmentForm.chemicals.length == undefined) {
-        this.equipmentForm = this.parseEquipmentForm(equipmentObject.equipmentForm);
-      } else {
-        this.equipmentForm = equipmentObject.equipmentForm;
-       }
-     }
+    // const equipmentObject = this.proposalService.getEquipmentForm();
+  //  if (equipmentObject.equipmentForm.id == null) {
+  //    this.preAwardService.getEquipment(equipmentObject.proposalId).subscribe(newEquipmentForm => {
+  //     this.equipmentForm = newEquipmentForm;
+  //    });
+  //    } else {
+  //      if (equipmentObject.equipmentForm.chemicals.length == undefined) {
+  //       this.equipmentForm = this.parseEquipmentForm(equipmentObject.equipmentForm);
+  //     } else {
+  //       this.equipmentForm = equipmentObject.equipmentForm;
+  //      }
+  //    }
+  this.equipmentForm = new EquipmentForm();
      // make post request, set the response = this.equipmentForm,
   }
   // listens for index updates from form footer
