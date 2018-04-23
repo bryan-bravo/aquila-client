@@ -37,38 +37,6 @@ body {
     padding: 5px;
     border-radius: 4px;
 }
-.button-blue{
-    border: none;
-    padding: 5px;
-    background-color: #0eb2e2;
-    color: white;
-    border-radius: 4px;
-}
-.button-red {
-    border: none;
-    padding: 5px;
-    background-color:rgb(210, 52, 52);
-    color: white;
-    border-radius: 4px;
-}
-/* windows */
-.main-window {
-    color: rgb(36, 36, 36);
-    background-color: rgb(241, 241, 241);
-    border: 1px solid #2790b0;
-    box-shadow: 0 0 20px #cecbcb;
-    font-size: 1em;
-    position: relative;
-}
-
-.main-window:hover {
-    background-color: rgba(221, 221, 221, 0.795);
-    border: 1px solid #2790b0;
-    box-shadow: 0 0 20px rgb(241, 199, 45);
-    font-size: 1em;
-    position: relative;
-    cursor: pointer;
-}
 
 .title {
     margin: 0;
