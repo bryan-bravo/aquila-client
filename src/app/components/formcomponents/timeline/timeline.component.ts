@@ -104,7 +104,7 @@ export class TimelineComponent implements OnInit {
         });
         this.timeline = timeline;
         this.showProgressBar = false;
-        this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
+        this.messageService.add({severity: 'success', summary: 'Service Message', detail: 'Via MessageService'});
       });
     } else {
       // making patch request
@@ -150,7 +150,7 @@ export class TimelineComponent implements OnInit {
       this.stage = this.parseStage(savedStage);
       this.showProgressBar = false;
       this.messageService.add({severity:'success', summary:'Stage Saved', detail:'Via MessageService'});
-
+      // this.proposalService.
     });
   }
   sortStageIntoTimeline(indexToPush) {
@@ -204,7 +204,7 @@ export class TimelineComponent implements OnInit {
     this.populateunSelectedForms();
   }
   handleRemoveForm(form) {
-    let index = this.stage.requiredForms.findIndex(reqForm => {
+    const index = this.stage.requiredForms.findIndex(reqForm => {
       return reqForm === form;
     });
     this.stage.requiredForms.splice(index, 1);
@@ -291,8 +291,6 @@ export class TimelineComponent implements OnInit {
     this.dragging = value;
   }
   setDragOverTimeline(value) {
-    // to
-    console.log(value)
     this.draggingOverTimeline = value;
   }
   // handle drag and drop for stage in a timeline

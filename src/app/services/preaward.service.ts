@@ -33,10 +33,14 @@ user: User;
   }
   // intake
   updateIntake(intakeForm): Observable<IntakeForm> {
-    console.log(intakeForm)
     const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
-    return this.http.put<IntakeForm>(`api/proposal/${intakeForm.proposalId}/intake/${intakeForm.id}`, JSON.parse(JSON.stringify(intakeForm)),{headers: headers});
-    }
+    return this.http.
+    put<IntakeForm>(
+      `api/proposal/${intakeForm.proposalId}/intake/${intakeForm.id}`, JSON.parse(JSON.stringify(intakeForm)), {headers: headers});
+  }
+  getIntake(proposalId, intakeId) {
+
+  }
   // equipment
   getEquipment(id): Observable<EquipmentForm> {
     return this.http.get<EquipmentForm>(`api/equipment/${id}`);
@@ -54,10 +58,12 @@ user: User;
   }
   // conflict of interest
   updateConflictOfInterest(coiForm) {
-    
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
+
   }
   // timeline
   patchTimeline(proposalId, timeline): Observable<TimeLine> {
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
     const body = {
       'principalInvestigator': timeline.principalInvestigator,
       'coPi': timeline.coPi,
@@ -67,10 +73,12 @@ user: User;
       'sponsorDueDate': timeline.sponsorDueDate,
       'finalSign': timeline.finalSign
     };
-      return this.http.patch<TimeLine>(`api/proposal/${proposalId}/timeline/${timeline.id}`, body);
+      return this.http.patch<TimeLine>(`api/proposal/${proposalId}/timeline/${timeline.id}`, body, {headers: headers});
   }
   putTimeline(proposalId, timeline): Observable<TimeLine> {
-    return this.http.put<TimeLine>(`api/proposal/${proposalId}/timeline/${timeline.id}`, JSON.parse(JSON.stringify(timeline)));
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
+    return this.http.
+    put<TimeLine>(`api/proposal/${proposalId}/timeline/${timeline.id}`, JSON.parse(JSON.stringify(timeline)), {headers: headers});
   }
   // stage
   createStage(timelineId): Observable<Stage> {

@@ -14,8 +14,8 @@ export class EconomicInterestComponent implements OnInit {
   breadCrumbStrings: string[];
 
   constructor(private proposalService: ProposalService, private preAwardService: PreawardService) {
-    // this.economicInterestPI = this.parseEconomicInterestPi(this.proposalService.getEconomicInterestPI());
-    this.economicInterestPI = new EconomicInterestPI();
+    this.economicInterestPI = this.parseEconomicInterestPi(this.proposalService.getEconomicInterestPI());
+    // this.economicInterestPI = new EconomicInterestPI();
   }
 
   ngOnInit() {

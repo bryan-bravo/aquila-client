@@ -63,6 +63,7 @@ export class IntakeComponent implements OnInit {
     intakeFormCopy.hazardousSubstances = this.keysPipe.backToObject(intakeFormCopy.hazardousSubstances);
     this.preAwardService.updateIntake(intakeFormCopy).subscribe(newIntake => {
         this.intakeForm = this.parseIntake(newIntake);
+        this.intakeForm.proposalId = intakeFormCopy.proposalId;
         this.proposalService.updateIntakeForm(this.intakeForm);
     });
 

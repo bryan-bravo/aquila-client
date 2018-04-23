@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {trigger, state, transition, style, animate, query, animateChild} from '@angular/animations';
 import {Proposal} from '../../models/PreAward/Proposal';
@@ -10,6 +10,7 @@ import {GrowlModule} from 'primeng/primeng';
   selector: 'app-edit-proposal',
   templateUrl: './edit-proposal.component.html',
   styleUrls: ['./edit-proposal.component.css'],
+  // encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('fade', [
     // state(),
@@ -40,7 +41,7 @@ export class EditProposalComponent implements OnInit {
     private preAwardService: PreawardService) {
     // listens for updates from the children form container
     proposalService.updatedFormtoProposal$.subscribe(form => {
-      //  console.log(form);
+       console.log(form);
     });
   }
 

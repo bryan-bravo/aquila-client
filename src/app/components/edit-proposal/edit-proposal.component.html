@@ -51,11 +51,13 @@
     <!-- tables -->
     <div id='tables'>
       <!-- <div class='required-forms' (click)='setCurrentForm("coi")'></div> -->
+      <div class='coi-wrapper'>
       <p-dataTable [value]='proposal?.conflictOfInterestForms' selectionMode='single' (onRowSelect)='coiSelect($event)'>
           <p-header>Conflict Of Interest Forms</p-header>
           <p-column field='type' header='Type'></p-column>
           <p-column field='progress' header='Progress'></p-column>
         </p-dataTable>
+      </div>
     </div>
   </div>
 </div>
