@@ -16,6 +16,7 @@ export class ProposalService {
   }
   // form
   getIntakeForm() {
+    this.proposal.intakeForm.proposalId = this.proposal.id;
     return this.proposal.intakeForm;
   }
   updateIntakeForm(intakeForm) {

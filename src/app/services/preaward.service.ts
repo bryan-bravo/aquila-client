@@ -33,8 +33,9 @@ user: User;
   }
   // intake
   updateIntake(intakeForm): Observable<IntakeForm> {
+    console.log(intakeForm)
     const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
-    return this.http.put<IntakeForm>(`api/intake/${intakeForm.id}`, JSON.parse(JSON.stringify(intakeForm)));
+    return this.http.put<IntakeForm>(`api/proposal/${intakeForm.proposalId}/intake/${intakeForm.id}`, JSON.parse(JSON.stringify(intakeForm)),{headers: headers});
     }
   // equipment
   getEquipment(id): Observable<EquipmentForm> {

@@ -36,19 +36,17 @@
   grid-gap: 1em;
 }
 #timeline {
-  border: 1px solid cyan;
   grid-area: 1/1/2/4;
 }
 #forms {
-  border: 1px solid cyan;
   grid-area:2/1/4/2;
 }
 #tables {
-  border: 1px solid cyan;
   grid-area: 2/2/4/4;
 }
 .required-forms {
   background-color: #fafafa;
+  /* background:radial-gradient( circle, white, #c6e5f1 76%); */
   margin-bottom:1em;
   border: 1px solid #2790b0;
   box-shadow: 0 0 20px #cecbcb;

@@ -1,11 +1,11 @@
 import { Proposal } from './Proposal';
 export class IntakeForm {
-id: string;
+id: number;
 complete: boolean;
 // A
 principleInvestigator: string;
 department: string;
-college: string;//can be found from department
+college: string;
 projectTitle: string;
 proposedFundingAmount: string;
 startDate: Date;
@@ -61,7 +61,7 @@ duplicationfFinalDocumentPackage: boolean; // fix
 noOfCopies: number;
 // L
 projectSummary: string;
-proposal: Proposal;
+proposalId: number;
 }
  export class Personnel {
     name: string;
