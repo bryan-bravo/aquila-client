@@ -2,74 +2,64 @@
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    font-family: 'Raleway', sans-serif;
-    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Segoe UI Symbol"; */
-    vertical-align: baseline;
-    height: 100%;
-    width: 100%;
-    min-height: 100%;
-    overflow-x: hidden;
-    background: linear-gradient(to bottom right, #5bc0de, #142f94);
-
-}
-/* labels */
-.required-indicator {
-    padding: 3px;
-    color: rgb(255, 255, 255);
-    background-color: rgb(210, 52, 52);
-    border-radius: 2px;
-}
-
-.optional-indicator {
-    padding: 3px;
-    color: rgb(46, 46, 46);
-    background-color: rgb(197, 197, 197);
-    border-radius: 2px;
-}
-/* buttons */
-.button{
-    border: none;
-    padding: 5px;
-    border-radius: 4px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  font-family: 'Raleway', sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Segoe UI Symbol"; */
+  vertical-align: baseline;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  background: linear-gradient(to bottom right, #5bc0de, #142f94);
 }
 
 .title {
-    margin: 0;
-    padding: 2px !important;
-    font-size: 1.2em;
-    text-align: center;
-    font-weight: 400;
-    color: white;
-    width:100%;
-    /* align-self: flex-start; */
+  margin: 0;
+  padding: 2px !important;
+  font-size: 1.2em;
+  text-align: center;
+  font-weight: 400;
+  color: white;
+  width: 100%;
 }
+
 /* forms */
+
 .form-title {
-    width: 100%;
-    background-color: rgb(39, 144, 176);
-    padding: 5px 1px;
-    color: white;
-    text-align: center;
+  width: 100%;
+  background: linear-gradient(#52aed5, #4894c7);
+  padding: 5px 1px;
+  color: white;
+  text-align: center;
+  font-weight: 500;
+
 }
+
 .form-flex-start {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
-.form-flex-start > *{
-    margin: 4px 0;
+
+.form-flex-start>* {
+  margin: 4px 0;
 }
+
 .indent {
-    margin-left:1em;
-    padding-left: 1em;
-    border-left:3px solid rgb(39, 144, 176);
+  margin-left: 1em;
+  padding-left: 1em;
+  border-left: 3px solid rgb(39, 144, 176);
 }
+
 .ui-datatable {
-    margin-top:.5em;
+  margin-top: .5em;
+}
+
+.ui-widget-header {
+  background: linear-gradient(#52aed5, #4894c7) !important;
 }

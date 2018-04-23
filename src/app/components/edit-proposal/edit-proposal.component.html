@@ -12,14 +12,24 @@
     <!-- timeline -->
     <div class='required-forms' id='timeline' (click)='setCurrentForm("Timeline")'>
       <p class='title'>Timeline</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corrupti assumenda quibusdam culpa beatae. Molestias
-        earum quaerat sit incidunt illo a in, corrupti enim soluta iure qui dolorum ratione itaque.</p>
+      <!-- [@stageAnimation]='timeline.stages.length' -->
+      <ul id='timeline-bar'>
+        <li  *ngFor='let stage of proposal.timeline.stages; index as i'>
+          <!-- bar -->
+          <div class='bar' appTimelineBar *ngIf='i!=0' [ngClass]='{"barCompleted": stage.uasReviewed}'></div>
+          <div class='icon-name-container'>
+            <!-- icon -->
+            <div class='icon' [ngClass]="{'iconCompleted': stage.uasReviewed, 'selected-icon':stageIndex==i}"></div>
+            <!-- name -->
+            <label class='name'>{{stage.name}}</label>
+          </div>
+        </li>
+      </ul>
     </div>
     <!-- forms -->
      <div id='forms'>
       <div class='required-forms' (click)='setCurrentForm("Intake")'>
         <p class='title'>Intake Form </p>
-        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p> -->
         <img src='../../../assets/images/file.png' class='form-image'>
       </div>
       <div class='required-forms' (click)='setCurrentForm("Approval")'>
