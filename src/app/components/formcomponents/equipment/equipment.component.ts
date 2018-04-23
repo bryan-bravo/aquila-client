@@ -53,19 +53,18 @@ export class EquipmentComponent implements OnInit {
   ngOnInit() {
     this.index = 0;
     this.direction = 'left';
-    // const equipmentObject = this.proposalService.getEquipmentForm();
-  //  if (equipmentObject.equipmentForm.id == null) {
-  //    this.preAwardService.getEquipment(equipmentObject.proposalId).subscribe(newEquipmentForm => {
-  //     this.equipmentForm = newEquipmentForm;
-  //    });
-  //    } else {
-  //      if (equipmentObject.equipmentForm.chemicals.length == undefined) {
-  //       this.equipmentForm = this.parseEquipmentForm(equipmentObject.equipmentForm);
-  //     } else {
-  //       this.equipmentForm = equipmentObject.equipmentForm;
-  //      }
-  //    }
-  this.equipmentForm = new EquipmentForm();
+    const equipmentObject = this.proposalService.getEquipmentForm();
+   if (equipmentObject.equipmentForm.id == null) {
+     this.preAwardService.getEquipment(equipmentObject.proposalId).subscribe(newEquipmentForm => {
+      this.equipmentForm = newEquipmentForm;
+     });
+     } else {
+       if (equipmentObject.equipmentForm.chemicals.length == undefined) {
+        this.equipmentForm = this.parseEquipmentForm(equipmentObject.equipmentForm);
+      } else {
+        this.equipmentForm = equipmentObject.equipmentForm;
+       }
+     }
      // make post request, set the response = this.equipmentForm,
   }
   // listens for index updates from form footer
@@ -193,14 +192,5 @@ export class EquipmentComponent implements OnInit {
     equipmentForm.chemicals = this.keysPipe.transform(equipmentForm.chemicals);
     equipmentForm.radiation = this.keysPipe.transform(equipmentForm.radiation);
     return equipmentForm;
-  }
-  animationStarted(event) {
-    console.log(event)
-    // if (this.direction === 'left') {
-    //   this.direction = 'right';
-    // }
-    // if (this.direction === 'right') {
-    //   this.direction = 'left';
-    // }
   }
 }
