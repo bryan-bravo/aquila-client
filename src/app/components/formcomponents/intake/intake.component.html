@@ -40,17 +40,16 @@
     </div>
     <p class='form-title'>PARTICIPATION SUPPORT</p>
     <label>Do you anticipate any participation stipends as part of your proposal?</label>
-    <p-checkbox  [(ngModel)]="intakeForm.anticipateStipend" binary='true'></p-checkbox>
+    <p-toggleButton [(ngModel)]="intakeForm.anticipateStipend"></p-toggleButton>
 
     <!-- if stipend is true -->
     <div class='form-flex-start indent' *ngIf='intakeForm.anticipateStipend'>
       <label>Please identify the type of Stipend:Study Participant, Student Tuition, Travel.. etc, and provide your Participation
         Stipend eligibility criteria and selection process below.</label>
       <input type="text" [(ngModel)]='intakeForm.stipend' pInputText>
-      <label>Faculty Student Research/Creative Activities</label>
-      <p-checkbox  [(ngModel)]="intakeForm.facultyStudentResearchCreativeActivities" binary='true'></p-checkbox>
+      <p-checkbox  label='Faculty Student Research/Creative Activities' [(ngModel)]="intakeForm.facultyStudentResearchCreativeActivities" binary='true'></p-checkbox>
       <label>Will this project actively involve students in Research</label>
-      <p-checkbox binary='true' [(ngModel)]="intakeForm.studentsInvolved" ></p-checkbox>
+      <p-toggleButton [(ngModel)]="intakeForm.studentsInvolved"></p-toggleButton>
 
       <!-- if rsca is true -->
       <div class='form-flex-start indent' *ngIf='intakeForm.studentsInvolved'>
@@ -60,24 +59,15 @@
         <label> Number Of Grad Students</label>
         <input type="text" [(ngModel)]='intakeForm.noOfGradStudents' pInputText>
         <p>What type of RSCA activities will be incorporated? (Check all that apply)</p>
-        <label>Laboratory Assistance</label>
-         <p-checkbox binary='true' [(ngModel)]='intakeForm.laboratoryAssistance'></p-checkbox>
-        <label>Data Collection</label>
-         <p-checkbox binary='true' [(ngModel)]='intakeForm.dataCollection'></p-checkbox>
-        <label>Report Writing</label>
-         <p-checkbox binary='true' [(ngModel)]='intakeForm.reportWriting'></p-checkbox>
-        <label>Literature Review</label>
-         <p-checkbox binary='true' [(ngModel)]='intakeForm.literatureReview'></p-checkbox>
-        <label>Coding Or Data Entry</label>
-         <p-checkbox binary='true' [(ngModel)]='intakeForm.codingOrDataEntry'></p-checkbox>
-        <label>Presentation</label>
-         <p-checkbox binary='true' [(ngModel)]='intakeForm.presentations'></p-checkbox>
-        <label>Archival Research</label>
-         <p-checkbox binary='true' [(ngModel)]='intakeForm.archivalResearch'></p-checkbox>
-        <label>Data Analysis</label>
-         <p-checkbox binary='true' [(ngModel)]='intakeForm.dataAnalysis'></p-checkbox>
-        <label>Other Activities</label>
-         <p-checkbox binary='true' [(ngModel)]='intakeForm.otherActvities'></p-checkbox>
+         <p-checkbox label='Laboratory Assistance' binary='true' [(ngModel)]='intakeForm.laboratoryAssistance'></p-checkbox>
+         <p-checkbox label='Data Collection' binary='true' [(ngModel)]='intakeForm.dataCollection'></p-checkbox>
+         <p-checkbox label='Report Writing' binary='true' [(ngModel)]='intakeForm.reportWriting'></p-checkbox>
+         <p-checkbox label='Literature Review' binary='true' [(ngModel)]='intakeForm.literatureReview'></p-checkbox>
+         <p-checkbox label='Coding Or Data Entry' binary='true' [(ngModel)]='intakeForm.codingOrDataEntry'></p-checkbox>
+         <p-checkbox label='Presentation' binary='true' [(ngModel)]='intakeForm.presentations'></p-checkbox>
+         <p-checkbox label='Archival Research' binary='true' [(ngModel)]='intakeForm.archivalResearch'></p-checkbox>
+         <p-checkbox label='Data Analysis'  binary='true' [(ngModel)]='intakeForm.dataAnalysis'></p-checkbox>
+         <p-checkbox label='Other Actvities' binary='true' [(ngModel)]='intakeForm.otherActvities'></p-checkbox>
         <!-- otherActivitiesList:String[]; -->
       </div>
     </div>
@@ -121,21 +111,21 @@
       </p-footer>
     </p-dataTable>
   </div>
-  <!-- GHI -->
+  <!-- third page -->
   <div *ngIf='index==2' id='compliances'>
     <p class='form-title'>BUDGET (if possible, bring a draft and budget justification to the first meeting with UAS Grants and Contracts)</p>
     <div class='form-flex-start'>
       <label> Agency F&A (Indirect) Cost Rate Percentage</label>
       <input type="text" pInputText [(ngModel)]='intakeForm.agencyCostRatePercentage'>
       <label>Is costsharing required by the agency?</label>
-       <p-checkbox binary='true' [(ngModel)]='intakeForm.agencyCostSharing'></p-checkbox>
+      <p-toggleButton [(ngModel)]="intakeForm.agencyCostSharing"></p-toggleButton>
       <label>Is costsharing requested by the PI?</label>
-       <p-checkbox binary='true' [(ngModel)]='intakeForm.piCostSharing'></p-checkbox>
+      <p-toggleButton [(ngModel)]="intakeForm.piCostSharing"></p-toggleButton>
       <label> Count of computers to be requested?</label>
       <input type="text" pInputText [(ngModel)]='intakeForm.computersRequested'>
-      <label class='form-title'> Equipment to Be Requested?</label>
       <!-- requested equipment -->
       <p-dataTable [value]="intakeForm.requestedEquipment" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'requestedequipment')">
+        <p-header>Equipment To Be Requested?</p-header>
         <p-column field="key" header="Name"></p-column>
         <p-column field="value" header="Approximate Cost"></p-column>
         <p-footer>
@@ -157,9 +147,9 @@
         </div>
       </p-footer>
     </p-dataTable>
-    <p class='form-title'>HAZARDOUS SUBSTANCES (Consult with EHS to obtain proper clearance or confirmation of approval to work with hazardous
-      agents)</p>
     <p-dataTable [value]="intakeForm.hazardousSubstances" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'hazard')">
+      <p-header>HAZARDOUS SUBSTANCES (Consult with EHS to obtain proper clearance or confirmation of approval to work with hazardous
+        agents)</p-header>
       <p-column field="key" header="Name Of Agent"></p-column>
       <p-column field="value" header="Type(biohazard, radiation, recombinant DNA..)"></p-column>
       <p-footer>
@@ -169,7 +159,7 @@
       </p-footer>
     </p-dataTable>
   </div>
-  <!-- other -->
+  <!-- last page -->
   <div *ngIf='index==3' class='form-flex-start'>
     <p class='form-title'>OTHER COMPLIANCES</p>
     <label>Human Subjects (If yes, consult with IRB Compliance Specialist [Elia Amaro, x3798])</label>

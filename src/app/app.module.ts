@@ -23,6 +23,7 @@ import {CheckboxModule} from 'primeng/primeng';
 import {FileUploadModule} from 'primeng/primeng';
 import {GrowlModule} from 'primeng/primeng';
 import {ProgressSpinnerModule} from 'primeng/primeng';
+import {ToggleButtonModule} from 'primeng/primeng';
 
 // generated components
 import { AppComponent } from './app.component';
@@ -105,7 +106,8 @@ const AppRoutes: Routes = [
     MessagesModule,
     MessageModule,
     GrowlModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ToggleButtonModule
   ],
   providers: [
     AuthenticationService,
