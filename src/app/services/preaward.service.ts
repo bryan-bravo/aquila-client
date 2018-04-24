@@ -34,6 +34,7 @@ user: User;
   // intake
   updateIntake(intakeForm): Observable<IntakeForm> {
     const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
+    intakeForm.complete = true;
     return this.http.
     put<IntakeForm>(
       `api/proposal/${intakeForm.proposalId}/intake/${intakeForm.id}`, JSON.parse(JSON.stringify(intakeForm)), {headers: headers});

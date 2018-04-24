@@ -6,7 +6,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.842);
+    background: linear-gradient(#0e0e0e, #4c4c4c);
     color: white;
     font-size: 18px;
 }

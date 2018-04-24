@@ -1,28 +1,32 @@
-<div id='container' class="">
+<div id='container'>
   <div id='dash-bar'>
     <h3>UAS Grants and Contracts Intake Form</h3>
-    <button class='button-blue' (click)='update()'>Update</button>
-
     <app-bread-crumb [index]='index' [pages]='breadCrumbStrings'></app-bread-crumb>
-    <div [ngStyle]='setProgressBar(34)'></div>
   </div>
   <!-- first page A,B,C -->
   <div *ngIf='index==0' class='form-flex-start'>
     <p class='form-title'>General Information</p>
     <label>Principal Investigator</label>
     <input type="text" [(ngModel)]='intakeForm.principleInvestigator' pInputText>
+    <small *ngIf='!intakeForm.principleInvestigator' class='required-asterisk'>*required</small>
     <label>College</label>
     <input type="text" pInputText>
     <label>Sponsor</label>
     <input type="text" [(ngModel)]='intakeForm.sponsor' pInputText>
+    <small *ngIf='!intakeForm.sponsor' class='required-asterisk'>*required</small>
     <label>Project Title</label>
     <input type="text" [(ngModel)]='intakeForm.projectTitle' pInputText>
+    <small *ngIf='!intakeForm.projectTitle' class='required-asterisk'>*required</small>
     <label> Proposed Funding Amount $</label>
     <input type="text" [(ngModel)]='intakeForm.proposedFundingAmount' pInputText>
+    <small *ngIf='!intakeForm.proposedFundingAmount' class='required-asterisk'>*required</small>
     <label> Start Date</label>
     <p-calendar [(ngModel)]='intakeForm.startDate'></p-calendar>
+    <small *ngIf='!intakeForm.startDate' class='required-asterisk'>*required</small>
     <label> End Date</label>
     <p-calendar [(ngModel)]='intakeForm.endDate'></p-calendar>
+    <small *ngIf='!intakeForm.endDate' class='required-asterisk'>*required</small>
+    
     <!-- personnel object -->
     <div id='personnel'>
       <p-dataTable [value]="intakeForm.personnel" [responsive]="true" selectionMode="single" (onRowSelect)="onRowSelect($event,'personnel')">
@@ -162,10 +166,8 @@
   <!-- last page -->
   <div *ngIf='index==3' class='form-flex-start'>
     <p class='form-title'>OTHER COMPLIANCES</p>
-    <label>Human Subjects (If yes, consult with IRB Compliance Specialist [Elia Amaro, x3798])</label>
-     <p-checkbox binary='true' [(ngModel)]='intakeForm.humanSubjects'></p-checkbox>
-    <label>Vertebrate Animals (If yes, consult with IACUC Compliance Specialist [Elia Amaro, x3798])</label>
-     <p-checkbox binary='true' [(ngModel)]='intakeForm.vertebrateAnimals'></p-checkbox>
+     <p-checkbox label='Human Subjects (If yes, consult with IRB Compliance Specialist [Elia Amaro, x3798])' binary='true' [(ngModel)]='intakeForm.humanSubjects'></p-checkbox>
+     <p-checkbox label='Vertebrate Animals (If yes, consult with IACUC Compliance Specialist [Elia Amaro, x3798])' binary='true' [(ngModel)]='intakeForm.vertebrateAnimals'></p-checkbox>
     <!-- <label for='qf'> Questionare Field</label>
         <input id='qf' type="text" pInputText>
         <label for='ct'> Category Title</label>
@@ -174,16 +176,11 @@
     <label >Assistance With Proposal Development (e.g,conceptualization, writing, editing)</label>
     <label>If yes, contact UAS Grants & Contracts and/or the Associate Vice President for Research at least one month in advance</label>
      <p-checkbox binary='true' [(ngModel)]='intakeForm.assistanceWithProposalDevelopment'></p-checkbox>
-    <label for='ta'>Technical Assistance</label>
-     <p-checkbox binary='true' [(ngModel)]='intakeForm.technicalAssistance'></p-checkbox>
-    <label>Letter Of Support President</label>
-     <p-checkbox binary='true'  [(ngModel)]='intakeForm.letterOfSupportPresident'></p-checkbox>
-    <label>Letter Of Support Provost</label>
-     <p-checkbox binary='true' [(ngModel)]='intakeForm.letterOfSupportProvost'></p-checkbox>
-    <label>Letter Of Support Associate VP Of Research</label>
-     <p-checkbox binary='true' [(ngModel)]='intakeForm.letterOfSupportAssocVPOfResearch'></p-checkbox>
-    <label>Duplication Of Final Document Package</label>
-     <p-checkbox binary='true' [(ngModel)]='intakeForm._duplicationfFinalDocumentPackage'></p-checkbox>
+     <p-checkbox label='Technical Assistance'binary='true' [(ngModel)]='intakeForm.technicalAssistance'></p-checkbox>
+     <p-checkbox label='Letter Of Support President' binary='true'  [(ngModel)]='intakeForm.letterOfSupportPresident'></p-checkbox>
+     <p-checkbox label='Letter of Support Provost' binary='true' [(ngModel)]='intakeForm.letterOfSupportProvost'></p-checkbox>
+     <p-checkbox label='Letter Of Support Associate VP Of Research' binary='true' [(ngModel)]='intakeForm.letterOfSupportAssocVPOfResearch'></p-checkbox>
+     <p-checkbox label='Duplication Of Final Document Package' binary='true' [(ngModel)]='intakeForm._duplicationfFinalDocumentPackage'></p-checkbox>
     <label> Number Of Copies</label>
     <input type="text" [(ngModel)]='intakeForm.noOfCopies' pInputText>
     <p class='form-title'>PROJECT SUMMARY Please provide a brief project summary, scope of work, or abstract, of your proposal</p>

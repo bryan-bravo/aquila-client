@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import {IntakeForm, Personnel, SubgrantSubProject, ProjectLocation} from '../../../models/PreAward/IntakeForm';
 import { AdditionalPartiesInvolved, Space, MapEntry} from '../../../models/PreAward/IntakeForm';
 import {MenuItem} from 'primeng/primeng';
+import {MessageService} from 'primeng/components/common/messageservice';
 import { Proposal } from '../../../models/PreAward/Proposal';
 import {ProposalService} from '../../../services/proposal.service';
 import {PreawardService} from '../../../services/preaward.service';
@@ -35,6 +36,7 @@ export class IntakeComponent implements OnInit {
   constructor(
     private proposalService: ProposalService,
     private preAwardService: PreawardService,
+    private messageService: MessageService,
     private keysPipe: KeysPipe
   ) {
     this.intakeForm = this.parseIntake(this.proposalService.getIntakeForm()); // ignore this at the moment make this into observable
@@ -44,17 +46,10 @@ export class IntakeComponent implements OnInit {
   this.index = 0;
   this.displayDialog = false;
   }
-  // make into pipe
-  setProgressBar(percentage) {
-    const formattedWidth = percentage + '%';
-    return {
-      'height': '10px',
-      'width': formattedWidth,
-      'background-color': 'rgb(46, 236, 29)'
-    };
-  }
+
   updateIndex(value) {
    this.index = value;
+   this.update();
   }
 
   update() {
@@ -64,6 +59,7 @@ export class IntakeComponent implements OnInit {
     this.preAwardService.updateIntake(intakeFormCopy).subscribe(newIntake => {
         this.intakeForm = this.parseIntake(newIntake);
         this.intakeForm.proposalId = intakeFormCopy.proposalId;
+        this.messageService.add({severity: 'success', summary: 'Changes Saved'});
         this.proposalService.updateIntakeForm(this.intakeForm);
     });
 

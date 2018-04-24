@@ -7,3 +7,7 @@ h3 {
     margin-top: 0;
     padding-top: 10px;
 }
+.required-asterisk {
+    color: #e32;
+    margin:0;
+}
