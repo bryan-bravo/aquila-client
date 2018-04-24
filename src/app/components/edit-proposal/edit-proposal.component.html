@@ -32,24 +32,24 @@
         <p class='title'>Intake Form </p>
         <img src='../../../assets/images/file.png' class='form-image'>
       </div>
-      <div class='required-forms' (click)='setCurrentForm("Approval")'>
+      <div class='required-forms' *ngIf='proposal.approvalForm' (click)='setCurrentForm("Approval")'>
         <p class='title'>Approval Form</p>
         <img src='../../../assets/images/file.png' class='form-image'>
 
       </div>
-      <div class='required-forms' (click)='setCurrentForm("Equipment")'>
+      <div class='required-forms' *ngIf='proposal.equipmentForm' (click)='setCurrentForm("Equipment")'>
         <p class='title'>Equipment Form</p>
         <img src='../../../assets/images/file.png' class='form-image'>
 
       </div>
-      <div class='required-forms' (click)='setCurrentForm("economic-interest")'>
+      <div class='required-forms' *ngIf='proposal.economicInterestPi' (click)='setCurrentForm("economic-interest")'>
         <p class='title'>PI Statement Of Economic Interest</p>
         <img src='../../../assets/images/file.png' class='form-image'>
 
       </div>
     </div>
     <!-- tables -->
-    <div id='tables'>
+    <div *ngIf='proposal.conflictOfInterestForms.length!=0' id='tables'>
       <!-- <div class='required-forms' (click)='setCurrentForm("coi")'></div> -->
       <div class='coi-wrapper'>
       <p-dataTable [value]='proposal?.conflictOfInterestForms' selectionMode='single' (onRowSelect)='coiSelect($event)'>

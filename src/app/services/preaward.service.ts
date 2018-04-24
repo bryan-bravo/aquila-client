@@ -82,30 +82,37 @@ user: User;
   }
   // stage
   createStage(timelineId): Observable<Stage> {
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
     const stage = JSON.parse(JSON.stringify(new Stage()));
-    return this.http.post<Stage>(`api/proposal/timeline/${timelineId}/stage/`, stage);
+    return this.http.post<Stage>(`api/proposal/timeline/${timelineId}/stage/`, stage, {headers: headers});
   }
   saveStage(timelineId, stage): Observable<Stage> {
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
     stage = JSON.parse(JSON.stringify(stage));
-    return this.http.put<Stage>(`api/timeline/${timelineId}/stage/update/${stage.id}`, stage);
+    return this.http.put<Stage>(`api/timeline/${timelineId}/stage/update/${stage.id}`, stage, {headers: headers});
   }
   deleteStage(stageId) {
-    return this.http.delete(`api/timeline/stage/${stageId}`);
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
+    return this.http.delete(`api/timeline/stage/${stageId}`, {headers: headers});
   }
   reorderStage(stageId, indexToPush) {
-    return this.http.get(`api/timeline/stage/${stageId}/order/${indexToPush}`);
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
+    return this.http.get(`api/timeline/stage/${stageId}/order/${indexToPush}`, {headers: headers});
   }
   uploadFile(proposalId, stageId, fileName, file ) {
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
     const formData = new FormData();
     formData.append('file', file);
-    return this.http.put(`api/proposal/${proposalId}/stage/${stageId}/fileupload/${fileName}`, formData);
+    return this.http.put(`api/proposal/${proposalId}/stage/${stageId}/fileupload/${fileName}`, formData, {headers: headers});
   }
   downloadFile(fileId) {
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
     return this.http.get(`api/downloadfile/${fileId}`,
-    {responseType: 'blob', observe: 'response'});
+    {responseType: 'blob', observe: 'response', headers: headers});
   }
   deleteFile(timelineId, stageId, fileId) {
     // `/timeline/{timelineId}/stage/{stageId}/deletefile/{fileId}`
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
     return this.http.delete(`api/timeline/${timelineId}/stage/${stageId}/deletefile/${fileId}`);
   }
 }

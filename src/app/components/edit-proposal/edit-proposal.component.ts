@@ -63,6 +63,7 @@ export class EditProposalComponent implements OnInit {
     this.preAwardService.getProposal(this.proposalId).subscribe( proposal => {
       this.proposal = proposal; // setting response proposal equal to local proposal field
       this.showSpinner = false;
+      console.log(proposal)
     });
   }
   setProgressBar(percentage) {
