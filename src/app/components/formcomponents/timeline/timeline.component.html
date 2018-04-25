@@ -1,7 +1,7 @@
 <div class='dash-bar'>
   <h3 class='page-title'>Timeline</h3>
   <button pButton (click)='setDialogType("view-basic-timeline")' label='Timeline Info'></button>
-  <button pButton (click)='handleAddStage()' label='Add Stage' icon='fa-plus'  ></button>
+  <button pButton *ngIf='user.type!="INVESTIGATOR"' (click)='handleAddStage()' label='Add Stage' icon='fa-plus'  ></button>
 </div>
 <ul  [@stageAnimation]='timeline.stages.length' id='timeline-bar'>
   <li  *ngFor='let stage of timeline?.stages; index as i'>
@@ -35,7 +35,7 @@
     <p>{{timeline.sponsorDueDate }}</p>
     <label>Final Signatures Deadline</label>
     <p>{{timeline.finalSign}}</p>
-    <button pButton class='ui-button-warning' (click)='setDialogType("edit-basic-timeline")' label='Edit' icon='fa-edit'  ></button>
+    <button *ngIf='user.type!="INVESTIGATOR"' pButton class='ui-button-warning' (click)='setDialogType("edit-basic-timeline")' label='Edit' icon='fa-edit'  ></button>
   </div>
   <!-- edit timeline info -->
   <div class='form-flex-start timeline-info' *ngIf='dialogType=="edit-basic-timeline"'>
@@ -85,7 +85,8 @@
     </p-dataTable>
     <label class='form-title'>Additional Notes</label>
     <p>{{stage.addComments}}</p>
-    <button pButton class='ui-button-warning edit ' (click)='setDialogType("edit-stage")' label='Edit' icon='fa-edit'  ></button>
+    <button pButton *ngIf='user.type=="INVESTIGATOR"' class='ui-button-success edit ' (click)='setDialogType("edit-stage")' label='Submit For Review' icon='fa-edit'  ></button>
+    <button pButton *ngIf='user.type!="INVESTIGATOR"' class='ui-button-warning edit ' (click)='setDialogType("edit-stage")' label='Edit' icon='fa-edit'  ></button>
   </div>
   <!-- edit a stage -->
   <div class='form-flex-start window' *ngIf='dialogType=="edit-stage"'>

@@ -4,7 +4,6 @@ import { PreawardService } from '../../services/preaward.service';
 import { User } from '../../models/User';
 import { Proposal } from '../../models/PreAward/Proposal';
 
-import { MockDataService } from '../../services/mock-data.service';
 @Component({
   selector: 'app-pi-pre-award',
   templateUrl: './pi-pre-award.component.html',

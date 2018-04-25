@@ -7,6 +7,7 @@ import { saveAs } from 'file-saver/FileSaver';
 import {TimeLine, Stage, FileInfo} from '../../../models/PreAward/TimeLine';
 import { PreawardService } from '../../../services/preaward.service';
 import { ProposalService } from '../../../services/proposal.service';
+import {AuthenticationService} from '../../../services/authentication.service';
 import {KeysPipe} from '../../../pipes/keys.pipe';
 
 @Component({
@@ -44,6 +45,7 @@ import {KeysPipe} from '../../../pipes/keys.pipe';
 })
 export class TimelineComponent implements OnInit {
   @ViewChildren(FileUpload) fileUploads: QueryList<FileUpload>;
+  user: any;
   timeline: TimeLine;
   proposalId: number;
   stage: Stage; // stage to be manipulated for edit and new
@@ -65,6 +67,7 @@ export class TimelineComponent implements OnInit {
   constructor(private messageService: MessageService,
               private preAwardService: PreawardService,
               private proposalService: ProposalService,
+              private authService: AuthenticationService,
               private keysPipe: KeysPipe
     ) {
       this.populateTimeLine();
@@ -72,6 +75,8 @@ export class TimelineComponent implements OnInit {
 
   ngOnInit() {
     this.dialogType = 'view-basic-timeline';
+    this.user = this.authService.getUserData();
+    console.log(this.user);
   }
   // timeline
   populateTimeLine() {
@@ -238,7 +243,7 @@ export class TimelineComponent implements OnInit {
   }
   myUploader(event, file) {
     this.showProgressBar = true;
-    this.preAwardService.uploadFile(this.proposalId, this.stage.id, file.key, event.files[0])
+    this.preAwardService.uploadFile(this.proposalId, file.value.id, event.files[0])
       .subscribe(response => {
         // have to clear the files on upload element
         file.value = response;

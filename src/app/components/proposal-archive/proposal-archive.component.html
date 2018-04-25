@@ -1,0 +1,26 @@
+<div id='dash-bar'>
+  <h3 class = 'page-title'>Proposal Archive</h3>
+  <button pButton label='Home' [routerLink]="['/home']" icon='fa-home'></button>
+  <span class="ui-float-label">
+      <input id="searchTerm" type="password" pInputText [(ngModel)]="searchTerm" name='searchTerm'/>
+      <label for="searchTerm">Search</label>
+  </span>
+  <!-- <select>
+      <option>ALL</option>
+      <option>DRAFT</option>
+      <option>MEETING</option>
+      <option>POSTMEETING</option>
+      <option>FINAL</option>
+      <option>CANCELLED</option>
+    </select> -->
+</div>
+<div id='proposals'>
+  <p-dataTable [value]='displayedProposals' (onRowSelect)='navigate($event.data.id)' selectionMode='single' [immutable]='false' [rows]="15" [paginator]="true">
+    <p-header>Archive</p-header>
+    <p-column field='id' header='Proposal #'></p-column>
+    <p-column field='proposalName' header='Name'></p-column>
+    <p-column field='intakeForm.principleInvestigator' header='Investigator'></p-column>
+    <p-column field='dateCreated' header='Date Created'></p-column>
+    <p-column field='status' header='Status'></p-column>
+  </p-dataTable>
+</div>

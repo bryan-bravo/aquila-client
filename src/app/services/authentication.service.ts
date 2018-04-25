@@ -32,11 +32,6 @@ constructor(private http: HttpClient) {
   getUserData() {
     return JSON.parse(localStorage.getItem('user'));
   }
-  // delete this
-  getUser() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return user;
-  }
   storeJWT(jwt) {
     localStorage.setItem('jwt', jwt);
   }

@@ -17,6 +17,11 @@
       <p class='content'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus.
         Atque, placeat fuga illo sit non est </p>
     </div>
+    <div (click)='navigate("proposalarchive")' class='main-window' *ngIf='user.type!="INVESTIGATOR"'>
+      <p class='title'>Proposal Archive</p>
+      <p class='content'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae repudiandae eius ad ea. Architecto, doloribus.
+        Atque, placeat fuga illo sit non est </p>
+    </div>
     <!-- edit user info -->
     <p-dialog header="General Account Settings" [(visible)]="userInfoPrompt" [responsive]="true" showEffect="fade" >
       <div id='form'>

@@ -24,7 +24,6 @@ import {FileUploadModule} from 'primeng/primeng';
 import {GrowlModule} from 'primeng/primeng';
 import {ProgressSpinnerModule} from 'primeng/primeng';
 import {ToggleButtonModule} from 'primeng/primeng';
-
 // generated components
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -42,6 +41,7 @@ import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.compon
 import { FormFooterComponent } from './components/form-footer/form-footer.component';
 import { ConflictOfInterestComponent } from './components/formcomponents/coi/coi.component';
 import { EconomicInterestComponent } from './components/formcomponents/economic-interest/economic-interest.component';
+import { ProposalArchiveComponent } from './components/proposal-archive/proposal-archive.component';
 
 // services
 import {AuthenticationService} from './services/authentication.service';
@@ -63,7 +63,8 @@ const AppRoutes: Routes = [
     {path: 'home', component: PiHomePageComponent}, // will have can activate thing
     {path: 'pipreaward', component: PiPreAwardComponent} ,
     {path: 'editproposal/:id', component: EditProposalComponent},
-    {path: 'test', component: TestComponent}
+    {path: 'test', component: TestComponent},
+    {path: 'proposalarchive', component: ProposalArchiveComponent}
 ];
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ const AppRoutes: Routes = [
     KeysPipe,
     TimelineBarDirective,
     TestComponent,
+    ProposalArchiveComponent,
 
   ],
   imports: [
@@ -107,7 +109,7 @@ const AppRoutes: Routes = [
     MessageModule,
     GrowlModule,
     ProgressSpinnerModule,
-    ToggleButtonModule
+    ToggleButtonModule,
   ],
   providers: [
     AuthenticationService,

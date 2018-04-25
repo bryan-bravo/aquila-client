@@ -31,6 +31,10 @@ user: User;
     const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
     return this.http.get<Proposal>(`api/proposal/${id}`, {headers: headers});
   }
+  getAllProposals(): Observable<Proposal[]> {
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
+    return this.http.get<Proposal[]>(`api/proposals/`, {headers: headers});
+  }
   // intake
   updateIntake(intakeForm): Observable<IntakeForm> {
     const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
@@ -100,11 +104,11 @@ user: User;
     const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
     return this.http.get(`api/timeline/stage/${stageId}/order/${indexToPush}`, {headers: headers});
   }
-  uploadFile(proposalId, stageId, fileName, file ) {
+  uploadFile(proposalId, fileId, file ) {
     const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
     const formData = new FormData();
     formData.append('file', file);
-    return this.http.put(`api/proposal/${proposalId}/stage/${stageId}/fileupload/${fileName}`, formData, {headers: headers});
+    return this.http.put(`api/proposal/${proposalId}/fileupload/${fileId}`, formData, {headers: headers});
   }
   downloadFile(fileId) {
     const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
