@@ -5,6 +5,7 @@
 <div @fade *ngIf='menuState && !showSpinner' id='menu-state'>
   <div id='dashboard'>
     <h3 id='name'>{{proposal?.proposalName}}</h3>
+    <button *ngIf='user.type!="INVESTIGATOR"'pButton [routerLink]="['/proposalarchive']" label='Proposal Archive'></button>
     <button pButton [routerLink]="['/pipreaward']" label='Pre Award'></button>
     <button pButton label='Help' icon='fa-question'></button>
   </div>

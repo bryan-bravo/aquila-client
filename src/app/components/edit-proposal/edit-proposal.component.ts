@@ -5,6 +5,7 @@ import {Proposal} from '../../models/PreAward/Proposal';
 import {ProposalService} from '../../services/proposal.service';
 import { IntakeForm } from '../../models/PreAward/IntakeForm';
 import { PreawardService } from '../../services/preaward.service';
+import {AuthenticationService} from '../../services/authentication.service';
 import {GrowlModule} from 'primeng/primeng';
 @Component({
   selector: 'app-edit-proposal',
@@ -29,6 +30,7 @@ import {GrowlModule} from 'primeng/primeng';
 
 })
 export class EditProposalComponent implements OnInit {
+  user: any;
   proposalId: string; // current proposal request being modified
   proposal: Proposal;
   menuState: boolean; // determines if menu or form field is shown
@@ -38,7 +40,9 @@ export class EditProposalComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private proposalService: ProposalService,
-    private preAwardService: PreawardService) {
+    private preAwardService: PreawardService,
+    private authService: AuthenticationService
+  ) {
     // listens for updates from the children form container
     proposalService.updatedFormtoProposal$.subscribe(form => {
        console.log(form);
@@ -52,6 +56,7 @@ export class EditProposalComponent implements OnInit {
     this.menuState = true;
     this.routerState = false;
     this.currentForm = '';
+    this.user = this.authService.getUserData();
   }
   // get id from pi preaward component
   getParams() {

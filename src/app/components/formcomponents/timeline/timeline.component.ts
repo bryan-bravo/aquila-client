@@ -76,7 +76,6 @@ export class TimelineComponent implements OnInit {
   ngOnInit() {
     this.dialogType = 'view-basic-timeline';
     this.user = this.authService.getUserData();
-    console.log(this.user);
   }
   // timeline
   populateTimeLine() {
