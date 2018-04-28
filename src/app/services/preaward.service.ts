@@ -120,4 +120,10 @@ user: User;
     const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
     return this.http.delete(`api/timeline/${timelineId}/stage/${stageId}/deletefile/${fileId}`);
   }
+  // stage check delete this
+  stageCheck(proposalId, stageId) {
+    // proposal/{propId}/timeline/stage/{stageId}
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
+    return this.http.get(`api/proposal/${proposalId}/timeline/stage/${stageId}`, {headers: headers});
+  }
 }

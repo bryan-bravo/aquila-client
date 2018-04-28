@@ -106,7 +106,7 @@ export class TimelineComponent implements OnInit {
         });
         this.timeline = timeline;
         this.showProgressBar = false;
-        this.messageService.add({severity: 'success', summary: 'Service Message', detail: 'Via MessageService'});
+        this.messageService.add({severity: 'success', summary: 'Service Message'});
       });
     } else {
       // making patch request
@@ -126,7 +126,7 @@ export class TimelineComponent implements OnInit {
         } else {
           this.timeline.finalSign = timeline.finalSign;
         }
-        this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
+        this.messageService.add({severity:'success', summary:'Service Message'});
       });
     }
   }
@@ -138,7 +138,7 @@ export class TimelineComponent implements OnInit {
       this.timeline.stages.push(stage);
       this.setDialogType('edit-stage');
       this.showProgressBar = false;
-      this.messageService.add({severity:'success', summary:'Stage Added', detail:'Via MessageService'});
+      this.messageService.add({severity:'success', summary:'Stage Added'});
       this.stageIndex = this.timeline.stages.length - 1;
     });
   }
@@ -151,7 +151,7 @@ export class TimelineComponent implements OnInit {
     this.preAwardService.saveStage(this.timeline.id, stage).subscribe( (savedStage) => {
       this.stage = this.parseStage(savedStage);
       this.showProgressBar = false;
-      this.messageService.add({severity:'success', summary:'Stage Saved', detail:'Via MessageService'});
+      this.messageService.add({severity:'success', summary:'Stage Saved'});
       // this.proposalService.
     });
   }
@@ -173,7 +173,7 @@ export class TimelineComponent implements OnInit {
         }
         this.stageIndex = this.getStageIndex(this.stage.id);
         this.showProgressBar = false;
-        this.messageService.add({severity:'success', summary:'Stage Reordered', detail:'Via MessageService'});
+        this.messageService.add({severity: 'success', summary: 'Stage Reordered'});
       });
     } else {
       console.log("nope")
@@ -190,7 +190,7 @@ export class TimelineComponent implements OnInit {
       this.timeline.stages.splice(currentStageIndex,  1);
       this.setDialogType('view-basic-timeline');
       this.showProgressBar = false;
-      this.messageService.add({severity:'success', summary:'Stage Deleted', detail:'Via MessageService'});
+      this.messageService.add({severity:'success', summary:'Stage Deleted'});
     });
   }
   // forms
@@ -247,7 +247,7 @@ export class TimelineComponent implements OnInit {
         // have to clear the files on upload element
         file.value = response;
         this.showProgressBar = false;
-        this.messageService.add({severity: 'success', summary: 'File Uploaded', detail: 'Via MessageService'});
+        this.messageService.add({severity: 'success', summary: 'File Uploaded'});
         this.fileUploads.forEach(fileUpload => {
           fileUpload.clear();
         });
@@ -264,13 +264,19 @@ export class TimelineComponent implements OnInit {
 
     });
   }
+  // for presentation delete
+    submitForPending() {
+      this.preAwardService.stageCheck(this.proposalId, this.stage.id).subscribe( message => {
+        this.stage.uasReviewRequired = true;
+        this.messageService.add({severity: 'success', summary: 'Stage Pending Review'});
+      });
+    }
   // helper functionss
   getCurrentStage(stageId) {
     const stageIndex = this.getStageIndex(stageId);
     this.stage = this.timeline.stages[stageIndex];
     this.stageIndex = stageIndex;
     this.setDialogType('');
-
     this.setDialogType('view-stage');
     // console.log(this.fileUploads)
 

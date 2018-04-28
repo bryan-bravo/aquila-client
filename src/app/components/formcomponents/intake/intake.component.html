@@ -1,6 +1,7 @@
 <div id='container'>
   <div id='dash-bar'>
     <h3>UAS Grants and Contracts Intake Form</h3>
+    <button type="button" pButton (click)="update()" label="Update"></button>
     <app-bread-crumb [index]='index' [pages]='breadCrumbStrings'></app-bread-crumb>
   </div>
   <!-- first page A,B,C -->
@@ -13,7 +14,7 @@
     <input type="text" pInputText>
     <label>Sponsor</label>
     <input type="text" [(ngModel)]='intakeForm.sponsor' pInputText>
-    <small *ngIf='!intakeForm.sponsor' class='required-asterisk'>*required</small>
+    <!-- <small *ngIf='!intakeForm.sponsor' class='required-asterisk'>*required</small> -->
     <label>Project Title</label>
     <input type="text" [(ngModel)]='intakeForm.projectTitle' pInputText>
     <small *ngIf='!intakeForm.projectTitle' class='required-asterisk'>*required</small>
@@ -47,7 +48,7 @@
     <p-toggleButton [(ngModel)]="intakeForm.anticipateStipend"></p-toggleButton>
 
     <!-- if stipend is true -->
-    <div class='form-flex-start indent' *ngIf='intakeForm.anticipateStipend'>
+    <div @slideHorizontal class='form-flex-start indent' *ngIf='intakeForm.anticipateStipend'>
       <label>Please identify the type of Stipend:Study Participant, Student Tuition, Travel.. etc, and provide your Participation
         Stipend eligibility criteria and selection process below.</label>
       <input type="text" [(ngModel)]='intakeForm.stipend' pInputText>
@@ -56,7 +57,7 @@
       <p-toggleButton [(ngModel)]="intakeForm.studentsInvolved"></p-toggleButton>
 
       <!-- if rsca is true -->
-      <div class='form-flex-start indent' *ngIf='intakeForm.studentsInvolved'>
+      <div @slideHorizontal class='form-flex-start indent' *ngIf='intakeForm.studentsInvolved'>
         <p>Please answer the following</p>
         <label> Number Of Undergrad Students</label>
         <input type="text" [(ngModel)]='intakeForm.noOfUnderGradStudents' pInputText>

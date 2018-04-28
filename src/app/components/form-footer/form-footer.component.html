@@ -1,2 +1,4 @@
-<img *ngIf='index!=0' src='../../../assets/images/left-arrow.png' class='left-arrow' (click)='changeIndex("left")'>
-<img *ngIf='index!=length-1' src='../../../assets/images/right-arrow.png' class='right-arrow' (click)='changeIndex("right")'>
+<!-- <img *ngIf='index!=0' src='../../../assets/images/left-arrow.png' class='left-arrow' (click)='changeIndex("left")'>
+<img *ngIf='index!=length-1' src='../../../assets/images/right-arrow.png' class='right-arrow' (click)='changeIndex("right")'> -->
+<button *ngIf='index!=0' pButton class='ui-button-success' (click)='changeIndex("left")' label='Previous' icon='fa-arrow-left'  ></button>
+<button *ngIf='index!=length-1' pButton class='ui-button-success' (click)='changeIndex("right")' label='Next' icon='fa-arrow-right' iconPos='right' ></button>

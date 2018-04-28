@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import {IntakeForm, Personnel, SubgrantSubProject, ProjectLocation} from '../../../models/PreAward/IntakeForm';
 import { AdditionalPartiesInvolved, Space, MapEntry} from '../../../models/PreAward/IntakeForm';
+import {trigger, state, transition, style, animate} from '@angular/animations';
 import {MenuItem} from 'primeng/primeng';
 import {MessageService} from 'primeng/components/common/messageservice';
 import { Proposal } from '../../../models/PreAward/Proposal';
@@ -12,7 +13,30 @@ import {KeysPipe} from '../../../pipes/keys.pipe';
 @Component({
   selector: 'app-intake',
   templateUrl: './intake.component.html',
-  styleUrls: ['./intake.component.css']
+  styleUrls: ['./intake.component.css'],
+  animations: [
+    trigger('slideHorizontal', [
+      // right arrow clicked entering
+      transition(':enter', [
+        style({
+          transform: 'translateX(-100%)'
+        }),
+        animate(500,
+          style({
+            transform: 'translateX(0)'
+          })
+        )
+      ]),
+      // right arrow clicked leaving
+      transition(':leave', [
+        animate(500,
+          style({
+            transform: 'translateX(-100%)'
+          })
+        )
+      ])
+    ])
+  ]
 })
 export class IntakeComponent implements OnInit {
   intakeForm: IntakeForm;
@@ -49,7 +73,6 @@ export class IntakeComponent implements OnInit {
 
   updateIndex(value) {
    this.index = value;
-   this.update();
   }
 
   update() {

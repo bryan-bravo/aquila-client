@@ -56,7 +56,7 @@
       <p-dataTable [value]='proposal?.conflictOfInterestForms' selectionMode='single' (onRowSelect)='coiSelect($event)'>
           <p-header>Conflict Of Interest Forms</p-header>
           <p-column field='type' header='Type'></p-column>
-          <p-column field='progress' header='Progress'></p-column>
+          <p-column field='progress' header='Progress' value='incomplete'></p-column>
         </p-dataTable>
       </div>
     </div>
