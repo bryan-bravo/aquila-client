@@ -1,7 +1,7 @@
 <div id='container'>
   <!-- dash bar -->
   <h3>Statement of Economic Interest for Principal Investigator</h3>
-  <button class='button-blue' (click)='update()'>Update</button>
+  <button type="button" pButton (click)="update()" label="Update"></button>
   <app-bread-crumb [index]='index' [pages]='breadCrumbStrings'></app-bread-crumb>
   <!-- page 1 Instructions for Completing Form 700-U -->
   <div *ngIf='index==0' class='form-flex-start'>
