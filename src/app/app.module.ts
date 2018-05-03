@@ -33,7 +33,6 @@ import { PiHomePageComponent } from './components/pihome-page/pihome-page.compon
 import { LoginComponent } from './components/login/login.component';
 import { EditProposalComponent } from './components/edit-proposal/edit-proposal.component';
 import { IntakeComponent } from './components/formcomponents/intake/intake.component';
-import { BudgetComponent } from './components/formcomponents/budget/budget.component';
 import { TimelineComponent } from './components/formcomponents/timeline/timeline.component';
 import { PiPreAwardComponent } from './components/pi-pre-award/pi-pre-award.component';
 import { EquipmentComponent } from './components/formcomponents/equipment/equipment.component';
@@ -75,7 +74,6 @@ const AppRoutes: Routes = [
     PiHomePageComponent,
     EditProposalComponent,
     IntakeComponent,
-    BudgetComponent,
     TimelineComponent,
     PiPreAwardComponent,
     EquipmentComponent,
