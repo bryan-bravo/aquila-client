@@ -265,12 +265,9 @@ export class TimelineComponent implements OnInit {
     });
   }
   // for presentation delete
-    submitForPending() {
-      this.preAwardService.stageCheck(this.proposalId, this.stage.id).subscribe( message => {
-        this.stage.uasReviewRequired = true;
-        this.messageService.add({severity: 'success', summary: 'Stage Pending Review'});
-      });
-    }
+  submitForPending() {
+
+  }
   // helper functionss
   getCurrentStage(stageId) {
     const stageIndex = this.getStageIndex(stageId);

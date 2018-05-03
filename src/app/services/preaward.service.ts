@@ -36,7 +36,6 @@ export class PreawardService {
   // intake
   updateIntake(intakeForm): Observable<IntakeForm> {
     const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
-    intakeForm.complete = true;
     return this.http.
     put<IntakeForm>(
       `api/proposal/${intakeForm.proposalId}/intake/${intakeForm.id}`, JSON.parse(JSON.stringify(intakeForm)), {headers: headers});
@@ -118,10 +117,5 @@ export class PreawardService {
     const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
     return this.http.delete(`api/timeline/${timelineId}/stage/${stageId}/deletefile/${fileId}`);
   }
-  // stage check delete this
-  stageCheck(proposalId, stageId) {
-    // proposal/{propId}/timeline/stage/{stageId}
-    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
-    return this.http.get(`api/proposal/${proposalId}/timeline/stage/${stageId}`, {headers: headers});
-  }
+
 }
