@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {trigger, state, transition, style, animate, query, animateChild} from '@angular/animations';
 import {Proposal} from '../../models/PreAward/Proposal';
@@ -7,11 +7,11 @@ import { IntakeForm } from '../../models/PreAward/IntakeForm';
 import { PreawardService } from '../../services/preaward.service';
 import {AuthenticationService} from '../../services/authentication.service';
 import {GrowlModule} from 'primeng/primeng';
+
 @Component({
   selector: 'app-edit-proposal',
   templateUrl: './edit-proposal.component.html',
   styleUrls: ['./edit-proposal.component.css'],
-  // encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('fade', [
     // state(),
@@ -29,7 +29,7 @@ import {GrowlModule} from 'primeng/primeng';
   ]
 
 })
-export class EditProposalComponent implements OnInit {
+export class EditProposalComponent implements OnInit, OnDestroy {
   user: any;
   proposalId: string; // current proposal request being modified
   proposal: Proposal;
@@ -44,19 +44,22 @@ export class EditProposalComponent implements OnInit {
     private authService: AuthenticationService
   ) {
     // listens for updates from the children form container
-    proposalService.updatedFormtoProposal$.subscribe(form => {
+    const $proposal = proposalService.updatedFormtoProposal$.subscribe(form => {
        console.log(form);
     });
   }
 
   ngOnInit() {
     this.getParams();
-    // this.getProposal();
-    setTimeout(() => {this.getProposal()} , 1000);
+    this.getProposal();
+    // setTimeout(() => {this.getProposal()} , 1000);
     this.menuState = true;
     this.routerState = false;
     this.currentForm = '';
     this.user = this.authService.getUserData();
+  }
+  ngOnDestroy() {
+    // this.$proposal.unsubscribe();
   }
   // get id from pi preaward component
   getParams() {
@@ -70,14 +73,7 @@ export class EditProposalComponent implements OnInit {
       this.showSpinner = false;
     });
   }
-  setProgressBar(percentage) {
-    const formattedWidth = percentage + '%';
-    return{
-      'height': '2px;',
-      'width': formattedWidth,
-      'background-color': 'rgb(46, 236, 29)'
-    };
-  }
+
   // styles the bottom right label if form is required
   setRequiredForms(form) {
     // needs to be implemented

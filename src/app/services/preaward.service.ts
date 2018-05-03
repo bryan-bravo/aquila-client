@@ -11,18 +11,16 @@ import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class PreawardService {
-user: User;
   constructor(private http: HttpClient, private authService: AuthenticationService) {
-    this.user = JSON.parse(localStorage.getItem('user'));
   }
   newProposal(proposalName): Observable<Proposal> {
-    const userId = this.user.id;
+    const userId = this.authService.getUserData().id;
     const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
     return this.http.post<Proposal>(`api/proposal/`, {"proposalName": proposalName, "userId": userId}, {headers: headers});
   }
   // returns the proposals of a user
   getProposals(): Observable<Proposal[]> {
-    const userId = this.user.id;
+    const userId = this.authService.getUserData().id;
     const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
     return this.http.get<Proposal[]>(`api/proposals/${userId}`, {headers: headers});
   }

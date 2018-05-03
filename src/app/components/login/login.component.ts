@@ -57,13 +57,4 @@ export class LoginComponent implements OnInit {
     }
   }
 }
- // // now working with response of authentitication
-    // this.mockService.login(this.username, this.password).subscribe(response => {
-    //   // invalid user
-    //   if (response.user == undefined) {
-    //     this.failedLoginFlag = true;
-    //   // new user
-    // } else {
-    //     this.authenticationService.storeUserData(response.user);
-    //     this.router.navigate(['/home']);
-    //   }
+

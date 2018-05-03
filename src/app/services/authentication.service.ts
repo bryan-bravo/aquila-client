@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthenticationService {
-user: User;
 
 constructor(private http: HttpClient) {
    }
@@ -27,7 +26,6 @@ constructor(private http: HttpClient) {
   storeUserData(user) {
     // localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
-    this.user = user;
   }
   getUserData() {
     return JSON.parse(localStorage.getItem('user'));
