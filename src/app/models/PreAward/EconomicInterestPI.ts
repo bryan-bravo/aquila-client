@@ -2,6 +2,7 @@ import { Department } from '../Department';
 export class EconomicInterestPI {
     // general info
     id: number;
+    proposalId: number;
     isComplete: boolean;
     campus: string;
     progress: number;

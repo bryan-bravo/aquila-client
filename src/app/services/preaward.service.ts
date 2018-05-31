@@ -57,8 +57,9 @@ export class PreawardService {
     return this.http.get<EconomicInterestPI>(`api/proposal/economicinterest/${id}`);
   }
   updateEconomicInterestPI(economicInterestPI): Observable<EconomicInterestPI> {
-    return this.http.
-    put<EconomicInterestPI>(`api/proposal/editeconomicinterest/${economicInterestPI.id}`, JSON.parse(JSON.stringify(economicInterestPI)));
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
+    // tslint:disable-next-line:max-line-length
+    return this.http.put<EconomicInterestPI>(`api/proposal/${economicInterestPI.proposalId}/economicinterest/${economicInterestPI.id}`, JSON.parse(JSON.stringify(economicInterestPI)),{headers:headers});
   }
   // conflict of interest
   updateConflictOfInterest(coiForm) {

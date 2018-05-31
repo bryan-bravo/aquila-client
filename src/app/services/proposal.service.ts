@@ -29,6 +29,7 @@ export class ProposalService {
     this.formSource.next(equipmentForm);
   }
   getEconomicInterestPI() {
+    this.proposal.economicInterestPi.proposalId = this.proposal.id;
     return this.proposal.economicInterestPi;
   }
   updateEconomicInterestPI(economicInterestPI) {
