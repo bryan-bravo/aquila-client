@@ -158,7 +158,7 @@
     <label>Principal Business of Entity:</label>
     <input type='text' [(ngModel)]='economicInterestPI.principalBusiness' pInputText>
     <label>Amount of Funding: $</label>
-    <input type='text' [(ngModel)]='economicInterestPI.fundingAmount' pInputText>
+    <input type='number' [(ngModel)]='economicInterestPI.fundingAmount' pInputText>
     <p-checkbox label='Estimated' binary='true' [(ngModel)]='economicInterestPI.estimateAmount'></p-checkbox>
     <p-checkbox label='Actual' binary='true' [(ngModel)]='economicInterestPI.actualAmount'></p-checkbox>
     <!-- 2 -->
@@ -189,7 +189,7 @@
       <p-toggleButton [(ngModel)]="economicInterestPI.investmentGreaterThan"></p-toggleButton>
       <div class='amount-list' *ngIf='economicInterestPI.investmentGreaterThan' class='form-flex-start indent'>
       <label>Amount $</label>
-      <input type='text' [(ngModel)]='economicInterestPI.investAmount' pInputText>
+      <input type='number' [(ngModel)]='economicInterestPI.investAmount' pInputText>
       <label>Date Disposed: (if applicable)</label>
       <p-calendar [(ngModel)]='economicInterestPI.dateDisposed'></p-calendar>
     </div>
@@ -197,7 +197,7 @@
     <p-toggleButton [(ngModel)]="economicInterestPI.receivedIncome"></p-toggleButton>
     <div class='amount-list' *ngIf='economicInterestPI.receivedIncome' class='form-flex-start indent'>
       <label>Amount $</label>
-      <input type='text' [(ngModel)]='economicInterestPI.receivedAmount' pInputText>
+      <input type='number' [(ngModel)]='economicInterestPI.receivedAmount' pInputText>
       <p>Was this income received through you spouse or registered domestic partner?</p>
       <p-toggleButton [(ngModel)]="economicInterestPI.receivedThroughSpouse"></p-toggleButton>
     </div>
@@ -206,11 +206,11 @@
     <p-toggleButton [(ngModel)]="economicInterestPI.receivedThroughEntity"></p-toggleButton>
     <div class='loan-information' *ngIf='economicInterestPI.receivedThroughEntity' class='form-flex-start indent'>
       <label>Loan Amount $</label>
-      <input type='text' [(ngModel)]='economicInterestPI.loanAmount' pInputText>
+      <input type='number' [(ngModel)]='economicInterestPI.loanAmount' pInputText>
       <p>Was the loan: Secured</p>
       <p-toggleButton [(ngModel)]="economicInterestPI.loanSecured"></p-toggleButton>
       <label>Interest rate: %</label>
-      <input type='text' [(ngModel)]='economicInterestPI.loanInterest' pInputText>
+      <input type='number' [(ngModel)]='economicInterestPI.loanInterest' pInputText>
       <p>Was the loan entirely repaid within the last 12 months?</p>
       <p-toggleButton [(ngModel)]="economicInterestPI.loanPaidOff"></p-toggleButton>
     </div>
@@ -220,7 +220,7 @@
       <label>Description:</label>
       <textarea pInputTextarea [(ngModel)]='economicInterestPI.giftsDescription' autoResize="autoResize"></textarea>
       <label>Value: $</label>
-      <input type="text" [(ngModel)]='economicInterestPI.giftsValue' pInputText>
+      <input type="number" [(ngModel)]='economicInterestPI.giftsValue' pInputText>
       <label>Date Received:</label>
       <p-calendar [(ngModel)]='economicInterestPI.giftsReceivedDate'></p-calendar>
     </div>
@@ -235,7 +235,7 @@
         <p-checkbox binary='true' [(ngModel)]='economicInterestPI.atravelPaymentTypeIncome'></p-checkbox>
       </div>
       <label>Amount: $</label>
-      <input type="text" [(ngModel)]='economicInterestPI.travelAmount' pInputText>
+      <input type="number" [(ngModel)]='economicInterestPI.travelAmount' pInputText>
       <label>dates (if applicable)</label>
       <p-calendar [(ngModel)]='economicInterestPI.travelStartDate'></p-calendar>
       <p-calendar [(ngModel)]='economicInterestPI.travelEndDate'></p-calendar>

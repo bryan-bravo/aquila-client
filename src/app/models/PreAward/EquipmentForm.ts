@@ -52,9 +52,9 @@ export class EquipmentForm {
     height: number;
     width: number;
     length: number;
-    directorOfResearchDevelopmentSignature: any; //Signature
+    directorOfResearchDevelopmentSignature: any; // Signature
     directorOfResearchDevelopmentSignatureDate: Date;
-    directorOfFacilitiesServicesSignature: any; //Signature
+    directorOfFacilitiesServicesSignature: any; // Signature
     directorOfFacilitiesServicesSignatureDate: Date;
 }
 export class TypeOfEquipment {

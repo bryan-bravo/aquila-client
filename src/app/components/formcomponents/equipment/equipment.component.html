@@ -56,11 +56,11 @@
       <p-checkbox label='Size Of Equipment' binary='true' [(ngModel)]='equipmentForm.sizeOfEquipment'></p-checkbox>
       <div @slideHorizontal *ngIf='equipmentForm.sizeOfEquipment' class='form-flex-start indent'>
         <label>Height ft</label>
-        <input type="text" [(ngModel)]='equipmentForm.height' pInputText>
+        <input type="number" [(ngModel)]='equipmentForm.height' pInputText>
         <label>Width ft</label>
-        <input type="text" [(ngModel)]='equipmentForm.width' pInputText>
+        <input type="number" [(ngModel)]='equipmentForm.width' pInputText>
         <label>Length ft</label>
-        <input type="text" [(ngModel)]='equipmentForm.length' pInputText>
+        <input type="number" [(ngModel)]='equipmentForm.length' pInputText>
       </div>
     </div>
     <!-- page 3 check all that apply  -->
