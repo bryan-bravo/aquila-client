@@ -55,10 +55,12 @@ export class EquipmentComponent implements OnInit {
     this.direction = 'left';
     const equipmentObject = this.proposalService.getEquipmentForm();
    if (equipmentObject.equipmentForm.id == null) {
+    //  equipment form does not exist so pull it
      this.preAwardService.getEquipment(equipmentObject.proposalId).subscribe(newEquipmentForm => {
       this.equipmentForm = newEquipmentForm;
      });
      } else {
+      equipmentObject.equipmentForm.proposalId = equipmentObject.proposalId;
        if (equipmentObject.equipmentForm.chemicals.length == undefined) {
         this.equipmentForm = this.parseEquipmentForm(equipmentObject.equipmentForm);
       } else {

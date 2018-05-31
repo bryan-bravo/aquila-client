@@ -1,5 +1,6 @@
 export class EquipmentForm {
     id: string;
+    proposalId?: string;
     facultyName: string;
     department: string;
     proposalTitle: string;

@@ -48,7 +48,9 @@ export class PreawardService {
     return this.http.get<EquipmentForm>(`api/equipment/${id}`);
   }
   updateEquipment(equipmentForm): Observable<EquipmentForm> {
-    return this.http.put<EquipmentForm>(`api/equipment/${equipmentForm.id}`, JSON.parse(JSON.stringify(equipmentForm)));
+    const headers = new HttpHeaders({'Authorization': this.authService.getJWT()});
+    // tslint:disable-next-line:max-line-length
+    return this.http.put<EquipmentForm>(`api/proposal/${equipmentForm.proposalId}/equipment/${equipmentForm.id}`, JSON.parse(JSON.stringify(equipmentForm)), {headers: headers});
   }
   // economic interest
   getEconomicInterestPI(id): Observable<EconomicInterestPI> {
