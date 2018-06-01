@@ -24,4 +24,18 @@
 #proposals {
   width: 100%;
 }
-
+@media only screen and (min-device-width : 320px) and (max-device-width: 480px) {
+  :host {
+    display: block;
+    height: 100%;
+    width: auto !important;
+    margin: 0 !important;
+    background-color: white;
+    padding: 1em;
+  }
+ form {
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+ }
+}
