@@ -55,10 +55,25 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
-
-#bottom {
-  height: 70%;
-  width: 100vw;
-  background-color: rgb(254, 220, 89);
-  bottom: 0;
+@media only screen and (min-device-width : 320px) and (max-device-width: 480px) {
+  :host {
+    display: block;
+    height: 100%;
+    width: auto !important;
+    margin: 0 !important;
+    background-color: white;
+    padding: 1em;
+  }
+  #link-container {
+    height: 100%;
+    width: 100%;
+    padding-top:1em;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+} 
+#link-container>div {
+ margin: .5em 0;
+ }
 }
