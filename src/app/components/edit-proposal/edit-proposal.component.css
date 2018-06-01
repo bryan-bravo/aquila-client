@@ -142,3 +142,23 @@ li {
 .coi-wrapper {
   box-shadow: 5px 5px 12px #6c6c6c;
 }
+@media only screen and (min-device-width : 320px) and (max-device-width: 480px) {
+  :host {
+    display: block;
+    min-height: 100%;
+    width: auto !important;
+    margin: 0 !important;
+    background-color: white;
+    padding: 1em;
+  }
+  #menu-container, #forms {
+    width: 100%;
+   display:flex !important;
+    flex-direction: column ;
+    justify-content: flex-start;
+    align-items: stretch;
+} 
+.required-forms {
+  margin-top: .5em;
+}
+}
