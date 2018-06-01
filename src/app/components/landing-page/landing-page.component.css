@@ -20,8 +20,7 @@
 
 #contentContainer {
   position: relative;
-  /* width: 100vw; */
-  height: 70vh;
+  min-height: 70vh;
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -46,8 +45,18 @@
   padding: 0 1em;
   font-size: 1em;
 }
+@media (orientation:landscape){
+  .content-image {
+    float:left;
+    padding: 1em;
+  
+  }
+}
 
-.content-image {
-  padding: 1em;
-  float: left;
+@media (orientation: portrait) {
+#content-1, #content-2, #content-3 {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
 }
