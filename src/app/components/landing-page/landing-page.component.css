@@ -9,15 +9,6 @@
   padding: 15% 10%;
 }
 
-.imageContainer {
-  background-image: url('../../../assets/images/eaglestatue1.jpg');
-  background-attachment: fixed;
-  background-position: left center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 80%;
-}
-
 #contentContainer {
   position: relative;
   min-height: 70vh;
@@ -46,6 +37,14 @@
   font-size: 1em;
 }
 @media (orientation:landscape){
+  .imageContainer {
+    background-image: url('../../../assets/images/eaglestatue1.jpg');
+    background-attachment: fixed;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80%;
+  }
   .content-image {
     float:left;
     padding: 1em;
