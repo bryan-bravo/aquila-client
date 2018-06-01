@@ -161,4 +161,16 @@ li {
 .required-forms {
   margin-top: .5em;
 }
+#dashboard {
+  width: 100%;
+  border-bottom: 1px solid black;
+  margin-bottom:1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+#dashboard> * {
+  margin-bottom: .5em;
+}
 }
